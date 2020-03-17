@@ -11,8 +11,8 @@ class SalesController extends Controller
     public function index($id = "login")
     {
         $sales = Sales::all();
-        print_r($sales);
-        exit();
+        //print_r($sales);
+        //exit();
         return View("pages.sales");
     }
 }
