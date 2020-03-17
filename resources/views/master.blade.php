@@ -27,9 +27,7 @@
             <img src="{{ asset('images/user.svg') }}"  width="30%" alt="" class="img-responsive icon-user">
         </div>
     <div>
-
-
-
+    <hr >
     <div class="row">
         <div class="col-sm-12">
 
