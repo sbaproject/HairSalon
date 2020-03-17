@@ -5,6 +5,33 @@
 @endsection
 @section('content')
 
+            <div class="">
+                        <div class=""><input type="text" class="" placeholder="date"> ~ <input type="text" class="" placeholder="date"></div>
+                        <div class=""><select class="">
+                                <option>Thai Van Lung</option>
+                                <option>InterContinental</option>
+                            </select></div>
+                        <div class=""><button type="button" class="btn btn-primary"><a href="sales/new" style="color: white; text-decoration: none;">新規追加</a></button></div>                         
+            </div>
+
+
+            <div class="">
+            <div class="">Money1</div>               
+            <div class="">1000</div>      
+            </div>
+            
+            <div class="">
+            <div class="">Money1</div>               
+            <div class="">20000000</div>  
+            </div>
+
+            <div class="">
+            <button type="button" class="btn btn-primary"><a href="sales/new" style="color: white; text-decoration: none;">新規追加</a></button>
+            <button type="button" class="btn btn-primary"><a href="sales/new" style="color: white; text-decoration: none;">PDF</a></button>
+            </div>
+
+
+
 <div style="padding: 20px;">
         <button type="button" class="btn btn-primary"><a href="sales/new" style="color: white; text-decoration: none;">新規追加</a></button>
         <br/>
