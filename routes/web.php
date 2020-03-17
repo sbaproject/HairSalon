@@ -20,3 +20,6 @@ Route::get('/', function()
 
 
 Route::get('/pages/{id?}', 'UserController@index');
+
+
+Route::get('/sales', 'SalesController@index');
