@@ -23,6 +23,8 @@ Route::get('/pages/{id?}', 'UserController@index');
 
 Route::get('/sales', 'SalesController@index');
 
+Route::get('/sales/new', 'SalesController@getSalesNew');
+
 Route::get('/staff', 'StaffController@index');
 
 Route::get('/staff/new', 'StaffController@getStaffNew');

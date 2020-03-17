@@ -12,7 +12,7 @@
   <body>
   @section('menu')
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-2 logo">
             <img src="{{ asset('images/2-1 銀座マツナガロゴPANTONEグリーン.png') }}"  width="100%" alt="" class="img-responsive">
         </div>
         <div class="col-sm-3">
@@ -28,9 +28,9 @@
   	</div>
 	<div class="sidenav">
 		<a href="{{ asset('pages/login') }}" class="active">顧客管理</a>
-		<a href="{{ asset('pages/sales') }}">売上管理</a>
+		<a href="{{ asset('sales') }}">売上管理</a>
 		<a href="{{ asset('staff') }}">スタッフ管理</a>
-		<a href="{{ asset('pages/course') }}" >コース管理</a>
+		<a href="{{ asset('course') }}" >コース管理</a>
 	</div>
 	<div class="main">
 		@show
