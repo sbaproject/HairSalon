@@ -46,6 +46,11 @@ body {
     color: #3399FF;
     text-decoration: underline;
   }
+
+  hr {
+    border: 0.5px solid #C0C0C0;
+    width: 100%;
+  }
   
   .main {
     margin-left: 170px; /* Same as the width of the sidenav */

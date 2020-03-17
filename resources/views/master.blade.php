@@ -26,8 +26,8 @@
         <div class="col-sm-1">
             <img src="{{ asset('images/user.svg') }}"  width="30%" alt="" class="img-responsive icon-user">
         </div>
+		
   </div>
-
 
 
             <div class="sidenav">
