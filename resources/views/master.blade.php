@@ -26,17 +26,14 @@
         <div class="col-sm-1">
             <img src="{{ asset('images/user.svg') }}"  width="30%" alt="" class="img-responsive icon-user">
         </div>
-    <div>
+  </div>
 
 
-
-    <div class="row">
-        <div class="col-sm-12">
 
             <div class="sidenav">
                 <a href="{{ asset('pages/login') }}" class="active">顧客管理</a>
                 <a href="{{ asset('pages/sales') }}">売上管理</a>
-                <a href="{{ asset('pages/manage') }}">スタッフ管理</a>
+                <a href="{{ asset('staff') }}">スタッフ管理</a>
                 <a href="{{ asset('pages/course') }}" >コース管理</a>
             </div>
 
@@ -44,7 +41,5 @@
                 @show
                 @yield('content')
             </div>
-        </div>
-    </div>
   </body>
 </html>
