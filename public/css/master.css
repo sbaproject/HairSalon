@@ -1,0 +1,62 @@
+body {
+    font-family: "Lato", sans-serif;
+  }
+
+.col-sm-3 .text-hair
+{
+    position: relative;
+    padding-top: 25px;
+    z-index: 1;
+    display: block;
+    font-size: 25px;
+}
+
+.col-sm-6 .user-name
+{
+    padding-top: 15px;
+    display: block;
+    font-size: 25px;
+    text-align: right;
+}
+
+.col-sm-1 .icon-user
+{
+    padding-top: 20px;
+    display: block;
+    margin-left: -20px;
+}
+
+  .sidenav {
+    height: 100%;
+    width: 180px;
+    text-align: center;
+    background-color: #fff;
+    padding-top: 10px;
+  }
+  
+  .sidenav a {
+    padding: 12px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+  }
+
+  .sidenav a:hover {
+    color: #3399FF;
+    text-decoration: underline;
+  }
+  
+  .main {
+    margin-left: 170px; /* Same as the width of the sidenav */
+    font-size: 20px; /* Increased text to enable scrolling */
+    padding: 5px 40px;
+    margin-top: -200px;
+  }
+  
+  @media screen and (min-device-width : 768px) and (max-device-width : 1024px){
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  

@@ -5,68 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <title>@yield('title')</title>
-    <meta name="description" content="">
-
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet' type='text/css'>
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/templatemo-style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/master.css') }}" rel="stylesheet">
   </head>
   <body>
   @section('menu')
-    <!-- Left column -->
-    <div class="templatemo-flex-row">
-      <div class="templatemo-sidebar">
-        <header class="templatemo-site-header">
-        <img style="background: white;" src="" alt="">
-        </header>
-        <nav class="templatemo-left-nav">          
-          <ul>
-          <li><a href="{{ asset('pages/login') }}" class="active">顧客管理</a></li>
-             <li><a href="{{ asset('pages/sales') }}">売上管理</a></li>
-             <li><a href="{{ asset('pages/manage') }}">スタッフ管理</a></li>
-             <li><a href="{{ asset('pages/course') }}" >コース管理</a></li>
-          </ul>  
-        </nav>
-      </div>
-      <!-- Main content --> 
-      <div class="templatemo-content col-1 light-gray-bg">
-        <div class="templatemo-top-nav-container">
-          <div class="row">
-            <nav class="templatemo-top-nav col-lg-12 col-md-12">
-              <ul class="text-uppercase">
-                <li>売上管理システム</li>
+
+    <div class="row">
+        <div class="col-sm-2">
+            <img src="{{ asset('images/2-1 銀座マツナガロゴPANTONEグリーン.png') }}"  width="100%" alt="" class="img-responsive">
+        </div>
+        <div class="col-sm-3">
+            <b class="text-hair">売上管理システム</b>
             
-                <!-- @if (Auth::guest())
-                  <li><a href="{{ url('/auth/login')}}"><i class="fa fa-sign-in"></i>Login</a></li>
-                  <li><a href="{{ url('/auth/register')}}">Register</a></li>
-                @else
-                  <li ><a href="#">{{ Auth::user()->name }} </a></li>
-                  <li><a href="{{ url('/auth/logout')}}"><i class="fa fa-sign-out"></i>Logout </a></li>
-                @endif -->
-              </ul>  
-            </nav> 
-          </div>
         </div>
-        <style type="text/css">
-          .olala {
-            margin-left: 60px; 
-            margin-top: 15px;
-          }
-        </style>
-        <div class="olala">
-          <b><h1>@yield('title')</h1></b>
+        <div class="col-sm-6">
+            <h4 class="user-name">user name</h4>
         </div>
-        @show
-        @yield('content')
+        <div class="col-sm-1">
+            <img src="{{ asset('images/user.svg') }}"  width="30%" alt="" class="img-responsive icon-user">
         </div>
-      </div>
+    <div>
+
+
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="sidenav">
+                <a href="{{ asset('pages/login') }}" class="active">顧客管理</a>
+                <a href="{{ asset('pages/sales') }}">売上管理</a>
+                <a href="{{ asset('pages/manage') }}">スタッフ管理</a>
+                <a href="{{ asset('pages/course') }}" >コース管理</a>
+            </div>
+
+            <div class="main">
+                @show
+                @yield('content')
+            </div>
+        </div>
     </div>
-    
-    <!-- JS -->
-    <script type="text/javascript" src="{{ asset('js/jquery-1.11.2.min.js') }}"></script>      <!-- jQuery -->
   </body>
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="{{ asset('js/jquery-2.1.4.min.js')}}"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="{{ asset('js/bootstrap.min.js')}}"></script>
 </html>
