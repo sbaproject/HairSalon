@@ -64,9 +64,17 @@ hr {
 	.sidenav a {font-size: 18px;}
 }
 
+.input-group-prepend {
+	width: 20%;
+}
+
 .input-group-prepend .input-group-text {
-	width: 150px;
+	width: 100%;
 	justify-content: center;
+}
+
+.invalid-feedback {
+	margin-left: 20%;
 }
  
 .table-header {
@@ -84,4 +92,26 @@ hr {
 
 tbody {
 	text-align: center;
+}
+
+.form-control .select-shop {
+	width: 40%;
+}
+
+.form-group-button {
+	display: flex;
+	justify-content: center;
+}
+
+.btn-form {
+	width: 30%;
+}
+
+.btn-left {
+	margin-right: 15%;
+}
+
+.border-bottom {
+	border-bottom: 1px solid #ced4da; 
+	line-height: normal;
 }

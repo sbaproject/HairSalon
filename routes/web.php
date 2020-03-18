@@ -28,3 +28,12 @@ Route::get('/sales/new', 'SalesController@getSalesNew');
 Route::get('/staff', 'StaffController@index');
 
 Route::get('/staff/new', 'StaffController@getStaffNew');
+
+Route::post('/staff/new', 'StaffController@postStaffNew');
+
+Route::get('/staff/edit/{id}', 'StaffController@getStaffEdit');
+
+Route::post('/staff/edit/{id}', 'StaffController@postStaffEdit');
+
+Route::get('/staff/delete/{id}', 'StaffController@getStaffDelete');
+

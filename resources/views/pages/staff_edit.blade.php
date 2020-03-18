@@ -1,5 +1,5 @@
 @extends('master')
-@section('title','スタッフ登録')
+@section('title','スタッフ編集')
 @section('menu')
 @parent
 @endsection
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-10">
                 <h2 class="border-bottom">
-                    スタッフ登録
+                    スタッフ編集
                 </h2>
                 @if (\Session::has('success'))
                 <div class="alert alert-success alert-dismissible fade show">
@@ -23,9 +23,17 @@
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
+                                <span class="input-group-text">スタッフID</span>
+                            </div>
+                            <input type="text" readonly class="form-control" name="s_id" value="{{ $staff->s_id }}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
                                 <span class="input-group-text">姓</span>
                             </div>
-                            <input type="text" class="form-control {{ ($errors->first('s_firstname')) ? 'is-invalid'  :'' }}" name="s_firstname" placeholder="GINZA">
+                            <input type="text" class="form-control {{ ($errors->first('s_firstname')) ? 'is-invalid'  :'' }}" name="s_firstname" value="{{ $staff->s_firstname }}" placeholder="GINZA">
                             <div class="invalid-feedback">
                                 @error('s_firstname')
                                     {{ $message }}
@@ -39,7 +47,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">名</span>
                             </div>
-                            <input type="text" class="form-control {{ ($errors->first('s_lastname')) ? 'is-invalid'  :'' }}" name="s_lastname" placeholder="TARO">
+                            <input type="text" class="form-control {{ ($errors->first('s_lastname')) ? 'is-invalid'  :'' }}" name="s_lastname" value="{{ $staff->s_lastname }}" placeholder="TARO">
                             <div class="invalid-feedback">
                                 @error('s_lastname')
                                     {{ $message }}
@@ -56,7 +64,7 @@
                                 <select class="select-shop" name="s_shop">
                                     @if (isset($list_shop))
                                         @foreach ($list_shop as $shop)
-                                            <option value="{{ $shop->sh_id }}">
+                                            <option value="{{ $shop->sh_id }}" {{ $staff->s_shop === $shop->sh_id ? 'selected' : '' }}>
                                                 {{ $shop->sh_name }}
                                             </option>
                                         @endforeach
@@ -70,7 +78,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">主担当</span>
                             </div>
-                            <input type="text" class="form-control {{ ($errors->first('s_charge')) ? 'is-invalid'  :'' }}" name="s_charge" placeholder="カット" >
+                            <input type="text" class="form-control {{ ($errors->first('s_charge')) ? 'is-invalid'  :'' }}" name="s_charge" value="{{ $staff->s_charge }}" placeholder="カット" >
                             <div class="invalid-feedback">
                                 @error('s_charge')
                                     {{ $message }}
@@ -83,7 +91,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">備考</span>
                             </div>
-                            <textarea class="form-control" name="s_text" rows=4></textarea>
+                            <textarea class="form-control" name="s_text" rows=4>{{ $staff->s_text }}</textarea>
                         </div>
                     </div>
                     <div class="form-group-button">
