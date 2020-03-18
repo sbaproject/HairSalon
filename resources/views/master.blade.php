@@ -23,17 +23,18 @@
         </div>
         <div class="col-sm-3">
             <b class="text-hair">売上管理システム</b>
-            
         </div>
         <div class="col-sm-6">
             <h4 class="user-name">user name</h4>
         </div>
         <div class="col-sm-1">
+            <a href="{{ asset('/logout')}}">Logout</a>
             <img src="images/user.svg"  width="30%" alt="" class="img-responsive icon-user">
         </div>
   	</div>
+    <hr>
 	<div class="sidenav">
-		<a href="pages/login" class="active">顧客管理</a>
+		<a href="login" class="active">顧客管理</a>
 		<a href="sales">売上管理</a>
 		<a href="staff">スタッフ管理</a>
 		<a href="course" >コース管理</a>

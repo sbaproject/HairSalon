@@ -18,8 +18,11 @@ Route::get('/', function()
     return View::make('pages.login');
 });
 
+Route::get('/login', 'UserController@getLogin');
 
-Route::get('/pages/{id?}', 'UserController@index');
+Route::post('/login', 'UserController@postLogin');
+
+Route::get('/logout', 'UserController@logout');
 
 Route::get('/sales', 'SalesController@index');
 
@@ -36,4 +39,3 @@ Route::get('/staff/edit/{id}', 'StaffController@getStaffEdit');
 Route::post('/staff/edit/{id}', 'StaffController@postStaffEdit');
 
 Route::get('/staff/delete/{id}', 'StaffController@getStaffDelete');
-

@@ -1,33 +1,50 @@
-@extends('master')
-@section('title','Login')
-@section('menu')
-@parent
-@endsection
-@section('content')
-<div class="templatemo-content-container">
-          <div class="templatemo-content-widget no-padding">
-            <div class="panel panel-default table-responsive">
-              <table class="table table-striped table-bordered templatemo-user-table">
-                <thead>
-                  <tr>
-                    <td><a href="" class="white-text templatemo-sort-by">ID <span class="caret"></span></a></td>
-                    <td><a href="" class="white-text templatemo-sort-by">Month <span class="caret"></span></a></td>
-                    <td><a href="" class="white-text templatemo-sort-by">Total price <span class="caret"></span></a></td>
-                    <td><a href="" class="white-text templatemo-sort-by">From date <span class="caret"></span></a></td>
-                    <td><a href="" class="white-text templatemo-sort-by">to date <span class="caret"></span></a></td>
-                    <td>Action</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                  <tr>
-                    <td><?php echo "Đang phát triển"; ?></td>
-                    <td><a href="" class="templatemo-edit-btn">Edit</a>
-                   <a href="" class="templatemo-edit-btn">Delete</a></td>
-                  </tr>   
-          
-                </tbody>
-              </table>    
-            </div>                          
-          </div> 
-@endsection
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+   <!-- Bootstrap CSS -->
+   <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/login.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container form-login">
+    <div class="row">
+
+      <div class="col-sm-7 divLeft">
+        <img src="{{asset('images/2-1 銀座マツナガロゴPANTONEグリーン.png') }}"  width="100%" alt="" class="img-reponsive imagesLogo">
+      </div>
+
+      <div class="col-sm-5 divRight">
+
+      <form action="{{ asset ('/login')}}" method="post">
+          @csrf
+
+          <div class="divUsername">
+            <label for="uname"><b>ユーザコード</b></label>
+            <input type="text" class="input"  name="u_user" required>
+            </div>
+            <div class="divPass">
+            <label for="psw"><b>パスワード</b></label>
+            <input class="input" type="password"  name="u_pw" required>
+            </div>
+
+            <div class="divButtonLogin">
+            <button type="submit" class="btn btn-primary">ログイン</button>
+            <button type="button" class="btn btn-secondary">PW変更</button>
+            
+            </div>
+            
+        </form>
+      </div>
+
+    </div>
+
+   </div>
+
+
+</body>
+</html>
