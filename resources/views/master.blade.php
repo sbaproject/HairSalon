@@ -12,6 +12,7 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/docs.min.css" rel="stylesheet">    
     <!-- master CSS -->
     <link href="css/master.css" rel="stylesheet">
     <!-- sales CSS -->

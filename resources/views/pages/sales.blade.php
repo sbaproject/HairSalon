@@ -5,13 +5,16 @@
 @endsection
 @section('content')
 
-            <div class="">
 
-            <form role="search" mothod="get" id="searchform" action="{{route('/sales/search')}}">
-                        <div class="">
-                        <div class="">期問</div>
-                        <input type="text" id="kronos1" name="str_date" style="width: 200px;">
-                         ~ <input type="text" id="kronos2" name="end_date" style="width: 200px;">
+			<div class="searchSales col-md-6">
+
+            <div class="row">         
+
+            <div class="col-md-2">期問</div>
+
+             <div class="col-md-3"><input type="text" id="kronos1" name="str_date" style="width: 150px;"></div>
+             <div class="col-md-1">~ </div>
+			 <div class="col-md-3"><input type="text" id="kronos2" name="end_date" style="width: 150px;"></div>
                         <script>
                             $('#kronos1').kronos({
                                 format: 'yyyy/mm/dd'
@@ -19,27 +22,39 @@
                             $('#kronos2').kronos({
                                 format: 'yyyy/mm/dd'
                             });
-                        </script>
-                        </div>
-                        <div class=""><div class="">店舗</div><select class="" name ="shop_id">
+                        </script>         
+
+            </div>
+			
+			 <div class="row">
+                        
+                        <div class="col-md-2">店舗</div>
+						<div class="col-md-4">
+						<select name ="shop_id">
                                 @foreach($list_shop as $shop)
                                 <option value = '{{$shop->sh_id}}'>{{$shop->sh_name}}</option>
                                 @endforeach
-                            </select></div>
-                        <div class=""><button type="submit" class="btn btn-primary">検索</button></div>                         
-            </form>
-            </div>
-
-
-            <div class="">
+                            </select>
+							</div>
+							</div>
+                            
+                        <div class="col-md-9"><div class="col-md-10"><button type="submit" class="btn btn-primary">検索</button></div>
+						</div>      
+			
+			</div>
+			
+			
+			<div class="row">
+            <div class="col-md-3">
             <div class="">来客数</div>               
             <div class="">{{count($list_sales)}}</div>      
             </div>
             
-            <div class="">
+            <div class="col-md-3">
             <div class="">売上</div>               
             <div class="">{{number_format($sum_money)}} VND</div>  
             </div>
+			</div>
 
             <div class="">
             <button type="button" class="btn btn-primary"><a href="sales/new" style="color: white; text-decoration: none;">新規追加</a></button>
