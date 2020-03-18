@@ -65,20 +65,31 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                        $page = request()->get("page");
+                        if ($page)
+                            $index = $page * 10 - 9;
+                        else
+                            $index = 1;
+                @endphp
                 @foreach($list_sales as $sales)
                 <tr>
-                    <th scope="row">1</th>
+                    <th>{{ $index < 10 ? '0' . $index : $index }}</th>
                     <td>{{$sales->Customer->c_firstname}} {{$sales->Customer->c_lastname}}</td>
                     <td>{{$sales->Course->co_name}}</td>
                     <td>{{$sales->s_opts1}}</td>
                     <td>{{$sales->s_opts2}}</td>
-                    <td>{{$sales->s_money}}</td>
+                    <td>{{number_format($sales->s_money)}} VND</td>
                     <td>{{$sales->s_text}}</td>
                     <td><a href="{{ url('sales/edit/' . $sales->s_id) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a></td>
                 </tr>
+                @php 
+                    $index++; 
+                @endphp
                 @endforeach               
             </tbody>
         </table>
         @endif
+        {{ $list_sales->links() }}
     </div>
 @endsection

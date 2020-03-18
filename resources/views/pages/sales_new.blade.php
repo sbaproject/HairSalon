@@ -33,7 +33,12 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客ID</span>
                             </div>
-                            <input type="text" class="form-control" name="s_c_id" placeholder="">
+                            <input type="text" class="form-control {{ ($errors->first('s_c_id')) ? 'is-invalid'  :'' }}" name="s_c_id" placeholder="">
+                            <div class="invalid-feedback">
+                                @error('s_c_id')
+                                    {{ $message }}
+                                @enderror
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -56,13 +61,18 @@
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">支払い方法</span>
+                                <span class="input-group-text">コース</span>
                             </div>
-                            <select class="form-control" name="s_co_id">
+                            <select class="form-control {{ ($errors->first('s_co_id')) ? 'is-invalid'  :'' }}" name="s_co_id">
                             @foreach($list_course as $course)
                             <option value = '{{$course->co_id}}'>{{$course->co_name}}</option>
                             @endforeach
                             </select>
+                            <div class="invalid-feedback">
+                                @error('s_co_id')
+                                    {{ $message }}
+                                @enderror
+                            </div>
                         </div>
                     </div>
 
@@ -110,7 +120,12 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">金額</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="" name="s_money">
+                            <input type="text" class="form-control {{ ($errors->first('s_money')) ? 'is-invalid'  :'' }}" placeholder="" name="s_money">
+                            <div class="invalid-feedback">
+                                @error('s_money')
+                                    {{ $message }}
+                                @enderror
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">

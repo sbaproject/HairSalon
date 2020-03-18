@@ -25,7 +25,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">No</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="">
+                            <input type="text" class="form-control" >
                         </div>
                     </div>
                     <div class="form-group">
@@ -33,7 +33,12 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客ID</span>
                             </div>
-                            <input type="text" class="form-control" name="s_c_id" placeholder="">
+                            <input type="text" class="form-control {{ ($errors->first('s_c_id')) ? 'is-invalid'  :'' }}" name="s_c_id" value="{{ $sales->s_c_id }}">
+                            <div class="invalid-feedback">
+                                @error('s_c_id')
+                                    {{ $message }}
+                                @enderror
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -41,7 +46,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客姓</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="">
+                            <input type="text" class="form-control" value="{{ $sales->Customer->c_lastname}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -49,7 +54,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客名</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="">
+                            <input type="text" class="form-control" value="{{ $sales->Customer->c_firstname}}">
                         </div>
                     </div>
 
@@ -60,7 +65,11 @@
                             </div>
                             <select class="form-control" name="s_co_id">
                             @foreach($list_course as $course)
+                            @if($course->co_id == $sales->s_co_id) 
+                            <option selected value = '{{$course->co_id}}'>{{$course->co_name}}</option>
+                            @else
                             <option value = '{{$course->co_id}}'>{{$course->co_name}}</option>
+                            @endif
                             @endforeach
                             </select>
                         </div>
@@ -71,10 +80,9 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ1</span>
                             </div>
-                            <div>text1</div>
+                            <div></div>
                             <select class="form-control">
-                                <option>Thai Van Lung</option>
-                                <option>InterContinental</option>
+                            <option></option>
                             </select>
                         </div>
                     </div>
@@ -84,10 +92,9 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ2</span>
                             </div>
-                            <div>text1</div>
+                            <div></div>
                             <select class="form-control">
-                                <option>Thai Van Lung</option>
-                                <option>InterContinental</option>
+                                <option></option>
                             </select>
                         </div>
                     </div>
@@ -97,10 +104,9 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ3</span>
                             </div>
-                            <div>text1</div>
+                            <div></div>
                             <select class="form-control">
-                                <option>Thai Van Lung</option>
-                                <option>InterContinental</option>
+                            <option></option>
                             </select>
                         </div>
                     </div>
@@ -110,7 +116,12 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">金額</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="" name="s_money">
+                            <input type="text" class="form-control {{ ($errors->first('s_money')) ? 'is-invalid'  :'' }}" value="{{ $sales->s_money }}" name="s_money">
+                            <div class="invalid-feedback">
+                                @error('s_money')
+                                    {{ $message }}
+                                @enderror
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -119,8 +130,13 @@
                                 <span class="input-group-text">支払い方法</span>
                             </div>
                             <select class="form-control" name="s_pay">
-                                <option value ="0">キャッシュ</option>
+                            @if($sales->s_pay === 0) 
+                                <option selected value ="0">キャッシュ</option>
                                 <option value ="1">カード</option>
+                            @else
+                                <option value ="0">キャッシュ</option>
+                                <option selected value ="1">カード</option>
+                            @endif
                             </select>
                         </div>
                     </div>
@@ -130,7 +146,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">備考</span>
                             </div>
-                            <textarea class="form-control" rows=4 name="s_text"></textarea>
+                            <textarea class="form-control" rows=4 name="s_text" >{{ $sales->s_text }}</textarea>
                         </div>
                     </div>
                     
