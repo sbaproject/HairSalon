@@ -36,7 +36,7 @@
   	</div>
     <hr>
 	<div class="sidenav">
-		<a href="login" class="active">顧客管理</a>
+		<a href="customer" class="active">顧客管理</a>
 		<a href="sales">売上管理</a>
 		<a href="staff">スタッフ管理</a>
 		<a href="course" >コース管理</a>
