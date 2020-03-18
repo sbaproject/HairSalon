@@ -28,6 +28,19 @@ Route::get('/sales', 'SalesController@index');
 
 Route::get('/sales/new', 'SalesController@getSalesNew');
 
+Route::post('/sales/new', 'SalesController@postSalesNew');
+
+Route::get('/sales/edit/{id}', 'SalesController@getSalesEdit');
+
+Route::post('/sales/edit/{id}', 'SalesController@postSalesEdit');
+
+Route::get('/sales/delete/{id}', 'SalesController@getSalesDelete');
+
+Route::get('/sales/search', [
+    'as'=>'/sales/search',
+    'uses' => 'SalesController@getSearch'
+]);
+
 Route::get('/staff', 'StaffController@index');
 
 Route::get('/staff/new', 'StaffController@getStaffNew');
