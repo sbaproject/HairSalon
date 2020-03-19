@@ -6,14 +6,13 @@
 @section('content')
 
 
-			<div class="searchSales col-md-6">
-
-            <div class="row">         
-
+			<div class="searchSales col-md-5"> 		
+			
+            <div class="row marBot15">        
             <div class="col-md-2">期問</div>
 
-             <div class="col-md-3"><input type="text" id="kronos1" name="str_date" style="width: 150px;"></div>
-             <div class="col-md-1">~ </div>
+             <div class="col-md-4"><input type="text" id="kronos1" name="str_date" style="width: 150px;"></div>
+             <div class="col-md-1">~</div>
 			 <div class="col-md-3"><input type="text" id="kronos2" name="end_date" style="width: 150px;"></div>
                         <script>
                             $('#kronos1').kronos({
@@ -25,9 +24,8 @@
                         </script>         
 
             </div>
-			
-			 <div class="row">
-                        
+            
+			 <div class="row marBot15">                        
                         <div class="col-md-2">店舗</div>
 						<div class="col-md-4">
 						<select name ="shop_id">
@@ -36,29 +34,33 @@
                                 @endforeach
                             </select>
 							</div>
-							</div>
+			</div>
                             
-                        <div class="col-md-9"><div class="col-md-10"><button type="submit" class="btn btn-primary">検索</button></div>
+                        <div class="col-md-12">
+						<div class="marBot15"><button type="submit" class="btn btn-primary buttonSales" >検索</button></div>
 						</div>      
 			
 			</div>
 			
-			
+			<div class="status col-md-12">
 			<div class="row">
-            <div class="col-md-3">
-            <div class="">来客数</div>               
-            <div class="">{{count($list_sales)}}</div>      
+            <div class="col-md-2 searchSales">
+            <div class="marBot15">来客数</div>               
+            <div class="">{{$list_sales_count}}</div>      
             </div>
+
+            <div class="col-md-1"></div>
             
-            <div class="col-md-3">
-            <div class="">売上</div>               
+            <div class="col-md-2 searchSales">
+            <div class="marBot15">売上</div>               
             <div class="">{{number_format($sum_money)}} VND</div>  
             </div>
 			</div>
-
+			</div>
+            <br/>
             <div class="">
-            <button type="button" class="btn btn-primary"><a href="sales/new" style="color: white; text-decoration: none;">新規追加</a></button>
-            <button type="button" class="btn btn-primary"><a href="sales/new" style="color: white; text-decoration: none;">PDF出カ</a></button>
+            <button type="button" class="btn btn-primary buttonSales"><a href="sales/new" style="color: white; text-decoration: none;">新規追加</a></button>
+            <button type="button" class="btn btn-primary buttonSales"><a href="sales/new" style="color: white; text-decoration: none;">PDF出カ</a></button>
             </div>
 
         <br/>
@@ -88,15 +90,20 @@
                             $index = 1;
                 @endphp
                 @foreach($list_sales as $sales)
+                @php
+                    if ($index < 10)
+                        $index = '0' . $index               
+
+                @endphp
                 <tr>
-                    <th>{{ $index < 10 ? '0' . $index : $index }}</th>
+                    <th>{{ $index }}</th>
                     <td>{{$sales->Customer->c_firstname}} {{$sales->Customer->c_lastname}}</td>
                     <td>{{$sales->Course->co_name}}</td>
                     <td>{{$sales->s_opts1}}</td>
                     <td>{{$sales->s_opts2}}</td>
                     <td>{{number_format($sales->s_money)}} VND</td>
                     <td>{{$sales->s_text}}</td>
-                    <td><a href="{{ url('sales/edit/' . $sales->s_id) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a></td>
+                    <td><a href="{{ url('sales/edit/' . $sales->s_id.'/'.$index) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a></td>
                 </tr>
                 @php 
                     $index++; 

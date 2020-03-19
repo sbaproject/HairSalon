@@ -14,20 +14,18 @@ class SalesController extends Controller
     //load page with $id
     public function index()
     {
-        $list_sales = Sales::paginate(10);
-        //$list_customer = Customer::all();
+        $list_sales = Sales::paginate(10); 
         $sum_money = Sales::all()->sum('s_money');
-        $list_shop = Course::all();
-
-        // print_r($list_customer);
-        // exit();
-        // $list_staff = Staff::where('s_del_flg', 1)->paginate(10);
-        return view('pages.sales', compact('list_sales','sum_money','list_shop'));
+        $list_shop = Shop::all();
+        $list_sales_count = Sales::count();
+        
+        return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count'));
     }
 
     public function getSalesNew() {
         $list_course = Course::all();
-        return view('pages.sales_new',compact('list_course'));
+        $list_sales_count = Sales::count();
+        return view('pages.sales_new',compact('list_course','list_sales_count'));
     }   
 
     public function getSearch(Request $req) {
@@ -66,7 +64,7 @@ class SalesController extends Controller
             's_c_id'        => $request->get('s_c_id'),
             's_co_id'       => $request->get('s_co_id'),
             's_pay'         => $request->get('s_pay'),
-            's_money'       => $request->get('s_money'),
+            's_money'       => $rquest->get('s_money'),
             's_text'        => $request->get('s_text'),
             's_date'        => $currentTime,
             's_update'      => $currentTime
@@ -75,10 +73,10 @@ class SalesController extends Controller
         return redirect()->back()->with('success', 'Added Sales successfully!');
     }
 
-    public function getSalesEdit($id) {
+    public function getSalesEdit($id,$index) {
         $sales = Sales::where('s_id', $id)->first();
         $list_course = Course::all();
-        return view('pages.sales_edit', compact('sales', 'list_course'));
+        return view('pages.sales_edit', compact('sales', 'list_course','index'));
     }
 
     public function postSalesEdit(Request $request,$id) {
@@ -106,11 +104,11 @@ class SalesController extends Controller
         return redirect()->back()->with('success', 'Updated Sales successfully!');
     }
 
-    public function getSalesDelete($id) {
-        $sales = Sales::find($id);
-        $sales->s_del_flg = 0;
-        $sales->s_update  = Carbon::now();
-        $sales->save();
-        return redirect()->back()->with('success', 'Deleted Sales successfully!');
-    }
+    // public function getSalesDelete($id) {
+    //     $sales = Sales::find($id);
+    //     $sales->s_del_flg = 0;
+    //     $sales->s_update  = Carbon::now();
+    //     $sales->save();
+    //     return redirect()->back()->with('success', 'Deleted Sales successfully!');
+    // }
 }

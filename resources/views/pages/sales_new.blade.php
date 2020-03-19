@@ -25,7 +25,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">No</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="">
+                            <input type="text" readonly class="form-control" value="{{$list_sales_count+1}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -81,10 +81,9 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ1</span>
                             </div>
-                            <div>text1</div>
+                            <div></div>
                             <select class="form-control">
-                                <option>Thai Van Lung</option>
-                                <option>InterContinental</option>
+                            <option></option>
                             </select>
                         </div>
                     </div>
@@ -94,10 +93,9 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ2</span>
                             </div>
-                            <div>text1</div>
+                            <div></div>
                             <select class="form-control">
-                                <option>Thai Van Lung</option>
-                                <option>InterContinental</option>
+                            <option></option>
                             </select>
                         </div>
                     </div>
@@ -107,10 +105,9 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ3</span>
                             </div>
-                            <div>text1</div>
+                            <div></div>
                             <select class="form-control">
-                                <option>Thai Van Lung</option>
-                                <option>InterContinental</option>
+                            <option></option>
                             </select>
                         </div>
                     </div>
@@ -149,9 +146,11 @@
                         </div>
                     </div>
                     
-                    <button type="" class="btn btn-primary btn-form btn-left-sales">追加追加</button>
-                    <button type="submit" class="btn btn-primary btn-form btn-left-sales">追加</button>                    
-                    <a role="button" href="{{url('sales')}}" class="btn btn-secondary btn-form" >キャンセル</a>
+                    <div class="clsCenter">
+                    <button type="" class="btn btn-primary buttonSales btn-left-sales">連続追加</button>
+                    <button type="submit" class="btn btn-primary buttonSales btn-left-sales">追加</button>                    
+                    <a role="button" href="{{url('sales')}}" class="btn btn-secondary buttonSales" >キャンセル</a>
+                    <div>
                 </form>
             </div>
             <div class="col"></div>

@@ -25,7 +25,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">No</span>
                             </div>
-                            <input type="text" class="form-control" >
+                            <input type="text" readonly class="form-control" value="{{$index}}" >
                         </div>
                     </div>
                     <div class="form-group">
@@ -150,9 +150,11 @@
                         </div>
                     </div>
                     
-                    <button type="" class="btn btn-primary btn-form btn-left-sales">追加追加</button>
-                    <button type="submit" class="btn btn-primary btn-form btn-left-sales">追加</button>                    
-                    <a role="button" href="{{url('sales')}}" class="btn btn-secondary btn-form" >キャンセル</a>
+                    <div class="clsCenter">
+                    <button type="" class="btn btn-primary buttonSales btn-left-sales">連続追加</button>
+                    <button type="submit" class="btn btn-primary buttonSales btn-left-sales">追加</button>                    
+                    <a role="button" href="{{url('sales')}}" class="btn btn-secondary buttonSales" >キャンセル</a>
+                    <div>
                 </form>
             </div>
             <div class="col"></div>

@@ -30,7 +30,7 @@ Route::get('/sales/new', 'SalesController@getSalesNew');
 
 Route::post('/sales/new', 'SalesController@postSalesNew');
 
-Route::get('/sales/edit/{id}', 'SalesController@getSalesEdit');
+Route::get('/sales/edit/{id}/{index}', 'SalesController@getSalesEdit');
 
 Route::post('/sales/edit/{id}', 'SalesController@postSalesEdit');
 

@@ -2,13 +2,28 @@
 	margin-right: 2%;
 }
 
+.status{
+    padding: 45px 15px 15px;    
+}
+
 .searchSales{
 	border-color: #ddd;
-    border-width: 1px;
+    border-width: 2px;
 	border-radius: 4px 4px 0 0;
-	padding: 45px 15px 15px;
-    margin: 0 -15px 15px;
+	padding: 25px 15px 15px;    
     border-color: #e5e5e5 #eee #eee;
 	border-style: solid;
 	text-align: center;
+}
+
+.marBot15 {
+    margin-bottom: 15px;
+}
+
+.buttonSales{
+    width: 130px;
+    text-align: center;
+}
+.clsCenter{
+    text-align: center;
 }
