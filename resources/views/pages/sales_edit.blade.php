@@ -1,5 +1,5 @@
 @extends('master')
-@section('title','Sales New')
+@section('title','売上管理編集')
 @section('menu')
 @parent
 @endsection
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-10">
                 <h2 style="border-bottom: 1px solid #ccc; line-height: normal;">
-                売上管理登録
+                売上管理編集
                 </h2>
                 @if (\Session::has('success'))
                 <div class="alert alert-success alert-dismissible fade show">

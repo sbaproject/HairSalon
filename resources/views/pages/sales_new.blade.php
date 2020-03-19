@@ -1,5 +1,5 @@
 @extends('master')
-@section('title','Sales New')
+@section('title','売上管理登録')
 @section('menu')
 @parent
 @endsection

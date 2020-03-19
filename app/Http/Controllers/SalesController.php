@@ -28,20 +28,21 @@ class SalesController extends Controller
         return view('pages.sales_new',compact('list_course','list_sales_count'));
     }   
 
-    public function getSearch(Request $req) {
-         $list_sales = Sales::where('s_date','>','2020-03-17 15:20:48')
-                            ->where('s_date','<','2020-03-17 15:20:48')
-                             ->where('s_sh_id',$req->shop_id)
-                             ->get();
+    public function postSearch(Request $req) {
+        
+        $str_date = str_replace('/','-',$req->str_date) . ' 00:00:00';
+        $end_date = str_replace('/','-',$req->end_date) . ' 23:59:59';        
 
-        // $list_sales = Sales::where('s_sh_id',$req->shop_id)
-        //             //->andWhere('s_sh_id',$req->shop_id)
-        // ->get();
+        $list_sales = Sales::where('s_date','>=',$str_date)
+                                ->where('s_date','<=',$end_date)
+                                ->where('s_sh_id',$req->shop_id)                             
+                                ->paginate(10);
 
         $sum_money = $list_sales->sum('s_money');
+        $list_sales_count = $list_sales->count();
         $list_shop = Shop::all();
 
-        return view('pages.sales', compact('list_sales','sum_money','list_shop'));
+        return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count'));
     }   
 
     public function postSalesNew(Request $request) {

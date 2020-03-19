@@ -4,22 +4,26 @@
 @parent
 @endsection
 @section('content')
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+    <link href="css/kronos.css" rel="stylesheet">
+    <script src="js/kronos.js"></script>
 
-
+            <div class="row marBot15">
 			<div class="searchSales col-md-5"> 		
-			
+            
+            <form method="post">
+            @csrf
             <div class="row marBot15">        
-            <div class="col-md-2">期問</div>
-
-             <div class="col-md-4"><input type="text" id="kronos1" name="str_date" style="width: 150px;"></div>
+            <div class="col-md-2">期問</div>    
+             <div class="col-md-4"><input type="text" id="kronos1" name="str_date" style="width: 150px;" class="form-control"></div>
              <div class="col-md-1">~</div>
-			 <div class="col-md-3"><input type="text" id="kronos2" name="end_date" style="width: 150px;"></div>
+			 <div class="col-md-3"><input type="text" id="kronos2" name="end_date" style="width: 150px;" class="form-control"></div>
                         <script>
                             $('#kronos1').kronos({
-                                format: 'yyyy/mm/dd'
+                                format: 'yyyy/mm/dd'                                
                             });                            
                             $('#kronos2').kronos({
-                                format: 'yyyy/mm/dd'
+                                format: 'yyyy/mm/dd'                                
                             });
                         </script>         
 
@@ -28,7 +32,7 @@
 			 <div class="row marBot15">                        
                         <div class="col-md-2">店舗</div>
 						<div class="col-md-4">
-						<select name ="shop_id">
+						<select name ="shop_id" class="form-control">
                                 @foreach($list_shop as $shop)
                                 <option value = '{{$shop->sh_id}}'>{{$shop->sh_name}}</option>
                                 @endforeach
@@ -38,24 +42,27 @@
                             
                         <div class="col-md-12">
 						<div class="marBot15"><button type="submit" class="btn btn-primary buttonSales" >検索</button></div>
-						</div>      
+                        </div>      
+                        
+                        </form>
 			
 			</div>
+			</div>
+			<div class="row">	
 			
-			<div class="status col-md-12">
-			<div class="row">
-            <div class="col-md-2 searchSales">
+			
+            <div class="col-md-2 searchSales status">
             <div class="marBot15">来客数</div>               
             <div class="">{{$list_sales_count}}</div>      
             </div>
 
             <div class="col-md-1"></div>
             
-            <div class="col-md-2 searchSales">
+            <div class="col-md-2 boderStatus">
             <div class="marBot15">売上</div>               
-            <div class="">{{number_format($sum_money)}} VND</div>  
-            </div>
+            <div class="">{{number_format($sum_money)}} VND</div>
 			</div>
+			
 			</div>
             <br/>
             <div class="">
@@ -67,7 +74,7 @@
 
         
 
-        @if (isset($list_sales))
+        @if (isset($list_sales) && $list_sales_count>0)
         <table class="table table-bordered">
             <thead>
                 <tr style="background-color: #e8e8e8;">
@@ -114,4 +121,5 @@
         @endif
         {{ $list_sales->links() }}
     </div>
+   
 @endsection

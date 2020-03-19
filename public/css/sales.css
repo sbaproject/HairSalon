@@ -3,21 +3,33 @@
 }
 
 .status{
-    padding: 45px 15px 15px;    
+    padding: 15px 15px 5px;    
+    margin: 0px 0px 0px 15px;
 }
 
 .searchSales{
 	border-color: #ddd;
     border-width: 2px;
 	border-radius: 4px 4px 0 0;
-	padding: 25px 15px 15px;    
+	padding: 15px 15px 5px;    
     border-color: #e5e5e5 #eee #eee;
 	border-style: solid;
-	text-align: center;
+    text-align: center;
+    margin: 0px 0px 0px 15px;
+}
+
+.boderStatus{
+    border-color: #ddd;
+    border-width: 2px;
+	border-radius: 4px 4px 0 0;
+	padding: 15px 15px 5px;    
+    border-color: #e5e5e5 #eee #eee;
+	border-style: solid;
+    text-align: center;
 }
 
 .marBot15 {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .buttonSales{

@@ -26,20 +26,17 @@ Route::get('/logout', 'UserController@logout');
 
 Route::get('/sales', 'SalesController@index');
 
+Route::post('/sales', 'SalesController@postSearch');
+
 Route::get('/sales/new', 'SalesController@getSalesNew');
 
 Route::post('/sales/new', 'SalesController@postSalesNew');
 
 Route::get('/sales/edit/{id}/{index}', 'SalesController@getSalesEdit');
 
-Route::post('/sales/edit/{id}', 'SalesController@postSalesEdit');
+Route::post('/sales/edit/{id}/{index}', 'SalesController@postSalesEdit');
 
 Route::get('/sales/delete/{id}', 'SalesController@getSalesDelete');
-
-Route::get('/sales/search', [
-    'as'=>'/sales/search',
-    'uses' => 'SalesController@getSearch'
-]);
 
 Route::get('/staff', 'StaffController@index');
 
