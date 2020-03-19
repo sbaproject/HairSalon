@@ -24,6 +24,10 @@ Route::post('/login', 'UserController@postLogin');
 
 Route::get('/logout', 'UserController@logout');
 
+Route::get('/changepassword', 'UserController@getChangePassword');
+
+Route::post('/changepassword', 'UserController@changePassword');
+
 Route::get('/sales', 'SalesController@index');
 
 Route::post('/sales', 'SalesController@postSearch');

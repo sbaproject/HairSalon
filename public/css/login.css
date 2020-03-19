@@ -8,6 +8,17 @@
     height: 250px;
 }
 
+.form-changepass
+{
+    border: 2px solid #C0C0C0;
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 40%;
+    padding: 25px;
+    margin-top: 150px;
+    height: 380px;
+}
+
 .input{
     border: 2px solid #C0C0C0;
     border-radius: 5px;
@@ -20,6 +31,17 @@
 {
     margin-top: 10px;
 }
+
+.divPassnew
+{
+    border: 2px solid #0099FF;
+}
+
+.divPassconf
+{
+    border: 2px solid #0099FF;
+}
+
 .divLeft{
     width: 50%;
     float: left;

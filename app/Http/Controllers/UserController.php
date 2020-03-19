@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Session;
 use Illuminate\Http\Request;
 use App\User;
+use App\ModelUser;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -57,5 +59,36 @@ class UserController extends Controller
             return Redirect('login');
         }
     }
+
+
+    public function getChangePassword()
+    {
+         return view("pages.changepassword");
+    }
+
+    public function changePassword(Request $req)
+    {
+        $user = User::where('u_user',$req->u_user)
+                    ->where('u_pw', $req->u_pw)->first();
+    
+        if (isset($user)) {
+            if($req->pass_new == $req->pass_confirm){
+
+                $sql = User::where('u_id', $user->u_id)->first();
+
+                $sql->u_pw = $req->pass_confirm;
+                $sql->save();
+                return redirect('login');
+            }
+            else{
+                return redirect()->back();
+            }
+        }
+        else {
+            return redirect()->back();
+        }
+    }
+
+
 
 }
