@@ -39,6 +39,11 @@
               <label for="u_pw"><b>パスワード</b></label>
               <input type="password" class="form-control {{ ($errors->first('u_pw')) ? 'is-invalid'  :'' }}" 
                   name="u_pw" value="{{ old('u_pw') }}">
+              <div class="invalid-feedback">
+                  @error('u_user')
+                    {{ $message }}
+                  @enderror
+              </div>
           </div>
           <div class="form-group">
               <label for="pass_new"><b>新しいパスワード</b></label>
