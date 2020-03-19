@@ -18,7 +18,6 @@ class UserController extends Controller
         else{
             return view("pages.login");
         }
-        
     }
 
     public function postLogin(Request $req)

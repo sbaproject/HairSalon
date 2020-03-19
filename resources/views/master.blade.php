@@ -1,3 +1,8 @@
+@if (Session::get('user') == null)
+<script type="text/javascript">
+    window.location = "{{ url('/login') }}" //if not login -> back to login page
+</script>
+@endif
 <!DOCTYPE html>
 <html>
   <head>
@@ -29,7 +34,9 @@
         </div>
         <div class="col-sm-5">
             <h4 class="user-name">
-            {{ Session::get('user')->u_user }}
+              @if(Session::has('user'))
+               {{ Session::get('user')->u_user }}
+               @endif
             </h4>
         </div>
         <div class="col-sm-1">
