@@ -27,12 +27,16 @@
         <div class="col-sm-3">
             <b class="text-hair">売上管理システム</b>
         </div>
-        <div class="col-sm-6">
-            <h4 class="user-name">user name</h4>
+        <div class="col-sm-5">
+            <h4 class="user-name">
+            {{ Session::get('user')->u_user }}
+            </h4>
         </div>
         <div class="col-sm-1">
-            <a href="{{ asset('/logout')}}">Logout</a>
             <img src="images/user.svg"  width="30%" alt="" class="img-responsive icon-user">
+        </div>
+        <div class="col-sm-1">
+        <a class="user-logout" href="{{ asset('/logout')}}">Logout</a>
         </div>
   	</div>
     <hr>

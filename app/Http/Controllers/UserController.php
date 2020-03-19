@@ -24,17 +24,26 @@ class UserController extends Controller
     public function postLogin(Request $req)
     {
         // validate
-        //
+        // $req->validate([
+        //     'u_user'   => 'required',
+        //     'u_pw'    => 'required',
+        // ], [
+        //     'u_user.required'  => '入力してください!',
+        //     'u_pw.required'   => '入力してください!',
+        // ]);
 
         // check user and pass
-        $user = User::where('u_user' ,$req->u_user)->where('u_pw', $req->u_pw)->get();
-        
-        // create session
-        if ($user) {
+        $user = User::where('u_user',$req->u_user)
+                    ->where('u_pw', $req->u_pw)->first();
+    
+        if (isset($user)) {
             session()->regenerate();
             session(['user' => $user]);
 
             return redirect('staff');
+        }
+        else {
+            return redirect('login');
         }
     }
 
