@@ -25,13 +25,13 @@ class UserController extends Controller
     public function postLogin(Request $req)
     {
         // validate
-        // $req->validate([
-        //     'u_user'   => 'required',
-        //     'u_pw'    => 'required',
-        // ], [
-        //     'u_user.required'  => '入力してください!',
-        //     'u_pw.required'   => '入力してください!',
-        // ]);
+        $req->validate([
+            'u_user'   => 'required',
+            'u_pw'    => 'required',
+        ], [
+            'u_user.required'  => '入力してください!',
+            'u_pw.required'   => '入力してください!',
+        ]);
 
         // check user and pass
         $user = User::where('u_user',$req->u_user)
@@ -44,7 +44,7 @@ class UserController extends Controller
             return redirect('staff');
         }
         else {
-            return redirect('login');
+            return redirect()->back()->with('danger', 'Login unsuccessfully');
         }
     }
 
@@ -68,27 +68,40 @@ class UserController extends Controller
 
     public function changePassword(Request $req)
     {
+        // validate
+        $req->validate([
+            'u_user'   => 'required',
+            'u_pw'    => 'required',
+        ], [
+            'u_user.required'  => '入力してください!',
+            'u_pw.required'   => '入力してください!',
+        ]);
+
         $user = User::where('u_user',$req->u_user)
                     ->where('u_pw', $req->u_pw)->first();
     
         if (isset($user)) {
-            if($req->pass_new == $req->pass_confirm){
+            if($req->pass_new != null && $req->pass_confirm != null)
+            {
+                if($req->pass_new == $req->pass_confirm){
 
-                $sql = User::where('u_id', $user->u_id)->first();
-
-                $sql->u_pw = $req->pass_confirm;
-                $sql->save();
-                return redirect('login');
+                    $sql = User::where('u_id', $user->u_id)->first();
+    
+                    $sql->u_pw = $req->pass_confirm;
+                    $sql->save();
+                    return redirect('login');
+                }
+                else{
+                    return redirect()->back()->with('danger', 'Change unsuccessfully...Please check password new - password confirm');
+                }
             }
             else{
-                return redirect()->back();
+                return redirect()->back()->with('danger', 'Change unsuccessfully...Please input password new - password confirm');
             }
         }
         else {
-            return redirect()->back();
+            return redirect()->back()->with('danger', 'Change unsuccessfully...Please check username - password');
         }
     }
-
-
 
 }
