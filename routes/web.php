@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function()
-{
-    return View::make('pages.staff_new');
+Route::get('/', function() {
+    return view('pages.staff');
 });
 
 Route::get('/login', 'UserController@getLogin');
@@ -53,3 +52,11 @@ Route::get('/staff/edit/{id}', 'StaffController@getStaffEdit');
 Route::post('/staff/edit/{id}', 'StaffController@postStaffEdit');
 
 Route::get('/staff/delete/{id}', 'StaffController@getStaffDelete');
+
+Route::get('/course', 'CourseController@index');
+
+Route::get('/course/new', 'CourseController@getCourseNew');
+
+Route::post('/course/new', 'CourseController@postCourseNew');
+
+Route::get('/course/delete/{id}', 'CourseController@getCourseDelete');

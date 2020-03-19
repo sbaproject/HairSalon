@@ -10,8 +10,8 @@ use Carbon\Carbon;
 class StaffController extends Controller
 {
     public function index() {
-        // $list_staff = Staff::all();  
-        $list_staff = Staff::where('s_del_flg', 1)->orderBy('s_id', 'DESC')->paginate(10);
+        // get all staff have del_flg = 1 and soft by update time
+        $list_staff = Staff::where('s_del_flg', 1)->orderBy('s_update', 'DESC')->paginate(10);
         return view('pages.staff', compact('list_staff'));
     }    
 
@@ -44,7 +44,7 @@ class StaffController extends Controller
             's_update'      => $currentTime
         ]);
         $staff->save();
-        return redirect()->back()->with('success', 'Added staff successfully!');
+        return redirect('staff')->with('success', 'Added staff successfully!');
     }
 
     public function getStaffEdit($id) {
@@ -73,7 +73,7 @@ class StaffController extends Controller
         $staff->s_text      = $request->get('s_text');
         $staff->s_update    = Carbon::now();
         $staff->save();
-        return redirect()->back()->with('success', 'Updated staff successfully!');
+        return redirect('staff')->with('success', 'Updated staff successfully!');
     }
 
     public function getStaffDelete($id) {

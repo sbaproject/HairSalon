@@ -4,9 +4,9 @@
 @parent
 @endsection
 @section('content')
-    <div class="container" style="padding: 20px;">
+    <div class="container padding20">
         <div class="row">
-            <div class="col-10">
+            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12">
                 <h2 class="border-bottom">
                     スタッフ登録
                 </h2>
@@ -54,7 +54,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">担当店舗</span>
                             </div>
-                            <div class="form-control">
+                            <div class="form-control wrapper-select">
                                 <select class="select-shop" name="s_shop">
                                     @if (isset($list_shop))
                                         @foreach ($list_shop as $shop)
@@ -95,7 +95,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col"></div>
+            <!-- <div class="col"></div> -->
         </div>
     </div>
 @endsection
