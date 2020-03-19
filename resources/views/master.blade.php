@@ -22,6 +22,8 @@
     <link href="css/master.css" rel="stylesheet">
     <!-- sales CSS -->
     <link href="css/sales.css" rel="stylesheet">
+    <!-- staff CSS -->
+    <link href="css/staff.css" rel="stylesheet">
   </head>
   <body>
   @section('menu')

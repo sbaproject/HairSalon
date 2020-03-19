@@ -21,7 +21,7 @@ class StaffController extends Controller
     }
 
     public function postStaffNew(Request $request) {
-        $request->validate([
+        $validator = $request->validate([
             's_firstname'   => 'required',
             's_lastname'    => 'required',
             's_charge'      => 'required',
