@@ -30,6 +30,15 @@ class SalesController extends Controller
 
     public function postSearch(Request $req) {
         
+        $req->validate([
+            'str_date'   => 'required',
+            'end_date'    => 'required',           
+        ], [
+            'str_date.required'  => '入力してください!',
+            'end_date.required'   => '入力してください!'
+        ]);
+
+
         $str_date = str_replace('/','-',$req->str_date) . ' 00:00:00';
         $end_date = str_replace('/','-',$req->end_date) . ' 23:59:59';        
 

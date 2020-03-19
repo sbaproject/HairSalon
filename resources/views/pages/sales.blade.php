@@ -8,16 +8,24 @@
     <link href="css/kronos.css" rel="stylesheet">
     <script src="js/kronos.js"></script>
 
+
+    
             <div class="row marBot15">
-			<div class="searchSales col-md-5"> 		
-            
-            <form method="post">
+			<div class="searchSales col-md-5"> 		            
+
+            <div class="errorSearch col-md-12">
+                                @error('str_date')
+                                    {{ $message }}
+                                @enderror
+                            </div>
+
+            <form method="post" id="formSearch">
             @csrf
             <div class="row marBot15">        
             <div class="col-md-2">期問</div>    
-             <div class="col-md-4"><input type="text" id="kronos1" name="str_date" style="width: 150px;" class="form-control"></div>
+             <div class="col-md-4"><input type="text" id="kronos1" name="str_date" style="width: 150px;" class="form-control {{ ($errors->first('str_date')) ? 'is-invalid'  :'' }}"></div>
              <div class="col-md-1">~</div>
-			 <div class="col-md-3"><input type="text" id="kronos2" name="end_date" style="width: 150px;" class="form-control"></div>
+			 <div class="col-md-3"><input type="text" id="kronos2" name="end_date" style="width: 150px;" class="form-control {{ ($errors->first('end_date')) ? 'is-invalid'  :'' }}"></div>
                         <script>
                             $('#kronos1').kronos({
                                 format: 'yyyy/mm/dd'                                
@@ -27,7 +35,8 @@
                             });
                         </script>         
 
-            </div>
+            </div>          
+            
             
 			 <div class="row marBot15">                        
                         <div class="col-md-2">店舗</div>
@@ -45,7 +54,7 @@
                         </div>      
                         
                         </form>
-			
+                        
 			</div>
 			</div>
 			<div class="row">	
