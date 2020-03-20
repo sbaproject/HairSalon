@@ -5,6 +5,7 @@ use App\Sales;
 use App\Customer;
 use App\Shop;
 use App\Course;
+use App\User;
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
@@ -17,15 +18,21 @@ class SalesController extends Controller
         $list_sales = Sales::paginate(10); 
         $sum_money = Sales::all()->sum('s_money');
         $list_shop = Shop::all();
-        $list_sales_count = Sales::count();
+        $list_sales_count = Sales::count();         
         
         return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count'));
     }
 
     public function getSalesNew() {
         $list_course = Course::all();
-        $list_sales_count = Sales::count();
-        return view('pages.sales_new',compact('list_course','list_sales_count'));
+        $list_sales_count = Sales::count() + 1;
+        $list_customer = Customer::all();
+
+        if($list_sales_count < 10){
+            $list_sales_count = '0'. $list_sales_count;
+        }     
+
+        return view('pages.sales_new',compact('list_course','list_sales_count','list_customer'));
     }   
 
     public function postSearch(Request $req) {
@@ -74,13 +81,18 @@ class SalesController extends Controller
             's_c_id'        => $request->get('s_c_id'),
             's_co_id'       => $request->get('s_co_id'),
             's_pay'         => $request->get('s_pay'),
-            's_money'       => $rquest->get('s_money'),
+            's_money'       => $request->get('s_money'),
             's_text'        => $request->get('s_text'),
             's_date'        => $currentTime,
             's_update'      => $currentTime
         ]);
         $sales->save();
-        return redirect()->back()->with('success', 'Added Sales successfully!');
+
+        if($request->get('hid') == 1){
+            return redirect()->back()->with('success', 'Added Sales successfully!');
+        }else{
+            return redirect('sales')->with('success', 'Added Sales successfully!');
+        }        
     }
 
     public function getSalesEdit($id,$index) {
@@ -111,7 +123,7 @@ class SalesController extends Controller
         $sales->s_text      = $request->get('s_text');
         $sales->s_update    = Carbon::now();
         $sales->save();
-        return redirect()->back()->with('success', 'Updated Sales successfully!');
+        return redirect('sales')->with('success', 'Updated Sales successfully!');
     }
 
     // public function getSalesDelete($id) {
@@ -121,4 +133,30 @@ class SalesController extends Controller
     //     $sales->save();
     //     return redirect()->back()->with('success', 'Deleted Sales successfully!');
     // }
+
+    public function getCustomerAjax(Request $request) {
+                
+        if($request->get('a'))
+        {
+            $customer = Customer::where('',$request->get('a'));
+           
+            //$outpub = $customer->c_firstname . '/' . $customer->c_lastname
+           
+        //     $data = DB::table('products')
+        //     ->where('name_product', 'LIKE', "%{$query}%")
+        //     ->get();
+        //     $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
+           
+        //     foreach($data as $row)
+        //     {
+        //        $output .= '
+        //        <li><a href="data/'. $row->id .'">'.$row->name_product.'</a></li>
+        //        ';
+        //    }
+        //    $output .= '</ul>';
+           echo "thach";
+       }       
+       echo "thach"; 
+    }
+    
 }

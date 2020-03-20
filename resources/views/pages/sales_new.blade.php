@@ -4,6 +4,7 @@
 @parent
 @endsection
 @section('content')
+
     <div class="container" style="padding: 20px;">
         <div class="row">
             <div class="col-10">
@@ -25,7 +26,15 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">No</span>
                             </div>
-                            <input type="text" readonly class="form-control" value="{{$list_sales_count+1}}">
+                            <input type="text" readonly class="form-control" value="{{$list_sales_count}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Date Sale</span>
+                            </div>
+                            <input type="text" class="form-control" value="">
                         </div>
                     </div>
                     <div class="form-group">
@@ -33,12 +42,11 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客ID</span>
                             </div>
-                            <input type="text" class="form-control {{ ($errors->first('s_c_id')) ? 'is-invalid'  :'' }}" name="s_c_id" placeholder="">
-                            <div class="invalid-feedback">
-                                @error('s_c_id')
-                                    {{ $message }}
-                                @enderror
-                            </div>
+                            <select class="form-control" id="s_co_id" name="s_co_id">
+                            @foreach($list_customer as $customer)
+                            <option value = '{{$customer->c_id}}'>{{$customer->c_id}} - {{$customer->c_lastname}} {{$customer->c_firstname}}</option>
+                            @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -46,7 +54,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客姓</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="">
+                            <input type="text" class="form-control" name = "txt_lastname" placeholder="">
                         </div>
                     </div>
                     <div class="form-group">
@@ -54,7 +62,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客名</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="">
+                            <input type="text" class="form-control" name = "txt_firstname" placeholder="">
                         </div>
                     </div>
 
@@ -145,15 +153,66 @@
                             <textarea class="form-control" rows=4 name="s_text"></textarea>
                         </div>
                     </div>
-                    
+                    <input type="hidden" id="hid" name="hid" value="">
                     <div class="clsCenter">
-                    <button type="" class="btn btn-primary buttonSales btn-left-sales">連続追加</button>
-                    <button type="submit" class="btn btn-primary buttonSales btn-left-sales">追加</button>                    
+                    <button type="submit" id="submit1" class="btn btn-primary buttonSales btn-left-sales">連続追加</button>
+                    <button type="submit" id="submit2" class="btn btn-primary buttonSales btn-left-sales">追加</button>                    
                     <a role="button" href="{{url('sales')}}" class="btn btn-secondary buttonSales" >キャンセル</a>
+
+                    
                     <div>
                 </form>
+
             </div>
             <div class="col"></div>
         </div>
     </div>
+    <script>
+$(document).ready(function(){
+  $("#submit1").hover(function(){
+    $('input[name="hid"]').val('1');
+  });
+
+  $("#submit2").hover(function(){
+    $('input[name="hid"]').val('2');
+  });
+  
+  $("#s_co_id").change(function(){
+       // var selectedCountry = $(this).children("option:selected").val();
+        //alert("You have selected the country1 - " );
+
+        
+           
+            $.ajax({
+                url: "{{ route('getCustomerAjax') }}",
+                type: 'GET',
+                dataType: 'text',
+                data: {
+                    a:'thach'
+                }
+            }).done(function(ketqua) {
+                alert("You have selected the country - " + ketqua);
+            });
+            
+        
+
+    });
+
+//   $("#s_co_id").change(function(){
+//     alert("You have selected the country - ";
+//             // $.ajax({
+//             //     url: "{{ route('getCustomerAjax') }}",
+//             //     type: 'POST',
+//             //     dataType: 'text',
+//             //     data: {
+//             //         a: selectedCountry
+//             //     }
+//             // }).done(function(ketqua) {
+//             //     alert("You have selected the country - " + ketqua);
+//             // });
+            
+//         });
+});
+</script>
+    
 @endsection
