@@ -4,22 +4,32 @@
 @parent
 @endsection
 @section('content')
-    <div class="container padding20">
+    <div class="container padding-20">
         <div class="row">
             <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12">
                 <h2 class="border-bottom">
                     スタッフ登録
                 </h2>
-                @if (\Session::has('success'))
-                <div class="alert alert-success alert-dismissible fade show">
-                    {{ \Session::get('success') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>    
-                @endif
                 <form method="post">
                     @csrf
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">スタッフID</span>
+                            </div>
+                            @php
+                                $id = $last_staff_id + 1;
+                                if ($id < 10) {
+                                    $id = '00' . $id;
+                                } else {
+                                    if ($id >= 10 && $id < 100) {
+                                        $id = '0' . $id;
+                                    }
+                                }
+                            @endphp
+                            <input type="text" readonly class="form-control" name="opt_id" value="{{ $id }}">
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -95,7 +105,6 @@
                     </div>
                 </form>
             </div>
-            <!-- <div class="col"></div> -->
         </div>
     </div>
 @endsection

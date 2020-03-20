@@ -1,5 +1,5 @@
 @extends('master')
-@section('title','コース登録')
+@section('title','コース編集')
 @section('menu')
 @parent
 @endsection
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12">
                 <h2 class="border-bottom">
-                    コース登録
+                    コース編集
                 </h2>
                 <form method="post">
                     @csrf
@@ -18,7 +18,7 @@
                                 <span class="input-group-text">コースID</span>
                             </div>
                             @php
-                                $id = $last_course_id + 1;
+                                $id = $course->co_id;
                                 if ($id < 10) {
                                     $id = '00' . $id;
                                 } else {
@@ -36,7 +36,7 @@
                                 <span class="input-group-text">コース名</span>
                             </div>
                             <input type="text" class="form-control {{ ($errors->first('co_name')) ? 'is-invalid'  :'' }}" 
-                                name="co_name" value="{{ old('co_name') }}">
+                                name="co_name" value="{{ old('co_name') ? old('co_name') : $course->co_name }}">
                             <div class="invalid-feedback">
                                 @error('co_name')
                                     {{ $message }}
@@ -54,13 +54,13 @@
                                 <select class="select-shop" name="co_opt1" id="select-option-1" onchange="onOption1Change({{ $list_option }})">
                                     @if (isset($list_option))
                                         @foreach ($list_option as $option)
-                                            <option value="{{ $option->op_id }}">
+                                            <option value="{{ $option->op_id }}" {{ $option->op_id == $course->co_opt1 ? 'selected' : '' }}>
                                                 {{ $option->op_name }}
                                             </option>
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-1">{{ $list_option[0]->op_amount }}</span>
+                                <span class="option-amount" id="option-amount-1">{{ $course->Option1->op_amount }}</span>
                             </div>
                         </div>
                     </div>
@@ -73,13 +73,13 @@
                                 <select class="select-shop" name="co_opt2" id="select-option-2" onchange="onOption2Change({{ $list_option }})">
                                     @if (isset($list_option))
                                         @foreach ($list_option as $option)
-                                            <option value="{{ $option->op_id }}">
+                                            <option value="{{ $option->op_id }}" {{ $option->op_id == $course->co_opt2 ? 'selected' : '' }}>
                                                 {{ $option->op_name }}
                                             </option>
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-2">{{ $list_option[0]->op_amount }}</span>
+                                <span class="option-amount" id="option-amount-2">{{ $course->Option2->op_amount }}</span>
                             </div>
                         </div>
                     </div>
@@ -92,13 +92,13 @@
                                 <select class="select-shop" name="co_opt3" id="select-option-3" onchange="onOption3Change({{ $list_option }})">
                                     @if (isset($list_option))
                                         @foreach ($list_option as $option)
-                                            <option value="{{ $option->op_id }}">
+                                            <option value="{{ $option->op_id }}" {{ $option->op_id == $course->co_opt3 ? 'selected' : '' }}>
                                                 {{ $option->op_name }}
                                             </option>
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-3">{{ $list_option[0]->op_amount }}</span>
+                                <span class="option-amount" id="option-amount-3">{{ $course->Option3->op_amount }}</span>
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                                 <span class="input-group-text">金額</span>
                             </div>
                             <input readonly type="text" class="form-control {{ ($errors->first('co_money')) ? 'is-invalid'  :'' }}" 
-                                name="co_money" id="co_money" value="{{ $list_option[0]->op_amount * 3 }}" >
+                                name="co_money" id="co_money" value="{{ $course->co_money }}" >
                             <div class="invalid-feedback">
                                 @error('co_money')
                                     {{ $message }}
@@ -121,7 +121,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">備考</span>
                             </div>
-                            <textarea class="form-control" name="co_text" rows=4>{{ old('co_text') }}</textarea>
+                            <textarea class="form-control" name="co_text" rows=4>{{ old('co_text') ? old('co_text') : $course->co_text }}</textarea>
                         </div>
                     </div>
                     <div class="form-group-button">

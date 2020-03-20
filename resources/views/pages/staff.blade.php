@@ -4,18 +4,16 @@
 @parent
 @endsection
 @section('content')
-    <div class="padding20">
-        <a class="btn btn-primary" href="{{url('staff/new')}}" role="button">新規追加</a>
-        <br/>
-        <br/>
-        @if (\Session::has('success'))
-            <div class="alert alert-success alert-dismissible fade show">
-                {{ \Session::get('success') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>    
-        @endif
+    <div class="padding-20">
+        <div class="header-index">
+            <a class="btn btn-primary add-new-btn" href="{{url('staff/new')}}" role="button">新規追加</a>
+            @if (\Session::has('success'))
+                <div class=" alert alert-success alert-dismissible fade show">
+                    {{ \Session::get('success') }}
+                </div>    
+            @endif
+        </div>
+        
         @if (isset($list_staff))
             <table class="table table-bordered">
                 <thead class="table-header">
@@ -55,7 +53,9 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $list_staff->links() }}
+            <div class="pagination-container">
+                <div>{{ $list_staff->links() }}</div>
+            </div>
         @endif
     </div>
 @endsection

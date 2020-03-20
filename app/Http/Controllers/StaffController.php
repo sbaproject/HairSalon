@@ -10,14 +10,20 @@ use Carbon\Carbon;
 class StaffController extends Controller
 {
     public function index() {
-        // get all staff have del_flg = 1 and soft by update time
-        $list_staff = Staff::where('s_del_flg', 1)->orderBy('s_update', 'DESC')->paginate(10);
+        // get all staff have del_flg = 0 and soft by update time
+        $list_staff = Staff::where('s_del_flg', 0)->orderBy('s_id', 'DESC')->paginate(10);
         return view('pages.staff', compact('list_staff'));
     }    
 
     public function getStaffNew() {
         $list_shop = Shop::all();
-        return view('pages.staff_new', compact('list_shop'));
+        $last_staff = Staff::orderBy('s_id', 'DESC')->take(1)->first('s_id');
+        if ($last_staff != null) {
+            $last_staff_id = $last_staff->s_id;
+        } else {
+            $last_staff_id = 0;
+        }
+        return view('pages.staff_new', compact('list_shop', 'last_staff_id'));
     }
 
     public function postStaffNew(Request $request) {
@@ -40,6 +46,7 @@ class StaffController extends Controller
             's_shop'        => $request->get('s_shop'),
             's_charge'      => $request->get('s_charge'),
             's_text'        => $request->get('s_text'),
+            's_del_flg'     => 0,
             's_date'        => $currentTime,
             's_update'      => $currentTime
         ]);
@@ -78,7 +85,7 @@ class StaffController extends Controller
 
     public function getStaffDelete($id) {
         $staff = Staff::find($id);
-        $staff->s_del_flg = 0;
+        $staff->s_del_flg = 1;
         $staff->s_update  = Carbon::now();
         $staff->save();
         return redirect()->back()->with('success', 'Deleted staff successfully!');

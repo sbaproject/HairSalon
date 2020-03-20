@@ -1,7 +1,10 @@
-.flex-container {
-    display: flex;
-    align-items: center;
-}
-.calendar-picker {
+.header-title {
     margin-right: 30px;
+}
+.pagination-container {
+	display: flex;
+	justify-content: center;
+}
+.course-list {
+    margin-bottom: 30px;
 }

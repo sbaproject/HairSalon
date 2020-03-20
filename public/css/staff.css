@@ -20,6 +20,10 @@ tbody {
 	width: 40%;
 	border-radius: 5px;
 	align-items: center;
+	margin-right: 30px;
+}
+.option-amount {
+    align-self: center;
 }
 .form-group-button {
 	display: flex;
@@ -35,6 +39,18 @@ tbody {
 	border-bottom: 1px solid #ced4da; 
 	line-height: normal;
 }
-.padding20 {
+.padding-20 {
 	padding: 20px;
+}
+.add-new-btn {
+	margin-right: 40px;
+}
+.header-index {
+	display: flex;
+	align-items: center;
+	margin-bottom: 25px;
+}
+.alert {
+	margin-bottom: 0px;
+	padding: .2rem 1.25rem;
 }

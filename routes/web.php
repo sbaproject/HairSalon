@@ -67,7 +67,23 @@ Route::get('/course/new', 'CourseController@getCourseNew');
 
 Route::post('/course/new', 'CourseController@postCourseNew');
 
+Route::get('/course/edit/{id}', 'CourseController@getCourseEdit');
+
+Route::post('/course/edit/{id}', 'CourseController@postCourseEdit');
+
 Route::get('/course/delete/{id}', 'CourseController@getCourseDelete');
+
+
+/* option */
+Route::get('/option/new', 'OptionController@getOptionNew');
+
+Route::post('/option/new', 'OptionController@postOptionNew');
+
+Route::get('/option/edit/{id}', 'OptionController@getOptionEdit');
+
+Route::post('/option/edit/{id}', 'OptionController@postOptionEdit');
+
+Route::get('/option/delete/{id}', 'OptionController@getOptionDelete');
 
 
 /* customer */
