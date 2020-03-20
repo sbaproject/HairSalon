@@ -13,17 +13,37 @@
 }
 
 .login_us{
-    border: 2px solid #0033CC;
     border-radius: 5px;
-    background-color: #0033CC;
+    border: 2px solid #C0C0C0;
+    background-color: #C0C0C0;
 }
 
 .chang_pw{
-    border: 2px solid #0066CC;
+    border: 2px solid #C0C0C0;
     border-radius: 5px;
+    background-color: #C0C0C0;
+}
+
+.login_us:hover{
+    border-radius: 5px;
+    color: #ffffff;
+    border: 2px solid #0066CC;
     background-color: #0066CC;
 }
 
+.chang_pw:hover{
+    border-radius: 5px;
+    color: #ffffff;
+    border: 2px solid #0000FF;
+    background-color: #0000FF;
+}
+
+
 .invalid-feedback {
 	margin-left: 20%;
+}
+
+.form-btn
+{
+    text-align: center;
 }

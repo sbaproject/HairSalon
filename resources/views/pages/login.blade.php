@@ -45,8 +45,11 @@
                   @enderror
               </div>
           </div>
-          <button type="submit" class="btn btn-primary btn-form btn-left login_us">ログイン</button>
-          <a href="{{ asset ('/changepassword')}}" class="btn btn-secondary btn-form chang_pw" >PW変更</a>
+          <div class="form-btn">
+              <button type="submit" class="btn login_us">ログイン</button>
+              <a href="{{ asset ('/changepassword')}}" class="btn chang_pw" >PW変更</a>
+          </div>
+          
         </form>
       </div>
     </div>

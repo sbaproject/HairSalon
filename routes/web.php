@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function() {
-    return view('pages.staff');
+    return view('pages.customer');
 });
 
 
@@ -81,4 +81,3 @@ Route::get('/customer/edit/{id}', 'CustomerController@getCustomerEdit');
 
 Route::post('/customer/edit/{id}', 'CustomerController@postCustomerEdit');
 
-Route::get('/customer/delete/{id}', 'CustomerController@getCustomerDelete');

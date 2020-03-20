@@ -53,7 +53,9 @@
               <label for="pass_confirm"><b>新しいパスワード確認</b></label>
               <input type="password" class="form-control" name="pass_confirm">
           </div>
-          <button type="submit" class="btn btn-primary btn-form btn-left login_us">更新</button>
+          <div class="form-btn">
+            <button type="submit" class="btn chang_pw">更新</button>
+          </div>
         </form>
       </div>
     </div>

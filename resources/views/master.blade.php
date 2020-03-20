@@ -26,6 +26,21 @@
     <link href="css/staff.css" rel="stylesheet">
     <!-- staff CSS -->
     <link href="css/course.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+    $( document ).ready(function() {
+        const currentLocation = location.href;
+              const menuItem = document.querySelectorAll('a');
+              const menuLength = menuItem.length
+              for (let i = 1; i<menuLength; i++){
+                if(menuItem[i].href === currentLocation){
+                  menuItem[i].className = "active"
+                }
+              }
+    });
+    </script>
+
   </head>
   <body>
   @section('menu')
@@ -36,11 +51,9 @@
         <div class="col-sm-3">
             <b class="text-hair">売上管理システム</b>
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-4">
             <h4 class="user-name">
-              @if(Session::has('user'))
-               {{ Session::get('user')->u_user }}
-               @endif
+              admin
             </h4>
         </div>
         <div class="col-sm-1">
@@ -51,16 +64,29 @@
         </div>
   	</div>
     <hr>
-	<div class="sidenav">
-		<a href="customer" class="active">顧客管理</a>
-		<a href="sales">売上管理</a>
-		<a href="staff">スタッフ管理</a>
-		<a href="course" >コース管理</a>
-	</div>
-	<div class="main">
-		@show
-		@yield('content')
+
+    
+    <div class="row">
+
+        <div class="col-2">
+          <ul class="menu-left">
+            <li><a href="customer" >顧客管理</a></li>
+            <li><a href="sales" >売上管理</a></li>
+            <li><a href="staff" >スタッフ管理</a></li>
+            <li><a href="course">コース管理</a></li>
+          </ul>
+        </div>
+
+        <div class="col-10">
+          <div class="main">
+    		    @show
+    		    @yield('content')
+          </div>
+        </div>
+
     </div>
+    
+      
     
     <!-- Jquery 3.4.1 -->
     <script src="js/jquery-3.4.1.min.js"></script>
@@ -68,5 +94,27 @@
     <script src="js/bootstrap.js"></script>
     <!-- Master JS  -->
     <script src="js/app.js"></script>
+
+    <script type="text/javascript">
+              // const currentLocation = location.href;
+              // const menuItem = document.querySelectorAll('a');
+              // const menuLength = menuItem.length
+              // for (let i = 1; i<menuLength; i++){
+              //   if(menuItem[i].href === currentLocation){
+              //     menuItem[i].className = "active"
+              //   }
+              // }
+              // $("a").click(function(){
+              //   $("a").css("color", "");
+              //   $(this).css("color", "#0066FF");
+              // });
+
+              // $("a#link").click(function(){
+              //    $("a#link").css("color", "none");
+              //   $(this).css("color", "red");
+              // });
+      </script>
+
   </body>
 </html>
+

@@ -1,14 +1,14 @@
 @extends('master')
-@section('title','スタッフ登録')
+@section('title','顧客を追加する')
 @section('menu')
 @parent
 @endsection
 @section('content')
-    <div class="container" style="padding: 20px;">
+    <div class="container" style="padding-top: 25px;">
         <div class="row">
             <div class="col-10">
                 <h2 class="border-bottom">
-                    スタッフ登録
+                顧客を追加する
                 </h2>
                 @if (\Session::has('success'))
                 <div class="alert alert-success alert-dismissible fade show">
@@ -23,12 +23,12 @@
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">姓</span>
+                                <span class="input-group-text">顧客の姓</span>
                             </div>
-                            <input type="text" class="form-control {{ ($errors->first('s_firstname')) ? 'is-invalid'  :'' }}" 
-                                name="s_firstname" value="{{ old('s_firstname') }}" placeholder="GINZA">
+                            <input type="text" class="form-control {{ ($errors->first('c_firstname')) ? 'is-invalid'  :'' }}" 
+                                name="c_firstname" value="{{ old('c_firstname') }}" placeholder="顧客の姓を入力してください">
                             <div class="invalid-feedback">
-                                @error('s_firstname')
+                                @error('c_firstname')
                                     {{ $message }}
                                 @enderror
                             </div>
@@ -38,44 +38,12 @@
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">名</span>
+                                <span class="input-group-text">顧客名</span>
                             </div>
-                            <input type="text" class="form-control {{ ($errors->first('s_lastname')) ? 'is-invalid'  :'' }}" 
-                                name="s_lastname" value="{{ old('s_lastname') }}" placeholder="TARO">
+                            <input type="text" class="form-control {{ ($errors->first('c_lastname')) ? 'is-invalid'  :'' }}" 
+                                name="c_lastname" value="{{ old('c_lastname') }}" placeholder="顧客の名前を入力してください">
                             <div class="invalid-feedback">
-                                @error('s_lastname')
-                                    {{ $message }}
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">担当店舗</span>
-                            </div>
-                            <div class="form-control">
-                                <select class="select-shop" name="s_shop">
-                                    @if (isset($list_shop))
-                                        @foreach ($list_shop as $shop)
-                                            <option value="{{ $shop->sh_id }}" {{ $shop->sh_id == old('s_shop') ? 'selected' : '' }}>
-                                                {{ $shop->sh_name }}
-                                            </option>
-                                        @endforeach
-                                    @endif
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">主担当</span>
-                            </div>
-                            <input type="text" class="form-control {{ ($errors->first('s_charge')) ? 'is-invalid'  :'' }}" 
-                                name="s_charge" value="{{ old('s_charge') }}" placeholder="カット" >
-                            <div class="invalid-feedback">
-                                @error('s_charge')
+                                @error('c_lastname')
                                     {{ $message }}
                                 @enderror
                             </div>
@@ -86,12 +54,12 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">備考</span>
                             </div>
-                            <textarea class="form-control" name="s_text" rows=4>{{ old('s_text') }}</textarea>
+                            <textarea class="form-control" name="s_text" rows=4>{{ old('c_text') }}</textarea>
                         </div>
                     </div>
                     <div class="form-group-button">
                         <button type="submit" class="btn btn-primary btn-form btn-left">追加</button>
-                        <a role="button" href="{{url('staff')}}" class="btn btn-secondary btn-form" >キャンセル</a>
+                        <a role="button" href="{{url('customer')}}" class="btn btn-secondary btn-form" >キャンセル</a>
                     </div>
                 </form>
             </div>

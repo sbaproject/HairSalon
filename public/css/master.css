@@ -1,6 +1,11 @@
+
 body {
-    font-family: "Lato", sans-serif;
+	font-family: 'ＭＳ Ｐゴシック';
   }
+
+.logo{
+	margin-left: 20px;
+}
 
 .col-sm-3 .text-hair
 {
@@ -8,49 +13,73 @@ body {
     padding-top: 25px;
     z-index: 1;
     display: block;
-    font-size: 25px;
+	font-size: 30px;
 }
 
-.col-sm-5 .user-name
+.col-sm-4 .user-name
 {
-    padding-top: 25px;
+    padding-top: 30px;
     font-size: 25px;
     text-align: right;
 }
 
-.col-sm-1 .user-logout
-{
-    padding-top: 25px;
+.col-sm-1 .user-logout{
+    padding-top: 30px;
     font-size: 20px;
 	text-align: left;
 	display: block;
 }
 
-
-.col-sm-1 .icon-user
-{
-	padding-top: 25px;
+.col-sm-1 .icon-user{
+	padding-top: 30px;
 	
 }
 
-.sidenav {
-	height: 100%;
-	width: 180px;
+.col-10{
+	margin-top: -16px;
+}
+
+/* .sidenav {
 	text-align: center;
-	background-color: #fff;
-	padding-top: 10px;
 }
 
 .sidenav a {
 	padding: 30px 8px 6px 16px;
 	text-decoration: none;
 	font-size: 25px;
-	color: #818181;
 	display: block;
+	color: #363636;
+} */
+
+.col-2{
+	position: relative;
+	display: flex;
+	background-color: silver;
+	margin-top: -17px;
+	height: 1200px;
 }
 
-.sidenav a:hover {
-	color: #3399FF;
+.menu-left{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	list-style: none;
+}
+
+.menu-left li a{
+	position: relative;
+	display: inline-block;
+	text-decoration: none;
+	color: #696969;
+	font-weight: 550;
+	padding: 15px 8px 6px 16px;
+	font-size: 25px;
+	letter-spacing: 2px;
+}
+
+ul li a.active{
+	color:#0066FF;
 	text-decoration: underline;
 }
 
@@ -61,11 +90,13 @@ hr {
 
 
 .main {
-	margin-left: 170px; /* Same as the width of the sidenav */
 	font-size: 20px; /* Increased text to enable scrolling */
-	padding: 5px 40px;
-	margin-top: -290px;
+	padding: 5px 5px;
+	background-color: #fff;
+	margin-left: 20px;
 }
+
+
 
 @media screen and (min-device-width : 768px) and (max-device-width : 1024px){
 	.sidenav {padding-top: 15px;}
@@ -84,3 +115,5 @@ hr {
 .invalid-feedback {
 	margin-left: 20%;
 }
+
+
