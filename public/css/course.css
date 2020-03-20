@@ -1,0 +1,7 @@
+.flex-container {
+    display: flex;
+    align-items: center;
+}
+.calendar-picker {
+    margin-right: 30px;
+}

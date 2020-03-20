@@ -1,39 +1,40 @@
-
 .table-header {
 	background-color: #e8e8e8;
 }
-
 .table-bordered td, .table-bordered th {
 	border: 1px solid #bdbdbd;
 }
-
 .table thead th {
     text-align: center;
     border-bottom: none;
 }
-
 tbody {
 	text-align: center;
 }
-
+.wrapper-select {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	display: flex;
+}
 .form-control .select-shop {
 	width: 40%;
+	border-radius: 5px;
+	align-items: center;
 }
-
 .form-group-button {
 	display: flex;
 	justify-content: center;
 }
-
 .btn-form {
 	width: 30%;
 }
-
 .btn-left {
 	margin-right: 15%;
 }
-
 .border-bottom {
 	border-bottom: 1px solid #ced4da; 
 	line-height: normal;
+}
+.padding20 {
+	padding: 20px;
 }

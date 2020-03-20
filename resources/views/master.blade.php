@@ -24,6 +24,8 @@
     <link href="css/sales.css" rel="stylesheet">
     <!-- staff CSS -->
     <link href="css/staff.css" rel="stylesheet">
+    <!-- staff CSS -->
+    <link href="css/course.css" rel="stylesheet">
   </head>
   <body>
   @section('menu')
