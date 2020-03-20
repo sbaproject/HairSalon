@@ -27,10 +27,12 @@ class UserController extends Controller
         // validate
         $req->validate([
             'u_user'   => 'required',
-            'u_pw'    => 'required',
+            'u_pw'    => 'required|min:4|max:8',
         ], [
             'u_user.required'  => '入力してください!',
             'u_pw.required'   => '入力してください!',
+            'u_pw.max'   => 'パスワードは8文字以上です',
+            'u_pw.min'   => 'パスワードは4文字以上です',
         ]);
 
         // check user and pass
@@ -71,10 +73,12 @@ class UserController extends Controller
         // validate
         $req->validate([
             'u_user'   => 'required',
-            'u_pw'    => 'required',
+            'u_pw'    => 'required|min:4|max:8',
         ], [
             'u_user.required'  => '入力してください!',
             'u_pw.required'   => '入力してください!',
+            'u_pw.max'   => 'パスワードは8文字以上です',
+            'u_pw.min'   => 'パスワードは4文字以上です',
         ]);
 
         $user = User::where('u_user',$req->u_user)
@@ -91,6 +95,7 @@ class UserController extends Controller
                     $sql->save();
                     return redirect('login');
                 }
+                
                 else{
                     return redirect()->back()->with('danger', 'Change unsuccessfully...Please check password new - password confirm');
                 }
