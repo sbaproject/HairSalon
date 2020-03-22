@@ -7,7 +7,7 @@
     <link href="css/kronos.css" rel="stylesheet">
     <script src="js/kronos.js"></script>
 
-
+</br>
     
             <div class="row marBot15">
 			<div class="searchSales col-md-5"> 		            
@@ -16,7 +16,14 @@
                                 @error('str_date')
                                     {{ $message }}
                                 @enderror
-                            </div>
+            </div>
+
+            @if (\Session::has('search'))
+            <div class="searchResult">
+                Total Search Result Sales: {{ \Session::get('search') }}
+                {{ \Session::forget('search') }}
+            </div>    
+            @endif
 
             <form method="post" id="formSearch">
             @csrf
@@ -131,9 +138,9 @@
                     <th>{{ $index }}</th>
                     <td>{{$sales->Customer->c_firstname}} {{$sales->Customer->c_lastname}}</td>
                     <td>{{$sales->Course->co_name}}</td>
-                    <td>{{$sales->s_opts1}}</td>
-                    <td>{{$sales->s_opts2}}</td>
-                    <td>{{$sales->s_opts3}}</td>
+                    <td>{{$sales->Option1->op_name}}</td>
+                    <td>{{$sales->Option2->op_name}}</td>
+                    <td>{{$sales->Option3->op_name}}</td>
                     <td>{{number_format($sales->s_money)}} VND</td>
                     <td>{{$sales->s_text}}</td>
                     <td><a href="{{ url('sales/edit/' . $sales->s_id.'/'.$index) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a></td>
@@ -147,5 +154,5 @@
         @endif
         {{ $list_sales->links() }}
     </div>
-   
+
 @endsection

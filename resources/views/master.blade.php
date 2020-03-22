@@ -17,7 +17,6 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/docs.min.css" rel="stylesheet">    
     <!-- master CSS -->
     <link href="css/master.css" rel="stylesheet">
     <!-- sales CSS -->
@@ -27,7 +26,13 @@
     <!-- staff CSS -->
     <link href="css/course.css" rel="stylesheet">
 
-    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <!-- Jquery 3.4.1 -->
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap JS  -->
+    <script src="js/bootstrap.js"></script>
+    <!-- Master JS  -->
+    <script src="js/app.js"></script>
+    
     <script>
     $( document ).ready(function() {
         const currentLocation = location.href;
@@ -85,35 +90,6 @@
         </div>
 
     </div>
-    
-      
-    
-    <!-- Jquery 3.4.1 -->
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <!-- Bootstrap JS  -->
-    <script src="js/bootstrap.js"></script>
-    <!-- Master JS  -->
-    <script src="js/app.js"></script>
-
-    <script type="text/javascript">
-              // const currentLocation = location.href;
-              // const menuItem = document.querySelectorAll('a');
-              // const menuLength = menuItem.length
-              // for (let i = 1; i<menuLength; i++){
-              //   if(menuItem[i].href === currentLocation){
-              //     menuItem[i].className = "active"
-              //   }
-              // }
-              // $("a").click(function(){
-              //   $("a").css("color", "");
-              //   $(this).css("color", "#0066FF");
-              // });
-
-              // $("a#link").click(function(){
-              //    $("a#link").css("color", "none");
-              //   $(this).css("color", "red");
-              // });
-      </script>
 
   </body>
 </html>

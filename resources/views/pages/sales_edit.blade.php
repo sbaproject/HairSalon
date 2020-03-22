@@ -4,6 +4,7 @@
 @parent
 @endsection
 @section('content')
+</br>
     <div class="container" style="padding: 20px;">
         <div class="row">
             <div class="col-10">
@@ -31,14 +32,37 @@
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
+                                <span class="input-group-text">Date Sale</span>
+                            </div>
+                            <input type="text" id="kronos1" class="form-control" name="sale_date" value="">
+                            <script>
+                            var d = new Date();
+                            var month = d.getMonth()+1;
+                            var day = d.getDate();
+                            var output = d.getFullYear() + '' +
+                                (month<10 ? '0' : '') + month + '' +
+                                (day<10 ? '0' : '') + day;                            
+
+                            $('#kronos1').kronos({
+                                format: 'yyyy/mm/dd',
+                                initDate:  output
+                            });                            
+            
+                        </script>      
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
                                 <span class="input-group-text">顧客ID</span>
                             </div>
-                            <input type="text" class="form-control {{ ($errors->first('s_c_id')) ? 'is-invalid'  :'' }}" name="s_c_id" value="{{ $sales->s_c_id }}">
-                            <div class="invalid-feedback">
-                                @error('s_c_id')
-                                    {{ $message }}
-                                @enderror
-                            </div>
+                            <select class="form-control" id="s_c_id" name="s_c_id">
+                            @foreach($list_customer as $customer)
+                            <option value = '{{$customer->c_id}}' {{ $sales->s_c_id == $customer->c_id ? 'selected' : '' }} >
+                                {{$customer->c_id}} - {{$customer->c_lastname}} {{$customer->c_firstname}}
+                            </option>
+                            @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -46,7 +70,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客姓</span>
                             </div>
-                            <input type="text" class="form-control" value="{{ $sales->Customer->c_lastname}}">
+                            <input type="text" class="form-control" readonly name = "txt_lastname" >
                         </div>
                     </div>
                     <div class="form-group">
@@ -54,22 +78,20 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客名</span>
                             </div>
-                            <input type="text" class="form-control" value="{{ $sales->Customer->c_firstname}}">
+                            <input type="text" class="form-control" readonly name = "txt_firstname" value="{{ $sales->Customer->c_firstname}}">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">支払い方法</span>
+                                <span class="input-group-text">コース</span>
                             </div>
-                            <select class="form-control" name="s_co_id">
+                            <select class="form-control" name="s_co_id" id ="s_co_id">
                             @foreach($list_course as $course)
-                            @if($course->co_id == $sales->s_co_id) 
-                            <option selected value = '{{$course->co_id}}'>{{$course->co_name}}</option>
-                            @else
-                            <option value = '{{$course->co_id}}'>{{$course->co_name}}</option>
-                            @endif
+                            <option value = '{{$course->co_id}}' {{ $sales->s_co_id == $course->co_id ? 'selected' : '' }}>
+                                {{$course->co_name}} 
+                            </option>
                             @endforeach
                             </select>
                         </div>
@@ -81,8 +103,14 @@
                                 <span class="input-group-text">サブ1</span>
                             </div>
                             <div></div>
-                            <select class="form-control">
-                            <option></option>
+                            <input type="text" class="form-control" readonly name = "s_opt1" placeholder="" value="{{ $sales->Option1->op_name}}">                           
+                            <select class="form-control" name = "s_opts1">
+                            @foreach($list_staff as $staff)
+                            <option value = '{{$staff->s_id}}' {{ $sales->s_opts1 == $staff->s_id ? 'selected' : '' }}>
+                            {{$staff->s_firstname}} {{$staff->s_lastname}}
+                            </option>
+                            @endforeach
+                            </select>
                             </select>
                         </div>
                     </div>
@@ -92,9 +120,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ2</span>
                             </div>
-                            <div></div>
-                            <select class="form-control">
-                                <option></option>
+                            <input type="text" class="form-control" readonly name = "s_opt2" placeholder="" value="{{ $sales->Option2->op_name}}">
+                            <select class="form-control" name = "s_opts2">
+                            @foreach($list_staff as $staff)
+                            <option value = '{{$staff->s_id}}' {{ $sales->s_opts2 == $staff->s_id ? 'selected' : '' }}>
+                            {{$staff->s_firstname}} {{$staff->s_lastname}}
+                            </option>
+                            @endforeach
                             </select>
                         </div>
                     </div>
@@ -104,9 +136,13 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ3</span>
                             </div>
-                            <div></div>
-                            <select class="form-control">
-                            <option></option>
+                            <input type="text" class="form-control" readonly name = "s_opt3" placeholder="" value="{{ $sales->Option3->op_name}}">
+                            <select class="form-control" name = "s_opts3">
+                            @foreach($list_staff as $staff)
+                            <option value = '{{$staff->s_id}}' {{ $sales->s_opts3 == $staff->s_id ? 'selected' : '' }}>
+                            {{$staff->s_firstname}} {{$staff->s_lastname}}
+                            </option>
+                            @endforeach
                             </select>
                         </div>
                     </div>
@@ -160,4 +196,131 @@
             <div class="col"></div>
         </div>
     </div>
+    <script>
+
+$( window ).on( "load", function() {
+        console.log( "window loaded" );
+        myFunction(3);
+    });
+
+
+    function myFunction(a) {
+  alert("thaac");
+
+        $('input[name="txt_firstname"]').val("thach");           // Function returns the product of a and b
+
+        $.ajax({
+                url: "{{ route('getCustomerFirstNameAjax') }}",
+                type: 'GET',
+                dataType: 'text',
+                data: {
+                    c_id: a
+                }
+            }).done(function(data) {
+                $('input[name="txt_firstname"]').val(data);
+            });
+
+            $.ajax({
+                url: "{{ route('getCustomerLastNameAjax') }}",
+                type: 'GET',
+                dataType: 'text',
+                data: {
+                    c_id: 1
+                }
+            }).done(function(data) {
+                $('input[name="txt_lastname"]').val(data);
+            });   
+}
+
+
+    $(document).ready(function(){
+  $("#submit1").hover(function(){
+    $('input[name="hid"]').val('1');
+    alert("thac");
+  });
+
+  $("#submit2").hover(function(){
+    $('input[name="hid"]').val('2');
+  });
+
+  
+
+  
+  $("#s_c_id").change(function(){
+        var selectedValue = $(this).children("option:selected").val();        
+        
+        $.ajax({
+                url: "{{ route('getCustomerFirstNameAjax') }}",
+                type: 'GET',
+                dataType: 'text',
+                data: {
+                    c_id: selectedValue
+                }
+            }).done(function(data) {
+                $('input[name="txt_firstname"]').val(data);
+            });
+
+            $.ajax({
+                url: "{{ route('getCustomerLastNameAjax') }}",
+                type: 'GET',
+                dataType: 'text',
+                data: {
+                    c_id: selectedValue
+                }
+            }).done(function(data) {
+                $('input[name="txt_lastname"]').val(data);
+            });                  
+    });
+
+    $("#s_co_id").change(function(){
+        var selectedValue = $(this).children("option:selected").val();        
+           
+            $.ajax({
+                url: "{{ route('getCourseOption1Ajax') }}",
+                type: 'GET',
+                dataType: 'text',
+                data: {
+                    co_id: selectedValue
+                }
+            }).done(function(data) {
+                $('input[name="s_opt1"]').val(data);
+            });
+
+            $.ajax({
+                url: "{{ route('getCourseOption2Ajax') }}",
+                type: 'GET',
+                dataType: 'text',
+                data: {
+                    co_id: selectedValue
+                }
+            }).done(function(data) {
+                $('input[name="s_opt2"]').val(data);
+            });
+
+            $.ajax({
+                url: "{{ route('getCourseOption3Ajax') }}",
+                type: 'GET',
+                dataType: 'text',
+                data: {
+                    co_id: selectedValue
+                }
+            }).done(function(data) {
+                $('input[name="s_opt3"]').val(data);
+            });
+
+            $.ajax({
+                url: "{{ route('getCourseMoneyAjax') }}",
+                type: 'GET',
+                dataType: 'text',
+                data: {
+                    co_id: selectedValue
+                }
+            }).done(function(data) {
+                $('input[name="s_money"]').val(data);
+            });
+                    
+    });
+
+});
+</script>
 @endsection
