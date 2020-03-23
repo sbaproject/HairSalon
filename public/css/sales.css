@@ -57,3 +57,7 @@
     color: #31708f;
     margin-top: 1rem;
 }
+
+.datetimepicker-input[readonly]{
+    background-color: white;
+}

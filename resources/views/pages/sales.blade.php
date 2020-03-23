@@ -4,16 +4,12 @@
 @parent
 @endsection
 @section('content')
-    <link href="css/kronos.css" rel="stylesheet">
-    <script src="js/kronos.js"></script>
-
-</br>
-    
+</br>    
             <div class="row marBot15">
 			<div class="searchSales col-md-5"> 		            
 
             <div class="errorSearch col-md-12">
-                                @error('str_date')
+                                @error('end_date')
                                     {{ $message }}
                                 @enderror
             </div>
@@ -29,33 +25,34 @@
             @csrf
             <div class="row marBot15">        
             <div class="col-md-2">期問</div>    
-             <div class="col-md-4"><input type="text" id="kronos1" name="str_date" style="width: 150px;" class="form-control {{ ($errors->first('str_date')) ? 'is-invalid'  :'' }}"></div>
-             <div class="col-md-1">~</div>
-			 <div class="col-md-3"><input type="text" id="kronos2" name="end_date" style="width: 150px;" class="form-control {{ ($errors->first('end_date')) ? 'is-invalid'  :'' }}"></div>
-                        <script>
-                            var d = new Date();
-                            var month = d.getMonth()+1;
-                            var day = d.getDate();
-                            var output = d.getFullYear() + '' +
-                                (month<10 ? '0' : '') + month + '' +
-                                (day<10 ? '0' : '') + day;                            
-
-                            $('#kronos1').kronos({
-                                format: 'yyyy/mm/dd',
-                                initDate:  output
-                            });                            
-                            $('#kronos2').kronos({
-                                format: 'yyyy/mm/dd',   
-                                initDate: output                           
-                            });
-                        </script>         
+             <div class="col-md-4">
+             <!-- <input type="text" id="kronos1" name="str_date" style="width: 150px;" class="form-control {{ ($errors->first('str_date')) ? 'is-invalid'  :'' }}"> -->
+             <div class="input-group date">
+                                    <input id="str_date" readonly type="text" class="form-control datetimepicker-input"
+                                         name="str_date" autocomplete="off" value="{{  old('str_date') ? old('str_date') : $currentTime }}"> 
+                                    <div class="input-group-append" data-target="#str_date" onclick="$('#str_date').focus();">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+             </div>
+             <div class="col-md-1">-</div>
+			 <div class="col-md-4">
+             <!-- <input type="text" id="kronos2" name="end_date" style="width: 150px;" class="form-control {{ ($errors->first('end_date')) ? 'is-invalid'  :'' }}"> -->
+             <div class="input-group date">
+                                    <input id="end_date" readonly type="text" class="form-control datetimepicker-input"
+                                         name="end_date" autocomplete="off"  value="{{ old('end_date') ? old('end_date') :  $currentTime }}">
+                                    <div class="input-group-append" data-target="#end_date" onclick="$('#end_date').focus();">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+             </div>    
 
             </div>          
             
             
 			 <div class="row marBot15">                        
                         <div class="col-md-2">店舗</div>
-						<div class="col-md-4">
+						<div class="col-md-5">
 						<select name ="shop_id" class="form-control">
                                 @foreach($list_shop as $shop)
                                 <option value = '{{$shop->sh_id}}' {{ Session::get('user')->u_shop == $shop->sh_id ? 'selected' : '' }}>{{$shop->sh_name}}</option>
@@ -136,12 +133,12 @@
                 @endphp
                 <tr>
                     <th>{{ $index }}</th>
-                    <td>{{$sales->Customer->c_firstname}} {{$sales->Customer->c_lastname}}</td>
-                    <td>{{$sales->Course->co_name}}</td>
-                    <td>{{$sales->Option1->op_name}}</td>
-                    <td>{{$sales->Option2->op_name}}</td>
-                    <td>{{$sales->Option3->op_name}}</td>
-                    <td>{{number_format($sales->s_money)}} VND</td>
+                    <td>{{!empty($sales->Customer->c_firstname)?$sales->Customer->c_firstname:''}} {{!empty($sales->Customer->c_lastname)?$sales->Customer->c_lastname:''}}</td>
+                    <td>{{ !empty($sales->Course->co_name) ? $sales->Course->co_name : '' }}</td>
+                    <td>{{ !empty($sales->Option1->op_name) ? $sales->Option1->op_name : ''}}</td>
+                    <td>{{ !empty($sales->Option2->op_name) ? $sales->Option2->op_name : ''}}</td>
+                    <td>{{ !empty($sales->Option3->op_name) ? $sales->Option3->op_name : ''}}</td>
+                    <td>{{number_format($sales->s_money)}}</td>
                     <td>{{$sales->s_text}}</td>
                     <td><a href="{{ url('sales/edit/' . $sales->s_id.'/'.$index) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a></td>
                 </tr>
@@ -152,7 +149,9 @@
             </tbody>
         </table>
         @endif
-        {{ $list_sales->links() }}
+        <div class="pagination-container">
+                <div>{{ $list_sales->links() }}</div>
+            </div>
     </div>
 
 @endsection

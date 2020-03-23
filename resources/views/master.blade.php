@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <title>@yield('title')</title>
 
-    <!-- default path  -->
+    <!-- CSS  -->
     <base href="{{asset('')}}">
     <!-- font-awesome CSS -->
     <link href="css/font-awesome.min.css" rel="stylesheet">
@@ -23,15 +23,25 @@
     <link href="css/sales.css" rel="stylesheet">
     <!-- staff CSS -->
     <link href="css/staff.css" rel="stylesheet">
-    <!-- staff CSS -->
-    <link href="css/course.css" rel="stylesheet">
-
-    <!-- Jquery 3.4.1 -->
+    <!-- course CSS -->
+    <link href="css/course.css" rel="stylesheet">   
+    <!-- jquery CSS -->
+	<link href="css/jquery-ui.css" rel="stylesheet">
+    <link href="css/all.min.css" rel="stylesheet">
+	
+	  <!-- JavaScript-->
+	  <!-- Jquery 3.4.1 -->
     <script src="js/jquery-3.4.1.min.js"></script>
+	  <script src="js/jquery-ui.js"></script>
+    <script src="js/jquery.number.min.js"></script>
     <!-- Bootstrap JS  -->
     <script src="js/bootstrap.js"></script>
     <!-- Master JS  -->
-    <script src="js/app.js"></script>
+    <script src="js/app.js"></script>  
+    <!-- sales CSS -->
+    <script src="js/sales.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
     
     <script>
     $( document ).ready(function() {
