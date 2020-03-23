@@ -27,19 +27,14 @@
           @csrf
           <div class="form-group">
               <label for="u_user"><b>ユーザコード</b></label>
-              <label id="result" hidden></label>
               <input type="text" class="form-control {{ ($errors->first('u_user')) ? 'is-invalid'  :'' }}" 
-              id="a" name="u_user" value="{{ old('u_user') }}">
+              id="u_user" name="u_user" value="{{ old('u_user') }}">
               <div class="invalid-feedback">
                   @error('u_user')
                       {{ $message }}
                   @enderror
               </div>
-              <script type="text/javascript">
-                a.oninput = function() {
-                  result.innerHTML = a.value;
-                };
-              </script>
+
 
           </div>
           <div class="form-group">
@@ -52,13 +47,15 @@
                   @enderror
               </div>
           </div>
-          @php
-              $user_name = request()->get('u_user');
-          @endphp
           <div class="form-btn">
               <button type="submit" class="btn login_us">ログイン</button>
-              <a href="{{ url('changepassword/' .$user_name ) }}" class="btn chang_pw" >PW変更</a>
-
+              <a href="#" class="btn chang_pw" onClick="changepassword()">PW変更</a>
+              <script type="text/javascript">
+                function changepassword(){
+                  var re_userName = document.getElementById("u_user").value;
+                  window.location.href = "changepassword/" + re_userName;
+                }
+              </script>
           </div>
           
         </form>

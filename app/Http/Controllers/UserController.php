@@ -65,14 +65,13 @@ class UserController extends Controller
 
     public function getChangePassword($username)
     {
-        dd($username);
-        $username = User::where('u_user',$request->u_user)
-                    ->where('u_pw', $request->u_pw)->first();
-        if (isset($username)) {
-            session()->regenerate();
-            session(['user_name' => $username]);
+        $user = User::where('u_user',$username)->first();
 
-            return redirect('changepassword');
+        if (isset($user)) {
+            return view('pages.changepassword', compact('user'));
+        }
+        else{
+            return redirect()->back()->with('danger', 'Please check the Username - Password');
         }
     }
 

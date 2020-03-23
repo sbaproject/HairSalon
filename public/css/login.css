@@ -6,6 +6,15 @@
     padding: 25px;
     margin-top: 200px;
 }
+
+.form-changepassword{
+    border: 2px solid #C0C0C0;
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 40%;
+    padding: 25px;
+    margin-top: 200px;
+}
 .imagesLogo{
     margin: auto;
     margin-top: 45px;
