@@ -26,7 +26,6 @@
             <div class="row marBot15">        
             <div class="col-md-2">期問</div>    
              <div class="col-md-4">
-             <!-- <input type="text" id="kronos1" name="str_date" style="width: 150px;" class="form-control {{ ($errors->first('str_date')) ? 'is-invalid'  :'' }}"> -->
              <div class="input-group date">
                                     <input id="str_date" readonly type="text" class="form-control datetimepicker-input"
                                          name="str_date" autocomplete="off" value="{{  old('str_date') ? old('str_date') : $currentTime }}"> 
@@ -37,7 +36,6 @@
              </div>
              <div class="col-md-1">-</div>
 			 <div class="col-md-4">
-             <!-- <input type="text" id="kronos2" name="end_date" style="width: 150px;" class="form-control {{ ($errors->first('end_date')) ? 'is-invalid'  :'' }}"> -->
              <div class="input-group date">
                                     <input id="end_date" readonly type="text" class="form-control datetimepicker-input"
                                          name="end_date" autocomplete="off"  value="{{ old('end_date') ? old('end_date') :  $currentTime }}">

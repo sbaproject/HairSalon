@@ -26,8 +26,7 @@
     <!-- course CSS -->
     <link href="css/course.css" rel="stylesheet">   
     <!-- jquery CSS -->
-	<link href="css/jquery-ui.css" rel="stylesheet">
-    <link href="css/all.min.css" rel="stylesheet">
+	  <link href="css/jquery-ui.css" rel="stylesheet"> 
 	
 	  <!-- JavaScript-->
 	  <!-- Jquery 3.4.1 -->
@@ -39,9 +38,7 @@
     <!-- Master JS  -->
     <script src="js/app.js"></script>  
     <!-- sales CSS -->
-    <script src="js/sales.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	
+    <script src="js/sales.js"></script>	
     
     <script>
     $( document ).ready(function() {
