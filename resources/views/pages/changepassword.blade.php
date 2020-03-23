@@ -55,6 +55,7 @@
           </div>
           <div class="form-btn">
             <button type="submit" class="btn chang_pw">更新</button>
+            <a href="{{asset('login')}}" class="btn chang_pw">Cancel</a>
           </div>
         </form>
       </div>
