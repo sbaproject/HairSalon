@@ -28,7 +28,7 @@
              <div class="col-md-4">
              <div class="input-group date">
                                     <input id="str_date" readonly type="text" class="form-control datetimepicker-input"
-                                         name="str_date" autocomplete="off" value="{{  old('str_date') ? old('str_date') : $currentTime }}"> 
+                                         name="str_date" autocomplete="off" value="{{ !empty($str_date) ? $str_date : $currentTime }}"> 
                                     <div class="input-group-append" data-target="#str_date" onclick="$('#str_date').focus();">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
@@ -38,7 +38,7 @@
 			 <div class="col-md-4">
              <div class="input-group date">
                                     <input id="end_date" readonly type="text" class="form-control datetimepicker-input"
-                                         name="end_date" autocomplete="off"  value="{{ old('end_date') ? old('end_date') :  $currentTime }}">
+                                         name="end_date" autocomplete="off"  value="{{ !empty($end_date) ? $end_date:  $currentTime }}">
                                     <div class="input-group-append" data-target="#end_date" onclick="$('#end_date').focus();">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
@@ -53,7 +53,7 @@
 						<div class="col-md-5">
 						<select name ="shop_id" class="form-control">
                                 @foreach($list_shop as $shop)
-                                <option value = '{{$shop->sh_id}}' {{ Session::get('user')->u_shop == $shop->sh_id ? 'selected' : '' }}>{{$shop->sh_name}}</option>
+                                <option value = '{{$shop->sh_id}}' {{ !empty($shopId) ? (Session::get('user')->u_shop == $shop->sh_id ? 'selected' : '') : (Session::get('user')->u_shop == $shop->sh_id ? 'selected' : '') }}>{{$shop->sh_name}}</option>
                                 @endforeach
                             </select>
 							</div>

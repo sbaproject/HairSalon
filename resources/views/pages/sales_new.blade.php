@@ -58,7 +58,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客姓</span>
                             </div>
-                            <input type="text" class="form-control" readonly name = "txt_lastname" value="{{ $list_customer[0]->c_lastname }}">
+                            <input type="text" class="form-control" readonly name = "txt_lastname" value="">
                         </div>
                     </div>
                     <div class="form-group">
@@ -66,7 +66,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客名</span>
                             </div>
-                            <input type="text" class="form-control" readonly name = "txt_firstname" value="{{ $list_customer[0]->c_firstname }}">
+                            <input type="text" class="form-control" readonly name = "txt_firstname" value="">
                         </div>
                     </div>
                     <div class="form-group">
@@ -87,7 +87,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ1</span>
                             </div>
-                            <input type="text" class="form-control" readonly name = "s_opt1"  value="{{ $list_course[0]->Option1->op_name }}">                           
+                            <input type="text" class="form-control" readonly name = "s_opt1"  value="">                           
                             <select class="form-control" name = "s_opts1">
                             @foreach($list_staff as $staff)
                             <option value = '{{$staff->s_id}}'>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
@@ -101,7 +101,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ2</span>
                             </div>
-                            <input type="text" class="form-control" readonly name = "s_opt2" value="{{ $list_course[0]->Option2->op_name }}">
+                            <input type="text" class="form-control" readonly name = "s_opt2" value="">
                             <select class="form-control" name = "s_opts2">
                             @foreach($list_staff as $staff)
                             <option value = '{{$staff->s_id}}'>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
@@ -115,7 +115,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ3</span>
                             </div>
-                            <input type="text" class="form-control" readonly name = "s_opt3" value="{{ $list_course[0]->Option3->op_name }}">
+                            <input type="text" class="form-control" readonly name = "s_opt3" value="">
                             <select class="form-control" name = "s_opts3">
                             @foreach($list_staff as $staff)
                             <option value = '{{$staff->s_id}}'>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
