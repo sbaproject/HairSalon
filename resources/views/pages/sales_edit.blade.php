@@ -11,14 +11,11 @@
                 <h2 style="border-bottom: 1px solid #ccc; line-height: normal;">
                 売上管理編集
                 </h2>
-                @if (\Session::has('success'))
-                <div class="alert alert-success alert-dismissible fade show">
-                    {{ \Session::get('success') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>    
-                @endif
+                <div id="statusResult" class="{{ Session::has('success') ? 'statusResult' : 'statusBefore' }}">
+            @if (\Session::has('success'))            
+                    {{ \Session::get('success') }}           
+            @endif
+        </div> 
                 <form method="post">
                 @csrf
                     <div class="form-group">

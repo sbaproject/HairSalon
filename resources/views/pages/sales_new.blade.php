@@ -11,14 +11,11 @@
                 <h2 style="border-bottom: 1px solid #ccc; line-height: normal;">
                 売上管理登録
                 </h2>
-                @if (\Session::has('success'))
-                <div class="searchResult">
-                    {{ \Session::get('success') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>    
-                @endif
+                <div id="statusResult" class="{{ Session::has('success') ? 'statusResult' : 'statusBefore' }}">
+            @if (\Session::has('success'))            
+                    {{ \Session::get('success') }}           
+            @endif
+        </div> 
                 <form method="post">
                 @csrf
                     <div class="form-group">
@@ -129,7 +126,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">金額</span>
                             </div>
-                            <input type="text" readonly class="form-control {{ ($errors->first('s_money')) ? 'is-invalid'  :'' }}" name="s_money" value = "{{ $list_course[0]->Option1->op_amount + $list_course[0]->Option2->op_amount + $list_course[0]->Option3->op_amount}}">
+                            <input type="text" readonly class="form-control {{ ($errors->first('s_money')) ? 'is-invalid'  :'' }}" name="s_money" value = "">
                             <div class="invalid-feedback">
                                 @error('s_money')
                                     {{ $message }}

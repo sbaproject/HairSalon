@@ -17,11 +17,10 @@ class SalesController extends Controller
     //load page with $id
     public function index()
     {
-        $list_sales = Sales::where('s_del_flg', 0)->orderBy('s_id', 'DESC')->paginate(10); 
+        $list_sales = Sales::where('s_del_flg', 0)->paginate(10); 
         $sum_money = Sales::where('s_del_flg', 0)->sum('s_money');
         $list_shop = Shop::all();
         $list_sales_count = Sales::where('s_del_flg', 0)->count();   
-        // get current time
         $currentTime = Carbon::now()->format('yy/m/d');
         
         return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count','currentTime'));
@@ -33,7 +32,6 @@ class SalesController extends Controller
         $list_customer = Customer::all();
         $list_staff = Staff::where('s_del_flg', 0)->get();
         $list_option = Option::where('op_del_flg', 0)->get();
-        // get current time
         $currentTime = Carbon::now()->format('yy/m/d');
 
         if($list_sales_count < 10){
@@ -60,9 +58,9 @@ class SalesController extends Controller
         // print_r($str_date);
         // exit();
         $list_sales = Sales::where('sale_date','>=',$str_date)
-                                 ->where('sale_date','<=',$end_date)
-                                ->where('sale_date',$req->shop_id)    
-                                 ->where('s_del_flg', 0)                         
+                                ->where('sale_date','<=',$end_date)
+                                ->where('s_sh_id',$req->shop_id)    
+                                ->where('s_del_flg', 0)                         
                                 ->paginate(10);
 
         $sum_money = $list_sales->sum('s_money');
@@ -74,7 +72,7 @@ class SalesController extends Controller
         $str_date = date('yy/m/d', strtotime($str_date));
         $end_date = date('yy/m/d', strtotime($end_date));
 
-        $shopId = $req->shop_id
+        $shopId = $req->shop_id;
 
         //session()->regenerate();
         session(['search' => $list_sales_count]);
@@ -125,7 +123,7 @@ class SalesController extends Controller
             's_money'       => $money,
             's_pay'         => $request->get('s_pay'),
             's_text'        => $request->get('s_text'),
-            's_sh_id'       => session('user')-> u_id,
+            's_sh_id'       => session('user')-> u_shop,
             's_del_flg'     => 0,
             'sale_date'     => $request->get('sale_date'),
             's_date'        => $currentTime,
@@ -134,9 +132,9 @@ class SalesController extends Controller
         $sales->save();
 
         if($request->get('hid') == 1){
-            return redirect()->back()->with('success', 'Added Sales successfully!');
+            return redirect()->back()->with('success', '売上データが追加出来ました。');
         }else{
-            return redirect('sales')->with('success', 'Added Sales successfully!');
+            return redirect('sales')->with('success', '売上データが追加出来ました。');
         }        
     }
 
@@ -166,8 +164,8 @@ class SalesController extends Controller
         ]);
 
         $course = Course::where('co_id',$request->get('s_co_id'))
-        ->where('co_del_flg', 0)                      
-        ->first();
+                ->where('co_del_flg', 0)                      
+                ->first();
 
         $money = 0;
         if(!empty($course->Option1->op_amount)){
@@ -193,12 +191,12 @@ class SalesController extends Controller
         $sales->s_money     = $money;
         $sales->s_pay       = $request->get('s_pay');        
         $sales->s_text      = $request->get('s_text');        
-        $sales->s_sh_id     = session('user')-> u_id;
+        $sales->s_sh_id     = session('user')-> u_shop;
         $sales->s_del_flg   = 0;
         $sales->sale_date   = $request->get('sale_date');
         $sales->s_update    = Carbon::now();
         $sales->save();
-        return redirect('sales')->with('success', 'Updated Sales successfully!');
+        return redirect('sales')->with('success', 'データを更新出来ました。');
     }
 
     public function getSalesDelete($id) {
@@ -206,6 +204,6 @@ class SalesController extends Controller
         $sales->s_del_flg = 1;
         $sales->s_update  = Carbon::now();
         $sales->save();
-        return redirect()->back()->with('success', 'Deleted Sales successfully!');
+        return redirect()->back()->with('success', '削除完了しました。');
     }    
 }

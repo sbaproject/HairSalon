@@ -6,20 +6,21 @@
 @section('content')
 </br>    
             <div class="row marBot15">
-			<div class="searchSales col-md-5"> 		            
-
-            <div class="errorSearch col-md-12">
-                                @error('end_date')
-                                    {{ $message }}
-                                @enderror
-            </div>
-
-            @if (\Session::has('search'))
-            <div class="searchResult">
-                Total Search Result Sales: {{ \Session::get('search') }}
+			<div class="searchSales col-md-5"> 	           
+       
+            <div class="{{ Session::has('search') ? 'searchResult' : 'searchBefore' }}">
+                @if (\Session::has('search'))
+                検索出来た件数: {{ \Session::get('search') }} 件
                 {{ \Session::forget('search') }}
+                @endif
+
+                                @error('end_date')
+                                <div class = 'searchBeforeError'>
+                                    {{ $message }}
+                                </div>  
+                                @enderror
             </div>    
-            @endif
+           
 
             <form method="post" id="formSearch">
             @csrf
@@ -53,7 +54,7 @@
 						<div class="col-md-5">
 						<select name ="shop_id" class="form-control">
                                 @foreach($list_shop as $shop)
-                                <option value = '{{$shop->sh_id}}' {{ !empty($shopId) ? (Session::get('user')->u_shop == $shop->sh_id ? 'selected' : '') : (Session::get('user')->u_shop == $shop->sh_id ? 'selected' : '') }}>{{$shop->sh_name}}</option>
+                                <option value = '{{$shop->sh_id}}' {{ !empty($shopId) ? ( $shopId == $shop->sh_id  ? 'selected' : '' ) : (Session::get('user')->u_shop == $shop->sh_id ? 'selected' : '' ) }}>{{$shop->sh_name}}</option>
                                 @endforeach
                             </select>
 							</div>
@@ -89,16 +90,14 @@
             <button type="button" class="btn btn-primary buttonSales"><a href="sales/new" style="color: white; text-decoration: none;">PDF出カ</a></button>
             </div>
 
-        <br/>
+        
 
-        @if (\Session::has('success'))
-            <div class="alert alert-success alert-dismissible fade show">
-                {{ \Session::get('success') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>    
-        @endif
+        <!-- <div class="alert-success alert-dismissible fade show"> -->
+        <div id="statusResult" class="{{ Session::has('success') ? 'statusResult' : 'statusBefore' }}">
+            @if (\Session::has('success'))            
+                    {{ \Session::get('success') }}           
+            @endif
+        </div>    
 
         @if (isset($list_sales) && $list_sales_count>0)
         <table class="table table-bordered">
