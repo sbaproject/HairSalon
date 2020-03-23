@@ -10,7 +10,7 @@ $(document).ready(function(){
 
     $('input[name="s_money"]').number( true, 0 );
 
-    $(".statusResult").fadeOut( 5000, function() {
+    $(".statusResult").fadeOut( 7000, function() {
         $("#statusResult").attr('class', 'statusBefore');
         $("#statusResult").html('');
         $("#statusResult").show()
