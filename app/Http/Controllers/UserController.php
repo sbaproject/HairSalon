@@ -43,7 +43,7 @@ class UserController extends Controller
             session()->regenerate();
             session(['user' => $user]);
 
-            return redirect('staff');
+            return redirect('customer');
         }
         else {
             return redirect()->back()->with('danger', 'Login unsuccessfully');
@@ -63,9 +63,17 @@ class UserController extends Controller
     }
 
 
-    public function getChangePassword()
+    public function getChangePassword($username)
     {
-         return view("pages.changepassword");
+        dd($username);
+        $username = User::where('u_user',$request->u_user)
+                    ->where('u_pw', $request->u_pw)->first();
+        if (isset($username)) {
+            session()->regenerate();
+            session(['user_name' => $username]);
+
+            return redirect('changepassword');
+        }
     }
 
     public function changePassword(Request $req)

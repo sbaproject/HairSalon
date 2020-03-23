@@ -23,11 +23,13 @@ Route::get('/login', 'UserController@getLogin');
 
 Route::post('/login', 'UserController@postLogin');
 
+/* logout */
 Route::get('/logout', 'UserController@logout');
 
-Route::get('/changepassword', 'UserController@getChangePassword');
+/* change Password */
+Route::get('/changepassword/{username}', 'UserController@getChangePassword');
 
-Route::post('/changepassword', 'UserController@changePassword');
+Route::post('/changepassword/{username}', 'UserController@changePassword');
 
 
 /* sales */

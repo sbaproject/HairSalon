@@ -54,8 +54,8 @@ body {
 .col-2{
 	position: relative;
 	display: flex;
-	background-color: silver;
-	margin-top: -17px;
+	background-color: #E8E8E8;
+	margin-top: -16px;
 	height: 1200px;
 }
 

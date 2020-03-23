@@ -58,7 +58,9 @@
         </div>
         <div class="col-sm-4">
             <h4 class="user-name">
-              admin
+            @if (Session::get('user'))
+            {{ Session::get('user')->u_name }}
+            @endif
             </h4>
         </div>
         <div class="col-sm-1">
