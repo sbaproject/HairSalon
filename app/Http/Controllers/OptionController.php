@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Option;
+use App\Course;
 use Carbon\Carbon;
 
 class OptionController extends Controller
@@ -66,6 +67,26 @@ class OptionController extends Controller
         $option = Option::find($id);
         $option->op_del_flg = 1;
         $option->save();
+
+        // update all courses have this option
+        $courses = Course::where('co_opt1', $id)->orWhere('co_opt2', $id)->orWhere('co_opt3', $id)->get();
+
+        if (!empty($courses)) {
+            foreach ($courses as $course) {
+                if (!empty($course->co_opt1) && $course->co_opt1 == $id) {
+                    $course->co_opt1 = null;
+                }
+                if (!empty($course->co_opt2) && $course->co_opt2 == $id) {
+                    $course->co_opt2 = null;
+                }
+                if (!empty($course->co_opt3) && $course->co_opt3 == $id) {
+                    $course->co_opt3 = null;
+                }
+                $course->co_update = Carbon::now();
+                $course->save();
+            }
+        }
+        
         return redirect()->back()->with('success-option', 'Deleted option successfully!');
     }
 }

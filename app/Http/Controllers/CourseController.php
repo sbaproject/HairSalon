@@ -12,7 +12,7 @@ class CourseController extends Controller
 {
     public function index() {
         // get all course have del_flg = 0 and soft by update time
-        $list_course = Course::where('co_del_flg', 0)->orderBy('co_update', 'DESC')->paginate(10);
+        $list_course = Course::where('co_del_flg', 0)->orderBy('co_id', 'DESC')->paginate(10);
         $list_option = Option::where('op_del_flg', 0)->orderBy('op_id', 'DESC')->paginate(10);
         return view('pages.course', compact('list_course', 'list_option'));
     }
@@ -43,7 +43,6 @@ class CourseController extends Controller
             'co_opt1'   => $request->co_opt1,
             'co_opt2'   => $request->co_opt2,
             'co_opt3'   => $request->co_opt3,
-            'co_money'  => $request->co_money,
             'co_text'   => $request->co_text,
             'co_sh_id'  => session('user')->u_shop,
             'co_del_flg'=> 0,
@@ -73,7 +72,6 @@ class CourseController extends Controller
         $course->co_opt1 = $request->co_opt1;
         $course->co_opt2 = $request->co_opt2;
         $course->co_opt3 = $request->co_opt3;
-        $course->co_money = $request->co_money;
         $course->co_text = $request->co_text;
         $course->co_update = Carbon::now();
 

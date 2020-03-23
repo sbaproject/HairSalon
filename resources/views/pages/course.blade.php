@@ -45,13 +45,19 @@
                         @endphp
 
                         @foreach($list_course as $course)
+                            @php
+                                $money = 0;
+                                !empty($course->Option1) ? $money += $course->Option1->op_amount : '';
+                                !empty($course->Option2) ? $money += $course->Option2->op_amount : '';
+                                !empty($course->Option3) ? $money += $course->Option3->op_amount : '';
+                            @endphp
                             <tr>
                                 <th>{{ $index < 10 ? '0' . $index : $index }}</th>
                                 <td>{{ $course->co_name }}</td>
-                                <td>{{ $course->Option1->op_name }}</td>
-                                <td>{{ $course->Option2->op_name }}</td>
-                                <td>{{ $course->Option3->op_name }}</td>
-                                <td>{{ $course->co_money }}</td>
+                                <td>{{ !empty($course->Option1) ? $course->Option1->op_name : '' }}</td>
+                                <td>{{ !empty($course->Option2) ? $course->Option2->op_name : ''  }}</td>
+                                <td>{{ !empty($course->Option3) ? $course->Option3->op_name : ''  }}</td>
+                                <td>{{ number_format($money) }}</td>
                                 <td>{{ $course->co_text }}</td>
                                 <td><a href="{{ url('course/edit/' . $course->co_id) }}">編集</a>&nbsp;<a href="{{ url('course/delete/' . $course->co_id) }}" style="color: red;">削除</a></td>
                             </tr>
@@ -105,7 +111,7 @@
                             <tr>
                                 <th>{{ $index < 10 ? '0' . $index : $index }}</th>
                                 <td>{{ $option->op_name }}</td>
-                                <td>{{ $option->op_amount }}</td>
+                                <td>{{ number_format($option->op_amount) }}</td>
                                 <td><a href="{{ url('option/edit/' . $option->op_id) }}">編集</a>&nbsp;<a href="{{ url('option/delete/' . $option->op_id) }}" style="color: red;">削除</a></td>
                             </tr>
                             @php 

@@ -52,6 +52,7 @@
                             </div>
                             <div class="form-control wrapper-select">
                                 <select class="select-shop" name="co_opt1" id="select-option-1" onchange="onOption1Change({{ $list_option }})">
+                                    <option value=""></option>
                                     @if (isset($list_option))
                                         @foreach ($list_option as $option)
                                             <option value="{{ $option->op_id }}">
@@ -60,7 +61,8 @@
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-1">{{ $list_option[0]->op_amount }}</span>
+                                <span class="option-amount" id="option-amount-1"></span>
+                                <span style="display: none;" id="option-amount-1-hidden">0</span>
                             </div>
                         </div>
                     </div>
@@ -71,6 +73,7 @@
                             </div>
                             <div class="form-control wrapper-select">
                                 <select class="select-shop" name="co_opt2" id="select-option-2" onchange="onOption2Change({{ $list_option }})">
+                                    <option value=""></option>
                                     @if (isset($list_option))
                                         @foreach ($list_option as $option)
                                             <option value="{{ $option->op_id }}">
@@ -79,7 +82,8 @@
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-2">{{ $list_option[0]->op_amount }}</span>
+                                <span class="option-amount" id="option-amount-2"></span>
+                                <span style="display: none;" id="option-amount-2-hidden">0</span>
                             </div>
                         </div>
                     </div>
@@ -90,6 +94,7 @@
                             </div>
                             <div class="form-control wrapper-select">
                                 <select class="select-shop" name="co_opt3" id="select-option-3" onchange="onOption3Change({{ $list_option }})">
+                                    <option value=""></option>
                                     @if (isset($list_option))
                                         @foreach ($list_option as $option)
                                             <option value="{{ $option->op_id }}">
@@ -98,7 +103,8 @@
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-3">{{ $list_option[0]->op_amount }}</span>
+                                <span class="option-amount" id="option-amount-3"></span>
+                                <span style="display: none;" id="option-amount-3-hidden">0</span>
                             </div>
                         </div>
                     </div>
@@ -108,7 +114,7 @@
                                 <span class="input-group-text">金額</span>
                             </div>
                             <input readonly type="text" class="form-control {{ ($errors->first('co_money')) ? 'is-invalid'  :'' }}" 
-                                name="co_money" id="co_money" value="{{ $list_option[0]->op_amount * 3 }}" >
+                                name="co_money" id="co_money" >
                             <div class="invalid-feedback">
                                 @error('co_money')
                                     {{ $message }}
@@ -132,4 +138,5 @@
             </div>
         </div>
     </div>
+    <script src="js/course.js"></script>
 @endsection
