@@ -15,15 +15,55 @@ use Illuminate\Http\Request;
 class SalesController extends Controller
 { 
     //load page with $id
-    public function index()
+    public function index(Request $req)
     {
-        $list_sales = Sales::where('s_del_flg', 0)->paginate(10); 
-        $sum_money = Sales::where('s_del_flg', 0)->sum('s_money');
-        $list_shop = Shop::all();
-        $list_sales_count = Sales::where('s_del_flg', 0)->count();   
-        $currentTime = Carbon::now()->format('yy/m/d');
-        
-        return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count','currentTime'));
+        if(!empty($req->str_date)&&!empty($req->end_date)&&!empty($req->shop_id)){
+            $req->validate([
+                'str_date'   => 'required|date',
+                'end_date'    => 'required|date|after_or_equal:str_date',           
+            ], [
+                'str_date.required'  => '入力してください!',
+                'end_date.required'   => '入力してください!'
+            ]);
+    
+            $str_date = str_replace('/','-',$req->str_date) . ' 00:00:00';
+            $end_date = str_replace('/','-',$req->end_date) . ' 23:59:59';        
+    
+            $list_sales = Sales::where('sale_date','>=',$str_date)
+                                    ->where('sale_date','<=',$end_date)
+                                    ->where('s_sh_id',$req->shop_id)    
+                                    ->where('s_del_flg', 0);                        
+    
+            $sum_money = $list_sales->sum('s_money');
+            $list_sales_count = $list_sales->count();
+            $list_shop = Shop::all();
+            // get current time
+            $currentTime = Carbon::now()->format('yy/m/d');
+    
+            $str_date = date('yy/m/d', strtotime($str_date));
+            $end_date = date('yy/m/d', strtotime($end_date));
+    
+            $shopId = $req->shop_id;
+    
+            //session()->regenerate();
+            session(['search' => $list_sales_count]);
+    
+            $list_sales = Sales::where('sale_date','>=',$str_date)
+            ->where('sale_date','<=',$end_date)
+            ->where('s_sh_id',$req->shop_id)    
+            ->where('s_del_flg', 0)
+            ->paginate(10);
+    
+            return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count','currentTime','str_date','end_date','shopId'));
+        }else{
+            $list_sales = Sales::where('s_del_flg', 0)->paginate(10); 
+            $sum_money = Sales::where('s_del_flg', 0)->sum('s_money');
+            $list_shop = Shop::all();
+            $list_sales_count = Sales::where('s_del_flg', 0)->count();   
+            $currentTime = Carbon::now()->format('yy/m/d');
+            
+            return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count','currentTime'));
+        }        
     }
 
     public function getSalesNew() {
@@ -39,47 +79,6 @@ class SalesController extends Controller
         }     
 
         return view('pages.sales_new',compact('list_course','list_sales_count','list_customer','list_staff','list_option','currentTime'));
-    }   
-
-    public function postSearch(Request $req) {
-        
-        $req->validate([
-            'str_date'   => 'required|date',
-            'end_date'    => 'required|date|after_or_equal:str_date',           
-        ], [
-            'str_date.required'  => '入力してください!',
-            'end_date.required'   => '入力してください!'
-        ]);
-
-        $str_date = str_replace('/','-',$req->str_date) . ' 00:00:00';
-        $end_date = str_replace('/','-',$req->end_date) . ' 23:59:59';        
-
-        $list_sales = Sales::where('sale_date','>=',$str_date)
-                                ->where('sale_date','<=',$end_date)
-                                ->where('s_sh_id',$req->shop_id)    
-                                ->where('s_del_flg', 0);                        
-
-        $sum_money = $list_sales->sum('s_money');
-        $list_sales_count = $list_sales->count();
-        $list_shop = Shop::all();
-        // get current time
-        $currentTime = Carbon::now()->format('yy/m/d');
-
-        $str_date = date('yy/m/d', strtotime($str_date));
-        $end_date = date('yy/m/d', strtotime($end_date));
-
-        $shopId = $req->shop_id;
-
-        //session()->regenerate();
-        session(['search' => $list_sales_count]);
-
-        $list_sales = Sales::where('sale_date','>=',$str_date)
-        ->where('sale_date','<=',$end_date)
-        ->where('s_sh_id',$req->shop_id)    
-        ->where('s_del_flg', 0)
-        ->paginate(10);
-
-        return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count','currentTime','str_date','end_date','shopId'));
     }   
 
     public function postSalesNew(Request $request) {

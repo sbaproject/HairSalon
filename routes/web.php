@@ -35,8 +35,6 @@ Route::post('/changepassword/{username}', 'UserController@changePassword');
 /* sales */
 Route::get('/sales', 'SalesController@index');
 
-Route::post('/sales', 'SalesController@postSearch');
-
 Route::get('/sales/new', 'SalesController@getSalesNew');
 
 Route::post('/sales/new', 'SalesController@postSalesNew');
@@ -46,18 +44,6 @@ Route::get('/sales/edit/{id}/{index}', 'SalesController@getSalesEdit');
 Route::post('/sales/edit/{id}/{index}', 'SalesController@postSalesEdit');
 
 Route::get('/sales/delete/{id}', 'SalesController@getSalesDelete');
-
-Route::get('/sales/getCustomerFirstNameAjax', 'SalesController@getCustomerFirstNameAjax')->name('getCustomerFirstNameAjax');
-
-Route::get('/sales/getCustomerLastNameAjax', 'SalesController@getCustomerLastNameAjax')->name('getCustomerLastNameAjax');
-
-Route::get('/sales/getCourseOption1Ajax', 'SalesController@getCourseOption1Ajax')->name('getCourseOption1Ajax');
-
-Route::get('/sales/getCourseOption2Ajax', 'SalesController@getCourseOption2Ajax')->name('getCourseOption2Ajax');
-
-Route::get('/sales/getCourseOption3Ajax', 'SalesController@getCourseOption3Ajax')->name('getCourseOption3Ajax');
-
-Route::get('/sales/getCourseMoneyAjax', 'SalesController@getCourseMoneyAjax')->name('getCourseMoneyAjax');
 
 
 /* staff */

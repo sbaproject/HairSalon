@@ -22,7 +22,7 @@
             </div>    
            
 
-            <form method="post" id="formSearch">
+            <form method="get" id="formSearch" action="">
             @csrf
             <div class="row marBot15">        
             <div class="col-md-2">期問</div>    
@@ -61,7 +61,9 @@
 			</div>
                             
                         <div class="col-md-12">
-						<div class="marBot15"><button type="submit" class="btn btn-primary" >検索</button></div>
+                        <div class="marBot15"><button type="submit" class="btn btn-primary" >検索</button></div>
+                        <!-- <div class="marBot15"><button type = "submit"><a class="btn btn-primary add-new-btn-sales" href="{{url('salesSearch')}}" role="submit">検索</a></button></div> -->
+                         
                         </div>      
                         
                         </form>
@@ -151,7 +153,7 @@
         </table>
         @endif
         <div class="pagination-container">
-                <div>{{ $list_sales->links() }}</div>
+                <div>{{ $list_sales->appends(request()->input())->links() }}</div>
             </div>
     </div>
 
