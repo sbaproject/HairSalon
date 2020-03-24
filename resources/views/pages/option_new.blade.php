@@ -20,11 +20,13 @@
                             @php
                                 $id = $last_option_id + 1;
                                 if ($id < 10) {
+                                    $id = '000' . $id;
+                                } 
+                                if ($id >= 10 && $id < 100) {
                                     $id = '00' . $id;
-                                } else {
-                                    if ($id >= 10 && $id < 100) {
-                                        $id = '0' . $id;
-                                    }
+                                }
+                                if ($id >= 100 && $id < 1000) {
+                                    $id = '0' . $id;
                                 }
                             @endphp
                             <input type="text" readonly class="form-control" name="op_id" value="{{ $id }}">
