@@ -106,3 +106,24 @@
     margin-bottom: 5px;
     margin-top: 5px;
 }
+
+.buttonAdd{
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.buttonAdd2{
+    display: flex;
+    align-items: center;
+    margin-bottom: .5rem;
+}
+
+.H2buttonAdd2{
+    
+    margin-bottom: 0px;
+}
+
+.add-new-btn-sales{
+    margin-right: 10px;
+}

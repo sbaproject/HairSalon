@@ -61,7 +61,7 @@
 			</div>
                             
                         <div class="col-md-12">
-						<div class="marBot15"><button type="submit" class="btn btn-primary buttonSales" >検索</button></div>
+						<div class="marBot15"><button type="submit" class="btn btn-primary" >検索</button></div>
                         </div>      
                         
                         </form>
@@ -85,19 +85,23 @@
 			
 			</div>
             <br/>
-            <div class="">
-            <button type="button" class="btn btn-primary buttonSales"><a href="sales/new" style="color: white; text-decoration: none;">新規追加</a></button>
-            <button type="button" class="btn btn-primary buttonSales"><a href="sales/new" style="color: white; text-decoration: none;">PDF出カ</a></button>
-            </div>
-
+            <div class="buttonAdd">        
+            <a class="btn btn-primary add-new-btn-sales" href="{{url('sales/new')}}" role="button">新規追加</a>    
+            <a class="btn btn-primary add-new-btn" href="{{url('#')}}" role="button">PDF出カ</a>   
+            <!-- <button type="button" class="btn btn-primary buttonSales" ><a href="sales/new" style="color: white; text-decoration: none;">新規追加</a></button>
+            <button type="button" class="btn btn-primary buttonSales"><a href="#" style="color: white; text-decoration: none;">PDF出カ</a></button> -->
+            @if (\Session::has('success'))
+                <div class=" alert alert-success alert-dismissible fade show">
+                    {{ \Session::get('success') }}
+                </div>    
+            @endif    
+        </div>
         
-
-        <!-- <div class="alert-success alert-dismissible fade show"> -->
-        <div id="statusResult" class="{{ Session::has('success') ? 'statusResult' : 'statusBefore' }}">
+        <!-- <div id="statusResult" class="{{ Session::has('success') ? 'statusResult' : 'statusBefore' }}">
             @if (\Session::has('success'))            
                     {{ \Session::get('success') }}           
             @endif
-        </div>    
+        </div>     -->
 
         @if (isset($list_sales) && $list_sales_count>0)
         <table class="table table-bordered table-hover">

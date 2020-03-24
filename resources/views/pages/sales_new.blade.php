@@ -8,14 +8,23 @@
     <div class="container" style="padding: 20px;">
         <div class="row">
             <div class="col-10">
-                <h2 style="border-bottom: 1px solid #ccc; line-height: normal;">
+             
+            <div class="buttonAdd2" style="border-bottom: 1px solid #ccc; line-height: normal;">
+                <h2 class="H2buttonAdd2 add-new-btn" >
                 売上管理登録
                 </h2>
-                <div id="statusResult" class="{{ Session::has('success') ? 'statusResult' : 'statusBefore' }}">
+                @if (\Session::has('success'))
+                <div class=" alert alert-success alert-dismissible fade show">
+                    {{ \Session::get('success') }}
+                </div>   
+                
+            @endif  
+        </div> 
+                <!-- <div id="statusResult" class="{{ Session::has('success') ? 'statusResult' : 'statusBefore' }}">
             @if (\Session::has('success'))            
                     {{ \Session::get('success') }}           
             @endif
-        </div> 
+        </div>  -->
                 <form method="post">
                 @csrf
                     <div class="form-group">

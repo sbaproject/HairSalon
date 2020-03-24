@@ -54,14 +54,10 @@ class SalesController extends Controller
         $str_date = str_replace('/','-',$req->str_date) . ' 00:00:00';
         $end_date = str_replace('/','-',$req->end_date) . ' 23:59:59';        
 
-
-        // print_r($str_date);
-        // exit();
         $list_sales = Sales::where('sale_date','>=',$str_date)
                                 ->where('sale_date','<=',$end_date)
                                 ->where('s_sh_id',$req->shop_id)    
-                                ->where('s_del_flg', 0)                         
-                                ->paginate(10);
+                                ->where('s_del_flg', 0);                        
 
         $sum_money = $list_sales->sum('s_money');
         $list_sales_count = $list_sales->count();
@@ -76,6 +72,12 @@ class SalesController extends Controller
 
         //session()->regenerate();
         session(['search' => $list_sales_count]);
+
+        $list_sales = Sales::where('sale_date','>=',$str_date)
+        ->where('sale_date','<=',$end_date)
+        ->where('s_sh_id',$req->shop_id)    
+        ->where('s_del_flg', 0)
+        ->paginate(10);
 
         return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count','currentTime','str_date','end_date','shopId'));
     }   

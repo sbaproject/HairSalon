@@ -11,11 +11,11 @@
                 <h2 style="border-bottom: 1px solid #ccc; line-height: normal;">
                 売上管理編集
                 </h2>
-                <div id="statusResult" class="{{ Session::has('success') ? 'statusResult' : 'statusBefore' }}">
+                <!-- <div id="statusResult" class="{{ Session::has('success') ? 'statusResult' : 'statusBefore' }}">
             @if (\Session::has('success'))            
                     {{ \Session::get('success') }}           
             @endif
-        </div> 
+        </div>  -->
                 <form method="post">
                 @csrf
                     <div class="form-group">
