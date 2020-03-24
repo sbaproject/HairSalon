@@ -65,4 +65,18 @@ class CustomerController extends Controller
         $customer->save();
         return redirect('customer')->with('success', 'Updated Customer successfully!');
     }
+
+    public function postSearch(Request $request)
+    {
+        if($request->searchf_name != null){
+            $list_customer = Customer::where('c_firstname', $request->searchf_name)->get();
+        }
+        else if($request->searchl_name != null){
+            $list_customer = Customer::where('c_lastname', $request->searchl_name)->get();
+        }
+        else if($request->searchid != null){
+            $list_customer = Customer::where('c_id', $request->searchid)->get();
+        }
+        return view('pages.customer',compact('list_customer'));
+    }
 }
