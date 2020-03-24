@@ -44,7 +44,7 @@
 }
 
 .buttonSales{
-    width: 130px;
+    
     text-align: center;
 }
 .clsCenter{
@@ -126,4 +126,8 @@
 
 .add-new-btn-sales{
     margin-right: 10px;
+}
+
+.btn{
+    width: 120px;
 }

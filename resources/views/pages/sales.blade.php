@@ -143,7 +143,7 @@
                     <td>{{ !empty($sales->Option3->op_name) ? $sales->Option3->op_name : ''}}</td>
                     <td>{{number_format($sales->s_money)}}</td>
                     <td>{{$sales->s_text}}</td>
-                    <td><a href="{{ url('sales/edit/' . $sales->s_id.'/'.$index) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a></td>
+                    <td><a href="{{ url('sales/edit/' . $sales->s_id) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a></td>
                 </tr>
                 @php 
                     $index++; 

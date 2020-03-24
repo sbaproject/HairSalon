@@ -39,9 +39,9 @@ Route::get('/sales/new', 'SalesController@getSalesNew');
 
 Route::post('/sales/new', 'SalesController@postSalesNew');
 
-Route::get('/sales/edit/{id}/{index}', 'SalesController@getSalesEdit');
+Route::get('/sales/edit/{id}', 'SalesController@getSalesEdit');
 
-Route::post('/sales/edit/{id}/{index}', 'SalesController@postSalesEdit');
+Route::post('/sales/edit/{id}', 'SalesController@postSalesEdit');
 
 Route::get('/sales/delete/{id}', 'SalesController@getSalesDelete');
 

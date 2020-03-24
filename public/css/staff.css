@@ -29,9 +29,7 @@ tbody {
 	display: flex;
 	justify-content: center;
 }
-.btn-form {
-	width: 130px;
-}
+
 .btn-left {
 	margin-right: 2%;
 }

@@ -18,6 +18,7 @@ class SalesController extends Controller
     public function index(Request $req)
     {
         if(!empty($req->str_date)&&!empty($req->end_date)&&!empty($req->shop_id)){
+            
             $req->validate([
                 'str_date'   => 'required|date',
                 'end_date'    => 'required|date|after_or_equal:str_date',           
@@ -32,6 +33,7 @@ class SalesController extends Controller
             $list_sales = Sales::where('sale_date','>=',$str_date)
                                     ->where('sale_date','<=',$end_date)
                                     ->where('s_sh_id',$req->shop_id)    
+                                    ->orderBy('s_id', 'DESC')
                                     ->where('s_del_flg', 0);                        
     
             $sum_money = $list_sales->sum('s_money');
@@ -52,11 +54,14 @@ class SalesController extends Controller
             ->where('sale_date','<=',$end_date)
             ->where('s_sh_id',$req->shop_id)    
             ->where('s_del_flg', 0)
+            ->orderBy('s_id', 'DESC')
             ->paginate(10);
     
             return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count','currentTime','str_date','end_date','shopId'));
+
         }else{
-            $list_sales = Sales::where('s_del_flg', 0)->paginate(10); 
+
+            $list_sales = Sales::where('s_del_flg', 0)->orderBy('s_id', 'DESC')->paginate(10); 
             $sum_money = Sales::where('s_del_flg', 0)->sum('s_money');
             $list_shop = Shop::all();
             $list_sales_count = Sales::where('s_del_flg', 0)->count();   
@@ -68,17 +73,19 @@ class SalesController extends Controller
 
     public function getSalesNew() {
         $list_course = Course::where('co_del_flg', 0)->get();
-        $list_sales_count = Sales::where('s_del_flg', 0)->count() + 1;
         $list_customer = Customer::all();
         $list_staff = Staff::where('s_del_flg', 0)->get();
         $list_option = Option::where('op_del_flg', 0)->get();
         $currentTime = Carbon::now()->format('yy/m/d');
 
-        if($list_sales_count < 10){
-            $list_sales_count = '0'. $list_sales_count;
-        }     
+        $last_sales = Sales::orderBy('s_id', 'DESC')->take(1)->first('s_id');
+        if ($last_sales != null) {
+            $last_sales_id = $last_sales->s_id;
+        } else {
+            $last_sales_id = 0;
+        }  
 
-        return view('pages.sales_new',compact('list_course','list_sales_count','list_customer','list_staff','list_option','currentTime'));
+        return view('pages.sales_new',compact('list_course','last_sales_id','list_customer','list_staff','list_option','currentTime'));
     }   
 
     public function postSalesNew(Request $request) {
@@ -140,7 +147,7 @@ class SalesController extends Controller
         }        
     }
 
-    public function getSalesEdit($id,$index) {
+    public function getSalesEdit($id) {
         $sales = Sales::where('s_id', $id)->where('s_del_flg', 0) ->first();
         $list_course = Course::where('co_del_flg', 0)->get();
         $list_customer = Customer::all();
@@ -149,7 +156,7 @@ class SalesController extends Controller
         
         $salesDate = date('yy/m/d', strtotime($sales->sale_date));
 
-        return view('pages.sales_edit', compact('sales', 'list_course','index','list_customer','list_staff','list_option','salesDate'));
+        return view('pages.sales_edit', compact('sales', 'list_course','list_customer','list_staff','list_option','salesDate'));
     }
 
     public function postSalesEdit(Request $request,$id) {

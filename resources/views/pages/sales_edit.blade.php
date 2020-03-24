@@ -21,9 +21,22 @@
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">No</span>
+                                <span class="input-group-text">売上管理ID</span>
                             </div>
-                            <input type="text" readonly class="form-control" value="{{$index}}" >
+                            @php
+                                $id = $sales->s_id;
+                                if ($id < 10) {
+                                    $id = '000' . $id;
+                                } else {
+                                    if ($id >= 10 && $id < 100) {
+                                        $id = '00' . $id;
+                                    }
+                                    if ($id >= 100 && $id < 1000) {
+                                        $id = '0' . $id;
+                                    }
+                                }
+                            @endphp
+                            <input type="text" readonly class="form-control" value="{{$id}}" >
                         </div>
                     </div>
                     <div class="form-group">
