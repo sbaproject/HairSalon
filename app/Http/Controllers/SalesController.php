@@ -136,6 +136,7 @@ class SalesController extends Controller
             return redirect()->back()->with('success', '売上データが追加出来ました。');
         }else{
             return redirect('sales')->with('success', '売上データが追加出来ました。');
+            // return redirect($request->get('urlBack'))->with('success', '売上データが追加出来ました。');
         }        
     }
 
@@ -197,7 +198,8 @@ class SalesController extends Controller
         $sales->sale_date   = $request->get('sale_date');
         $sales->s_update    = Carbon::now();
         $sales->save();
-        return redirect('sales')->with('success', 'データを更新出来ました。');
+        // return redirect('sales')->with('success', 'データを更新出来ました。');
+        return redirect($request->get('urlBack'))->with('success', 'データを更新出来ました。');
     }
 
     public function getSalesDelete($id) {
