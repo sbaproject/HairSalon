@@ -17,8 +17,20 @@ class CustomerController extends Controller
         return view('pages.customer', compact('list_customer'));
     }
 
-    public function getCustomerNew() {
-        return view('pages.customer_new');
+    public function getCustomerNew() {      
+        $max_c_id = Customer::max('c_id') + 1;    
+        
+        if ( $max_c_id < 10){
+            $max_c_id = "000".$max_c_id;
+        } 
+        else if ( $max_c_id < 100){
+            $max_c_id = "00".$max_c_id;
+        }
+        else if ( $max_c_id < 1000){
+            $max_c_id = "0".$max_c_id;
+        }
+        
+        return view('pages.customer_new', compact('max_c_id'));
     }
 
     public function postCustomerNew(Request $request) {
@@ -68,41 +80,42 @@ class CustomerController extends Controller
     }
 
     public function postSearch(Request $request)
-    {
-        $data = array();
-        $list_customer = Customer::where('c_lastname', 'like', '%'.$request->searchl_name.'%')
-        ->select(
-            '*',
-            DB::raw("(select count(*) from t_sales where t_customer.c_id = t_sales.s_c_id) as c_count")                               
-        )
-        ->get();
-       if($request->searchid != null && $request->searchf_name == null && $request->searchl_name == null)
-        {
-            $list_customer = Customer::where('c_id', $request->searchid)
-                                    ->select(
-                                        '*',
-                                        DB::raw("(select count(*) from t_sales where t_customer.c_id = t_sales.s_c_id) as c_count")                               
-                                    )
-                                    ->get();
-        }
-        else if($request->searchf_name != null && $request->searchid == null && $request->searchl_name == null){
-            $list_customer = Customer::where('c_firstname', 'like', '%'.$request->searchf_name.'%')
-                                    ->select(
-                                        '*',
-                                        DB::raw("(select count(*) from t_sales where t_customer.c_id = t_sales.s_c_id) as c_count")                               
-                                    )
-                                    ->get();
-        }
-        else if($request->searchl_name != null && $request->searchid == null && $request->searchf_name == null){
-            $list_customer = Customer::where('c_lastname', 'like', '%'.$request->searchl_name.'%')
-                                    ->select(
-                                        '*',
-                                        DB::raw("(select count(*) from t_sales where t_customer.c_id = t_sales.s_c_id) as c_count")                               
-                                    )
-                                    ->get();
-        }
+    {       
+
+        if ($request->type == 'search'){
+            $query = Customer::where('c_firstname', 'like', '%'.$request->searchf_name.'%');
+            if($request->searchid != null)
+            {
+                $query->where('c_id', $request->searchid);
+            }
+    
+            if($request->searchl_name != null)
+            {
+                $query->where('c_lastname', 'like', '%'.$request->searchl_name.'%');
+            }
+    
+            $list_customer = $query->select(
+                '*',
+                DB::raw("(select count(*) from t_sales where t_customer.c_id = t_sales.s_c_id) as c_count")                               
+            )
+            ->get();
         
-        echo json_encode($list_customer);
-        die;
+            echo json_encode($list_customer);
+            die;
+        }
+        else  if ($request->type == 'update'){
+            $customer = Customer::find($request->c_id);
+            if (isset($customer)){
+                $customer->c_firstname = $request->c_firstname;
+                $customer->c_lastname  = $request->c_lastname;
+                $customer->c_text      = $request->c_text;
+                $customer->c_update    = Carbon::now();
+                $customer->save();
+                echo 1;         
+            }else{
+               echo 0;
+            }  
+            die;                      
+        }        
     }
 }

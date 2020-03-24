@@ -20,10 +20,21 @@
                 @endif
                 <form method="post">
                     @csrf
+
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">顧客の姓</span>
+                                <span class="input-group-text">顧客ID</span>
+                            </div>
+                            <input type="text" class="form-control" 
+                                name="c_id" value="{{ $max_c_id }}" readonly="">                                                    
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">顧客姓</span>
                             </div>
                             <input type="text" class="form-control {{ ($errors->first('c_firstname')) ? 'is-invalid'  :'' }}" 
                                 name="c_firstname" value="{{ old('c_firstname') }}" placeholder="顧客の姓を入力してください">

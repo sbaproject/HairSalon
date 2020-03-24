@@ -4,11 +4,11 @@ body {
   }
 
 .logo{
-	margin-left: 20px;
+	margin-left: 14px;
 	padding-top: 10px;
 }
 
-.col-sm-3 .text-hair
+.col-3 .text-hair
 {
     position: relative;
     padding-top: 25px;
@@ -17,29 +17,26 @@ body {
 	font-size: 30px;
 }
 
-.col-sm-4 .user-name
+.col-5 .user-name
 {
     padding-top: 30px;
     font-size: 25px;
     text-align: right;
 }
 
-.col-sm-1 .user-logout{
-    padding-top: 30px;
-    font-size: 20px;
-	text-align: left;
-	display: block;
-}
-
-.col-sm-1 .icon-user{
+.col-1 img{
 	padding-top: 30px;
-	
+	text-align: center;
 }
 
-.col-10{
-	margin-top: -16px;
+.col-1 .res-logout{
+	padding-top: 20px;
 }
 
+.user-logout{
+	padding-top: 30px;
+	font-size: 20px;
+}
 /* .sidenav {
 	text-align: center;
 }
@@ -52,10 +49,10 @@ body {
 	color: #363636;
 } */
 
-.col-2{
+.res-menu{
 	position: relative;
 	display: flex;
-	background-color: #E8E8E8;
+	background-color: #EEEEEE;
 	margin-top: -16px;
 	height: 1200px;
 }
@@ -74,7 +71,7 @@ body {
 	text-decoration: none;
 	color: #696969;
 	font-weight: 550;
-	padding: 15px 8px 6px 16px;
+	padding: 60px 0px 0px 15px;
 	font-size: 25px;
 	letter-spacing: 2px;
 }

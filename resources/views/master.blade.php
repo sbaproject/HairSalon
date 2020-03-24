@@ -44,30 +44,31 @@
   <body>
   @section('menu')
     <div class="row">
-        <div class="col-sm-2 logo">
+        <div class="col-2 logo">
             <img src="images/2-1 銀座マツナガロゴPANTONEグリーン.png"  width="100%" alt="" class="img-responsive">
         </div>
-        <div class="col-sm-3">
+        <div class="col-3">
             <b class="text-hair">売上管理システム</b>
         </div>
-        <div class="col-sm-4">
+        <div class="col-5">
             <h4 class="user-name">
             @if (Session::get('user'))
             {{ Session::get('user')->u_name }}
             @endif
             </h4>
         </div>
-        <div class="col-sm-1">
+        <div class="col-1">
             <img src="images/user.svg"  width="30%" alt="" class="img-responsive icon-user">
         </div>
-        <div class="col-sm-1">
         <a class="user-logout" href="{{ asset('/logout')}}">Logout</a>
-        </div>
+        <!-- <div class="col-1">
+          <a class="user-logout" href="{{ asset('/logout')}}">Logout</a>
+        </div> -->
   	</div>
     <hr>
 
     <div class="row">
-        <div class="col-2">
+        <div class="col-2 res-menu">
           <ul class="menu-left">
             <li><a class="{{ (request()->is('customer*')) ? 'active' : '' }}" href="customer" >顧客管理</a></li>
             <li><a class="{{ (request()->is('sales*')) ? 'active' : '' }}" href="sales" >売上管理</a></li>
@@ -75,7 +76,7 @@
             <li><a class="{{ (request()->is('course*')) ? 'active' : '' }}" href="course">コース管理</a></li>
           </ul>
         </div>
-        <div class="col-10">
+        <div class="col-9">
           <div class="main">
     		    @show
     		    @yield('content')

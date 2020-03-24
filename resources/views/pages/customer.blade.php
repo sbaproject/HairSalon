@@ -5,18 +5,22 @@
 @endsection
 @section('content')
 <div style="padding:20px;">
-<a class="btn btn-primary" href="{{url('customer/new')}}" role="button" style="margin-bottom:20px">新規追加</a>
+<div class="row">
+  <div class="col-md-2"><label>検索</label></div>
+  <div class="col-md-4"><a class="btn btn-primary" style="margin-top:-30px" href="{{url('customer/new')}}" role="button">新規追加</a></div>
+</div>
+
 <form method="post" id="formSearch" style="width:50%" >
 @csrf
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text">No</span>
+        <span class="input-group-text">顧客ID</span>
       </div>
-      <input type="text" class="form-control" id="searchid" name="searchid"></input>
+      <input type="text" class="form-control" maxlength="4" id="searchid" name="searchid"></input>
     </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text">顧客の姓</span>
+        <span class="input-group-text">顧客姓</span>
       </div>
       <input type="text" class="form-control" id="searchf_name" name="searchf_name"></input>
     </div>
@@ -28,110 +32,70 @@
     </div>
 
     <div class="form-btn" style="text-align:center;">
-        <button type="button" id="btnSearch" class="btn btn-primary" style="margin-bottom:15px;">探している</button>  
+        <button type="button" id="btnSearch" class="btn btn-primary" style="width:100px;margin-bottom:15px;margin-right:15px">検索</button>  
+        <button type="button" id="btnCancelSearch" class="btn btn-secondary" style="width:100px;margin-bottom:15px;">クリア</button>  
     </div>
 </form>
-
-<div id="divResults" style="display:none">
-<label><span id="page">1</span>/<span id="totalPage"></span></label>
-<br/>
-<label>新規追加</label>
+<div class="row">
+     <div class="col-md-6" style="padding-top:30px;position:relative">          
+            <label style="color:#0066FF;position: absolute;margin-top: -30px;display:none" id="messageSuccess">顧客情報を更新出来ました。</label>                  
+    </div>
+</div>
+<div class="row">
+  <div class="col-md-3"><label>顧客詳細</label></div>
+  <div class="col-md-3"><label id="lblPaging" class="float-right" style="display:none"><span id="page">1</span>/<span id="totalPage"></span></label></div>
+</div>
 <form method="post" id="formSearchload" style="width:50%" >
 @csrf
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text">No</span>
+        <span class="input-group-text">顧客ID</span>
       </div>
-      <input type="text" id="c_id" readonly="" name="c_id" class="form-control" >
+      <input type="text" id="c_id" readonly="" value="0000" name="c_id" class="form-control" >
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text">顧客の姓</span>
+        <span class="input-group-text">顧客姓</span>
       </div>
-      <input type="text" id="c_firstname" readonly="" name="c_firstname" class="form-control" value="">
+      <input type="text" id="c_firstname" readonly="" name="c_firstname" class="form-control" value="GINZA">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" >顧客名</span>
       </div>
-      <input type="text" id="c_lastname" readonly="" name="c_lastname" class="form-control" >
+      <input type="text" id="c_lastname" readonly="" name="c_lastname" class="form-control" value="TARO">
     </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text" >備考</span>
+        <span class="input-group-text" >来客回数</span>
       </div>
-      <input type="text" id="c_count" readonly="" name="c_count" class="form-control">
+      <input type="text" id="c_count" readonly="" name="c_count" class="form-control" value="4">
     </div>
     <div class="input-group input-group-lg">
         <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-lg">Large</span>
+        <span class="input-group-text" id="inputGroup-sizing-lg">備考</span>
     </div>
-  <input type="text" id="c_text" readonly="" name="c_text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+  <input type="text" id="c_text" readonly="" name="c_text" value="テストテストテスト" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
 </div>
 <div class="form-btn" style="text-align:center; margin-top:20px">
-        <a type="button" onClick="customeredit()" class="btn btn-primary" style="margin-bottom:15px;color:#fff;">編集</a>  
+       <button type="button" id="btnUpdate" class="btn btn-primary" style="width:100px;margin-bottom:15px;margin-right:15px">更新</button>  
+       <button type="button" id="btnCancel" class="btn btn-secondary" style="width:100px;margin-bottom:15px;">キャンセル</button>  
   </div>
-<script type="text/javascript">
-                function customeredit(){
-                  var result = document.getElementById("c_id").value;
-                  window.location.href = "customer/edit/" + result;
-                }
-              </script>
-<div class="form-btn" style="text-align:center;">
-    <button type="button" id="btnPrev" disabled="disabled" class="btn">Prev</button>    
-    <button type="button" id="btnNext" class="btn">Next</button>
+<div class="form-btn" id="divButton" style="text-align:center;display:none">
+    <button type="button" id="btnPrev" disabled="disabled" class="btn">前</button>    
+    <button type="button" id="btnNext" class="btn">次</button>
 </div>
 </form>
-</div>
-<label id="notFound" style="display:none">Not Found Data.</label>
 </div>
 
 <script type="text/javascript">
 $( document ).ready(function() {
     var arrData =  null;
-    var index = 0;
-    loaddata();
+    var index = 0;   
     $('#btnSearch').click(function(e){
         e.preventDefault(); 
-        loaddata();
-    });
-
-    $('#btnNext').click(function(e){
-        index = index + 1;       
-        if ( index < arrData.length){
-            $("#c_id").val(arrData[index].c_id);
-            $("#c_firstname").val(arrData[index].c_firstname);
-            $("#c_lastname").val(arrData[index].c_lastname);
-            $("#c_count").val(arrData[index].c_count);
-            $("#c_text").val(arrData[index].c_text);
-            if ((arrData.length - 1) == index){
-                $("#btnNext").attr("disabled","disabled");     
-            }  
-            $("#formSearchload").fadeIn( "slow" );           
-            $("#page").html(index + 1);   
-            $("#btnPrev").removeAttr("disabled");             
-        }
-    });
-
-    $('#btnPrev').click(function(e){
-        index = index - 1;       
-        if ( index >= 0){
-            $("#c_id").val(arrData[index].c_id);
-            $("#c_firstname").val(arrData[index].c_firstname);
-            $("#c_lastname").val(arrData[index].c_lastname);
-            $("#c_count").val(arrData[index].c_count);
-            $("#c_text").val(arrData[index].c_text);
-            if (index == 0){
-                $("#btnPrev").attr("disabled","disabled");     
-            }             
-            $("#page").html(index + 1);   
-            $("#btnNext").removeAttr("disabled");             
-        }
-    });
-
-    function loaddata(){
         $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('#formSearch input[name="_token"]').val()
@@ -142,32 +106,167 @@ $( document ).ready(function() {
             method: 'post',
             dataType: "json",
             data: {
+                type: 'search',  
                 searchid: $('#searchid').val(),
                 searchf_name: $('#searchf_name').val(),
                 searchl_name: $('#searchl_name').val()
             },
             success: function(result){
                 arrData = result;    
-                $("#divResults").css("display", "none");    
-                $("#notFound").css("display", "none");                
+                $("#page").html('1');      
+                $("#lblPaging").css("display", "none");        
+                $("#divButton").css("display", "none");
+                $("#btnPrev").attr("disabled","disabled");     
+                $("#btnNext").removeAttr("disabled");  
+                $("#searchid").val(formatID($.trim($('#searchid').val())));    
                 if (arrData.length > 0){     
                     $("#totalPage").html(arrData.length);
-                    $("#divResults").css("display", "");              
-                    $("#c_id").val(arrData[0].c_id);
+                    $("#lblPaging").css("display", "");  
+                    $("#divButton").css("display", "");            
+                    $("#c_id").val(formatID(arrData[0].c_id));
                     $("#c_firstname").val(arrData[0].c_firstname);
                     $("#c_lastname").val(arrData[0].c_lastname);
                     $("#c_count").val(arrData[0].c_count);
-                    $("#c_text").val(arrData[0].c_text);
-                }
-                else{
-                    $("#notFound").css("display", "");
-                }
-                if (arrData.length == 1){
-                    $("#btnNext").attr("disabled","disabled");     
+                    $("#c_text").val(arrData[0].c_text);  
+                    
+                    $("#c_firstname").removeAttr("readonly"); 
+                    $("#c_lastname").removeAttr("readonly");                            
+                    $("#c_text").removeAttr("readonly");    
+                    if (arrData.length == 1){
+                      $("#btnNext").attr("disabled","disabled");     
+                    }         
                 }  
-
-                
+                else{
+                    index = 0; 
+                    arrData = null;
+                    $("#c_id").val("0000");
+                    $("#c_firstname").val("GINZA");
+                    $("#c_lastname").val("TARO");
+                    $("#c_count").val("4");
+                    $("#c_text").val('テストテストテスト');   
+                    $("#c_firstname").attr("readonly",""); 
+                    $("#c_lastname").attr("readonly","");                            
+                    $("#c_text").attr("readonly","");            
+                }                                             
         }});
+    });
+
+    $('#btnCancelSearch').click(function(e){     
+      index = 0; 
+      arrData = null;
+      $('#searchid').val('');
+      $('#searchf_name').val('');
+      $('#searchl_name').val('');
+      $("#lblPaging").css("display", "none");        
+      $("#divButton").css("display", "none");
+
+      $("#c_id").val("0000");
+      $("#c_firstname").val("GINZA");
+      $("#c_lastname").val("TARO");
+      $("#c_count").val("4");
+      $("#c_text").val('テストテストテスト');   
+      $("#c_firstname").attr("readonly",""); 
+      $("#c_lastname").attr("readonly","");                            
+      $("#c_text").attr("readonly","");   
+    });
+
+    $('#btnNext').click(function(e){
+        index = index + 1;       
+        if ( index < arrData.length){
+            $("#c_id").val(formatID(arrData[index].c_id));
+            $("#c_firstname").val(arrData[index].c_firstname);
+            $("#c_lastname").val(arrData[index].c_lastname);
+            $("#c_count").val(arrData[index].c_count);
+            $("#c_text").val(arrData[index].c_text);
+            if ((arrData.length - 1) == index){
+                $("#btnNext").attr("disabled","disabled");     
+            }  
+                  
+            $("#page").html(index + 1);   
+            $("#btnPrev").removeAttr("disabled");    
+            
+            $("#c_firstname").removeAttr("readonly"); 
+            $("#c_lastname").removeAttr("readonly");                            
+            $("#c_text").removeAttr("readonly");    
+        }
+    });
+
+    $('#btnPrev').click(function(e){
+        index = index - 1;       
+        if ( index >= 0){
+            $("#c_id").val(formatID(arrData[index].c_id));
+            $("#c_firstname").val(arrData[index].c_firstname);
+            $("#c_lastname").val(arrData[index].c_lastname);
+            $("#c_count").val(arrData[index].c_count);
+            $("#c_text").val(arrData[index].c_text);
+            if (index == 0){
+                $("#btnPrev").attr("disabled","disabled");     
+            }             
+            $("#page").html(index + 1);   
+            $("#btnNext").removeAttr("disabled");   
+            
+            $("#c_firstname").removeAttr("readonly"); 
+            $("#c_lastname").removeAttr("readonly");                            
+            $("#c_text").removeAttr("readonly");    
+        }
+    });
+
+    $('#btnCancel').click(function(e){
+      if (arrData != null)
+      {
+        $("#c_firstname").val(arrData[index].c_firstname);
+        $("#c_lastname").val(arrData[index].c_lastname);    
+        $("#c_text").val(arrData[index].c_text); 
+      }    
+    }); 
+
+    $('#btnUpdate').click(function(e){
+      e.preventDefault(); 
+      if (arrData != null)
+      {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('#formSearch input[name="_token"]').val()
+            }
+        });             
+        $.ajax({
+            url: "{{ url('/customer') }}",
+            method: 'post',
+            dataType: "json",
+            data: {
+                type: 'update',   
+                c_id: $('#c_id').val(),
+                c_firstname: $('#c_firstname').val(),
+                c_lastname: $('#c_lastname').val(),
+                c_text: $('#c_text').val()
+            },
+            success: function(result){
+              if (result == 1){
+                arrData[index].c_firstname = $('#c_firstname').val();
+                arrData[index].c_lastname= $("#c_lastname").val();              
+                arrData[index].c_text= $("#c_text").val();
+              } 
+              $("#messageSuccess").css("display", "");  
+              $("#messageSuccess").fadeOut(5000);                           
+        }});
+      }       
+    }); 
+
+    function formatID(val){
+      var id = val;
+      if (!isNaN(id) && id != ''){
+        id = parseInt(val);
+        if (id < 10){
+          id = "000" + val;
+        }
+        else if (id < 100){
+          id = "00" + val;
+        }
+        else if (id < 1000){
+          id = "0" + val;
+        }
+      }      
+      return id;
     }
 });
 </script>
