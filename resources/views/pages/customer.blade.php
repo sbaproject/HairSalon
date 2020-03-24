@@ -70,7 +70,9 @@
     </div>
   <input type="text" id="c_text" readonly="" name="c_text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
 </div>
-<a type="button" class="btn btn-primary" onClick="customeredit()" style="margin-top:15px;">編集</a>
+<div class="form-btn" style="text-align:center; margin-top:20px">
+        <a type="button" onClick="customeredit()" class="btn btn-primary" style="margin-bottom:15px;color:#fff;">編集</a>  
+  </div>
 <script type="text/javascript">
                 function customeredit(){
                   var result = document.getElementById("c_id").value;
