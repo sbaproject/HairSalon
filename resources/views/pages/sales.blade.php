@@ -71,7 +71,7 @@
 			<div class="row">	
 			
 			
-            <div class="col-md-2 searchSales status">
+            <div class="col-md-2 searchSales2 status">
             <div class="marBot15">来客数</div>               
             <div class="">{{$list_sales_count}}</div>      
             </div>
