@@ -4,53 +4,74 @@
 @parent
 @endsection
 @section('content')
-    <div class="padding20">
-        <a class="btn btn-primary" href="{{url('customer/new')}}" role="button">新規追加</a>
-        <br/>
-        <br/>
-        @if (\Session::has('success'))
-            <div class="alert alert-success alert-dismissible fade show">
-                {{ \Session::get('success') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>    
-        @endif
-        @if (isset($list_customer))
-            <table class="table table-bordered">
-                <thead class="table-header">
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">顧客の姓</th>
-                        <th scope="col">顧客名</th>
-                        <th scope="col">備考</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                        $page = request()->get("page");
-                        if ($page)
-                            $index = $page * 10 - 9;
-                        else
-                            $index = 1;
-                    @endphp
-
-                    @foreach($list_customer as $customer)
-                        <tr>
-                            <th>{{ $index < 10 ? '0' . $index : $index }}</th>
-                            <td>{{ $customer->c_firstname }}</td>
-                            <td>{{ $customer->c_lastname }}</td>
-                            <td>{{ $customer->c_text }}</td>
-                            <td><a href="{{ url('customer/edit/' . $customer->c_id) }}">編集</a>&nbsp;</td>
-                        </tr>
-                        @php 
-                            $index++; 
-                        @endphp
-                    @endforeach
-                </tbody>
-            </table>
-            {{ $list_customer->links() }}
-        @endif
+<label>新規追加</label>
+<form method="post" id="formSearch" style="width:50%" >
+@csrf
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">No</span>
+      </div>
+      <input type="text" class="form-control" name="searchid"></input>
     </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">顧客の姓</span>
+      </div>
+      <input type="text" class="form-control" name="searchf_name"></input>
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">顧客名</span>
+      </div>
+      <input type="text" class="form-control"name="searchl_name"></input>
+    </div>
+
+    <div class="form-btn" style="text-align:center;">
+        <button type="submit" class="btn btn-primary" style="margin-bottom:15px;">検索</button>  
+    </div>
+</form>
+
+<label>新規追加</label>
+
+<form method="post" id="formSearchload" style="width:50%" >
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">No</span>
+      </div>
+      <input type="text" class="form-control" >
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">顧客の姓</span>
+      </div>
+      <input type="text" class="form-control">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" >顧客名</span>
+      </div>
+      <input type="text" class="form-control" >
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" >備考</span>
+      </div>
+      <input type="text" class="form-control">
+    </div>
+    <div class="input-group input-group-lg">
+        <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-lg">Large</span>
+    </div>
+  <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+</div>
+    <div class="form-btn" style="text-align:center;">
+       <button type="submit" class="btn">ログイン</button>
+        <a href="#" class="btn chang_pw" onClick="changepassword()">PW変更</a>
+    </div>
+</form>
+
+
+
 @endsection

@@ -111,3 +111,5 @@ Route::get('/customer/edit/{id}', 'CustomerController@getCustomerEdit');
 
 Route::post('/customer/edit/{id}', 'CustomerController@postCustomerEdit');
 
+Route::post('/customer', 'CustomerController@postSearch');
+
