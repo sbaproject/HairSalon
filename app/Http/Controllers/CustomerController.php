@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Customer;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class CustomerController extends Controller
 {
     //load page with $id
     public function index()
-    {
+    {    
         $list_customer = Customer::orderBy('c_date', 'DESC')->paginate(10);
 
         return view('pages.customer', compact('list_customer'));
@@ -68,15 +69,40 @@ class CustomerController extends Controller
 
     public function postSearch(Request $request)
     {
-        if($request->searchf_name != null){
-            $list_customer = Customer::where('c_firstname', $request->searchf_name)->get();
+        $data = array();
+        $list_customer = Customer::where('c_lastname', 'like', '%'.$request->searchl_name.'%')
+        ->select(
+            '*',
+            DB::raw("(select count(*) from t_sales where t_customer.c_id = t_sales.s_c_id) as c_count")                               
+        )
+        ->get();
+       if($request->searchid != null && $request->searchf_name == null && $request->searchl_name == null)
+        {
+            $list_customer = Customer::where('c_id', $request->searchid)
+                                    ->select(
+                                        '*',
+                                        DB::raw("(select count(*) from t_sales where t_customer.c_id = t_sales.s_c_id) as c_count")                               
+                                    )
+                                    ->get();
         }
-        else if($request->searchl_name != null){
-            $list_customer = Customer::where('c_lastname', $request->searchl_name)->get();
+        else if($request->searchf_name != null && $request->searchid == null && $request->searchl_name == null){
+            $list_customer = Customer::where('c_firstname', 'like', '%'.$request->searchf_name.'%')
+                                    ->select(
+                                        '*',
+                                        DB::raw("(select count(*) from t_sales where t_customer.c_id = t_sales.s_c_id) as c_count")                               
+                                    )
+                                    ->get();
         }
-        else if($request->searchid != null){
-            $list_customer = Customer::where('c_id', $request->searchid)->get();
+        else if($request->searchl_name != null && $request->searchid == null && $request->searchf_name == null){
+            $list_customer = Customer::where('c_lastname', 'like', '%'.$request->searchl_name.'%')
+                                    ->select(
+                                        '*',
+                                        DB::raw("(select count(*) from t_sales where t_customer.c_id = t_sales.s_c_id) as c_count")                               
+                                    )
+                                    ->get();
         }
-        return view('pages.customer',compact('list_customer'));
+        
+        echo json_encode($list_customer);
+        die;
     }
 }
