@@ -100,7 +100,7 @@
         </div>    
 
         @if (isset($list_sales) && $list_sales_count>0)
-        <table class="table table-bordered">
+        <table class="table table-bordered table-hover">
             <thead>
                 <tr style="background-color: #e8e8e8;">
                 <th scope="col">No</th>
