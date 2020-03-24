@@ -39,19 +39,6 @@
     <script src="js/app.js"></script>  
     <!-- sales CSS -->
     <script src="js/sales.js"></script>	
-    
-    <script>
-    $( document ).ready(function() {
-        const currentLocation = location.href;
-              const menuItem = document.querySelectorAll('a');
-              const menuLength = menuItem.length
-              for (let i = 1; i<menuLength; i++){
-                if(menuItem[i].href === currentLocation){
-                  menuItem[i].className = "active"
-                }
-              }
-    });
-    </script>
 
   </head>
   <body>
@@ -79,27 +66,22 @@
   	</div>
     <hr>
 
-    
     <div class="row">
-
         <div class="col-2">
           <ul class="menu-left">
-            <li><a href="customer" >顧客管理</a></li>
-            <li><a href="sales" >売上管理</a></li>
-            <li><a href="staff" >スタッフ管理</a></li>
-            <li><a href="course">コース管理</a></li>
+            <li><a class="{{ (request()->is('customer*')) ? 'active' : '' }}" href="customer" >顧客管理</a></li>
+            <li><a class="{{ (request()->is('sales*')) ? 'active' : '' }}" href="sales" >売上管理</a></li>
+            <li><a class="{{ (request()->is('staff*')) ? 'active' : '' }}" href="staff" >スタッフ管理</a></li>
+            <li><a class="{{ (request()->is('course*')) ? 'active' : '' }}" href="course">コース管理</a></li>
           </ul>
         </div>
-
         <div class="col-10">
           <div class="main">
     		    @show
     		    @yield('content')
           </div>
         </div>
-
     </div>
-
   </body>
 </html>
 
