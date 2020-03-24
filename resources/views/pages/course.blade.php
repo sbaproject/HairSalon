@@ -21,7 +21,7 @@
             </div>
            
             @if (isset($list_course))
-                <table class="table table-bordered">
+                <table class="table table-bordered table-hover">
                     <thead class="table-header">
                         <tr>
                             <th scope="col">No</th>
@@ -88,7 +88,7 @@
             </div>
             
             @if (isset($list_option))
-                <table class="table table-bordered">
+                <table class="table table-bordered table-hover">
                     <thead class="table-header">
                         <tr>
                             <th scope="col">No</th>

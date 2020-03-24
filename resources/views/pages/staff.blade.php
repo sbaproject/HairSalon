@@ -15,7 +15,7 @@
         </div>
         
         @if (isset($list_staff))
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover">
                 <thead class="table-header">
                     <tr>
                         <th scope="col">No</th>
