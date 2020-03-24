@@ -164,6 +164,7 @@
                         </div>
                     </div>
                     <input type="hidden" id="hid" name="hid" value="">
+                    <input type="hidden" id="urlBack" name="urlBack" value="{{url()->previous()}}">
                     <div class="clsCenter">
                     <button type="submit" id="submit1" class="btn btn-primary buttonSales btn-left-sales">連続追加</button>
                     <button type="submit" id="submit2" class="btn btn-primary buttonSales btn-left-sales">追加</button>                    

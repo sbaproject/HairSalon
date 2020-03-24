@@ -172,10 +172,10 @@
                             <textarea maxlength="100" class="form-control" rows=4 name="s_text" >{{ $sales->s_text }}</textarea>
                         </div>
                     </div>
-                    
+                    <input type="hidden" id="urlBack" name="urlBack" value="{{url()->previous()}}">
                     <div class="clsCenter">
                     <button type="submit" class="btn btn-primary buttonSales btn-left-sales">追加</button>                    
-                    <a role="button" href="{{url('sales')}}" class="btn btn-secondary buttonSales" >キャンセル</a>
+                    <a role="button" href="{{ url()->previous() }}" class="btn btn-secondary buttonSales" >キャンセル</a>
                     <div>
                 </form>
             </div>
