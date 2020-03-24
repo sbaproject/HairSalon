@@ -54,7 +54,7 @@
 						<div class="col-md-5">
 						<select name ="shop_id" class="form-control">
                                 @foreach($list_shop as $shop)
-                                <option value = '{{$shop->sh_id}}' {{ !empty($shopId) ? ( $shopId == $shop->sh_id  ? 'selected' : '' ) : (Session::get('user')->u_shop == $shop->sh_id ? 'selected' : '' ) }}>{{$shop->sh_name}}</option>
+                                <option value = '{{$shop->sh_id}}' {{ !empty($shopId) ? ( $shopId == $shop->sh_id  ? 'selected' : '' ) : ( Session::has('user') ? (Session::get('user')->u_shop == $shop->sh_id ? 'selected' : '') : '' ) }}>{{$shop->sh_name}}</option>
                                 @endforeach
                             </select>
 							</div>
