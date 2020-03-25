@@ -22,13 +22,13 @@
     </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text">顧客姓</span>
+        <span class="input-group-text">顧客名</span>
       </div>
       <input type="text" class="form-control" id="searchf_name" name="searchf_name"></input>
     </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text">顧客名</span>
+        <span class="input-group-text">顧客姓</span>
       </div>
       <input type="text" class="form-control" id="searchl_name" name="searchl_name"></input>
     </div>
@@ -40,6 +40,7 @@
 </form>
 <div class="row">
      <div class="col-md-6" style="padding-top:30px;position:relative;">
+        <label id="messageDanger" style="color:#FF0000;position: absolute;margin-top: -30px;display:none;">検索条件に該当するデータが見つかりません。</label>
         <label id="messageSuccess" style="color:#0066FF;position: absolute;margin-top: -30px;display:none;">顧客情報を更新出来ました。</label>
     </div>
 </div>
@@ -64,14 +65,14 @@
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text">顧客姓</span>
+        <span class="input-group-text">顧客名</span>
       </div>
       <input type="text" id="c_firstname" readonly="" name="c_firstname" class="form-control" value="GINZA">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text" >顧客名</span>
+        <span class="input-group-text" >顧客姓</span>
       </div>
       <input type="text" id="c_lastname" readonly="" name="c_lastname" class="form-control" value="TARO">
     </div>
@@ -154,7 +155,9 @@ $( document ).ready(function() {
                     $("#c_text").val('テストテストテスト');   
                     $("#c_firstname").attr("readonly",""); 
                     $("#c_lastname").attr("readonly","");                            
-                    $("#c_text").attr("readonly","");            
+                    $("#c_text").attr("readonly","");
+                    $("#messageDanger").css("display", "");  
+                    $("#messageDanger").fadeOut(5000);            
                 }                                             
         }});
     });

@@ -1,5 +1,5 @@
 @extends('master')
-@section('title','顧客を追加する')
+@section('title','顧客登録')
 @section('menu')
 @parent
 @endsection
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-10">
                 <h2 class="border-bottom">
-                顧客を追加する
+                顧客登録
                 </h2>
                 @if (\Session::has('success'))
                 <div class="alert alert-success alert-dismissible fade show">
@@ -34,10 +34,10 @@
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">顧客姓</span>
+                                <span class="input-group-text">顧客名</span>
                             </div>
                             <input type="text" class="form-control {{ ($errors->first('c_firstname')) ? 'is-invalid'  :'' }}" 
-                                name="c_firstname" value="{{ old('c_firstname') }}" placeholder="顧客の姓を入力してください">
+                                name="c_firstname" value="{{ old('c_firstname') }}" placeholder="顧客名">
                             <div class="invalid-feedback">
                                 @error('c_firstname')
                                     {{ $message }}
@@ -49,10 +49,10 @@
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">顧客名</span>
+                                <span class="input-group-text">顧客姓</span>
                             </div>
                             <input type="text" class="form-control {{ ($errors->first('c_lastname')) ? 'is-invalid'  :'' }}" 
-                                name="c_lastname" value="{{ old('c_lastname') }}" placeholder="顧客の名前を入力してください">
+                                name="c_lastname" value="{{ old('c_lastname') }}" placeholder="顧客姓">
                             <div class="invalid-feedback">
                                 @error('c_lastname')
                                     {{ $message }}
