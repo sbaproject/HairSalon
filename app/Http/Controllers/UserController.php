@@ -63,9 +63,10 @@ class UserController extends Controller
     }
 
 
-    public function getChangePassword($username)
+    public function getChangePassword($username, $password)
     {
-        $user = User::where('u_user',$username)->first();
+        $user = User::where('u_user',$username)
+                    ->where('u_pw', $password)->first();
 
         if (isset($user)) {
             return view('pages.changepassword', compact('user'));

@@ -40,7 +40,7 @@
           <div class="form-group">
               <label for="u_pw"><b>パスワード</b></label>
               <input type="password" class="form-control {{ ($errors->first('u_pw')) ? 'is-invalid'  :'' }}" 
-                  name="u_pw" value="{{ old('u_pw') }}">
+              id="u_pw" name="u_pw" value="{{ old('u_pw') }}">
               <div class="invalid-feedback">
                   @error('u_pw')
                       {{ $message }}
@@ -49,11 +49,12 @@
           </div>
           <div class="form-btn">
               <button type="submit" class="btn login_us">ログイン</button>
-              <a href="#" class="btn chang_pw" onClick="changepassword()">PW変更</a>
+              <a class="btn chang_pw" onClick="changepassword()">PW変更</a>
               <script type="text/javascript">
                 function changepassword(){
                   var re_userName = document.getElementById("u_user").value;
-                  window.location.href = "changepassword/" + re_userName;
+                  var re_passWord = document.getElementById("u_pw").value;
+                  window.location.href = "changepassword/" + re_userName + "/" + re_passWord;
                 }
               </script>
           </div>

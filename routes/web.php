@@ -27,9 +27,9 @@ Route::post('/login', 'UserController@postLogin');
 Route::get('/logout', 'UserController@logout');
 
 /* change Password */
-Route::get('/changepassword/{username}', 'UserController@getChangePassword');
+Route::get('/changepassword/{username}/{password}', 'UserController@getChangePassword');
 
-Route::post('/changepassword/{username}', 'UserController@changePassword');
+Route::post('/changepassword/{username}/{password}', 'UserController@changePassword');
 
 
 /* sales */
