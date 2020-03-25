@@ -4,6 +4,7 @@
 @parent
 @endsection
 @section('content')
+<link href="{{ asset('css/customer.css')}}" rel="stylesheet">
 <div style="padding:20px;">
 <div class="row">
   <div class="col-md-2"><label>検索</label></div>

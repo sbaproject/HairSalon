@@ -76,7 +76,7 @@
             <li><a class="{{ (request()->is('course*')) ? 'active' : '' }}" href="course">コース管理</a></li>
           </ul>
         </div>
-        <div class="col-9">
+        <div class="col-10">
           <div class="main">
     		    @show
     		    @yield('content')
