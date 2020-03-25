@@ -56,7 +56,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客ID</span>
                             </div>
-                            <div class="form-control wrapper-select">
+                            <div class="form-control wrapper-select {{ ($errors->first('s_c_id')) ? 'is-invalid'  :'' }}">
                             <select class="select-shop2" id="s_c_id" name="s_c_id" onchange="onCustomerChange({{ $list_customer }})">
                             @foreach($list_customer as $customer)
                             <option value = '{{$customer->c_id}}' {{ $sales->s_c_id == $customer->c_id ? 'selected' : '' }} >
@@ -64,6 +64,11 @@
                             </option>
                             @endforeach
                             </select>
+                            </div>
+                            <div class="invalid-feedback">
+                                @error('s_c_id')
+                                    {{ $message }}
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -89,7 +94,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">コース</span>
                             </div>
-                            <div class="form-control wrapper-select">
+                            <div class="form-control wrapper-select {{ ($errors->first('s_co_id')) ? 'is-invalid'  :'' }}">
                             <select class="select-shop2" name="s_co_id" id ="s_co_id" onchange="onCourseChange({{ $list_course }},{{ $list_option }})">
                             @foreach($list_course as $course)
                             <option value = '{{$course->co_id}}' {{ $sales->s_co_id == $course->co_id ? 'selected' : '' }}>
@@ -97,6 +102,11 @@
                             </option>
                             @endforeach
                             </select>
+                            </div>
+                            <div class="invalid-feedback">
+                                @error('s_co_id')
+                                    {{ $message }}
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -196,7 +206,7 @@
                     </div>
                     <input type="hidden" id="urlBack" name="urlBack" value="{{url()->previous()}}">
                     <div class="clsCenter">
-                    <button type="submit" class="btn btn-primary buttonSales btn-left-sales">追加</button>                    
+                    <button type="submit" class="btn btn-primary buttonSales btn-left-sales">更新</button>                    
                     <a role="button" href="{{ url()->previous() }}" class="btn btn-secondary buttonSales" >キャンセル</a>
                     <div>
                 </form>

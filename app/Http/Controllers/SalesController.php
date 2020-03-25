@@ -101,7 +101,7 @@ class SalesController extends Controller
             's_money.required'     => '入力してください!',
         ]);
 
-           
+       
 
         // get current time
         $currentTime = Carbon::now();
@@ -110,6 +110,13 @@ class SalesController extends Controller
                             ->where('co_del_flg', 0)                      
                             ->first();
 
+
+        // if ($course->co_opt1 != null && $request->get('s_opts1') === null ) {
+        //                         return redirect('sales/new')
+        //                                     ->withErrors(['s_opts1', 'thach'] )
+        //                                     ->withInput();
+        //                     }                    
+                            
         $money = 0;
         if(!empty($course->Option1->op_amount)){
             $money = $money + $course->Option1->op_amount;
@@ -165,12 +172,10 @@ class SalesController extends Controller
         $request->validate([
             's_c_id'   => 'required',
             's_co_id'    => 'required',
-            's_pay'    => 'required',
             's_money'      => 'required',
         ], [
             's_c_id.required'  => '入力してください!',
             's_co_id.required'   => '入力してください!',
-            's_pay.required'     => '入力してください!',
             's_money.required'     => '入力してください!'
         ]);
 
@@ -194,11 +199,11 @@ class SalesController extends Controller
         $sales->s_c_id      = $request->get('s_c_id');
         $sales->s_co_id     = $request->get('s_co_id');
         $sales->s_opt1      = $course->co_opt1;
-        $sales->s_opts1     = $request->get('s_opts1');
+        $sales->s_opts1     = ( $course->co_opt1 === null ? null : $request->get('s_opts1'));
         $sales->s_opt2      = $course->co_opt2;
-        $sales->s_opts2     = $request->get('s_opts2');
+        $sales->s_opts2     = ( $course->co_opt2 === null ? null : $request->get('s_opts2'));
         $sales->s_opt3      = $course->co_opt3;
-        $sales->s_opts3     = $request->get('s_opts3');
+        $sales->s_opts3     = ( $course->co_opt3 === null ? null : $request->get('s_opts3'));
         $sales->s_money     = $money;
         $sales->s_pay       = $request->get('s_pay');        
         $sales->s_text      = $request->get('s_text');        

@@ -7,7 +7,7 @@
     <div class="padding-20">
         <div class="header-index">
         <div class="header-title">
-                    <span>スタッフ管</span>
+                    <span>スタッフ管理</span>
                 </div>
             <a class="btn btn-primary add-new-btn" href="{{url('staff/new')}}" role="button">新規追加</a>
             @if (\Session::has('success'))

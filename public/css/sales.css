@@ -142,6 +142,11 @@
     overflow: hidden;
 }
 
+.table-fixed tbody {
+    overflow-y: auto;
+    width: 100%;
+}
+
 .table-fixed tbody td,
 .table-fixed tbody th,
 .table-fixed thead > tr > th {

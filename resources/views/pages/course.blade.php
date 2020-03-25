@@ -8,7 +8,7 @@
         <div class="course-list">
             <div class="header-index">
                 <div class="header-title">
-                    <span>コース一覧</span>
+                    <span>コース管理</span>
                 </div>
                 <div>
                     <a class="btn btn-primary add-new-btn" href="{{url('course/new')}}" role="button">新規追加</a>
@@ -75,7 +75,7 @@
         <div>
             <div class="header-index">
                 <div class="header-title">
-                    <span>オプション一覧</span>
+                    <span>オプション管理</span>
                 </div>
                 <div>
                     <a class="btn btn-primary add-new-btn" href="{{url('option/new')}}" role="button">新規追加</a>

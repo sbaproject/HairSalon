@@ -6,7 +6,7 @@
 @section('content')
 
 <div class="header-title">
-                    <span>売上管</span>
+                    <span>売上管理</span>
                 </div>
 <br>
             <div class="row marBot15">

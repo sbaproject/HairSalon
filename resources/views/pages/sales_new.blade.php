@@ -130,7 +130,7 @@
                             <option value = '{{$staff->s_id}}'>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
                             @endforeach
                             </select>
-                            </div>
+                            </div>                            
                         </div>
                     </div>
 
