@@ -37,8 +37,12 @@
     <script src="js/bootstrap.js"></script>
     <!-- Master JS  -->
     <script src="js/app.js"></script>  
-    <!-- sales CSS -->
+    <!-- sales JS -->
     <script src="js/sales.js"></script>	
+     <!-- Datatable JS -->
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>	
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
   </head>
   <body>

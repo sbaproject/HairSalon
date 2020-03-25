@@ -52,19 +52,29 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ１</span>
                             </div>
-                            <div class="form-control wrapper-select">
+                            <div class="form-control wrapper-select {{ ($errors->first('option_error')) ? 'is-invalid' : '' }}">
                                 <select class="select-shop" name="co_opt1" id="select-option-1" onchange="onOption1Change({{ $list_option }})">
                                     <option value=""></option>
                                     @if (isset($list_option))
                                         @foreach ($list_option as $option)
-                                            <option value="{{ $option->op_id }}">
+                                            <option value="{{ $option->op_id }}" {{ $option->op_id == old('co_opt1') ? 'selected' : '' }}>
                                                 {{ $option->op_name }}
                                             </option>
+                                            @php
+                                                if (old('co_opt1') == $option->op_id) {
+                                                    $op1_amount = $option->op_amount;    
+                                                }
+                                            @endphp
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-1"></span>
-                                <span style="display: none;" id="option-amount-1-hidden">0</span>
+                                <span class="option-amount" id="option-amount-1">{{ isset($op1_amount) ? number_format($op1_amount) : '' }}</span>
+                                <span style="display: none;" id="option-amount-1-hidden">{{ isset($op1_amount) ? $op1_amount : 0 }}</span>
+                            </div>
+                            <div class="invalid-feedback">
+                                @error('co_opt1')
+                                    {{ $message }}
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -73,19 +83,24 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ２</span>
                             </div>
-                            <div class="form-control wrapper-select">
+                            <div class="form-control wrapper-select {{ ($errors->first('option_error')) ? 'is-invalid'  :'' }}">
                                 <select class="select-shop" name="co_opt2" id="select-option-2" onchange="onOption2Change({{ $list_option }})">
                                     <option value=""></option>
                                     @if (isset($list_option))
                                         @foreach ($list_option as $option)
-                                            <option value="{{ $option->op_id }}">
+                                            <option value="{{ $option->op_id }}" {{ $option->op_id == old('co_opt2') ? 'selected' : '' }}>
                                                 {{ $option->op_name }}
                                             </option>
+                                            @php
+                                                if (old('co_opt2') == $option->op_id) {
+                                                    $op2_amount = $option->op_amount;    
+                                                }
+                                            @endphp
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-2"></span>
-                                <span style="display: none;" id="option-amount-2-hidden">0</span>
+                                <span class="option-amount" id="option-amount-2">{{ isset($op2_amount) ? number_format($op2_amount) : '' }}</span>
+                                <span style="display: none;" id="option-amount-2-hidden">{{ isset($op2_amount) ? $op2_amount : 0 }}</span>
                             </div>
                         </div>
                     </div>
@@ -94,19 +109,29 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ３</span>
                             </div>
-                            <div class="form-control wrapper-select">
+                            <div class="form-control wrapper-select {{ ($errors->first('option_error')) ? 'is-invalid'  :'' }}">
                                 <select class="select-shop" name="co_opt3" id="select-option-3" onchange="onOption3Change({{ $list_option }})">
                                     <option value=""></option>
                                     @if (isset($list_option))
                                         @foreach ($list_option as $option)
-                                            <option value="{{ $option->op_id }}">
+                                            <option value="{{ $option->op_id }}" {{ $option->op_id == old('co_opt3') ? 'selected' : '' }}>
                                                 {{ $option->op_name }}
                                             </option>
+                                            @php
+                                                if (old('co_opt3') == $option->op_id) {
+                                                    $op3_amount = $option->op_amount;    
+                                                }
+                                            @endphp
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-3"></span>
-                                <span style="display: none;" id="option-amount-3-hidden">0</span>
+                                <span class="option-amount" id="option-amount-3">{{ isset($op3_amount) ? number_format($op3_amount) : '' }}</span>
+                                <span style="display: none;" id="option-amount-3-hidden">{{ isset($op3_amount) ? $op3_amount : 0 }}</span>
+                            </div>
+                            <div class="invalid-feedback">
+                                @if (($errors->first('option_error')))
+                                    {{ $errors->first('option_error') }}
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -114,9 +139,15 @@
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">金額</span>
-                            </div>
-                            <input readonly type="text" class="form-control {{ ($errors->first('co_money')) ? 'is-invalid'  :'' }}" 
-                                name="co_money" id="co_money" >
+                            </div> 
+                            @php
+                                $money = 0;             
+                                if (isset($op1_amount)) $money += $op1_amount;
+                                if (isset($op2_amount)) $money += $op2_amount;
+                                if (isset($op3_amount)) $money += $op3_amount;
+                            @endphp
+                            <input readonly type="text" class="form-control" 
+                                name="co_money" id="co_money" value="{{ ($money != 0) ? number_format($money) : '' }}">
                             <div class="invalid-feedback">
                                 @error('co_money')
                                     {{ $message }}

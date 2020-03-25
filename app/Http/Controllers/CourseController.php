@@ -12,8 +12,8 @@ class CourseController extends Controller
 {
     public function index() {
         // get all course have del_flg = 0 and soft by update time
-        $list_course = Course::where('co_del_flg', 0)->orderBy('co_id', 'DESC')->paginate(10);
-        $list_option = Option::where('op_del_flg', 0)->orderBy('op_id', 'DESC')->paginate(10);
+        $list_course = Course::where('co_del_flg', 0)->orderBy('co_id', 'DESC')->get();
+        $list_option = Option::where('op_del_flg', 0)->orderBy('op_id', 'DESC')->get();
         return view('pages.course', compact('list_course', 'list_option'));
     }
 
@@ -32,8 +32,14 @@ class CourseController extends Controller
         $validator = $request->validate([
             'co_name'   => 'required',
         ], [
-            'co_name.required'  => '入力してください!',
+            'co_name.required'  => '入力してください。',
         ]);
+
+        // check must choose at least 1 option
+        if ($validator && ($request->co_opt1 == NULL) && ($request->co_opt2 == NULL) && ($request->co_opt3 == NULL)) {
+            $option_error = "少なくとも1つのオプションを選択してください。";
+            return redirect()->back()->withInput($request->input())->withErrors(['option_error' => $option_error]);
+        }
 
         // get current time
         $currentTime = Carbon::now();
@@ -65,6 +71,12 @@ class CourseController extends Controller
         ], [
             'co_name.required'  => '入力してください!',
         ]);
+
+        // check must choose at least 1 option
+        if ($validator && ($request->co_opt1 == NULL) && ($request->co_opt2 == NULL) && ($request->co_opt3 == NULL)) {
+            $option_error = "少なくとも1つのオプションを選択してください。";
+            return redirect()->back()->with('option_error', $option_error);
+        }
 
         $course = Course::find($request->co_id);
 

@@ -21,7 +21,7 @@
             </div>
            
             @if (isset($list_course))
-                <table class="table table-bordered table-hover table-fixed">
+                <table id="course-table" class="table table-bordered table-hover table-fixed">
                     <thead class="table-header">
                         <tr>
                             <th width="5%" scope="col">No</th>
@@ -67,9 +67,6 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="pagination-container">
-                    <div>{{ $list_course->links() }}</div>
-                </div>
             @endif
         </div>
         <div>
@@ -88,7 +85,7 @@
             </div>
             
             @if (isset($list_option))
-                <table class="table table-bordered table-hover table-fixed">
+                <table id="option-table" class="table table-bordered table-hover table-fixed">
                     <thead class="table-header">
                         <tr>
                             <th width="5%" scope="col">No</th>
@@ -120,10 +117,15 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="pagination-container">
-                    <div>{{ $list_option->links() }}</div>
-                </div>
             @endif
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('#course-table').DataTable();
+        });
+        $(document).ready(function() {
+            $('#option-table').DataTable();
+        });
+    </script>
 @endsection
