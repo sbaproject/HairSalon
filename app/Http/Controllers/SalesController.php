@@ -88,18 +88,14 @@ class SalesController extends Controller
     }   
 
     public function postSalesNew(Request $request) {
-        // dd($request);
-        // die;
-       
+
          $request->validate([
             's_c_id'   => 'required',
             's_co_id'    => 'required',
         ], [
-            's_c_id.required'  => '入力してください!',
-            's_co_id.required'   => '入力してください!',
-        ]);
-
-       
+            's_c_id.required'  => '入力してください。',
+            's_co_id.required'   => '入力してください。',
+        ]);     
 
         // get current time
         $currentTime = Carbon::now();
@@ -109,11 +105,27 @@ class SalesController extends Controller
                             ->first();
 
 
-        // if ($course->co_opt1 != null && $request->get('s_opts1') === null ) {
-        //                         return redirect('sales/new')
-        //                                     ->withErrors(['s_opts1', 'thach'] )
-        //                                     ->withInput();
-        //                     }                    
+        if ($course->co_opt1 != null && $request->get('s_opts1') === null ) {
+                                            $customer_error = "入力してください。";
+                                            return redirect()->back()->withInput($request->input())->withErrors(['customer_error' => $customer_error]);
+                                            
+                                        }   
+
+                                        if ($course->co_opt2 != null && $request->get('s_opts2') === null ) {
+                                                        $customer_error2 = "入力してください。";
+                                                        return redirect()->back()->withInput($request->input())->withErrors(['customer_error2' => $customer_error2]);
+                                                        
+                                        }  
+            
+                                        if ($course->co_opt3 != null && $request->get('s_opts3') === null ) {
+                                            // return redirect('sales/new')
+                                            //             ->withErrors(['s_opts1', 'thach'] )
+                                            //             ->withInput();
+            
+                                                        $customer_error3 = "入力してください。";
+                                                        return redirect()->back()->withInput($request->input())->withErrors(['customer_error3' => $customer_error3]);
+                                                        
+                                        }                          
                             
         $money = 0;
         if(!empty($course->Option1->op_amount)){
@@ -171,13 +183,28 @@ class SalesController extends Controller
             's_c_id'   => 'required',
             's_co_id'    => 'required',
         ], [
-            's_c_id.required'  => '入力してください!',
-            's_co_id.required'   => '入力してください!',
+            's_c_id.required'  => '入力してください。',
+            's_co_id.required'   => '入力してください。',
         ]);
 
         $course = Course::where('co_id',$request->get('s_co_id'))
                 ->where('co_del_flg', 0)                      
                 ->first();
+
+                if ($course->co_opt1 != null && $request->get('s_opts1') === null ) {
+                    $customer_error = "入力してください。";
+                    return redirect()->back()->withInput($request->input())->withErrors(['customer_error' => $customer_error]);                    
+                }   
+
+                if ($course->co_opt2 != null && $request->get('s_opts2') === null ) {
+                                $customer_error2 = "入力してください。";
+                                return redirect()->back()->withInput($request->input())->withErrors(['customer_error2' => $customer_error2]);                                
+                }  
+
+                if ($course->co_opt3 != null && $request->get('s_opts3') === null ) {
+                                $customer_error3 = "入力してください。";
+                                return redirect()->back()->withInput($request->input())->withErrors(['customer_error3' => $customer_error3]);                                
+                }          
 
         $money = 0;
         if(!empty($course->Option1->op_amount)){
@@ -208,8 +235,8 @@ class SalesController extends Controller
         $sales->sale_date   = $request->get('sale_date');
         $sales->s_update    = Carbon::now();
         $sales->save();
-        // return redirect('sales')->with('success', 'データを更新出来ました。');
-        return redirect($request->get('urlBack'))->with('success', 'データを更新出来ました。');
+         return redirect('sales')->with('success', 'データを更新出来ました。');
+        // return redirect($request->get('urlBack'))->with('success', 'データを更新出来ました。');
     }
 
     public function getSalesDelete($id) {

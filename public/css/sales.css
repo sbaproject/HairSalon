@@ -173,3 +173,29 @@
     align-items: center;
     
 }
+
+#course-table tbody td,
+#course-table tbody th,
+#course-table thead > tr > th {
+    float: none;
+    position: relative;
+
+    &::after {
+        content: '';
+        clear: both;
+        display: block;
+    }
+}
+
+#option-table tbody td,
+#option-table tbody th,
+#option-table thead > tr > th {
+    float: none;
+    position: relative;
+
+    &::after {
+        content: '';
+        clear: both;
+        display: block;
+    }
+}

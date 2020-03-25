@@ -32,9 +32,9 @@ class StaffController extends Controller
             's_lastname'    => 'required',
             's_charge'      => 'required',
         ], [
-            's_firstname.required'  => '入力してください!',
-            's_lastname.required'   => '入力してください!',
-            's_charge.required'     => '入力してください!'
+            's_firstname.required'  => '入力してください。',
+            's_lastname.required'   => '入力してください。',
+            's_charge.required'     => '入力してください。'
         ]);
 
         // get current time
@@ -66,9 +66,9 @@ class StaffController extends Controller
             's_lastname'    => 'required',
             's_charge'      => 'required',
         ], [
-            's_firstname.required'  => '入力してください!',
-            's_lastname.required'   => '入力してください!',
-            's_charge.required'     => '入力してください!'
+            's_firstname.required'  => '入力してください。',
+            's_lastname.required'   => '入力してください。',
+            's_charge.required'     => '入力してください。'
         ]);
 
         $staff = Staff::find($request->get('s_id'));

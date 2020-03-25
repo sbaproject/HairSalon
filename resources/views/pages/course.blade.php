@@ -122,10 +122,31 @@
     </div>
     <script>
         $(document).ready(function() {
-            $('#course-table').DataTable();
+            $('#course-table').DataTable({
+                 "bFilter": false,                
+                 "bLengthChange": false,
+                 "bInfo": false,
+                 "language": {
+                        "paginate": {
+                            "previous": "<"  , 
+                             "next": ">"
+                            }
+                    }
+            });
         });
         $(document).ready(function() {
-            $('#option-table').DataTable();
+            $('#option-table').DataTable({
+                "bFilter": false,                
+                 "bLengthChange": false,
+                 "bInfo": false,
+                 "language": {
+                        "paginate": {
+                            "previous": "<"  ,  
+                            "next": ">"
+                        }
+                    }
+            });
+           
         });
     </script>
 @endsection

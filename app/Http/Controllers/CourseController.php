@@ -69,7 +69,7 @@ class CourseController extends Controller
         $validator = $request->validate([
             'co_name'   => 'required',
         ], [
-            'co_name.required'  => '入力してください!',
+            'co_name.required'  => '入力してください。',
         ]);
 
         // check must choose at least 1 option

@@ -29,8 +29,8 @@ class UserController extends Controller
             'u_user'   => 'required',
             'u_pw'    => 'required|min:4|max:8',
         ], [
-            'u_user.required'  => '入力してください!',
-            'u_pw.required'   => '入力してください!', 
+            'u_user.required'  => '入力してください。',
+            'u_pw.required'   => '入力してください。', 
             'u_pw.max'   => 'パスワードは8文字以上です',
             'u_pw.min'   => 'パスワードは4文字以上です',
         ]);
@@ -83,8 +83,8 @@ class UserController extends Controller
             'u_user'   => 'required',
             'u_pw'    => 'required|min:4|max:8',
         ], [
-            'u_user.required'  => '入力してください!',
-            'u_pw.required'   => '入力してください!',
+            'u_user.required'  => '入力してください。',
+            'u_pw.required'   => '入力してください。',
             'u_pw.max'   => 'パスワードは8文字以上です',
             'u_pw.min'   => 'パスワードは4文字以上です',
         ]);

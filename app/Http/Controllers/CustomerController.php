@@ -38,8 +38,8 @@ class CustomerController extends Controller
             'c_firstname'   => 'required',
             'c_lastname'    => 'required',
         ], [
-            'c_firstname.required'  => '入力してください!',
-            'c_lastname.required'   => '入力してください!',
+            'c_firstname.required'  => '入力してください。',
+            'c_lastname.required'   => '入力してください。',
         ]);
 
         // get current time
@@ -65,8 +65,8 @@ class CustomerController extends Controller
             'c_firstname'   => 'required',
             'c_lastname'    => 'required',
         ], [
-            'c_firstname.required'  => '入力してください!',
-            'c_lastname.required'   => '入力してください!'
+            'c_firstname.required'  => '入力してください。',
+            'c_lastname.required'   => '入力してください。'
         ]);
 
         $customer = Customer::find($request->get('c_id'));
