@@ -1,4 +1,60 @@
 .form-customer{
-    border: 2px solid #C0C0C0;
-    border-radius: 5px;
+    padding:20px;
+}
+
+.btn-addcustomer{
+    display: block;
+    margin-left: 80px;
+}
+
+#formSearch{
+    width:60%;
+    margin-top: 25px;
+    border: 2px solid #DDDDDD;
+    border-radius: 2px;
+}
+
+.formser{
+    padding: 10px;
+}
+.form-btn{
+    text-align:center;
+}
+
+.form-btn{
+    text-align:center;
+}
+
+.form-btnprcess{
+    margin-top:20px;
+    text-align:center;
+}
+.form-btnnextpre{
+    margin-top:20px;
+}
+
+#btnSearch{
+    width:100px;
+    margin-bottom:15px;
+    margin-right:15px;
+}
+
+#btnCancelSearch{
+    width:100px;
+    margin-bottom:15px;
+}
+
+#formSearchload{
+    width:60%;
+}
+
+#btnUpdate{
+    width:100px;
+    margin-bottom:15px;
+    margin-right:15px;
+}
+
+#btnCancel{
+    width:100px;
+    margin-bottom:15px;
 }

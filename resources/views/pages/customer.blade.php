@@ -5,14 +5,15 @@
 @endsection
 @section('content')
 <link href="{{ asset('css/customer.css')}}" rel="stylesheet">
-<div style="padding:20px;">
+<div class="form-customer">
 <div class="row">
   <div class="col-md-2"><label>検索</label></div>
-  <div class="col-md-4"><a class="btn btn-primary" style="margin-top:-30px" href="{{url('customer/new')}}" role="button">新規追加</a></div>
+  <div class="col-md-4"><a class="btn btn-primary btn-addcustomer" href="{{url('customer/new')}}" role="button">新規追加</a></div>
 </div>
 
-<form method="post" id="formSearch" style="width:50%" >
+<form method="post" id="formSearch" >
 @csrf
+  <div class="formser">
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">顧客ID</span>
@@ -31,22 +32,28 @@
       </div>
       <input type="text" class="form-control" id="searchl_name" name="searchl_name"></input>
     </div>
-
-    <div class="form-btn" style="text-align:center;">
-        <button type="button" id="btnSearch" class="btn btn-primary" style="width:100px;margin-bottom:15px;margin-right:15px">検索</button>  
-        <button type="button" id="btnCancelSearch" class="btn btn-secondary" style="width:100px;margin-bottom:15px;">クリア</button>  
+  </div>
+    <div class="form-btn">
+        <button type="button" id="btnSearch" class="btn btn-primary">検索</button>
+        <button type="button" id="btnCancelSearch" class="btn btn-secondary" >クリア</button>
     </div>
 </form>
 <div class="row">
-     <div class="col-md-6" style="padding-top:30px;position:relative">          
-            <label style="color:#0066FF;position: absolute;margin-top: -30px;display:none" id="messageSuccess">顧客情報を更新出来ました。</label>                  
+     <div class="col-md-6" style="padding-top:30px;position:relative;">
+        <label id="messageSuccess" style="color:#0066FF;position: absolute;margin-top: -30px;display:none;">顧客情報を更新出来ました。</label>
     </div>
 </div>
 <div class="row">
-  <div class="col-md-3"><label>顧客詳細</label></div>
-  <div class="col-md-3"><label id="lblPaging" class="float-right" style="display:none"><span id="page">1</span>/<span id="totalPage"></span></label></div>
+  <div class="col-md-3">
+    <label>顧客詳細</label>
+  </div>
+  <div class="col-md-4">
+    <label id="lblPaging" style="display:none" class="float-right" >
+      <span id="page">1</span>/<span id="totalPage"></span>
+    </label>
+  </div>
 </div>
-<form method="post" id="formSearchload" style="width:50%" >
+<form method="post" id="formSearchload">
 @csrf
     <div class="input-group mb-3">
       <div class="input-group-prepend">
@@ -80,11 +87,11 @@
     </div>
   <input type="text" id="c_text" readonly="" name="c_text" value="テストテストテスト" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
 </div>
-<div class="form-btn" style="text-align:center; margin-top:20px">
-       <button type="button" id="btnUpdate" class="btn btn-primary" style="width:100px;margin-bottom:15px;margin-right:15px">更新</button>  
-       <button type="button" id="btnCancel" class="btn btn-secondary" style="width:100px;margin-bottom:15px;">キャンセル</button>  
+<div class="form-btnprcess">
+       <button type="button" id="btnUpdate" class="btn btn-primary">更新</button>  
+       <button type="button" id="btnCancel" class="btn btn-secondary">キャンセル</button>  
   </div>
-<div class="form-btn" id="divButton" style="text-align:center;display:none">
+<div class="form-btnnextpre" id="divButton" style="display:none">
     <button type="button" id="btnPrev" disabled="disabled" class="btn">前</button>    
     <button type="button" id="btnNext" class="btn">次</button>
 </div>
