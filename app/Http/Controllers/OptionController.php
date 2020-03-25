@@ -26,8 +26,8 @@ class OptionController extends Controller
         ], [
             'op_name.required'      => '入力してください!',
             'op_amount.required'    => '入力してください!',
-            'op_amount.numeric'     => 'Must be a number!',
-            'op_amount.gt'          => 'Must be greater than 0!',
+            'op_amount.numeric'     => '数字をご入力下さい。',
+            'op_amount.gt'          => '数字をご入力下さい。',
         ]);
 
         $option = new Option([

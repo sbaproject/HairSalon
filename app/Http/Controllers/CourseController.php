@@ -37,7 +37,7 @@ class CourseController extends Controller
 
         // check must choose at least 1 option
         if ($validator && ($request->co_opt1 == NULL) && ($request->co_opt2 == NULL) && ($request->co_opt3 == NULL)) {
-            $option_error = "少なくとも1つのオプションを選択してください。";
+            $option_error = "一つ以上のオプションを選択してください。";
             return redirect()->back()->withInput($request->input())->withErrors(['option_error' => $option_error]);
         }
 
