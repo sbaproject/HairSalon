@@ -37,8 +37,22 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">姓</span>
                             </div>
+                            <input type="text" class="form-control {{ ($errors->first('s_lastname')) ? 'is-invalid'  :'' }}" 
+                                name="s_lastname" value="{{ old('s_lastname') }}" placeholder="GINZA">
+                            <div class="invalid-feedback">
+                                @error('s_lastname')
+                                    {{ $message }}
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">名</span>
+                            </div>
                             <input type="text" class="form-control {{ ($errors->first('s_firstname')) ? 'is-invalid'  :'' }}" 
-                                name="s_firstname" value="{{ old('s_firstname') }}" placeholder="GINZA">
+                                name="s_firstname" value="{{ old('s_firstname') }}" placeholder="TARO">
                             <div class="invalid-feedback">
                                 @error('s_firstname')
                                     {{ $message }}
@@ -47,20 +61,7 @@
                             
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">名</span>
-                            </div>
-                            <input type="text" class="form-control {{ ($errors->first('s_lastname')) ? 'is-invalid'  :'' }}" 
-                                name="s_lastname" value="{{ old('s_lastname') }}" placeholder="TARO">
-                            <div class="invalid-feedback">
-                                @error('s_lastname')
-                                    {{ $message }}
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
+                   
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">

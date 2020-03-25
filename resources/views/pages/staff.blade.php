@@ -43,8 +43,8 @@
                     @foreach($list_staff as $staff)
                         <tr>
                             <th width="5%">{{ $index < 10 ? '0' . $index : $index }}</th>
-                            <td width="10%">{{ $staff->s_firstname }}</td>
                             <td width="10%">{{ $staff->s_lastname }}</td>
+                            <td width="10%">{{ $staff->s_firstname }}</td>
                             <td width="14%">{{ $staff->Shop->sh_name }}</td>
                             <td width="12%">{{ $staff->s_charge }}</td>
                             <td width="39%">{{ $staff->s_text }}</td>
