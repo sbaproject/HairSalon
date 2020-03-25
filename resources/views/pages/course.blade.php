@@ -21,17 +21,17 @@
             </div>
            
             @if (isset($list_course))
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover table-fixed">
                     <thead class="table-header">
                         <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">コース名</th>
-                            <th scope="col">サブ１</th>
-                            <th scope="col">サブ２</th>
-                            <th scope="col">サブ３</th>
-                            <th scope="col">金額</th>
-                            <th scope="col">備考</th>
-                            <th scope="col">Actions</th>
+                            <th width="5%" scope="col">No</th>
+                            <th width="12%" scope="col">コース名</th>
+                            <th width="12%" scope="col">サブ１</th>
+                            <th  width="12%" scope="col">サブ２</th>
+                            <th width="12%" scope="col">サブ３</th>
+                            <th width="10%" scope="col">金額</th>
+                            <th width="27%"  scope="col">備考</th>
+                            <th width="10%" scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,14 +52,14 @@
                                 !empty($course->Option3) ? $money += $course->Option3->op_amount : '';
                             @endphp
                             <tr>
-                                <th>{{ $index < 10 ? '0' . $index : $index }}</th>
-                                <td>{{ $course->co_name }}</td>
-                                <td>{{ !empty($course->Option1) ? $course->Option1->op_name : '' }}</td>
-                                <td>{{ !empty($course->Option2) ? $course->Option2->op_name : ''  }}</td>
-                                <td>{{ !empty($course->Option3) ? $course->Option3->op_name : ''  }}</td>
-                                <td>{{ number_format($money) }}</td>
-                                <td>{{ $course->co_text }}</td>
-                                <td><a href="{{ url('course/edit/' . $course->co_id) }}">編集</a>&nbsp;<a href="{{ url('course/delete/' . $course->co_id) }}" style="color: red;">削除</a></td>
+                                <th width="5%">{{ $index < 10 ? '0' . $index : $index }}</th>
+                                <td width="12%">{{ $course->co_name }}</td>
+                                <td width="12%">{{ !empty($course->Option1) ? $course->Option1->op_name : '' }}</td>
+                                <td width="12%">{{ !empty($course->Option2) ? $course->Option2->op_name : ''  }}</td>
+                                <td width="12%">{{ !empty($course->Option3) ? $course->Option3->op_name : ''  }}</td>
+                                <td width="10%">{{ number_format($money) }}</td>
+                                <td width="27%">{{ $course->co_text }}</td>
+                                <td width="10%"><a href="{{ url('course/edit/' . $course->co_id) }}">編集</a>&nbsp;<a href="{{ url('course/delete/' . $course->co_id) }}" style="color: red;">削除</a></td>
                             </tr>
                             @php 
                                 $index++; 
@@ -88,13 +88,13 @@
             </div>
             
             @if (isset($list_option))
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover table-fixed">
                     <thead class="table-header">
                         <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">オプション名</th>
-                            <th scope="col">金額</th>
-                            <th scope="col">Actions</th>
+                            <th width="5%" scope="col">No</th>
+                            <th width="75%" scope="col">オプション名</th>
+                            <th width="10%" scope="col">金額</th>
+                            <th width="10%" scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -109,10 +109,10 @@
 
                         @foreach($list_option as $option)
                             <tr>
-                                <th>{{ $index < 10 ? '0' . $index : $index }}</th>
-                                <td>{{ $option->op_name }}</td>
-                                <td>{{ number_format($option->op_amount) }}</td>
-                                <td><a href="{{ url('option/edit/' . $option->op_id) }}">編集</a>&nbsp;<a href="{{ url('option/delete/' . $option->op_id) }}" style="color: red;">削除</a></td>
+                                <th width="5%">{{ $index < 10 ? '0' . $index : $index }}</th>
+                                <td width="75%">{{ $option->op_name }}</td>
+                                <td width="10%">{{ number_format($option->op_amount) }}</td>
+                                <td width="10%"><a href="{{ url('option/edit/' . $option->op_id) }}">編集</a>&nbsp;<a href="{{ url('option/delete/' . $option->op_id) }}" style="color: red;">削除</a></td>
                             </tr>
                             @php 
                                 $index++; 

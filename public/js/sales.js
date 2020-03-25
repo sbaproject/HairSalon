@@ -15,6 +15,12 @@ $(document).ready(function(){
         $("#statusResult").html('');
         $("#statusResult").show()
       });
+
+    $(".table-fixed td").each(function(){
+        if ($(this).html() === '') {
+            $(this).css('padding','27px');
+        }
+    });
 });
 
 $(function() {

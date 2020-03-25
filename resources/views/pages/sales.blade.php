@@ -4,7 +4,11 @@
 @parent
 @endsection
 @section('content')
-</br>    
+
+<div class="header-title">
+                    <span>売上管</span>
+                </div>
+<br>
             <div class="row marBot15">
 			<div class="searchSales col-md-5"> 	           
        
@@ -104,20 +108,20 @@
                     {{ \Session::get('success') }}           
             @endif
         </div>     -->
-
+        
         @if (isset($list_sales) && $list_sales_count>0)
-        <table class="table table-bordered table-hover">
+        <table class="table table-bordered table-hover table-fixed">
             <thead>
                 <tr style="background-color: #e8e8e8;">
-                <th scope="col">No</th>
-                <th scope="col">顧客名前</th>
-                <th scope="col">コース</th>
-                <th scope="col">サブ1</th>
-                <th scope="col">サブ2</th>
-                <th scope="col">サブ3</th>
-                <th scope="col">金額</th>
-                <th scope="col">備考</th>
-                <th scope="col">Actions</th>
+                <th width="5%" scope="col">No</th>
+                <th width="10%" scope="col">顧客名前</th>
+                <th width="10%" scope="col">コース</th>
+                <th width="12%" scope="col">サブ1</th>
+                <th width="12%" scope="col">サブ2</th>
+                <th width="12%" scope="col">サブ3</th>
+                <th width="8%" scope="col">金額</th>
+                <th width="22%" scope="col">備考</th>
+                <th width="9%" scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -135,15 +139,15 @@
 
                 @endphp
                 <tr>
-                    <th>{{ $index }}</th>
-                    <td>{{!empty($sales->Customer->c_firstname)?$sales->Customer->c_firstname:''}} {{!empty($sales->Customer->c_lastname)?$sales->Customer->c_lastname:''}}</td>
-                    <td>{{ !empty($sales->Course->co_name) ? $sales->Course->co_name : '' }}</td>
-                    <td>{{ !empty($sales->Option1->op_name) ? $sales->Option1->op_name : ''}}</td>
-                    <td>{{ !empty($sales->Option2->op_name) ? $sales->Option2->op_name : ''}}</td>
-                    <td>{{ !empty($sales->Option3->op_name) ? $sales->Option3->op_name : ''}}</td>
-                    <td>{{number_format($sales->s_money)}}</td>
-                    <td>{{$sales->s_text}}</td>
-                    <td><a href="{{ url('sales/edit/' . $sales->s_id) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a></td>
+                    <th  width="5%">{{ $index }}</th>
+                    <td  width="10%">{{!empty($sales->Customer->c_firstname)?$sales->Customer->c_firstname:''}} {{!empty($sales->Customer->c_lastname)?$sales->Customer->c_lastname:''}}</td>
+                    <td width="10%">{{ !empty($sales->Course->co_name) ? $sales->Course->co_name : '' }}</td>
+                    <td width="12%">{{ !empty($sales->Option1->op_name) ? $sales->Option1->op_name : ''}}</td>
+                    <td width="12%">{{ !empty($sales->Option2->op_name) ? $sales->Option2->op_name : ''}}</td>
+                    <td width="12%">{{ !empty($sales->Option3->op_name) ? $sales->Option3->op_name : ''}}</td>
+                    <td width="8%">{{number_format($sales->s_money)}}</td>
+                    <td width="22%">{{$sales->s_text}}</td>
+                    <td width="9%"><a href="{{ url('sales/edit/' . $sales->s_id) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a></td>
                 </tr>
                 @php 
                     $index++; 
@@ -151,6 +155,7 @@
                 @endforeach               
             </tbody>
         </table>
+        
         @endif
         <div class="pagination-container">
                 <div>{{ $list_sales->appends(request()->input())->links() }}</div>

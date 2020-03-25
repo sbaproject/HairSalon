@@ -65,11 +65,19 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客ID</span>
                             </div>
-                            <select class="form-control" id="s_c_id" name="s_c_id"  onchange="onCustomerChange({{ $list_customer }})">
+                            <div class="form-control wrapper-select {{ ($errors->first('s_c_id')) ? 'is-invalid'  :'' }}">
+                            <select class="select-shop2" id="s_c_id" name="s_c_id"  onchange="onCustomerChange({{ $list_customer }})">
+                            <option value = ''></option>
                             @foreach($list_customer as $customer)
                             <option value = '{{$customer->c_id}}'>{{$customer->c_id}} - {{$customer->c_lastname}} {{$customer->c_firstname}}</option>
                             @endforeach
                             </select>
+                            </div>
+                            <div class="invalid-feedback">
+                                @error('s_c_id')
+                                    {{ $message }}
+                                @enderror
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -93,11 +101,19 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">コース</span>
                             </div>
-                            <select class="form-control" id="s_co_id"  name="s_co_id" onchange="onCourseChange({{ $list_course }},{{ $list_option }})">
+                            <div class="form-control wrapper-select {{ ($errors->first('s_co_id')) ? 'is-invalid'  :'' }}">
+                            <select class="select-shop2" id="s_co_id"  name="s_co_id" onchange="onCourseChange({{ $list_course }},{{ $list_option }})">
+                            <option value = ''></option>
                             @foreach($list_course as $course)
                             <option value = '{{$course->co_id}}'>{{$course->co_name}}</option>
                             @endforeach
                             </select>
+                            </div>
+                            <div class="invalid-feedback">
+                                @error('s_co_id')
+                                    {{ $message }}
+                                @enderror
+                            </div>
                         </div>
                     </div>
 
@@ -106,12 +122,15 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ1</span>
                             </div>
-                            <input type="text" class="form-control" readonly name = "s_opt1"  value="">                           
-                            <select class="form-control" name = "s_opts1">
+                            <input type="text" class="form-control" readonly name = "s_opt1"  value=""> 
+                            <div class="form-control wrapper-select">                          
+                            <select class="select-shop2" name = "s_opts1">
+                            <option value = ''></option>
                             @foreach($list_staff as $staff)
                             <option value = '{{$staff->s_id}}'>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
                             @endforeach
                             </select>
+                            </div>
                         </div>
                     </div>
 
@@ -121,11 +140,14 @@
                                 <span class="input-group-text">サブ2</span>
                             </div>
                             <input type="text" class="form-control" readonly name = "s_opt2" value="">
-                            <select class="form-control" name = "s_opts2">
+                            <div class="form-control wrapper-select"> 
+                            <select class="select-shop2" name = "s_opts2">
+                            <option value = ''></option>
                             @foreach($list_staff as $staff)
                             <option value = '{{$staff->s_id}}'>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
                             @endforeach
                             </select>
+                            </div>
                         </div>
                     </div>
 
@@ -135,11 +157,14 @@
                                 <span class="input-group-text">サブ3</span>
                             </div>
                             <input type="text" class="form-control" readonly name = "s_opt3" value="">
-                            <select class="form-control" name = "s_opts3">
+                            <div class="form-control wrapper-select"> 
+                            <select class="select-shop2" name = "s_opts3">
+                            <option value = ''></option>
                             @foreach($list_staff as $staff)
                             <option value = '{{$staff->s_id}}'>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
                             @endforeach
                             </select>
+                            </div> 
                         </div>
                     </div>
 

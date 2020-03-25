@@ -131,3 +131,40 @@
 .btn{
     width: 120px;
 }
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.table-fixed tbody td,
+.table-fixed tbody th,
+.table-fixed thead > tr > th {
+    float: left;
+    position: relative;
+
+    &::after {
+        content: '';
+        clear: both;
+        display: block;
+    }
+}
+.table-bordered th{
+    border-right: 1px solid #bdbdbd;   
+}
+
+.table-bordered td {      
+    border-right: 1px solid #bdbdbd;   
+}
+
+.select-shop2{
+    width: 100%;
+    border-radius: 5px;
+    align-items: center;
+    
+}
