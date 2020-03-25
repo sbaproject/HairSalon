@@ -2,7 +2,7 @@
 	background-color: #e8e8e8;
 }
 .table-bordered td, .table-bordered th {
-	border: 1px solid #bdbdbd;
+	/* border: 1px solid #bdbdbd; */
 }
 .table thead th {
     text-align: center;

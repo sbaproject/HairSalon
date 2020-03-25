@@ -23,8 +23,7 @@ class SalesController extends Controller
                 'str_date'   => 'required|date',
                 'end_date'    => 'required|date|after_or_equal:str_date',           
             ], [
-                'str_date.required'  => '入力してください!',
-                'end_date.required'   => '入力してください!'
+                'end_date.after_or_equal'  => '終了日は開始日以降の日付を選択してください。',
             ]);
     
             $str_date = str_replace('/','-',$req->str_date) . ' 00:00:00';
@@ -89,17 +88,20 @@ class SalesController extends Controller
     }   
 
     public function postSalesNew(Request $request) {
-        $request->validate([
+        // dd($request);
+        // die;
+       
+         $request->validate([
             's_c_id'   => 'required',
             's_co_id'    => 'required',
-            's_pay'    => 'required',
             's_money'      => 'required',
         ], [
             's_c_id.required'  => '入力してください!',
             's_co_id.required'   => '入力してください!',
-            's_pay.required'     => '入力してください!',
-            's_money.required'     => '入力してください!'
+            's_money.required'     => '入力してください!',
         ]);
+
+           
 
         // get current time
         $currentTime = Carbon::now();
@@ -123,11 +125,11 @@ class SalesController extends Controller
             's_c_id'        => $request->get('s_c_id'),
             's_co_id'       => $request->get('s_co_id'),
             's_opt1'        => $course->co_opt1,
-            's_opts1'       => $request->get('s_opts1'),
+            's_opts1'       => ( $course->co_opt1 === null ? null : $request->get('s_opts1')),
             's_opt2'        => $course->co_opt2,
-            's_opts2'       => $request->get('s_opts2'),
+            's_opts2'       => ( $course->co_opt2 === null ? null : $request->get('s_opts2')),
             's_opt3'        => $course->co_opt3,
-            's_opts3'       => $request->get('s_opts3'),           
+            's_opts3'       => ( $course->co_opt3 === null ? null : $request->get('s_opts3')),           
             's_money'       => $money,
             's_pay'         => $request->get('s_pay'),
             's_text'        => $request->get('s_text'),

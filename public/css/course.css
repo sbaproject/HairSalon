@@ -1,5 +1,6 @@
 .header-title {
     margin-right: 30px;
+    font-weight: bold;
 }
 .pagination-container {
 	display: flex;

@@ -56,13 +56,15 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客ID</span>
                             </div>
-                            <select class="form-control" id="s_c_id" name="s_c_id" onchange="onCustomerChange({{ $list_customer }})">
+                            <div class="form-control wrapper-select">
+                            <select class="select-shop2" id="s_c_id" name="s_c_id" onchange="onCustomerChange({{ $list_customer }})">
                             @foreach($list_customer as $customer)
                             <option value = '{{$customer->c_id}}' {{ $sales->s_c_id == $customer->c_id ? 'selected' : '' }} >
                                 {{$customer->c_id}} - {{$customer->c_lastname}} {{$customer->c_firstname}}
                             </option>
                             @endforeach
                             </select>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -87,13 +89,15 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">コース</span>
                             </div>
-                            <select class="form-control" name="s_co_id" id ="s_co_id" onchange="onCourseChange({{ $list_course }},{{ $list_option }})">
+                            <div class="form-control wrapper-select">
+                            <select class="select-shop2" name="s_co_id" id ="s_co_id" onchange="onCourseChange({{ $list_course }},{{ $list_option }})">
                             @foreach($list_course as $course)
                             <option value = '{{$course->co_id}}' {{ $sales->s_co_id == $course->co_id ? 'selected' : '' }}>
                                 {{$course->co_name}} 
                             </option>
                             @endforeach
                             </select>
+                            </div>
                         </div>
                     </div>
 
@@ -102,16 +106,17 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ1</span>
                             </div>
-                            <div></div>
+                        
                             <input type="text" class="form-control" readonly name = "s_opt1" value="{{ !empty($sales->Option1->op_name)?$sales->Option1->op_name:''}}">                           
-                            <select class="form-control" name = "s_opts1">
+                            <div class="form-control wrapper-select">
+                            <select class="select-shop2" name = "s_opts1">
                             @foreach($list_staff as $staff)
                             <option value = '{{$staff->s_id}}' {{ $sales->s_opts1 == $staff->s_id ? 'selected' : '' }}>
                             {{$staff->s_firstname}} {{$staff->s_lastname}}
                             </option>
                             @endforeach
                             </select>
-                            </select>
+                            </div>
                         </div>
                     </div>
 
@@ -121,13 +126,15 @@
                                 <span class="input-group-text">サブ2</span>
                             </div>
                             <input type="text" class="form-control" readonly name = "s_opt2" value="{{ !empty($sales->Option2->op_name)?$sales->Option2->op_name:''}}">
-                            <select class="form-control" name = "s_opts2">
+                            <div class="form-control wrapper-select">
+                            <select class="select-shop2" name = "s_opts2">
                             @foreach($list_staff as $staff)
                             <option value = '{{$staff->s_id}}' {{ $sales->s_opts2 == $staff->s_id ? 'selected' : '' }}>
                             {{$staff->s_firstname}} {{$staff->s_lastname}}
                             </option>
                             @endforeach
                             </select>
+                            </div>
                         </div>
                     </div>
 
@@ -137,13 +144,15 @@
                                 <span class="input-group-text">サブ3</span>
                             </div>
                             <input type="text" class="form-control" readonly name = "s_opt3" value="{{ !empty($sales->Option3->op_name)?$sales->Option3->op_name:''}}">
-                            <select class="form-control" name = "s_opts3">
+                            <div class="form-control wrapper-select">
+                            <select class="select-shop2" name = "s_opts3">
                             @foreach($list_staff as $staff)
                             <option value = '{{$staff->s_id}}' {{ $sales->s_opts3 == $staff->s_id ? 'selected' : '' }}>
                             {{$staff->s_firstname}} {{$staff->s_lastname}}
                             </option>
                             @endforeach
                             </select>
+                            </div>
                         </div>
                     </div>
 

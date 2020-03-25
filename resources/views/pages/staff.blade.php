@@ -6,6 +6,9 @@
 @section('content')
     <div class="padding-20">
         <div class="header-index">
+        <div class="header-title">
+                    <span>スタッフ管</span>
+                </div>
             <a class="btn btn-primary add-new-btn" href="{{url('staff/new')}}" role="button">新規追加</a>
             @if (\Session::has('success'))
                 <div class=" alert alert-success alert-dismissible fade show">
@@ -15,16 +18,16 @@
         </div>
         
         @if (isset($list_staff))
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover table-fixed">
                 <thead class="table-header">
                     <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">姓</th>
-                        <th scope="col">名</th>
-                        <th scope="col">担当店舗</th>
-                        <th scope="col">主担当</th>
-                        <th scope="col">備考</th>
-                        <th scope="col">Actions</th>
+                        <th width="5%" scope="col">No</th>
+                        <th width="10%" scope="col">姓</th>
+                        <th width="10%" scope="col">名</th>
+                        <th width="14%" scope="col">担当店舗</th>
+                        <th width="12%" scope="col">主担当</th>
+                        <th width="39%" scope="col">備考</th>
+                        <th width="10%" scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,13 +42,13 @@
 
                     @foreach($list_staff as $staff)
                         <tr>
-                            <th>{{ $index < 10 ? '0' . $index : $index }}</th>
-                            <td>{{ $staff->s_firstname }}</td>
-                            <td>{{ $staff->s_lastname }}</td>
-                            <td>{{ $staff->Shop->sh_name }}</td>
-                            <td>{{ $staff->s_charge }}</td>
-                            <td>{{ $staff->s_text }}</td>
-                            <td><a href="{{ url('staff/edit/' . $staff->s_id) }}">編集</a>&nbsp;<a href="{{ url('staff/delete/' . $staff->s_id) }}" style="color: red;">削除</a></td>
+                            <th width="5%">{{ $index < 10 ? '0' . $index : $index }}</th>
+                            <td width="10%">{{ $staff->s_firstname }}</td>
+                            <td width="10%">{{ $staff->s_lastname }}</td>
+                            <td width="14%">{{ $staff->Shop->sh_name }}</td>
+                            <td width="12%">{{ $staff->s_charge }}</td>
+                            <td width="39%">{{ $staff->s_text }}</td>
+                            <td  width="10%"><a href="{{ url('staff/edit/' . $staff->s_id) }}">編集</a>&nbsp;<a href="{{ url('staff/delete/' . $staff->s_id) }}" style="color: red;">削除</a></td>
                         </tr>
                         @php 
                             $index++; 
