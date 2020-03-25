@@ -48,7 +48,7 @@
                             <td width="14%">{{ $staff->Shop->sh_name }}</td>
                             <td width="12%">{{ $staff->s_charge }}</td>
                             <td width="39%">{{ $staff->s_text }}</td>
-                            <td  width="10%"><a href="{{ url('staff/edit/' . $staff->s_id) }}">編集</a>&nbsp;<a href="{{ url('staff/delete/' . $staff->s_id) }}" style="color: red;">削除</a></td>
+                            <td id="link" width="10%"><a href="{{ url('staff/edit/' . $staff->s_id) }}">編集</a>&nbsp;<a href="{{ url('staff/delete/' . $staff->s_id) }}" style="color: red;">削除</a></td>
                         </tr>
                         @php 
                             $index++; 

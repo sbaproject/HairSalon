@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">Date Sale</span>
+                                <span class="input-group-text">売上伝票日付</span>
                             </div>
                             <input id="sale_date" readonly type="text" class="form-control datetimepicker-input col-md-2"
                                          name="sale_date" autocomplete="off"  value="{{ $salesDate }}">
@@ -171,12 +171,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">金額</span>
                             </div>
-                            <input type="text" readonly class="form-control {{ ($errors->first('s_money')) ? 'is-invalid'  :'' }}" value="{{ $sales->s_money }}" name="s_money">
-                            <div class="invalid-feedback">
-                                @error('s_money')
-                                    {{ $message }}
-                                @enderror
-                            </div>
+                            <input type="text" readonly class="form-control" value="{{ $sales->s_money }}" name="s_money">
                         </div>
                     </div>
                     <div class="form-group">

@@ -147,7 +147,7 @@
                     <td width="12%">{{ !empty($sales->Option3->op_name) ? $sales->Option3->op_name : ''}}</td>
                     <td width="8%">{{number_format($sales->s_money)}}</td>
                     <td width="22%">{{$sales->s_text}}</td>
-                    <td width="9%"><a href="{{ url('sales/edit/' . $sales->s_id) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a></td>
+                    <td id="link" width="9%"><a href="{{ url('sales/edit/' . $sales->s_id) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a></td>
                 </tr>
                 @php 
                     $index++; 

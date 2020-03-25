@@ -17,9 +17,21 @@ $(document).ready(function(){
       });
 
     $(".table-fixed td").each(function(){
-        if ($(this).html() === '') {
+        
+        var bien = $(this).html();
+        
+        if (bien === '') {
             $(this).css('padding','27px');
         }
+
+        if($(this).attr('id') =='link' ){   
+
+        }else{
+            if (bien.length > 50 ) {
+                $(this).html(bien.substring(1,50)+'...');
+            }
+ 
+          }       
     });
 });
 

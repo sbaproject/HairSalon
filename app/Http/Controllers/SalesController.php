@@ -94,11 +94,9 @@ class SalesController extends Controller
          $request->validate([
             's_c_id'   => 'required',
             's_co_id'    => 'required',
-            's_money'      => 'required',
         ], [
             's_c_id.required'  => '入力してください!',
             's_co_id.required'   => '入力してください!',
-            's_money.required'     => '入力してください!',
         ]);
 
        
@@ -172,11 +170,9 @@ class SalesController extends Controller
         $request->validate([
             's_c_id'   => 'required',
             's_co_id'    => 'required',
-            's_money'      => 'required',
         ], [
             's_c_id.required'  => '入力してください!',
             's_co_id.required'   => '入力してください!',
-            's_money.required'     => '入力してください!'
         ]);
 
         $course = Course::where('co_id',$request->get('s_co_id'))
