@@ -139,7 +139,7 @@
                         </div>
                     </div>
                     <div class="form-group-button">
-                        <button type="submit" class="btn btn-primary btn-form btn-left">追加</button>
+                        <button type="submit" class="btn btn-primary btn-form btn-left">更新</button>
                         <a role="button" href="{{url('course')}}" class="btn btn-secondary btn-form" >キャンセル</a>
                     </div>
                 </form>
