@@ -22,15 +22,15 @@
     </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text">顧客名</span>
-      </div>
-      <input type="text" class="form-control" id="searchf_name" name="searchf_name"></input>
-    </div>
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
         <span class="input-group-text">顧客姓</span>
       </div>
       <input type="text" class="form-control" id="searchl_name" name="searchl_name"></input>
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">顧客名</span>
+      </div>
+      <input type="text" class="form-control" id="searchf_name" name="searchf_name"></input>
     </div>
   </div>
     <div class="form-btn">
@@ -65,16 +65,16 @@
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text">顧客名</span>
+        <span class="input-group-text">顧客姓</span>
       </div>
-      <input type="text" id="c_firstname" readonly="" name="c_firstname" class="form-control" value="GINZA">
+      <input type="text" id="c_lastname" readonly="" name="c_lastname" class="form-control" value="GINZA">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text" >顧客姓</span>
+        <span class="input-group-text" >顧客名</span>
       </div>
-      <input type="text" id="c_lastname" readonly="" name="c_lastname" class="form-control" value="TARO">
+      <input type="text" id="c_firstname" readonly="" name="c_firstname" class="form-control" value="TARO">
     </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
@@ -133,13 +133,13 @@ $( document ).ready(function() {
                     $("#lblPaging").css("display", "");  
                     $("#divButton").css("display", "");            
                     $("#c_id").val(formatID(arrData[0].c_id));
-                    $("#c_firstname").val(arrData[0].c_firstname);
                     $("#c_lastname").val(arrData[0].c_lastname);
+                    $("#c_firstname").val(arrData[0].c_firstname);
                     $("#c_count").val(arrData[0].c_count);
                     $("#c_text").val(arrData[0].c_text);  
                     
-                    $("#c_firstname").removeAttr("readonly"); 
-                    $("#c_lastname").removeAttr("readonly");                            
+                    $("#c_lastname").removeAttr("readonly");
+                    $("#c_firstname").removeAttr("readonly");                             
                     $("#c_text").removeAttr("readonly");    
                     if (arrData.length == 1){
                       $("#btnNext").attr("disabled","disabled");     
@@ -149,12 +149,12 @@ $( document ).ready(function() {
                     index = 0; 
                     arrData = null;
                     $("#c_id").val("0000");
-                    $("#c_firstname").val("GINZA");
-                    $("#c_lastname").val("TARO");
+                    $("#c_lastname").val("GINZA");
+                    $("#c_firstname").val("TARO");
                     $("#c_count").val("4");
-                    $("#c_text").val('テストテストテスト');   
+                    $("#c_text").val('テストテストテスト');
+                    $("#c_lastname").attr("readonly","");   
                     $("#c_firstname").attr("readonly",""); 
-                    $("#c_lastname").attr("readonly","");                            
                     $("#c_text").attr("readonly","");
                     $("#messageDanger").css("display", "");  
                     $("#messageDanger").fadeOut(5000);            
@@ -166,14 +166,14 @@ $( document ).ready(function() {
       index = 0; 
       arrData = null;
       $('#searchid').val('');
-      $('#searchf_name').val('');
       $('#searchl_name').val('');
+      $('#searchf_name').val('');
       $("#lblPaging").css("display", "none");        
       $("#divButton").css("display", "none");
 
       $("#c_id").val("0000");
-      $("#c_firstname").val("GINZA");
-      $("#c_lastname").val("TARO");
+      $("#c_firstname").val("TARO");
+      $("#c_lastname").val("GINZA");
       $("#c_count").val("4");
       $("#c_text").val('テストテストテスト');   
       $("#c_firstname").attr("readonly",""); 
