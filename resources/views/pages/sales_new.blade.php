@@ -198,7 +198,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">備考</span>
                             </div>
-                            <textarea maxlength="100" class="form-control" rows=4 name="s_text"></textarea>
+                            <textarea maxlength="200" class="form-control" rows=4 name="s_text"></textarea>
                         </div>
                     </div>
                     <input type="hidden" id="hid" name="hid" value="">

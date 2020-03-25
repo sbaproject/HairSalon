@@ -37,7 +37,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">姓</span>
                             </div>
-                            <input type="text" class="form-control {{ ($errors->first('s_lastname')) ? 'is-invalid'  :'' }}" 
+                            <input type="text" maxlength="100" class="form-control {{ ($errors->first('s_lastname')) ? 'is-invalid'  :'' }}" 
                                 name="s_lastname" value="{{ old('s_lastname') ? old('s_lastname') : $staff->s_lastname }}" placeholder="TARO">
                             <div class="invalid-feedback">
                                 @error('s_lastname')
@@ -51,7 +51,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">名</span>
                             </div>
-                            <input type="text" class="form-control {{ ($errors->first('s_firstname')) ? 'is-invalid'  :'' }}" 
+                            <input type="text" maxlength="100" class="form-control {{ ($errors->first('s_firstname')) ? 'is-invalid'  :'' }}" 
                                 name="s_firstname" value="{{ old('s_firstname') ? old('s_firstname') : $staff->s_firstname }}" placeholder="GINZA">
                             <div class="invalid-feedback">
                                 @error('s_firstname')
@@ -84,7 +84,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">主担当</span>
                             </div>
-                            <input type="text" class="form-control {{ ($errors->first('s_charge')) ? 'is-invalid'  :'' }}" 
+                            <input type="text" maxlength="100" class="form-control {{ ($errors->first('s_charge')) ? 'is-invalid'  :'' }}" 
                                 name="s_charge" value="{{ old('s_charge') ? old('s_charge') : $staff->s_charge }}" placeholder="カット" >
                             <div class="invalid-feedback">
                                 @error('s_charge')
@@ -98,7 +98,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">備考</span>
                             </div>
-                            <textarea class="form-control" name="s_text" rows=4>{{ old('s_text') ? old('s_text') : $staff->s_text }}</textarea>
+                            <textarea class="form-control" maxlength="200" name="s_text" rows=4>{{ old('s_text') ? old('s_text') : $staff->s_text }}</textarea>
                         </div>
                     </div>
                     <div class="form-group-button">

@@ -37,7 +37,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">オプション名</span>
                             </div>
-                            <input type="text" class="form-control {{ ($errors->first('op_name')) ? 'is-invalid'  :'' }}" 
+                            <input type="text" maxlength="100" class="form-control {{ ($errors->first('op_name')) ? 'is-invalid'  :'' }}" 
                                 name="op_name" value="{{ old('op_name') }}">
                             <div class="invalid-feedback">
                                 @error('op_name')
@@ -52,7 +52,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">金額</span>
                             </div>
-                            <input type="text" class="form-control {{ ($errors->first('op_amount')) ? 'is-invalid'  :'' }}" 
+                            <input type="text" maxlength="100" class="form-control {{ ($errors->first('op_amount')) ? 'is-invalid'  :'' }}" 
                                 name="op_amount" value="{{ old('op_amount') }}" >
                             <div class="invalid-feedback">
                                 @error('op_amount')

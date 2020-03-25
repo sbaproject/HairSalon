@@ -37,7 +37,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">コース名</span>
                             </div>
-                            <input type="text" class="form-control {{ ($errors->first('co_name')) ? 'is-invalid'  :'' }}" 
+                            <input type="text" maxlength="100" class="form-control {{ ($errors->first('co_name')) ? 'is-invalid'  :'' }}" 
                                 name="co_name" value="{{ old('co_name') ? old('co_name') : $course->co_name }}">
                             <div class="invalid-feedback">
                                 @error('co_name')
@@ -135,7 +135,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">備考</span>
                             </div>
-                            <textarea class="form-control" name="co_text" rows=4>{{ old('co_text') ? old('co_text') : $course->co_text }}</textarea>
+                            <textarea class="form-control" maxlength="200" name="co_text" rows=4>{{ old('co_text') ? old('co_text') : $course->co_text }}</textarea>
                         </div>
                     </div>
                     <div class="form-group-button">
