@@ -119,12 +119,12 @@
                                 <span class="input-group-text">サブ1</span>
                             </div>
                         
-                            <input type="text" class="form-control" readonly name = "s_opt1" value="{{ old('s_opt1') == null ? (!empty($sales->Option1->op_name)?$sales->Option1->op_name:'') : old('s_opt1')}}">                           
+                            <input type="text" class="form-control" readonly name = "s_opt1" value="{{ ($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3'))  ? (old('s_opt1') == null ? '' : old('s_opt1') ) :(old('s_opt1') == null ? (!empty($sales->Option1->op_name)?$sales->Option1->op_name:'') : old('s_opt1')) }}">                           
                             <div class="form-control wrapper-select {{ ($errors->first('customer_error')) ? 'is-invalid'  :'' }}">
                             <select class="select-shop2" name = "s_opts1">
                             <option value = ''></option>
                             @foreach($list_staff as $staff)
-                            <option value = '{{$staff->s_id}}' {{ old('s_opts1') == null ? ( $sales->s_opts1 == $staff->s_id ? 'selected' : '') : (old('s_opts1') == $staff->s_id ? 'selected' : '') }}>
+                            <option value = '{{$staff->s_id}}' {{   ($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3'))  ? (old('s_opts1') == null ? '' : (old('s_opts1') == $staff->s_id ? 'selected' : '')) :  (old('s_opts1') == null ? ( $sales->s_opts1 == $staff->s_id ? 'selected' : '') : (old('s_opts1') == $staff->s_id ? 'selected' : '')) }}>
                             {{$staff->s_firstname}} {{$staff->s_lastname}}
                             </option>
                             @endforeach
@@ -143,12 +143,12 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ2</span>
                             </div>
-                            <input type="text" class="form-control" readonly name = "s_opt2" value="{{ old('s_opt2') == null ? (!empty($sales->Option2->op_name)?$sales->Option2->op_name:'') : old('s_opt2') }}">
+                            <input type="text" class="form-control" readonly name = "s_opt2" value="{{ ($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3'))  ? (old('s_opt2') == null ? '' : old('s_opt2') ) :(old('s_opt2') == null ? (!empty($sales->Option2->op_name)?$sales->Option2->op_name:'') : old('s_opt2')) }}">
                             <div class="form-control wrapper-select {{ ($errors->first('customer_error2')) ? 'is-invalid'  :'' }}">
                             <select class="select-shop2" name = "s_opts2">
                             <option value = ''></option>
                             @foreach($list_staff as $staff)
-                            <option value = '{{$staff->s_id}}' {{ old('s_opts2') == null ? ($sales->s_opts2 == $staff->s_id ? 'selected' : '') : (old('s_opts2') == $staff->s_id ? 'selected' : '') }}>
+                            <option value = '{{$staff->s_id}}'  {{   ($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3'))  ? (old('s_opts2') == null ? '' : (old('s_opts2') == $staff->s_id ? 'selected' : '')) :  (old('s_opts2') == null ? ( $sales->s_opts2 == $staff->s_id ? 'selected' : '') : (old('s_opts2') == $staff->s_id ? 'selected' : '')) }}>
                             {{$staff->s_firstname}} {{$staff->s_lastname}}
                             </option>
                             @endforeach
@@ -167,12 +167,12 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">サブ3</span>
                             </div>
-                            <input type="text" class="form-control" readonly name = "s_opt3" value="{{ old('s_opt3') == null ? (!empty($sales->Option3->op_name)?$sales->Option3->op_name:'') : old('s_opt3') }}">
+                            <input type="text" class="form-control" readonly name = "s_opt3" value="{{ ($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3'))  ? (old('s_opt3') == null ? '' : old('s_opt3') ) :(old('s_opt3') == null ? (!empty($sales->Option3->op_name)?$sales->Option3->op_name:'') : old('s_opt3')) }}">
                             <div class="form-control wrapper-select {{ ($errors->first('customer_error3')) ? 'is-invalid'  :'' }}">
                             <select class="select-shop2" name = "s_opts3">
                             <option value = ''></option>
                             @foreach($list_staff as $staff)
-                            <option value = '{{$staff->s_id}}' {{ old('s_opts3')== null ? ($sales->s_opts3 == $staff->s_id ? 'selected' : '') : (old('s_opts3') == $staff->s_id ? 'selected' : '') }}>
+                            <option value = '{{$staff->s_id}}'  {{   ($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3'))  ? (old('s_opts3') == null ? '' : (old('s_opts3') == $staff->s_id ? 'selected' : '')) :  (old('s_opts3') == null ? ( $sales->s_opts3 == $staff->s_id ? 'selected' : '') : (old('s_opts3') == $staff->s_id ? 'selected' : '')) }}>
                             {{$staff->s_firstname}} {{$staff->s_lastname}}
                             </option>
                             @endforeach

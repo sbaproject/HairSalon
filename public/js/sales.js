@@ -33,6 +33,43 @@ $(document).ready(function(){
  
           }       
     });
+
+
+    $("#course-table td").each(function(){
+        
+        var bien = $(this).html();
+        
+        if (bien === '') {
+            $(this).css('padding','27px');
+        }
+
+        if($(this).attr('id') =='link' ){   
+
+        }else{
+            if (bien.length > 15 ) {
+                $(this).html(bien.substring(1,15)+'...');
+            }
+ 
+          }       
+    });
+
+    $("#option-table td").each(function(){
+        
+        var bien = $(this).html();
+        
+        if (bien === '') {
+            $(this).css('padding','27px');
+        }
+
+        if($(this).attr('id') =='link' ){   
+
+        }else{
+            if (bien.length > 50 ) {
+                $(this).html(bien.substring(1,50)+'...');
+            }
+ 
+          }       
+    });
 });
 
 $(function() {
@@ -97,7 +134,15 @@ function onCourseChange(list_course,list_option) {
         }
     })
 
-    if(newOption == null)return;
+    if(newOption == null){
+        $('input[name="s_opt1"]').val('');
+        $('select[name="s_opts1"]').val('');
+        $('input[name="s_opt2"]').val('');
+        $('select[name="s_opts2"]').val('');
+        $('input[name="s_opt3"]').val('');
+        $('select[name="s_opts3"]').val('');
+        return;
+    }
     
 
     list_option.forEach((element) => {
@@ -117,6 +162,7 @@ function onCourseChange(list_course,list_option) {
         totalAmount = totalAmount + optName1.op_amount
     }else{
         $('input[name="s_opt1"]').val('');
+        $('select[name="s_opts1"]').val('');
     }
 
     if(optName2 != null){
@@ -124,6 +170,7 @@ function onCourseChange(list_course,list_option) {
         totalAmount = totalAmount + optName2.op_amount
     }else{
         $('input[name="s_opt2"]').val('');
+        $('select[name="s_opts2"]').val('');
     }
 
     if(optName3 != null){
@@ -131,6 +178,7 @@ function onCourseChange(list_course,list_option) {
         totalAmount = totalAmount + optName3.op_amount
     }else{
         $('input[name="s_opt3"]').val('');
+        $('select[name="s_opts3"]').val('');
     }
 
     $('input[name="s_money"]').val(totalAmount);
