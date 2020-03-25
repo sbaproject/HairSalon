@@ -24,13 +24,13 @@
       <div class="input-group-prepend">
         <span class="input-group-text">顧客姓</span>
       </div>
-      <input type="text" class="form-control" id="searchl_name" name="searchl_name"></input>
+      <input type="text" class="form-control" maxlength="100" id="searchl_name" name="searchl_name"></input>
     </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">顧客名</span>
       </div>
-      <input type="text" class="form-control" id="searchf_name" name="searchf_name"></input>
+      <input type="text" class="form-control" maxlength="100" id="searchf_name" name="searchf_name"></input>
     </div>
   </div>
     <div class="form-btn">
@@ -67,14 +67,14 @@
       <div class="input-group-prepend">
         <span class="input-group-text">顧客姓</span>
       </div>
-      <input type="text" id="c_lastname" readonly="" name="c_lastname" class="form-control" value="GINZA">
+      <input type="text" id="c_lastname" maxlength="100" readonly="" name="c_lastname" class="form-control" value="GINZA">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" >顧客名</span>
       </div>
-      <input type="text" id="c_firstname" readonly="" name="c_firstname" class="form-control" value="TARO">
+      <input type="text" id="c_firstname" maxlength="100" readonly="" name="c_firstname" class="form-control" value="TARO">
     </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
@@ -86,7 +86,7 @@
         <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-lg">備考</span>
     </div>
-  <input type="text" id="c_text" readonly="" name="c_text" value="テストテストテスト" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+  <input type="text" id="c_text" maxlength="200" readonly="" name="c_text" value="テストテストテスト" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
 </div>
 <div class="form-btnprcess">
        <button type="button" id="btnUpdate" class="btn btn-primary">更新</button>  
