@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use Illuminate\Http\Request;
 use App\Course;
 use App\Shop;
@@ -11,14 +12,32 @@ use Carbon\Carbon;
 class CourseController extends Controller
 {
     public function index() {
-        // get all course have del_flg = 0 and soft by update time
-        $list_course = Course::where('co_del_flg', 0)->orderBy('co_id', 'DESC')->get();
-        $list_option = Option::where('op_del_flg', 0)->orderBy('op_id', 'DESC')->get();
+        // check login
+        $userLogged = Session::get('user');
+        if ($userLogged == null) {
+            return redirect('/login');
+        }
+        
+        // get all course have del_flg = 0 and soft by id descending
+        $list_course = Course::where('co_del_flg', 0)
+                                ->where('co_sh_id', $userLogged->u_shop)
+                                ->orderBy('co_id', 'DESC')
+                                ->get();
+        $list_option = Option::where('op_del_flg', 0)
+                                ->where('op_shop', $userLogged->u_shop)
+                                ->orderBy('op_id', 'DESC')
+                                ->get();
         return view('pages.course', compact('list_course', 'list_option'));
     }
 
     public function getCourseNew() {
-        $list_option = Option::where('op_del_flg', 0)->get();
+        // check login
+        $userLogged = Session::get('user');
+        if ($userLogged == null) {
+            return redirect('/login');
+        } 
+
+        $list_option = Option::where('op_del_flg', 0)->where('op_shop', $userLogged->u_shop)->get();
         $last_course = Course::orderBy('co_id', 'DESC')->take(1)->first('co_id');
         if ($last_course != null) {
             $last_course_id = $last_course->co_id;
@@ -60,7 +79,13 @@ class CourseController extends Controller
     }
 
     public function getCourseEdit($id) {
-        $list_option = Option::where('op_del_flg', 0)->get();
+        // check login
+        $userLogged = Session::get('user');
+        if ($userLogged == null) {
+            return redirect('/login');
+        } 
+
+        $list_option = Option::where('op_del_flg', 0)->where('op_shop', $userLogged->u_shop)->get();
         $course = Course::find($id);
         return view('pages.course_edit', compact('list_option', 'course'));
     }

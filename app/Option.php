@@ -10,6 +10,6 @@ class Option extends Model
     public $timestamps = false;
     public $primaryKey = 'op_id';
 
-    protected $fillable = ['op_name', 'op_amount', 'op_del_flg'];
+    protected $fillable = ['op_name', 'op_amount', 'op_del_flg', 'op_shop'];
      
 }

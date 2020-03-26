@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use Illuminate\Http\Request;
 use App\Option;
 use App\Course;
@@ -30,10 +31,12 @@ class OptionController extends Controller
             'op_amount.gt'          => '数字をご入力下さい。',
         ]);
 
+        $userLogged = Session::get('user');
         $option = new Option([
-            'op_name'    => $request->get('op_name'),
-            'op_amount'  => $request->get('op_amount'),
+            'op_name'    => $request->op_name,
+            'op_amount'  => $request->op_amount,
             'op_del_flg' => 0,
+            'op_shop'    => $userLogged->u_shop
         ]);
         $option->save();
         return redirect('course')->with('success-option', 'Added option successfully!');
