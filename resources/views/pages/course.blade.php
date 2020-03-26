@@ -123,28 +123,28 @@
     <script>
         $(document).ready(function() {
             $('#course-table').DataTable({
-                 "bFilter": false,                
-                 "bLengthChange": false,
-                 "bInfo": false,
-                 "language": {
-                        "paginate": {
-                            "previous": "<"  , 
-                             "next": ">"
-                            }
-                    }
+                "bFilter": false,                
+                "bLengthChange": false,
+                "bInfo": false,
+                "language": {
+                    "paginate": {
+                        "previous": "<"  , 
+                            "next": ">"
+                        }
+                }
             });
         });
         $(document).ready(function() {
             $('#option-table').DataTable({
                 "bFilter": false,                
-                 "bLengthChange": false,
-                 "bInfo": false,
-                 "language": {
-                        "paginate": {
-                            "previous": "<"  ,  
-                            "next": ">"
-                        }
+                "bLengthChange": false,
+                "bInfo": false,
+                "language": {
+                    "paginate": {
+                        "previous": "<"  ,  
+                        "next": ">"
                     }
+                }
             });
            
         });
