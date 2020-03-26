@@ -25,12 +25,12 @@
                     <thead class="table-header">
                         <tr>
                             <th width="5%" scope="col">No</th>
-                            <th width="12%" scope="col">コース名</th>
-                            <th width="12%" scope="col">サブ１</th>
-                            <th  width="12%" scope="col">サブ２</th>
-                            <th width="12%" scope="col">サブ３</th>
-                            <th width="10%" scope="col">金額</th>
-                            <th width="27%"  scope="col">備考</th>
+                            <th width="15%" scope="col">コース名</th>
+                            <th width="15%" scope="col">サブ１</th>
+                            <th width="15%" scope="col">サブ２</th>
+                            <th width="15%" scope="col">サブ３</th>
+                            <th width="15%" scope="col">金額</th>
+                            <th width="10%" scope="col">備考</th>
                             <th width="10%" scope="col">Actions</th>
                         </tr>
                     </thead>
