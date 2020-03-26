@@ -59,7 +59,10 @@
                 function changepassword(){
                   var re_userName = document.getElementById("u_user").value;
                   var re_passWord = document.getElementById("u_pw").value;
-                  window.location.href = "changepassword/" + re_userName + "/" + re_passWord;
+                  if(re_userName != "" && re_passWord != "")
+                  {
+                    window.location.href = "changepassword/" + re_userName + "/" + re_passWord;
+                  }
                 }
               </script>
           </div>
