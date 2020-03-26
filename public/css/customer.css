@@ -3,13 +3,12 @@
 }
 
 .btn-addcustomer{
-    display: block;
-    margin-left: 80px;
+    float: left;
+    margin-top: -5px;
 }
 
 #formSearch{
     width:60%;
-    margin-top: 25px;
     border: 2px solid #DDDDDD;
     border-radius: 2px;
 }
@@ -46,6 +45,7 @@
 }
 
 #formSearchload{
+    margin-top: 10px;
     width:60%;
 }
 

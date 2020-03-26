@@ -8,9 +8,7 @@
 <div class="form-customer">
 <div class="row">
   <div class="col-md-2"><label>検索</label></div>
-  <div class="col-md-4"><a class="btn btn-primary btn-addcustomer" href="{{url('customer/new')}}" role="button">新規追加</a></div>
 </div>
-
 <form method="post" id="formSearch" >
 @csrf
   <div class="formser">
@@ -45,10 +43,11 @@
     </div>
 </div>
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-2">
     <label>顧客詳細</label>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-2"><a class="btn btn-primary btn-addcustomer" href="{{url('customer/new')}}" role="button">新規追加</a></div>
+  <div class="col-md-3">
     <label id="lblPaging" style="display:none" class="float-right" >
       <span id="page">1</span>/<span id="totalPage"></span>
     </label>
@@ -88,7 +87,7 @@
     </div>
   <input type="text" id="c_text" maxlength="200" readonly="" name="c_text" value="テストテストテスト" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
 </div>
-<div class="form-btnprcess">
+<div class="form-btnprcess" id="divUpCancel" style="display:none">
        <button type="button" id="btnUpdate" class="btn btn-primary">更新</button>  
        <button type="button" id="btnCancel" class="btn btn-secondary">キャンセル</button>  
   </div>
@@ -123,14 +122,16 @@ $( document ).ready(function() {
             success: function(result){
                 arrData = result;    
                 $("#page").html('1');      
-                $("#lblPaging").css("display", "none");        
+                $("#lblPaging").css("display", "none");
+                $("#divUpCancel").css("display", "none");
                 $("#divButton").css("display", "none");
                 $("#btnPrev").attr("disabled","disabled");     
                 $("#btnNext").removeAttr("disabled");  
                 $("#searchid").val(formatID($.trim($('#searchid').val())));    
                 if (arrData.length > 0){     
                     $("#totalPage").html(arrData.length);
-                    $("#lblPaging").css("display", "");  
+                    $("#lblPaging").css("display", "");
+                    $("#divUpCancel").css("display", "");
                     $("#divButton").css("display", "");            
                     $("#c_id").val(formatID(arrData[0].c_id));
                     $("#c_lastname").val(arrData[0].c_lastname);
@@ -168,7 +169,8 @@ $( document ).ready(function() {
       $('#searchid').val('');
       $('#searchl_name').val('');
       $('#searchf_name').val('');
-      $("#lblPaging").css("display", "none");        
+      $("#lblPaging").css("display", "none");
+      $("#divUpCancel").css("display", "none");
       $("#divButton").css("display", "none");
 
       $("#c_id").val("0000");
@@ -257,26 +259,26 @@ $( document ).ready(function() {
                 arrData[index].c_lastname= $("#c_lastname").val();              
                 arrData[index].c_text= $("#c_text").val();
               } 
-              $("#messageSuccess").css("display", "");  
-              $("#messageSuccess").fadeOut(5000);                           
+              $("#messageSuccess").css("display", "");
+              $("#messageSuccess").fadeOut(5000);
         }});
       }       
     }); 
 
     function formatID(val){
       var id = val;
-      if (!isNaN(id) && id != ''){
+      if (!isNaN(id) && id != '' && val.length < 4){
         id = parseInt(val);
         if (id < 10){
           id = "000" + val;
         }
-        else if (id < 100){
+        else if (id >= 10 && id < 100){
           id = "00" + val;
         }
-        else if (id < 1000){
+        else if (id >= 100 && id < 1000){
           id = "0" + val;
         }
-      }      
+      }
       return id;
     }
 });
