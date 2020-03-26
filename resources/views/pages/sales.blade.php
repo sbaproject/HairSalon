@@ -109,8 +109,12 @@
             @endif
         </div>     -->
         
+        <div class="row">
+            <div class="col-12">
+
         @if (isset($list_sales) && $list_sales_count>0)
-        <table class="table table-bordered table-hover table-fixed">
+        <div class="table-responsive">
+        <table id ="table_sales" class="table table-bordered table-hover table-fixed">
             <thead>
                 <tr style="background-color: #e8e8e8;">
                 <th width="5%" scope="col">No</th>
@@ -120,8 +124,8 @@
                 <th width="12%" scope="col">サブ2</th>
                 <th width="12%" scope="col">サブ3</th>
                 <th width="8%" scope="col">金額</th>
-                <th width="22%" scope="col">備考</th>
-                <th width="9%" scope="col">Actions</th>
+                <th width="21%" scope="col">備考</th>
+                <th width="10%" scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -146,8 +150,8 @@
                     <td width="12%">{{ !empty($sales->Option2->op_name) ? $sales->Option2->op_name : ''}}</td>
                     <td width="12%">{{ !empty($sales->Option3->op_name) ? $sales->Option3->op_name : ''}}</td>
                     <td width="8%">{{number_format($sales->s_money)}}</td>
-                    <td width="22%">{{$sales->s_text}}</td>
-                    <td id="link" width="9%"><a href="{{ url('sales/edit/' . $sales->s_id) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a></td>
+                    <td width="21%">{{$sales->s_text}}</td>
+                    <td id="link" width="10%"><a href="{{ url('sales/edit/' . $sales->s_id) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a></td>
                 </tr>
                 @php 
                     $index++; 
@@ -155,7 +159,9 @@
                 @endforeach               
             </tbody>
         </table>
-        
+</div>
+</div>
+</div>
         @endif
         <div class="pagination-container">
                 <div>{{ $list_sales->appends(request()->input())->links() }}</div>

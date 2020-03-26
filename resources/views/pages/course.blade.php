@@ -20,7 +20,10 @@
                 @endif
             </div>
            
+            <div class="row">
+            <div class="col-12">
             @if (isset($list_course))
+            <div class="table-responsive">
                 <table id="course-table" class="table table-bordered table-hover table-fixed">
                     <thead class="table-header">
                         <tr>
@@ -67,6 +70,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                </div>
+</div>
+</div>
             @endif
         </div>
         <div>
@@ -83,8 +89,10 @@
                     </div>    
                 @endif
             </div>
-            
+            <div class="row">
+            <div class="col-12">
             @if (isset($list_option))
+            <div class="table-responsive">
                 <table id="option-table" class="table table-bordered table-hover table-fixed">
                     <thead class="table-header">
                         <tr>
@@ -117,6 +125,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                </div>
+</div>
+</div>
             @endif
         </div>
     </div>

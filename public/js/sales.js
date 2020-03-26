@@ -79,7 +79,7 @@ $(document).ready(function(){
         });
 
     if (windowsize <= 1024) {
-               
+        $("#course-table thead").css("background-color","#D5D5D2");
     }else{
         //page master/banner
         $('#logo').removeClass("col-3").addClass("col-2");

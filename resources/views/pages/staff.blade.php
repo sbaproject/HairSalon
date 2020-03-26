@@ -17,8 +17,11 @@
             @endif
         </div>
         
+        <div class="row">
+            <div class="col-12">
         @if (isset($list_staff))
-            <table class="table table-bordered table-hover table-fixed">
+        <div class="table-responsive">
+            <table id ="table_staff" class="table table-bordered table-hover table-fixed">
                 <thead class="table-header">
                     <tr>
                         <th width="5%" scope="col">No</th>
@@ -56,6 +59,9 @@
                     @endforeach
                 </tbody>
             </table>
+            </div>
+</div>
+</div>
             <div class="pagination-container">
                 <div>{{ $list_staff->links() }}</div>
             </div>
