@@ -53,12 +53,12 @@
                             @endphp
                             <tr>
                                 <th width="5%">{{ $index < 10 ? '0' . $index : $index }}</th>
-                                <td width="12%">{{ $course->co_name }}</td>
-                                <td width="12%">{{ !empty($course->Option1) ? $course->Option1->op_name : '' }}</td>
-                                <td width="12%">{{ !empty($course->Option2) ? $course->Option2->op_name : ''  }}</td>
-                                <td width="12%">{{ !empty($course->Option3) ? $course->Option3->op_name : ''  }}</td>
-                                <td width="10%">{{ number_format($money) }}</td>
-                                <td width="27%">{{ $course->co_text }}</td>
+                                <td width="15%">{{ $course->co_name }}</td>
+                                <td width="15%">{{ !empty($course->Option1) ? $course->Option1->op_name : '' }}</td>
+                                <td width="15%">{{ !empty($course->Option2) ? $course->Option2->op_name : ''  }}</td>
+                                <td width="15%">{{ !empty($course->Option3) ? $course->Option3->op_name : ''  }}</td>
+                                <td width="15%">{{ number_format($money) }}</td>
+                                <td width="10%">{{ $course->co_text }}</td>
                                 <td id="link" width="10%"><a href="{{ url('course/edit/' . $course->co_id) }}">編集</a>&nbsp;<a href="{{ url('course/delete/' . $course->co_id) }}" style="color: red;">削除</a></td>
                             </tr>
                             @php 
