@@ -9,6 +9,7 @@ use App\User;
 use App\Staff;
 use App\Option;
 use Carbon\Carbon;
+use Session;
 
 use Illuminate\Http\Request;
 
@@ -17,6 +18,11 @@ class SalesController extends Controller
     //load page with $id
     public function index(Request $req)
     {
+         // check login
+         $userLogged = Session::get('user');
+         if ($userLogged == null) {
+             return redirect('/login');
+         }
         if(!empty($req->str_date)&&!empty($req->end_date)&&!empty($req->shop_id)){
             
             $req->validate([
@@ -60,10 +66,10 @@ class SalesController extends Controller
 
         }else{
 
-            $list_sales = Sales::where('s_del_flg', 0)->orderBy('s_id', 'DESC')->paginate(10); 
-            $sum_money = Sales::where('s_del_flg', 0)->sum('s_money');
+            $list_sales = Sales::where('s_del_flg', 0)->where('s_sh_id', $userLogged->u_shop)->orderBy('s_id', 'DESC')->paginate(10); 
+            $sum_money = Sales::where('s_del_flg', 0)->where('s_sh_id', $userLogged->u_shop)->sum('s_money');
             $list_shop = Shop::all();
-            $list_sales_count = Sales::where('s_del_flg', 0)->count();   
+            $list_sales_count = Sales::where('s_del_flg', 0)->where('s_sh_id', $userLogged->u_shop)->count();   
             $currentTime = Carbon::now()->format('yy/m/d');
             
             return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count','currentTime'));
@@ -71,10 +77,16 @@ class SalesController extends Controller
     }
 
     public function getSalesNew() {
-        $list_course = Course::where('co_del_flg', 0)->get();
+         // check login
+         $userLogged = Session::get('user');
+         if ($userLogged == null) {
+             return redirect('/login');
+         }
+
+        $list_course = Course::where('co_del_flg', 0)->where('co_sh_id', $userLogged->u_shop)->get();
         $list_customer = Customer::all();
         $list_staff = Staff::where('s_del_flg', 0)->get();
-        $list_option = Option::where('op_del_flg', 0)->get();
+        $list_option = Option::where('op_del_flg', 0)->where('op_shop', $userLogged->u_shop)->get();
         $currentTime = Carbon::now()->format('yy/m/d');
 
         $last_sales = Sales::orderBy('s_id', 'DESC')->take(1)->first('s_id');
@@ -167,11 +179,17 @@ class SalesController extends Controller
     }
 
     public function getSalesEdit($id) {
+        // check login
+        $userLogged = Session::get('user');
+        if ($userLogged == null) {
+            return redirect('/login');
+        }
+
         $sales = Sales::where('s_id', $id)->where('s_del_flg', 0) ->first();
-        $list_course = Course::where('co_del_flg', 0)->get();
+        $list_course = Course::where('co_del_flg', 0)->where('co_sh_id', $userLogged->u_shop)->get();
         $list_customer = Customer::all();
         $list_staff = Staff::where('s_del_flg', 0)->get();
-        $list_option = Option::where('op_del_flg', 0)->get();
+        $list_option = Option::where('op_del_flg', 0)->where('op_shop', $userLogged->u_shop)->get();
         
         $salesDate = date('yy/m/d', strtotime($sales->sale_date));
 

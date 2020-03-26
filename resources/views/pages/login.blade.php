@@ -7,6 +7,11 @@
    <!-- Bootstrap CSS -->
    <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/login.css" rel="stylesheet">
+
+  <!-- Jquery 3.4.1 -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- sales JS -->
+  <script src="js/login.js"></script>	
 </head>
 <body>
   <div class="container form-login">
@@ -19,10 +24,10 @@
         </div>
     @endif
     <div class="row">
-      <div class="col-6">
-        <img src="{{asset('images/2-1 銀座マツナガロゴPANTONEグリーン.png') }}"  width="100%" alt="" class="imagesLogo">
+      <div id="login_img" class="col-5">
+        <img src="{{asset('images/2-1 銀座マツナガロゴPANTONEグリーン.png') }}"  width="100%" alt="銀座マツナガロゴPANTONEグリーン" class="imagesLogo">
       </div>
-      <div class="col-6">
+      <div id="login_frm" class="col-7">
         <form action="{{ asset ('/login')}}" method="post">
           @csrf
           <div class="form-group">

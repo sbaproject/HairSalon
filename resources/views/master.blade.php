@@ -48,18 +48,18 @@
   <body>
   @section('menu')
     <div class="row">
-        <div class="col-2 logo">
+        <div id="logo" class="col-3 logo">
             <img src="images/2-1 銀座マツナガロゴPANTONEグリーン.png"  width="100%" alt="" class="img-responsive">
         </div>
-        <div class="col-3">
-            <b class="text-hair">売上管理システム</b>
+        <div id="title" class="col-4">
+        <div class="title_cls">売上管理システム</div>
         </div>
-        <div class="col-5">
-            <h4 class="user-name">
+        <div id="username" class="col-3">
+            <div class="user-name">
             @if (Session::get('user'))
             {{ Session::get('user')->u_name }}
             @endif
-            </h4>
+        </div>
         </div>
         <div class="col-1">
             <img src="images/user.svg"  width="30%" alt="" class="img-responsive icon-user">

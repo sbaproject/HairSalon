@@ -46,8 +46,8 @@ $(document).ready(function(){
         if($(this).attr('id') =='link' ){   
 
         }else{
-            if (bien.length > 7 ) {
-                $(this).html(bien.substring(1,7)+'...');
+            if (bien.length > 10 ) {
+                $(this).html(bien.substring(1,10)+'...');
             }
  
           }       
@@ -70,6 +70,29 @@ $(document).ready(function(){
  
           }       
     });
+
+
+    var windowsize = $(window).width();
+
+        $(window).resize(function() {
+        var windowsize = $(window).width();
+        });
+
+    if (windowsize <= 1024) {
+               
+    }else{
+        //page master/banner
+        $('#logo').removeClass("col-3").addClass("col-2");
+        $('#username').removeClass("col-3").addClass("col-4");
+        //page login
+        $('#login_img').removeClass("col-5").addClass("col-6");
+        $('#login_frm').removeClass("col-7").addClass("col-6");
+        //page sales
+        $('#sale_search').removeClass("col-8").addClass("col-5");
+        $('#sale_total').removeClass("col-3").addClass("col-2");
+        $('#sale_pre').removeClass("col-2").addClass("col-1");
+        $('#sale_totalPrice').removeClass("col-3").addClass("col-2");
+    }
 });
 
 $(function() {

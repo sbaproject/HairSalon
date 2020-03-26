@@ -10,7 +10,7 @@
                 </div>
 <br>
             <div class="row marBot15">
-			<div class="searchSales col-md-5"> 	           
+			<div id="sale_search" class="searchSales col-8"> 	           
        
             <div class="{{ Session::has('search') ? 'searchResult' : 'searchBefore' }}">
                 @if (\Session::has('search'))
@@ -77,14 +77,14 @@
 			<div class="row">	
 			
 			
-            <div class="col-md-2 searchSales2 status">
+            <div id="sale_total" class="col-3 searchSales2 status">
             <div class="marBot15">来客数</div>               
             <div class="">{{$list_sales_count}}</div>      
             </div>
 
-            <div class="col-md-1"></div>
+            <div id="sale_pre" class="col-2"></div>
             
-            <div class="col-md-2 boderStatus">
+            <div id="sale_totalPrice" class="col-3 boderStatus">
             <div class="marBot15">売上</div>               
             <div class="">{{number_format($sum_money)}} VND</div>
 			</div>
