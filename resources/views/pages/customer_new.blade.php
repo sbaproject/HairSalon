@@ -6,7 +6,7 @@
 @section('content')
     <div class="container" style="padding-top: 25px;">
         <div class="row">
-            <div class="col-10">
+            <div id="customer_new_edit_frm" class="col-10">
                 <h2 class="border-bottom">
                 顧客登録
                 </h2>

@@ -71,29 +71,99 @@ $(document).ready(function(){
           }       
     });
 
+    var windowsize1 = $(window).width();
+    ReponsivePage(windowsize1);
 
-    var windowsize = $(window).width();
-
-        $(window).resize(function() {
+    $(window).resize(function() {
         var windowsize = $(window).width();
-        });
+        ReponsivePage(windowsize);        
+    });    
+});
 
+function ReponsivePage(windowsize){
     if (windowsize <= 1024) {
-        $("#course-table thead").css("background-color","#D5D5D2");
+
+        // IPAD
+        if(windowsize<=768){
+            // QUAY DOC
+            
+            //page master/banner
+            $('#title').removeClass("col-4").addClass("col-3");
+            $('#title_cls').removeClass("title_cls").addClass("title_cls_ver");   
+            $('#user-name').removeClass("user-name").addClass("user-name_ver"); 
+            $('#user-logout').removeClass("user-logout").addClass("user-logout_ver"); 
+
+            //page login
+            $('#login_img').removeClass("col-5").addClass("col-4");
+            $('#login_frm').removeClass("col-7").addClass("col-8");
+
+            //page sales
+            $('#sale_search').removeClass("col-8").addClass("col-10");
+            $('#sale_total').removeClass("col-3").addClass("col-4");
+            $('#sale_pre').removeClass("col-2").addClass("col-2");
+            $('#sale_totalPrice').removeClass("col-3").addClass("col-4");            
+            
+            //page customer
+            $('#customer_search_error').removeClass().addClass("col-md-10");            
+            $('#customer_title_result').removeClass().addClass("col-md-3");      
+            
+            //All page width
+            $('#sales_new_edit_frm').removeClass().addClass("col-12");         
+            $('#course_new_edit_frm').removeClass().addClass("col-12");   
+            $('#option_new_edit_frm').removeClass().addClass("col-12");   
+            $('#staff_new_edit_frm').removeClass().addClass("col-12");   
+            $('#customer_new_edit_frm').removeClass().addClass("col-12"); 
+            
+            //page customer
+            $('#sale_date').removeClass("col-md-2").addClass("col-md-3");
+            
+        }else{
+            // QUAY NGANG
+
+            //page master/banner
+            $('#title').removeClass("col-3").addClass("col-4");
+            $('#title_cls').removeClass("title_cls_ver").addClass("title_cls");   
+            $('#user-name').removeClass("user-name_ver").addClass("user-name"); 
+            $('#user-logout').removeClass("user-logout_ver").addClass("user-logout"); 
+
+             //page sales
+             $('#sale_search').removeClass("col-10").addClass("col-8");
+             $('#sale_total').removeClass("col-4").addClass("col-3");
+             $('#sale_pre').removeClass("col-2").addClass("col-2");
+             $('#sale_totalPrice').removeClass("col-4").addClass("col-3");  
+
+             //page customer
+            $('#customer_search_error').removeClass().addClass("col-md-10");            
+            $('#customer_title_result').removeClass().addClass("col-md-3"); 
+
+            //All page width
+            $('#sales_new_edit_frm').removeClass().addClass("col-11");         
+            $('#course_new_edit_frm').removeClass().addClass("col-11");   
+            $('#option_new_edit_frm').removeClass().addClass("col-11");   
+            $('#staff_new_edit_frm').removeClass().addClass("col-11");   
+            $('#customer_new_edit_frm').removeClass().addClass("col-11");  
+
+            //page customer
+            $('#sale_date').removeClass("col-md-3").addClass("col-md-2");
+        }
     }else{
+        // MAY BANG
+
         //page master/banner
         $('#logo').removeClass("col-3").addClass("col-2");
         $('#username').removeClass("col-3").addClass("col-4");
+
         //page login
         $('#login_img').removeClass("col-5").addClass("col-6");
         $('#login_frm').removeClass("col-7").addClass("col-6");
+
         //page sales
         $('#sale_search').removeClass("col-8").addClass("col-5");
         $('#sale_total').removeClass("col-3").addClass("col-2");
         $('#sale_pre').removeClass("col-2").addClass("col-1");
         $('#sale_totalPrice').removeClass("col-3").addClass("col-2");
     }
-});
+}
 
 $(function() {
     $.datepicker.regional["ja"] = {

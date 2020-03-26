@@ -1,3 +1,40 @@
+@media only screen and (max-width: 2000px) {
+	#formSearch{
+        width:60%;
+        border: 2px solid #DDDDDD;
+        border-radius: 2px;
+    }
+    #formSearchload{
+        margin-top: 10px;
+        width:60%;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+	#formSearch{
+        width:80%;
+        border: 2px solid #DDDDDD;
+        border-radius: 2px;
+    }
+    #formSearchload{
+        margin-top: 10px;
+        width:80%;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+	#formSearch{
+        width:90%;
+        border: 2px solid #DDDDDD;
+        border-radius: 2px;
+    }
+    #formSearchload{
+        margin-top: 10px;
+        width:90%;
+    }
+  }
+
+
 .form-customer{
     padding:20px;
 }
@@ -7,11 +44,7 @@
     margin-top: -5px;
 }
 
-#formSearch{
-    width:60%;
-    border: 2px solid #DDDDDD;
-    border-radius: 2px;
-}
+
 
 .formser{
     padding: 10px;
@@ -42,11 +75,6 @@
 #btnCancelSearch{
     width:120px;
     margin-bottom:15px;
-}
-
-#formSearchload{
-    margin-top: 10px;
-    width:60%;
 }
 
 #btnUpdate{

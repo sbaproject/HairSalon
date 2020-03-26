@@ -6,7 +6,7 @@
 @section('content')
     <div class="container padding-20">
         <div class="row">
-            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12">
+            <div id="course_new_edit_frm" class="col-xl-10 col-lg-10 col-md-10 col-sm-12">
                 <div class="header-index border-bottom">
                     <h2 style="margin-right: 1rem; margin-bottom: 0.25rem">
                         コース編集

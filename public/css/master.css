@@ -41,6 +41,28 @@
 	}
   }
 
+  @media only screen and (max-width: 768px) {
+	.menu-left{
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		list-style: none;
+		margin-left: -48px;
+	}
+	
+	.menu-left li a{
+		position: relative;
+		display: inline-block;
+		text-decoration: none;
+		color: #696969;
+		font-weight: 550;
+		padding: 50px 0px 0px 15px;
+		font-size: 14px;
+		letter-spacing: 2px;
+	}
+  }
+
 
 body {
 	font-family: 'ＭＳ Ｐゴシック';
@@ -65,6 +87,11 @@ body {
     font-size: 25px;
     text-align: right;
 }
+.user-name_ver{
+    padding-top: 25px;
+    font-size: 20px;
+    text-align: right;
+}
 
 .title_cls{
 	font-size: 30px;
@@ -73,13 +100,25 @@ body {
 	padding-top: 25px;
 }
 
+.title_cls_ver {
+    font-size: 21px;
+    text-align: left;
+    font-weight: bold;
+    padding-top: 25px;
+}
+
 .col-1 img{
 	padding-top: 30px;
 	text-align: center;
 }
 
 .user-logout{
-	padding-top: 30px;
+	padding-top: 27px;
+	font-size: 20px;
+}
+
+.user-logout_ver{
+	padding-top: 22px;
 	font-size: 20px;
 }
 /* .sidenav {
@@ -98,9 +137,7 @@ body {
 	position: relative;
 	display: flex;
 	background-color: #EEEEEE;
-	margin-top: -16px;
-	height: 50cm;
-	
+	margin-top: -16px;	
 }
 
 

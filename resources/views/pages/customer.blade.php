@@ -36,14 +36,16 @@
         <button type="button" id="btnCancelSearch" class="btn btn-secondary" >クリア</button>
     </div>
 </form>
+</br>
 <div class="row">
-     <div class="col-md-6" style="padding-top:30px;position:relative;">
+     <div id="customer_search_error" class="col-md-6" style="padding-top:30px;position:relative;">
         <label id="messageDanger" style="color:#FF0000;position: absolute;margin-top: -30px;display:none;">検索条件に該当するデータが見つかりません。</label>
         <label id="messageSuccess" style="color:#0066FF;position: absolute;margin-top: -30px;display:none;">顧客情報を更新出来ました。</label>
     </div>
 </div>
+</br>
 <div class="row">
-  <div class="col-md-2">
+  <div id="customer_title_result" class="col-md-2">
     <label>顧客詳細</label>
   </div>
   <div class="col-md-2"><a class="btn btn-primary btn-addcustomer" href="{{url('customer/new')}}" role="button">新規追加</a></div>

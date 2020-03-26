@@ -12,18 +12,19 @@
             <div class="row marBot15">
 			<div id="sale_search" class="searchSales col-8"> 	           
        
-            <div class="{{ Session::has('search') ? 'searchResult' : 'searchBefore' }}">
-                @if (\Session::has('search'))
+            <div class="{{ $errors->has('end_date') ? 'searchBefore' : (Session::has('search') ? 'searchResult' : 'searchBefore') }}">
+                @if (\Session::has('search') & !$errors->has('end_date'))
                 検索出来た件数: {{ \Session::get('search') }} 件
                 {{ \Session::forget('search') }}
                 @endif
 
-                                @error('end_date')
+                @error('end_date')
                                 <div class = 'searchBeforeError'>
                                     {{ $message }}
                                 </div>  
-                                @enderror
-            </div>    
+                                @enderror         
+            </div>   
+           
            
 
             <form method="get" id="formSearch" action="">

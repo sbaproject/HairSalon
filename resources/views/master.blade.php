@@ -52,10 +52,10 @@
             <img src="images/2-1 銀座マツナガロゴPANTONEグリーン.png"  width="100%" alt="" class="img-responsive">
         </div>
         <div id="title" class="col-4">
-        <div class="title_cls">売上管理システム</div>
+        <div id="title_cls" class="title_cls">売上管理システム</div>
         </div>
         <div id="username" class="col-3">
-            <div class="user-name">
+            <div id="user-name" class="user-name">
             @if (Session::get('user'))
             {{ Session::get('user')->u_name }}
             @endif
@@ -64,7 +64,7 @@
         <div class="col-1">
             <img src="images/user.svg"  width="30%" alt="" class="img-responsive icon-user">
         </div>
-        <a class="user-logout" href="{{ asset('/logout')}}">Logout</a>
+        <a id="user-logout" class="user-logout" href="{{ asset('/logout')}}">Logout</a>
         <!-- <div class="col-1">
           <a class="user-logout" href="{{ asset('/logout')}}">Logout</a>
         </div> -->

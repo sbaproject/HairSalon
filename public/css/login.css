@@ -4,6 +4,14 @@
         margin-top: 50px;
         display: block;
     }
+    .form-login {
+        border: 2px solid #C0C0C0;
+        border-radius: 5px;
+        margin: 0 auto;
+        width: 40%;
+        padding: 25px;
+        margin-top: 200px;
+    }
   }
 
   @media only screen and (max-width: 1024px) {
@@ -12,19 +20,34 @@
         margin-top: 50px;
         display: block;
         height: 60px;
-    }      
+    } 
+    .form-login {
+        border: 2px solid #C0C0C0;
+        border-radius: 5px;
+        margin: 0 auto;
+        width: 48%;
+        padding: 25px;
+        margin-top: 200px;
+    }     
+  }
+
+  @media only screen and (max-width: 768px) {
+    .imagesLogo{
+        margin: auto;
+        margin-top: 50px;
+        display: block;
+        height: 60px;
+    } 
+    .form-login {
+        border: 2px solid #C0C0C0;
+        border-radius: 5px;
+        margin: 0 auto;
+        width: 59%;
+        padding: 25px;
+        margin-top: 200px;
+    }     
   }
   
-  
-
-  .form-login {
-    border: 2px solid #C0C0C0;
-    border-radius: 5px;
-    margin: 0 auto;
-    width: 40%;
-    padding: 25px;
-    margin-top: 200px;
-}
 
 
 .form-changepassword{

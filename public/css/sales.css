@@ -3,6 +3,13 @@
         overflow-x: auto;
         width: 100%;
     }
+    #course-table_wrapper{
+        width: 98%;
+    }
+    #option-table_wrapper{
+        width: 98%;
+    }
+    
 }
 
 @media only screen and (max-width: 1024px) {

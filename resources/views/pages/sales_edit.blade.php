@@ -7,7 +7,7 @@
 </br>
     <div class="container" style="padding: 20px;">
         <div class="row">
-            <div class="col-10">
+            <div id="sales_new_edit_frm" class="col-10">
                 <h2 style="border-bottom: 1px solid #ccc; line-height: normal;">
                 売上管理編集
                 </h2>
