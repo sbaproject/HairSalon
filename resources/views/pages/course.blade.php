@@ -123,9 +123,9 @@
     <script>
         $(document).ready(function() {
             $('#course-table').DataTable({
-                "bFilter": false,                
-                "bLengthChange": false,
-                "bInfo": false,
+                "searching": false,                
+                "lengthChange": false,
+                "info": false,
                 "language": {
                     "paginate": {
                         "previous": "<"  , 
@@ -136,9 +136,9 @@
         });
         $(document).ready(function() {
             $('#option-table').DataTable({
-                "bFilter": false,                
-                "bLengthChange": false,
-                "bInfo": false,
+                "searching": false,                
+                "lengthChange": false,
+                "info": false,
                 "language": {
                     "paginate": {
                         "previous": "<"  ,  
