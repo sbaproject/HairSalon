@@ -46,8 +46,8 @@ $(document).ready(function(){
         if($(this).attr('id') =='link' ){   
 
         }else{
-            if (bien.length > 15 ) {
-                $(this).html(bien.substring(1,15)+'...');
+            if (bien.length > 7 ) {
+                $(this).html(bien.substring(1,7)+'...');
             }
  
           }       

@@ -35,13 +35,13 @@
 }
 
 #btnSearch{
-    width:100px;
+    width:120px;
     margin-bottom:15px;
     margin-right:15px;
 }
 
 #btnCancelSearch{
-    width:100px;
+    width:120px;
     margin-bottom:15px;
 }
 
@@ -50,12 +50,12 @@
 }
 
 #btnUpdate{
-    width:100px;
+    width:120px;
     margin-bottom:15px;
     margin-right:15px;
 }
 
 #btnCancel{
-    width:100px;
+    width:120px;
     margin-bottom:15px;
 }
