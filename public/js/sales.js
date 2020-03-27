@@ -28,7 +28,7 @@ $(document).ready(function(){
 
         }else{
             if (bien.length > 50 ) {
-                $(this).html(bien.substring(1,50)+'...');
+                $(this).html(bien.substring(0,50)+'...');
             }
  
           }       
@@ -47,7 +47,7 @@ $(document).ready(function(){
 
         }else{
             if (bien.length > 10 ) {
-                $(this).html(bien.substring(1,10)+'...');
+                $(this).html(bien.substring(0,10)+'...');
             }
  
           }       
@@ -65,7 +65,7 @@ $(document).ready(function(){
 
         }else{
             if (bien.length > 50 ) {
-                $(this).html(bien.substring(1,50)+'...');
+                $(this).html(bien.substring(0,50)+'...');
             }
  
           }       

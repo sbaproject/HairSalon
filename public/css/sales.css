@@ -2,14 +2,7 @@
 	.table-fixed tbody {
         overflow-x: auto;
         width: 100%;
-    }
-    #course-table_wrapper{
-        width: 98%;
-    }
-    #option-table_wrapper{
-        width: 98%;
-    }
-    
+    }   
 }
 
 @media only screen and (max-width: 1024px) {
@@ -18,25 +11,14 @@
         width: 1200px;
     }
     
-    #table_staff thead,
-    #table_staff tbody,
-    #table_staff tr,
-    #table_staff td,
-    #table_staff th {
+    .table-fixed thead,
+    .table-fixed tbody,
+    .table-fixed tr,
+    .table-fixed td,
+    .table-fixed th {
         display: block;
     }
-
-    #table_sales thead,
-    #table_sales tbody,
-    #table_sales tr,
-    #table_sales td,
-    #table_sales th {
-        display: block;
-    }    
 }
-
-
-
 
 .btn-left-sales {
 	margin-right: 2%;
@@ -205,32 +187,5 @@
 .select-shop2{
     width: 100%;
     border-radius: 5px;
-    align-items: center;
-    
-}
-
-#course-table tbody td,
-#course-table tbody th,
-#course-table thead > tr > th {
-    float: none;
-    position: relative;
-
-    &::after {
-        content: '';
-        clear: both;
-        display: block;
-    }
-}
-
-#option-table tbody td,
-#option-table tbody th,
-#option-table thead > tr > th {
-    float: none;
-    position: relative;
-
-    &::after {
-        content: '';
-        clear: both;
-        display: block;
-    }
+    align-items: center;    
 }

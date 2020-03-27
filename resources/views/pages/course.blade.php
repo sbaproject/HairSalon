@@ -19,10 +19,9 @@
                     </div>    
                 @endif
             </div>
-           
-            <div class="row">
-            <div class="col-12">
             @if (isset($list_course) && $list_course_count > 0)
+            <div class="row">
+            <div class="col-12">           
             <div class="table-responsive">
                 <table id="course-table" class="table table-bordered table-hover table-fixed">
                     <thead class="table-header">
@@ -40,7 +39,7 @@
                     <tbody>
                         {{-- Đánh số thứ tự theo trang --}}
                         @php
-                            $page = request()->get("page");
+                            $page = request()->get("course_p");
                             if ($page)
                                 $index = $page * 10 - 9;
                             else
@@ -71,8 +70,11 @@
                     </tbody>
                 </table>
                 </div>
-</div>
-</div>
+            </div>
+            </div>
+            <div class="pagination-container">
+                <div>{{ $list_course->appends(['course_p' => $list_course->currentPage(), 'option_p' => $list_option->currentPage()])->links() }}</div>
+            </div>
             @endif
         </div>
         <div>
@@ -89,9 +91,10 @@
                     </div>    
                 @endif
             </div>
+            @if (isset($list_option)  && $list_option_count > 0)
             <div class="row">
             <div class="col-12">
-            @if (isset($list_option)  && $list_option_count > 0)
+           
             <div class="table-responsive">
                 <table id="option-table" class="table table-bordered table-hover table-fixed">
                     <thead class="table-header">
@@ -105,7 +108,7 @@
                     <tbody>
                         {{-- Đánh số thứ tự theo trang --}}
                         @php
-                            $page = request()->get("page");
+                            $page = request()->get("option_p");
                             if ($page)
                                 $index = $page * 10 - 9;
                             else
@@ -126,38 +129,13 @@
                     </tbody>
                 </table>
                 </div>
-</div>
-</div>
+            </div>
+            </div>
+            <div class="pagination-container">
+                <div>{{ $list_option->appends(['course_p' => $list_course->currentPage(), 'option_p' => $list_option->currentPage()])->links() }}</div>
+            </div>
             @endif
         </div>
     </div>
-    <script>
-        $(document).ready(function() {
-            $('#course-table').DataTable({
-                "searching": false,                
-                "lengthChange": false,
-                "info": false,
-                "language": {
-                    "paginate": {
-                        "previous": "<"  , 
-                            "next": ">"
-                        }
-                }
-            });
-        });
-        $(document).ready(function() {
-            $('#option-table').DataTable({
-                "searching": false,                
-                "lengthChange": false,
-                "info": false,
-                "language": {
-                    "paginate": {
-                        "previous": "<"  ,  
-                        "next": ">"
-                    }
-                }
-            });
-           
-        });
-    </script>
+    
 @endsection

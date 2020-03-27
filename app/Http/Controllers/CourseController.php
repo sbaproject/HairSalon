@@ -22,11 +22,12 @@ class CourseController extends Controller
         $list_course = Course::where('co_del_flg', 0)
                                 ->where('co_sh_id', $userLogged->u_shop)
                                 ->orderBy('co_id', 'DESC')
-                                ->get();
+                                ->paginate(10, ['*'], 'course_p');
+                                
         $list_option = Option::where('op_del_flg', 0)
                                 ->where('op_shop', $userLogged->u_shop)
                                 ->orderBy('op_id', 'DESC')
-                                ->get();
+                                ->paginate(10, ['*'], 'option_p');                               
 
         $list_course_count= $list_course->count();
         $list_option_count= $list_option->count();

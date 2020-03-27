@@ -109,11 +109,9 @@
                     {{ \Session::get('success') }}           
             @endif
         </div>     -->
-        
-        <div class="row">
-            <div class="col-12">
-
         @if (isset($list_sales) && $list_sales_count>0)
+        <div class="row">
+            <div class="col-12">        
         <div class="table-responsive">
         <table id ="table_sales" class="table table-bordered table-hover table-fixed">
             <thead>
@@ -160,13 +158,14 @@
                 @endforeach               
             </tbody>
         </table>
-</div>
-</div>
-</div>
-        @endif
-        <div class="pagination-container">
+    </div>
+    </div>
+    </div>
+<div class="pagination-container">
                 <div>{{ $list_sales->appends(request()->input())->links() }}</div>
             </div>
+        @endif
+        
     </div>
 
 @endsection

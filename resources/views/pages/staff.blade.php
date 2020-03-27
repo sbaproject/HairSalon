@@ -16,10 +16,9 @@
                 </div>    
             @endif
         </div>
-        
-        <div class="row">
-            <div class="col-12">
         @if (isset($list_staff) && $list_staff_count > 0)
+        <div class="row">
+            <div class="col-12">        
         <div class="table-responsive">
             <table id ="table_staff" class="table table-bordered table-hover table-fixed">
                 <thead class="table-header">
@@ -60,8 +59,8 @@
                 </tbody>
             </table>
             </div>
-</div>
-</div>
+            </div>
+            </div>
             <div class="pagination-container">
                 <div>{{ $list_staff->links() }}</div>
             </div>
