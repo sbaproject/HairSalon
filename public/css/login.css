@@ -48,28 +48,19 @@
     }     
   }
   
-
-
-.form-changepassword{
-    border: 2px solid #C0C0C0;
-    border-radius: 5px;
-    margin: 0 auto;
-    width: 40%;
-    padding: 25px;
-    margin-top: 200px;
-}
-
-
 .login_us{
     border-radius: 5px;
     border: 2px solid #C0C0C0;
     background-color: #C0C0C0;
+    width: 100px;
+    margin-right: 10px;
 }
 
 .chang_pw{
     border: 2px solid #C0C0C0;
     border-radius: 5px;
     background-color: #C0C0C0;
+    width: 100px;
 }
 
 .login_us:hover{

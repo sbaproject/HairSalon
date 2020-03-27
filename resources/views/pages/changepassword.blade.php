@@ -7,9 +7,14 @@
    <!-- Bootstrap CSS -->
    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
   <link href="{{ asset('css/login.css')}}" rel="stylesheet">
+
+   <!-- Jquery 3.4.1 -->
+   <script src="{{ asset('js/jquery-3.4.1.min.js')}}"></script>
+  <!-- sales JS -->
+  <script src="{{ asset('js/login.js')}}"></script>	
 </head>
 <body>
-  <div class="container form-changepassword">
+  <div class="container form-login">
     @if (\Session::has('danger'))
         <div class="alert alert-danger alert-dismissible fade show">
             {{ \Session::get('danger') }}
@@ -19,10 +24,10 @@
         </div>
     @endif
     <div class="row">
-      <div class="col-6">
+      <div id="login_img" class="col-5">
         <img src="{{asset('images/2-1 銀座マツナガロゴPANTONEグリーン.png') }}"  width="100%" alt="" class="imagesLogo">
       </div>
-      <div class="col-6">
+      <div id="login_frm" class="col-7">
         <form method="post">
           @csrf
           <div class="form-group">
