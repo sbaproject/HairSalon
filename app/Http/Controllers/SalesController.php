@@ -18,11 +18,6 @@ class SalesController extends Controller
     //load page with $id
     public function index(Request $req)
     {
-         // check login
-         $userLogged = Session::get('user');
-         if ($userLogged == null) {
-             return redirect('/login');
-         }
         if(!empty($req->str_date)&&!empty($req->end_date)&&!empty($req->shop_id)){
             
             $req->validate([
@@ -66,10 +61,10 @@ class SalesController extends Controller
 
         }else{
 
-            $list_sales = Sales::where('s_del_flg', 0)->where('s_sh_id', $userLogged->u_shop)->orderBy('s_id', 'DESC')->paginate(10); 
-            $sum_money = Sales::where('s_del_flg', 0)->where('s_sh_id', $userLogged->u_shop)->sum('s_money');
+            $list_sales = Sales::where('s_del_flg', 0)->orderBy('s_id', 'DESC')->paginate(10); 
+            $sum_money = Sales::where('s_del_flg', 0)->sum('s_money');
             $list_shop = Shop::all();
-            $list_sales_count = Sales::where('s_del_flg', 0)->where('s_sh_id', $userLogged->u_shop)->count();   
+            $list_sales_count = Sales::where('s_del_flg', 0)->count();   
             $currentTime = Carbon::now()->format('yy/m/d');
             
             return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count','currentTime'));
