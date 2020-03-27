@@ -59,7 +59,7 @@
               <input type="password" class="form-control" name="pass_confirm">
           </div>
           <div class="form-btn">
-            <button type="submit" class="btn chang_pw">更新</button>
+            <button type="submit" class="btn login_us">更新</button>
             <a href="{{asset('login')}}" class="btn chang_pw">Cancel</a>
           </div>
         </form>

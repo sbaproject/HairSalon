@@ -27,7 +27,10 @@ class CourseController extends Controller
                                 ->where('op_shop', $userLogged->u_shop)
                                 ->orderBy('op_id', 'DESC')
                                 ->get();
-        return view('pages.course', compact('list_course', 'list_option'));
+
+        $list_course_count= $list_course->count();
+        $list_option_count= $list_option->count();
+        return view('pages.course', compact('list_course', 'list_option','list_course_count','list_option_count'));
     }
 
     public function getCourseNew() {

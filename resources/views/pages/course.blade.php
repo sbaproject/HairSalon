@@ -22,7 +22,7 @@
            
             <div class="row">
             <div class="col-12">
-            @if (isset($list_course))
+            @if (isset($list_course) && $list_course_count > 0)
             <div class="table-responsive">
                 <table id="course-table" class="table table-bordered table-hover table-fixed">
                     <thead class="table-header">
@@ -91,7 +91,7 @@
             </div>
             <div class="row">
             <div class="col-12">
-            @if (isset($list_option))
+            @if (isset($list_option)  && $list_option_count > 0)
             <div class="table-responsive">
                 <table id="option-table" class="table table-bordered table-hover table-fixed">
                     <thead class="table-header">

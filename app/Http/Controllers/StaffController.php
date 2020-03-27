@@ -12,7 +12,8 @@ class StaffController extends Controller
     public function index() {
         // get all staff have del_flg = 0 and soft by update time
         $list_staff = Staff::where('s_del_flg', 0)->orderBy('s_id', 'DESC')->paginate(10);
-        return view('pages.staff', compact('list_staff'));
+        $list_staff_count= $list_staff->count();
+        return view('pages.staff', compact('list_staff','list_staff_count'));
     }    
 
     public function getStaffNew() {
