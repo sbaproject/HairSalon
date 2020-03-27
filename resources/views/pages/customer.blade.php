@@ -135,7 +135,7 @@ $( document ).ready(function() {
                     $("#lblPaging").css("display", "");
                     $("#divUpCancel").css("display", "");
                     $("#divButton").css("display", "");            
-                    $("#c_id").val(formatID(arrData[0].c_id));
+                    $("#c_id").val(formatID(arrData[0].c_id.toString()));
                     $("#c_lastname").val(arrData[0].c_lastname);
                     $("#c_firstname").val(arrData[0].c_firstname);
                     $("#c_count").val(arrData[0].c_count);
@@ -188,7 +188,7 @@ $( document ).ready(function() {
     $('#btnNext').click(function(e){
         index = index + 1;       
         if ( index < arrData.length){
-            $("#c_id").val(formatID(arrData[index].c_id));
+            $("#c_id").val(formatID(arrData[index].c_id.toString()));
             $("#c_firstname").val(arrData[index].c_firstname);
             $("#c_lastname").val(arrData[index].c_lastname);
             $("#c_count").val(arrData[index].c_count);
@@ -209,7 +209,7 @@ $( document ).ready(function() {
     $('#btnPrev').click(function(e){
         index = index - 1;       
         if ( index >= 0){
-            $("#c_id").val(formatID(arrData[index].c_id));
+            $("#c_id").val(formatID(arrData[index].c_id.toString()));
             $("#c_firstname").val(arrData[index].c_firstname);
             $("#c_lastname").val(arrData[index].c_lastname);
             $("#c_count").val(arrData[index].c_count);
@@ -270,14 +270,14 @@ $( document ).ready(function() {
     function formatID(val){
       var id = val;
       if (!isNaN(id) && id != '' && val.length < 4){
-        id = parseInt(val);
-        if (id < 10){
+        var l = val.length;    
+        if (l < 2){
           id = "000" + val;
         }
-        else if (id >= 10 && id < 100){
+        else if (l < 3){
           id = "00" + val;
         }
-        else if (id >= 100 && id < 1000){
+        else if (l == 3){
           id = "0" + val;
         }
       }
