@@ -119,13 +119,13 @@
             <thead>
                 <tr style="background-color: #e8e8e8;">
                 <th width="5%" scope="col">No</th>
-                <th width="10%" scope="col">顧客名前</th>
+                <th width="13%" scope="col">顧客名前</th>
                 <th width="10%" scope="col">コース</th>
                 <th width="12%" scope="col">サブ1</th>
                 <th width="12%" scope="col">サブ2</th>
                 <th width="12%" scope="col">サブ3</th>
                 <th width="8%" scope="col">金額</th>
-                <th width="21%" scope="col">備考</th>
+                <th width="18%" scope="col">備考</th>
                 <th width="10%" scope="col">Actions</th>
                 </tr>
             </thead>
@@ -145,13 +145,13 @@
                 @endphp
                 <tr>
                     <th  width="5%">{{ $index }}</th>
-                    <td  width="10%">{{!empty($sales->Customer->c_firstname)?$sales->Customer->c_firstname:''}} {{!empty($sales->Customer->c_lastname)?$sales->Customer->c_lastname:''}}</td>
+                    <td  width="13%">{{!empty($sales->Customer->c_firstname)?$sales->Customer->c_firstname:''}} {{!empty($sales->Customer->c_lastname)?$sales->Customer->c_lastname:''}}</td>
                     <td width="10%">{{ !empty($sales->Course->co_name) ? $sales->Course->co_name : '' }}</td>
                     <td width="12%">{{ !empty($sales->Option1->op_name) ? $sales->Option1->op_name : ''}}</td>
                     <td width="12%">{{ !empty($sales->Option2->op_name) ? $sales->Option2->op_name : ''}}</td>
                     <td width="12%">{{ !empty($sales->Option3->op_name) ? $sales->Option3->op_name : ''}}</td>
                     <td width="8%">{{number_format($sales->s_money)}}</td>
-                    <td width="21%">{{$sales->s_text}}</td>
+                    <td width="18%">{{$sales->s_text}}</td>
                     <td id="link" width="10%"><a href="{{ url('sales/edit/' . $sales->s_id) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a></td>
                 </tr>
                 @php 

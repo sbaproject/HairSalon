@@ -61,8 +61,8 @@
             @endif
         </div>
         </div>
-        <div class="col-1">
-            <img src="images/user.svg"  width="30%" alt="" class="img-responsive icon-user">
+        <div id="user-img" class="col-1">
+            <img src="images/user.svg"  class="img-responsive icon-user clswidthimg">
         </div>
         <a id="user-logout" class="user-logout" href="{{ asset('/logout')}}">Logout</a>
         <!-- <div class="col-1">
