@@ -6,6 +6,14 @@
 		text-align: center;
 		list-style: none;
 	}
+
+	.res-menu{
+		position: relative;
+		display: flex;
+		background-color: #EEEEEE;
+		margin-top: -16px;
+		height: 1600px;
+	}
 	
 	.menu-left li a{
 		position: relative;
@@ -156,11 +164,7 @@ body {
 	color: #363636;
 } */
 
-.res-menu{
-	position: relative;
-	background-color: #EEEEEE;
-	margin-top: -16px;	
-}
+
 
 
 
