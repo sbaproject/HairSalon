@@ -45,6 +45,8 @@ Route::post('/sales/edit/{id}', 'SalesController@postSalesEdit');
 
 Route::get('/sales/delete/{id}', 'SalesController@getSalesDelete');
 
+Route::post('/sales/searchCustomerAjax', 'SalesController@searchCustomerAjax')->name('searchCustomerAjax');
+
 
 /* staff */
 Route::get('/staff', 'StaffController@index');
