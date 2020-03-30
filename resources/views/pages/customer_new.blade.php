@@ -37,7 +37,7 @@
                                 <span class="input-group-text">顧客姓</span>
                             </div>
                             <input type="text" maxlength="100" class="form-control {{ ($errors->first('c_lastname')) ? 'is-invalid'  :'' }}" 
-                                name="c_lastname" value="{{ old('c_lastname') }}" placeholder="GINZA">
+                                name="c_lastname" value="{{ old('c_lastname') }}" >
                             <div class="invalid-feedback">
                                 @error('c_lastname')
                                     {{ $message }}
@@ -52,7 +52,7 @@
                                 <span class="input-group-text">顧客名</span>
                             </div>
                             <input type="text" maxlength="100" class="form-control {{ ($errors->first('c_firstname')) ? 'is-invalid'  :'' }}" 
-                                name="c_firstname" value="{{ old('c_firstname') }}" placeholder="TARO">
+                                name="c_firstname" value="{{ old('c_firstname') }}" >
                             <div class="invalid-feedback">
                                 @error('c_firstname')
                                     {{ $message }}
@@ -65,7 +65,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">備考</span>
                             </div>
-                            <textarea class="form-control" maxlength="200" placeholder="テストテストテスト" name="c_text" rows=4>{{ old('c_text') }}</textarea>
+                            <textarea class="form-control" maxlength="200" name="c_text" rows=4>{{ old('c_text') }}</textarea>
                         </div>
                     </div>
                     <div class="form-group-button">

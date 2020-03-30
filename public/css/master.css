@@ -158,7 +158,6 @@ body {
 
 .res-menu{
 	position: relative;
-	display: flex;
 	background-color: #EEEEEE;
 	margin-top: -16px;	
 }

@@ -61,33 +61,33 @@
       <div class="input-group-prepend">
         <span class="input-group-text">顧客ID</span>
       </div>
-      <input type="text" id="c_id" readonly="" value="0000" name="c_id" class="form-control" >
+      <input type="text" id="c_id" readonly="" name="c_id" class="form-control" >
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">顧客姓</span>
       </div>
-      <input type="text" id="c_lastname" maxlength="100" readonly="" name="c_lastname" class="form-control" value="GINZA">
+      <input type="text" id="c_lastname" maxlength="100" readonly="" name="c_lastname" class="form-control">
     </div>
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" >顧客名</span>
       </div>
-      <input type="text" id="c_firstname" maxlength="100" readonly="" name="c_firstname" class="form-control" value="TARO">
+      <input type="text" id="c_firstname" maxlength="100" readonly="" name="c_firstname" class="form-control">
     </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" >来客回数</span>
       </div>
-      <input type="text" id="c_count" readonly="" name="c_count" class="form-control" value="4">
+      <input type="text" id="c_count" readonly="" name="c_count" class="form-control">
     </div>
     <div class="input-group input-group-lg">
         <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-lg">備考</span>
     </div>
-  <input type="text" id="c_text" maxlength="200" readonly="" name="c_text" value="テストテストテスト" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+  <input type="text" id="c_text" maxlength="200" readonly="" name="c_text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
 </div>
 <div class="form-btnprcess" id="divUpCancel" style="display:none">
        <button type="button" id="btnUpdate" class="btn btn-primary">更新</button>  
@@ -151,11 +151,6 @@ $( document ).ready(function() {
                 else{
                     index = 0; 
                     arrData = null;
-                    $("#c_id").val("0000");
-                    $("#c_lastname").val("GINZA");
-                    $("#c_firstname").val("TARO");
-                    $("#c_count").val("4");
-                    $("#c_text").val('テストテストテスト');
                     $("#c_lastname").attr("readonly","");   
                     $("#c_firstname").attr("readonly",""); 
                     $("#c_text").attr("readonly","");
@@ -175,11 +170,7 @@ $( document ).ready(function() {
       $("#divUpCancel").css("display", "none");
       $("#divButton").css("display", "none");
 
-      $("#c_id").val("0000");
-      $("#c_firstname").val("TARO");
-      $("#c_lastname").val("GINZA");
-      $("#c_count").val("4");
-      $("#c_text").val('テストテストテスト');   
+      
       $("#c_firstname").attr("readonly",""); 
       $("#c_lastname").attr("readonly","");                            
       $("#c_text").attr("readonly","");   
