@@ -291,4 +291,23 @@ class SalesController extends Controller
         $sales->save();
         return redirect()->back()->with('success', '削除完了しました。');
     }    
+
+    public function searchCustomerAjax(Request $request) {        
+        $outpub = '';        
+        if($request->get('query'))
+        {
+            $query = $request->get('query');
+            $data = Customer::where('c_firstname', 'LIKE', "%{$query}%")->get();
+            $output = '<ul class="dropdown-menu" style="display:block; position:absolute">';
+            foreach($data as $row)
+            {
+               $output .= '<li>'. $row->c_id .'-'.$row->c_lastname.' '.$row->c_firstname.'</li>';
+           }
+           $output .= '</ul>';
+           echo $output;
+
+            // $course = Course::where('co_id',$request->get('co_id'))->where('co_del_flg', 0)->first();        
+            // $outpub .= $course->co_money;
+       }       
+    }
 }

@@ -8,7 +8,7 @@
     <div class="container" style="padding: 20px;">
         <div class="row">
             <div id="sales_new_edit_frm" class="col-10">
-             
+
             <div class="buttonAdd2" style="border-bottom: 1px solid #ccc; line-height: normal;">
                 <h2 class="H2buttonAdd2 add-new-btn" >
                 売上管理登録
@@ -16,11 +16,11 @@
                 @if (\Session::has('success'))
                 <div class=" alert alert-success alert-dismissible fade show">
                     {{ \Session::get('success') }}
-                </div>   
-                
-            @endif  
-        </div> 
-                
+                </div>
+
+            @endif
+        </div>
+
                 <form method="post">
                 @csrf
                     <div class="form-group">
@@ -48,7 +48,7 @@
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">売上伝票日付</span>
-                            </div>                            
+                            </div>
                                     <input id="sale_date" readonly type="text" class="form-control datetimepicker-input col-md-2"
                                          name="sale_date" autocomplete="off"  value="{{ old('sale_date') == null ? $currentTime : old('sale_date') }}">
                                     <div class="input-group-append" data-target="#sale_date" onclick="$('#sale_date').focus();">
@@ -56,7 +56,33 @@
                                     </div>
                         </div>
                     </div>
+
                     <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">顧客ID</span>
+                            </div>
+                            <!-- <div class="form-control wrapper-select {{ ($errors->first('s_c_id')) ? 'is-invalid'  :'' }}"> -->
+                            
+                            <input type="text" class="form-control" id="s_c_id" name = "s_c_id" value="{{old('s_c_id')}}">
+                            <div id="countryList"><br>
+    </div>
+                            <!-- <select class="select-shop2" id="s_c_id" name="s_c_id"  onchange="onCustomerChange({{ $list_customer }})">
+                            <option value = ''></option>
+                            @foreach($list_customer as $customer)
+                            <option value = '{{$customer->c_id}}' {{ $customer->c_id == old('s_c_id') ? 'selected' : '' }}>{{$customer->c_id}} - {{$customer->c_lastname}} {{$customer->c_firstname}}</option>
+                            @endforeach
+                            </select> -->
+                            <!-- </div> -->
+                            <div class="invalid-feedback">
+                                @error('s_c_id')
+                                    {{ $message }}
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客ID</span>
@@ -75,7 +101,7 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -118,20 +144,20 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">詳細１</span>
                             </div>
-                            <input type="text" class="form-control" readonly name = "s_opt1"  value="{{old('s_opt1')}}"> 
-                            <div class="form-control wrapper-select {{ ($errors->first('customer_error')) ? 'is-invalid'  :'' }}">                          
+                            <input type="text" class="form-control" readonly name = "s_opt1"  value="{{old('s_opt1')}}">
+                            <div class="form-control wrapper-select {{ ($errors->first('customer_error')) ? 'is-invalid'  :'' }}">
                             <select class="select-shop2" name = "s_opts1">
                             <option value = ''></option>
                             @foreach($list_staff as $staff)
                             <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts1') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
                             @endforeach
                             </select>
-                            </div>  
+                            </div>
                             <div class="invalid-feedback" style="margin-left: 59%;">
                                 @if (($errors->first('customer_error')))
                                     {{ $errors->first('customer_error') }}
                                 @endif
-                            </div>                          
+                            </div>
                         </div>
                     </div>
 
@@ -141,7 +167,7 @@
                                 <span class="input-group-text">詳細２</span>
                             </div>
                             <input type="text" class="form-control" readonly name = "s_opt2" value="{{old('s_opt2')}}">
-                            <div class="form-control wrapper-select {{ ($errors->first('customer_error2')) ? 'is-invalid'  :'' }}"> 
+                            <div class="form-control wrapper-select {{ ($errors->first('customer_error2')) ? 'is-invalid'  :'' }}">
                             <select class="select-shop2" name = "s_opts2">
                             <option value = ''></option>
                             @foreach($list_staff as $staff)
@@ -153,7 +179,7 @@
                                 @if (($errors->first('customer_error2')))
                                     {{ $errors->first('customer_error2') }}
                                 @endif
-                            </div> 
+                            </div>
                         </div>
                     </div>
 
@@ -163,19 +189,19 @@
                                 <span class="input-group-text">詳細３</span>
                             </div>
                             <input type="text" class="form-control" readonly name = "s_opt3" value="{{old('s_opt3')}}">
-                            <div class="form-control wrapper-select {{ ($errors->first('customer_error3')) ? 'is-invalid'  :'' }}"> 
+                            <div class="form-control wrapper-select {{ ($errors->first('customer_error3')) ? 'is-invalid'  :'' }}">
                             <select class="select-shop2" name = "s_opts3">
                             <option value = ''></option>
                             @foreach($list_staff as $staff)
                             <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts3') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
                             @endforeach
                             </select>
-                            </div> 
+                            </div>
                             <div class="invalid-feedback" style="margin-left: 59%;">
                                 @if (($errors->first('customer_error3')))
                                     {{ $errors->first('customer_error3') }}
                                 @endif
-                            </div> 
+                            </div>
                         </div>
                     </div>
 
@@ -185,19 +211,19 @@
                                 <span class="input-group-text">詳細４</span>
                             </div>
                             <input type="text" class="form-control" readonly name = "s_opt4" value="{{old('s_opt4')}}">
-                            <div class="form-control wrapper-select {{ ($errors->first('customer_error4')) ? 'is-invalid'  :'' }}"> 
+                            <div class="form-control wrapper-select {{ ($errors->first('customer_error4')) ? 'is-invalid'  :'' }}">
                             <select class="select-shop2" name = "s_opts4">
                             <option value = ''></option>
                             @foreach($list_staff as $staff)
                             <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts4') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
                             @endforeach
                             </select>
-                            </div> 
+                            </div>
                             <div class="invalid-feedback" style="margin-left: 59%;">
                                 @if (($errors->first('customer_error4')))
                                     {{ $errors->first('customer_error4') }}
                                 @endif
-                            </div> 
+                            </div>
                         </div>
                     </div>
 
@@ -207,19 +233,19 @@
                                 <span class="input-group-text">詳細５</span>
                             </div>
                             <input type="text" class="form-control" readonly name = "s_opt5" value="{{old('s_opt5')}}">
-                            <div class="form-control wrapper-select {{ ($errors->first('customer_error5')) ? 'is-invalid'  :'' }}"> 
+                            <div class="form-control wrapper-select {{ ($errors->first('customer_error5')) ? 'is-invalid'  :'' }}">
                             <select class="select-shop2" name = "s_opts5">
                             <option value = ''></option>
                             @foreach($list_staff as $staff)
                             <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts5') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
                             @endforeach
                             </select>
-                            </div> 
+                            </div>
                             <div class="invalid-feedback" style="margin-left: 59%;">
                                 @if (($errors->first('customer_error5')))
                                     {{ $errors->first('customer_error5') }}
                                 @endif
-                            </div> 
+                            </div>
                         </div>
                     </div>
 
@@ -228,7 +254,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">金額</span>
                             </div>
-                            <input type="text" readonly class="form-control" name="s_money" value = "{{old('s_money')}}">                            
+                            <input type="text" readonly class="form-control" name="s_money" value = "{{old('s_money')}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -242,7 +268,7 @@
                             </select>
                         </div>
                     </div>
-                  
+
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -255,14 +281,50 @@
                     <!-- <input type="hidden" id="urlBack" name="urlBack" value="{{url()->previous()}}"> -->
                     <div class="clsCenter">
                     <button type="submit" id="submit1" class="btn btn-primary buttonSales btn-left-sales">連続追加</button>
-                    <button type="submit" id="submit2" class="btn btn-primary buttonSales btn-left-sales">追加</button>                    
+                    <button type="submit" id="submit2" class="btn btn-primary buttonSales btn-left-sales">追加</button>
                     <a role="button" href="{{url('sales')}}" class="btn btn-secondary buttonSales" >キャンセル</a>
-                    
+
                     <div>
                 </form>
 
             </div>
             <div class="col"></div>
         </div>
-    </div>       
+    </div>
+
+<script>
+  $(document).ready(function(){
+
+    $("#s_c_id").keyup(function(){
+    var query = $(this).val();
+       
+    if(query != '') //kiểm tra khác rỗng thì thực hiện đoạn lệnh bên dưới
+    {
+        var _token = $('input[name="_token"]').val(); // token để mã hóa dữ liệu
+            $.ajax({
+                    url:"{{ route('searchCustomerAjax') }}", // đường dẫn khi gửi dữ liệu đi 'search' là tên route mình đặt bạn mở route lên xem là hiểu nó là cái j.
+                    method:"POST", // phương thức gửi dữ liệu.
+                    data:{query:query, _token:_token},
+                    success:function(data){ //dữ liệu nhận về
+                    $('#countryList').fadeIn();  
+                    $('#countryList').html(data); //nhận dữ liệu dạng html và gán vào cặp thẻ có id là countryList
+            }
+            });
+    }   
+    });
+
+    $( "#s_c_id" ).focusout(function() {    
+        // $( "#focus-count" ).text( "focusout fired: " + focus + "x" );
+    });
+
+    $("#countryList").on('click', 'li', function(){  
+        //$('#s_c_id').val($(this).text());  
+        $('#s_c_id').val($(this).text());  
+        $('#countryList').fadeOut();  
+    }); 
+
+ });
+
+
+</script>
 @endsection
