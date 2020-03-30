@@ -47,7 +47,6 @@ class SalesController extends Controller
     
             $shopId = $req->shop_id;
     
-            //session()->regenerate();
             session(['search' => $list_sales_count]);
     
             $list_sales = Sales::where('sale_date','>=',$str_date)
@@ -113,26 +112,29 @@ class SalesController extends Controller
 
 
         if ($course->co_opt1 != null && $request->get('s_opts1') === null ) {
-                                            $customer_error = "入力してください。";
-                                            return redirect()->back()->withInput($request->input())->withErrors(['customer_error' => $customer_error]);
-                                            
-                                        }   
+            $customer_error = "入力してください。";
+            return redirect()->back()->withInput($request->input())->withErrors(['customer_error' => $customer_error]);            
+        }   
 
-                                        if ($course->co_opt2 != null && $request->get('s_opts2') === null ) {
-                                                        $customer_error2 = "入力してください。";
-                                                        return redirect()->back()->withInput($request->input())->withErrors(['customer_error2' => $customer_error2]);
-                                                        
-                                        }  
-            
-                                        if ($course->co_opt3 != null && $request->get('s_opts3') === null ) {
-                                            // return redirect('sales/new')
-                                            //             ->withErrors(['s_opts1', 'thach'] )
-                                            //             ->withInput();
-            
-                                                        $customer_error3 = "入力してください。";
-                                                        return redirect()->back()->withInput($request->input())->withErrors(['customer_error3' => $customer_error3]);
-                                                        
-                                        }                          
+        if ($course->co_opt2 != null && $request->get('s_opts2') === null ) {
+                        $customer_error2 = "入力してください。";
+                        return redirect()->back()->withInput($request->input())->withErrors(['customer_error2' => $customer_error2]);                        
+        }  
+
+        if ($course->co_opt3 != null && $request->get('s_opts3') === null ) {
+                        $customer_error3 = "入力してください。";
+                        return redirect()->back()->withInput($request->input())->withErrors(['customer_error3' => $customer_error3]);                        
+        }  
+        
+        if ($course->co_opt4 != null && $request->get('s_opts4') === null ) {
+            $customer_error4 = "入力してください。";
+            return redirect()->back()->withInput($request->input())->withErrors(['customer_error4' => $customer_error4]);                        
+        }  
+
+        if ($course->co_opt5 != null && $request->get('s_opts5') === null ) {
+                    $customer_error5 = "入力してください。";
+                    return redirect()->back()->withInput($request->input())->withErrors(['customer_error5' => $customer_error5]);                        
+        }  
                             
         $money = 0;
         if(!empty($course->Option1->op_amount)){
@@ -144,6 +146,12 @@ class SalesController extends Controller
         if(!empty($course->Option3->op_amount)){
             $money = $money + $course->Option3->op_amount;
         }
+        if(!empty($course->Option4->op_amount)){
+            $money = $money + $course->Option4->op_amount;
+        }
+        if(!empty($course->Option5->op_amount)){
+            $money = $money + $course->Option5->op_amount;
+        }
 
         $sales = new Sales([
             's_c_id'        => $request->get('s_c_id'),
@@ -153,7 +161,11 @@ class SalesController extends Controller
             's_opt2'        => $course->co_opt2,
             's_opts2'       => ( $course->co_opt2 === null ? null : $request->get('s_opts2')),
             's_opt3'        => $course->co_opt3,
-            's_opts3'       => ( $course->co_opt3 === null ? null : $request->get('s_opts3')),           
+            's_opts3'       => ( $course->co_opt3 === null ? null : $request->get('s_opts3')),    
+            's_opt4'        => $course->co_opt4,
+            's_opts4'       => ( $course->co_opt4 === null ? null : $request->get('s_opts4')), 
+            's_opt5'        => $course->co_opt5,
+            's_opts5'       => ( $course->co_opt5 === null ? null : $request->get('s_opts5')),        
             's_money'       => $money,
             's_pay'         => $request->get('s_pay'),
             's_text'        => $request->get('s_text'),
@@ -204,20 +216,30 @@ class SalesController extends Controller
                 ->where('co_del_flg', 0)                      
                 ->first();
 
-                if ($course->co_opt1 != null && $request->get('s_opts1') === null ) {
+    if ($course->co_opt1 != null && $request->get('s_opts1') === null ) {
                     $customer_error = "入力してください。";
                     return redirect()->back()->withInput($request->input())->withErrors(['customer_error' => $customer_error]);                    
-                }   
+    }   
 
-                if ($course->co_opt2 != null && $request->get('s_opts2') === null ) {
+    if ($course->co_opt2 != null && $request->get('s_opts2') === null ) {
                                 $customer_error2 = "入力してください。";
                                 return redirect()->back()->withInput($request->input())->withErrors(['customer_error2' => $customer_error2]);                                
-                }  
+    }  
 
-                if ($course->co_opt3 != null && $request->get('s_opts3') === null ) {
+    if ($course->co_opt3 != null && $request->get('s_opts3') === null ) {
                                 $customer_error3 = "入力してください。";
                                 return redirect()->back()->withInput($request->input())->withErrors(['customer_error3' => $customer_error3]);                                
-                }          
+    } 
+               
+    if ($course->co_opt4 != null && $request->get('s_opts4') === null ) {
+                    $customer_error4 = "入力してください。";
+                    return redirect()->back()->withInput($request->input())->withErrors(['customer_error4' => $customer_error4]);                                
+    }  
+
+    if ($course->co_opt5 != null && $request->get('s_opts5') === null ) {
+                    $customer_error5 = "入力してください。";
+                    return redirect()->back()->withInput($request->input())->withErrors(['customer_error5' => $customer_error5]);                                
+    } 
 
         $money = 0;
         if(!empty($course->Option1->op_amount)){
@@ -228,6 +250,12 @@ class SalesController extends Controller
         }
         if(!empty($course->Option3->op_amount)){
             $money = $money + $course->Option3->op_amount;
+        }
+        if(!empty($course->Option4->op_amount)){
+            $money = $money + $course->Option4->op_amount;
+        }
+        if(!empty($course->Option5->op_amount)){
+            $money = $money + $course->Option5->op_amount;
         }
 
         $sales = Sales::find($id);
@@ -240,6 +268,10 @@ class SalesController extends Controller
         $sales->s_opts2     = ( $course->co_opt2 === null ? null : $request->get('s_opts2'));
         $sales->s_opt3      = $course->co_opt3;
         $sales->s_opts3     = ( $course->co_opt3 === null ? null : $request->get('s_opts3'));
+        $sales->s_opt4      = $course->co_opt4;
+        $sales->s_opts4     = ( $course->co_opt4 === null ? null : $request->get('s_opts4'));
+        $sales->s_opt5      = $course->co_opt5;
+        $sales->s_opts5     = ( $course->co_opt5 === null ? null : $request->get('s_opts5'));        
         $sales->s_money     = $money;
         $sales->s_pay       = $request->get('s_pay');        
         $sales->s_text      = $request->get('s_text');        

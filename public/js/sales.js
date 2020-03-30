@@ -219,7 +219,7 @@ function onCustomerChange(list_customer) {
 function onCourseChange(list_course,list_option) {  
     let option = document.getElementById("s_co_id").value;
     let newOption;
-    let optName1,optName2,optName3,totalAmount = 0;
+    let optName1,optName2,optName3,optName4,optName5,totalAmount = 0;
 
     list_course.forEach((element) => {
         if (element.co_id == option) {
@@ -234,6 +234,10 @@ function onCourseChange(list_course,list_option) {
         $('select[name="s_opts2"]').val('');
         $('input[name="s_opt3"]').val('');
         $('select[name="s_opts3"]').val('');
+        $('input[name="s_opt4"]').val('');
+        $('select[name="s_opts4"]').val('');
+        $('input[name="s_opt5"]').val('');
+        $('select[name="s_opts5"]').val('');
         return;
     }
     
@@ -247,6 +251,12 @@ function onCourseChange(list_course,list_option) {
         }
         if (element.op_id == newOption.co_opt3) {
             optName3 = element
+        }
+        if (element.op_id == newOption.co_opt4) {
+            optName4 = element
+        }
+        if (element.op_id == newOption.co_opt5) {
+            optName5 = element
         }
     })
     
@@ -272,6 +282,22 @@ function onCourseChange(list_course,list_option) {
     }else{
         $('input[name="s_opt3"]').val('');
         $('select[name="s_opts3"]').val('');
+    }
+
+    if(optName4 != null){
+        $('input[name="s_opt4"]').val(optName4.op_name);
+        totalAmount = totalAmount + optName4.op_amount
+    }else{
+        $('input[name="s_opt4"]').val('');
+        $('select[name="s_opts4"]').val('');
+    }
+
+    if(optName5 != null){
+        $('input[name="s_opt5"]').val(optName5.op_name);
+        totalAmount = totalAmount + optName5.op_amount
+    }else{
+        $('input[name="s_opt5"]').val('');
+        $('select[name="s_opts5"]').val('');
     }
 
     $('input[name="s_money"]').val(totalAmount);
