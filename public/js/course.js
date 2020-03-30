@@ -74,10 +74,50 @@ function onOption3Change(list_option) {
     totalAmount();
 }
 
+function onOption4Change(list_option) {
+    let option = document.getElementById("select-option-4").value;
+    if (option === "") {
+        document.getElementById("option-amount-4").innerHTML = '';
+        document.getElementById("option-amount-4-hidden").innerHTML = 0;
+        totalAmount();
+    }
+
+    let newOption;
+    list_option.forEach((element) => {
+        if (element.op_id == option) {
+            newOption = element
+        }
+    })
+    document.getElementById("option-amount-4").innerHTML = number_format_js(newOption.op_amount);
+    document.getElementById("option-amount-4-hidden").innerHTML = newOption.op_amount;
+    totalAmount();
+}
+
+function onOption5Change(list_option) {
+    let option = document.getElementById("select-option-5").value;
+    if (option === "") {
+        document.getElementById("option-amount-5").innerHTML = '';
+        document.getElementById("option-amount-5-hidden").innerHTML = 0;
+        totalAmount();
+    }
+
+    let newOption;
+    list_option.forEach((element) => {
+        if (element.op_id == option) {
+            newOption = element
+        }
+    })
+    document.getElementById("option-amount-5").innerHTML = number_format_js(newOption.op_amount);
+    document.getElementById("option-amount-5-hidden").innerHTML = newOption.op_amount;
+    totalAmount();
+}
+
 function totalAmount() {
     let option1 = parseInt(document.getElementById("option-amount-1-hidden").innerHTML);
     let option2 = parseInt(document.getElementById("option-amount-2-hidden").innerHTML);
     let option3 = parseInt(document.getElementById("option-amount-3-hidden").innerHTML);
-    let total = option1 + option2 + option3;
+    let option4 = parseInt(document.getElementById("option-amount-4-hidden").innerHTML);
+    let option5 = parseInt(document.getElementById("option-amount-5-hidden").innerHTML);
+    let total = option1 + option2 + option3 + option4 + option5;
     document.getElementById("co_money").value = number_format_js(total);
 }

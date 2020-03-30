@@ -57,7 +57,7 @@
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">サブ１</span>
+                                <span class="input-group-text">詳細１</span>
                             </div>
                             <div class="form-control wrapper-select">
                                 <select class="select-shop" name="co_opt1" id="select-option-1" onchange="onOption1Change({{ $list_option }})">
@@ -78,7 +78,7 @@
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">サブ２</span>
+                                <span class="input-group-text">詳細２</span>
                             </div>
                             <div class="form-control wrapper-select">
                                 <select class="select-shop" name="co_opt2" id="select-option-2" onchange="onOption2Change({{ $list_option }})">
@@ -99,7 +99,7 @@
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">サブ３</span>
+                                <span class="input-group-text">詳細３</span>
                             </div>
                             <div class="form-control wrapper-select">
                                 <select class="select-shop" name="co_opt3" id="select-option-3" onchange="onOption3Change({{ $list_option }})">
@@ -120,6 +120,48 @@
                     <div class="form-group">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
+                                <span class="input-group-text">詳細４</span>
+                            </div>
+                            <div class="form-control wrapper-select">
+                                <select class="select-shop" name="co_opt4" id="select-option-4" onchange="onOption4Change({{ $list_option }})">
+                                    <option value=""></option>
+                                    @if (isset($list_option))
+                                        @foreach ($list_option as $option)
+                                            <option value="{{ $option->op_id }}" {{ $option->op_id == $course->co_opt4? 'selected' : '' }}>
+                                                {{ $option->op_name }}
+                                            </option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                <span class="option-amount" id="option-amount-4">{{ !empty($course->Option4) ? number_format($course->Option4->op_amount) : '' }}</span>
+                                <span style="display: none;" id="option-amount-4-hidden">{{ !empty($course->Option4) ? $course->Option4->op_amount : 0 }} </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">詳細５</span>
+                            </div>
+                            <div class="form-control wrapper-select">
+                                <select class="select-shop" name="co_opt5" id="select-option-5" onchange="onOption5Change({{ $list_option }})">
+                                    <option value=""></option>
+                                    @if (isset($list_option))
+                                        @foreach ($list_option as $option)
+                                            <option value="{{ $option->op_id }}" {{ $option->op_id == $course->co_opt5 ? 'selected' : '' }}>
+                                                {{ $option->op_name }}
+                                            </option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                <span class="option-amount" id="option-amount-5">{{ !empty($course->Option5) ? number_format($course->Option5->op_amount) : '' }}</span>
+                                <span style="display: none;" id="option-amount-5-hidden">{{ !empty($course->Option5) ? $course->Option5->op_amount : 0 }} </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
                                 <span class="input-group-text">金額</span>
                             </div>
                             @php
@@ -127,6 +169,8 @@
                                 !empty($course->Option1) ? $money += $course->Option1->op_amount : '';
                                 !empty($course->Option2) ? $money += $course->Option2->op_amount : '';
                                 !empty($course->Option3) ? $money += $course->Option3->op_amount : '';
+                                !empty($course->Option4) ? $money += $course->Option4->op_amount : '';
+                                !empty($course->Option5) ? $money += $course->Option5->op_amount : '';
                             @endphp
                             <input readonly type="text" class="form-control {{ ($errors->first('co_money')) ? 'is-invalid'  :'' }}" 
                                 name="co_money" id="co_money" value="{{ number_format($money) }}" >

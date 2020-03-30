@@ -72,7 +72,12 @@ class OptionController extends Controller
         $option->save();
 
         // update all courses have this option
-        $courses = Course::where('co_opt1', $id)->orWhere('co_opt2', $id)->orWhere('co_opt3', $id)->get();
+        $courses = Course::where('co_opt1', $id)
+                        ->orWhere('co_opt2', $id)
+                        ->orWhere('co_opt3', $id)
+                        ->orWhere('co_opt4', $id)
+                        ->orWhere('co_opt5', $id)
+                        ->get();
 
         if (!empty($courses)) {
             foreach ($courses as $course) {
@@ -84,6 +89,12 @@ class OptionController extends Controller
                 }
                 if (!empty($course->co_opt3) && $course->co_opt3 == $id) {
                     $course->co_opt3 = null;
+                }
+                if (!empty($course->co_opt4) && $course->co_opt4 == $id) {
+                    $course->co_opt4 = null;
+                }
+                if (!empty($course->co_opt5) && $course->co_opt5 == $id) {
+                    $course->co_opt5 = null;
                 }
                 $course->co_update = Carbon::now();
                 $course->save();

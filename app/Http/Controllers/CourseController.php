@@ -59,7 +59,8 @@ class CourseController extends Controller
         ]);
 
         // check must choose at least 1 option
-        if ($validator && ($request->co_opt1 == NULL) && ($request->co_opt2 == NULL) && ($request->co_opt3 == NULL)) {
+        if ($validator && ($request->co_opt1 == NULL) && ($request->co_opt2 == NULL) && ($request->co_opt3 == NULL) 
+                && ($request->co_opt4 == NULL) && ($request->co_opt5 == NULL)) {
             $option_error = "一つ以上のオプションを選択してください。";
             return redirect()->back()->withInput($request->input())->withErrors(['option_error' => $option_error]);
         }
@@ -72,6 +73,8 @@ class CourseController extends Controller
             'co_opt1'   => $request->co_opt1,
             'co_opt2'   => $request->co_opt2,
             'co_opt3'   => $request->co_opt3,
+            'co_opt4'   => $request->co_opt4,
+            'co_opt5'   => $request->co_opt5,
             'co_text'   => $request->co_text,
             'co_sh_id'  => session('user')->u_shop,
             'co_del_flg'=> 0,
@@ -102,7 +105,8 @@ class CourseController extends Controller
         ]);
 
         // check must choose at least 1 option
-        if ($validator && ($request->co_opt1 == NULL) && ($request->co_opt2 == NULL) && ($request->co_opt3 == NULL)) {
+        if ($validator && ($request->co_opt1 == NULL) && ($request->co_opt2 == NULL) && ($request->co_opt3 == NULL)
+                && ($request->co_opt4 == NULL) && ($request->co_opt5 == NULL)) {
             $option_error = "一つ以上のオプションを選択してください。";
             return redirect()->back()->with('option_error', $option_error);
         }
@@ -113,6 +117,8 @@ class CourseController extends Controller
         $course->co_opt1 = $request->co_opt1;
         $course->co_opt2 = $request->co_opt2;
         $course->co_opt3 = $request->co_opt3;
+        $course->co_opt4 = $request->co_opt4;
+        $course->co_opt5 = $request->co_opt5;
         $course->co_text = $request->co_text;
         $course->co_update = Carbon::now();
 
