@@ -6,14 +6,6 @@
 		text-align: center;
 		list-style: none;
 	}
-
-	.res-menu{
-		position: relative;
-		display: flex;
-		background-color: #EEEEEE;
-		margin-top: -16px;
-		height: 1600px;
-	}
 	
 	.menu-left li a{
 		position: relative;
@@ -107,6 +99,14 @@ body {
 .logo{
 	margin-left: 14px;
 	padding-top: 10px;
+}
+
+.res-menu{
+	position: relative;
+	display: flex;
+	background-color: #EEEEEE;
+	margin-top: -16px;
+	margin-bottom: -350px;
 }
 
 .col-3 .text-hair
