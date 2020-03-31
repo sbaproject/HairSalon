@@ -62,6 +62,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客ID</span>
                             </div>
+                            <input type="hidden" id="save_s_c_id" name="save_s_c_id" value="">
                             <input type="hidden" id="hid_s_c_id" name="s_c_id" value="{{old('s_c_id')}}" onchange="onCustomerChange({{ $list_customer }})">
                             <input type="text" autocomplete="off" class="form-control {{ ($errors->first('s_c_id')) ? 'is-invalid'  :'' }}" id="input_s_c_id" name = "input_s_c_id" value="{{old('input_s_c_id')}}">
                             <div id="countryList"></div>
@@ -283,13 +284,18 @@
                     if(data != ''){
                         $('#countryList').show();  
                         $('#countryList').html(data); 
+                        $('#input_s_c_id').removeClass("is-invalid");
+                        $("#save_s_c_id").val(''); 
                     }else{
                         $('#countryList').hide();                         
                         $("#listCustomerSearch").remove();
+                        $('#input_s_c_id').addClass("is-invalid");
+                        $('#check_customer_list').html("正しい顧客情報をご入力下さい！");
                     }
-                    $('#hid_s_c_id').val('').trigger('change'); 
-                    $('#input_s_c_id').removeClass("is-invalid");
-                    $flag = 0;                        
+
+                    if($('#save_s_c_id').val() == $("#input_s_c_id").val()){
+                        $('#input_s_c_id').removeClass("is-invalid");
+                    }                                   
             }
             });
     }   
@@ -297,6 +303,16 @@
 
     $( "#input_s_c_id" ).focusout(function() {            
         
+        if($("#save_s_c_id").val() != ''){
+            if($('#save_s_c_id').val() != $("#input_s_c_id").val()){
+                $('#hid_s_c_id').val('').trigger('change'); 
+                $('#input_s_c_id').removeClass("is-invalid");
+                $flag = 0; 
+            }else{
+                $('#input_s_c_id').removeClass("is-invalid");
+            }
+        }
+
         if($("#input_s_c_id").val() != ''){
             if($('#hid_s_c_id').val() == '' & $flag == 0){
                 $('#input_s_c_id').addClass("is-invalid");
@@ -305,6 +321,7 @@
 
                 $("#countryList").hide();
                 $("#listCustomerSearch").remove();
+                $("#save_s_c_id").val('');
         }  
         }       
     });
@@ -322,6 +339,8 @@
         $('#input_s_c_id').val($(this).text());  
         $('#input_s_c_id').removeClass("is-invalid");
         $("#listCustomerSearch").remove();
+
+        $('#save_s_c_id').val($(this).text());
     }); 
  });
 </script>
