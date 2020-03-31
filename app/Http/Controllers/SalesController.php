@@ -293,21 +293,27 @@ class SalesController extends Controller
     }    
 
     public function searchCustomerAjax(Request $request) {        
-        $outpub = '';        
+        $output = '';        
         if($request->get('query'))
         {
             $query = $request->get('query');
-            $data = Customer::where('c_firstname', 'LIKE', "%{$query}%")->get();
-            $output = '<ul class="dropdown-menu" style="display:block; position:absolute">';
-            foreach($data as $row)
-            {
-               $output .= '<li>'. $row->c_id .'-'.$row->c_lastname.' '.$row->c_firstname.'</li>';
-           }
-           $output .= '</ul>';
-           echo $output;
+            $data = Customer::where('c_id', 'LIKE', "%{$query}%")
+                                ->orWhere('c_lastname', 'LIKE', "%{$query}%")
+                                ->orWhere('c_firstname', 'LIKE', "%{$query}%")
+                                ->get();           
 
-            // $course = Course::where('co_id',$request->get('co_id'))->where('co_del_flg', 0)->first();        
-            // $outpub .= $course->co_money;
+            if($data->count() > 0){
+
+                $output = '<ul id="listCustomerSearch" class="dropdown-menu" style="display:block; position:absolute">';
+            
+                foreach($data as $row)
+                {
+                   $output .= '<li value ='.$row->c_id.'>'. $row->c_id .' - '.$row->c_lastname.' '.$row->c_firstname.'</li>';
+                }
+                $output .= '</ul>';
+            }       
+                        
+            echo $output;                       
        }       
     }
 }

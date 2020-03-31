@@ -58,15 +58,15 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="input-group">
+                        <div id="input_s_c_id" class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客ID</span>
                             </div>
                             <!-- <div class="form-control wrapper-select {{ ($errors->first('s_c_id')) ? 'is-invalid'  :'' }}"> -->
-                            
-                            <input type="text" class="form-control" id="s_c_id" name = "s_c_id" value="{{old('s_c_id')}}">
+                            <input type="hidden" id="hid_s_c_id" name="s_c_id" value="">
+                            <input type="text" class="form-control" id="s_c_id" name = "" value="{{old('s_c_id')}}">
                             <div id="countryList"><br>
-    </div>
+                            </div>
                             <!-- <select class="select-shop2" id="s_c_id" name="s_c_id"  onchange="onCustomerChange({{ $list_customer }})">
                             <option value = ''></option>
                             @foreach($list_customer as $customer)
@@ -74,7 +74,7 @@
                             @endforeach
                             </select> -->
                             <!-- </div> -->
-                            <div class="invalid-feedback">
+                            <div id="check_customer_list" class="invalid-feedback">
                                 @error('s_c_id')
                                     {{ $message }}
                                 @enderror
@@ -295,6 +295,8 @@
 <script>
   $(document).ready(function(){
 
+    $flag = 0;
+
     $("#s_c_id").keyup(function(){
     var query = $(this).val();
        
@@ -305,26 +307,49 @@
                     url:"{{ route('searchCustomerAjax') }}", // đường dẫn khi gửi dữ liệu đi 'search' là tên route mình đặt bạn mở route lên xem là hiểu nó là cái j.
                     method:"POST", // phương thức gửi dữ liệu.
                     data:{query:query, _token:_token},
-                    success:function(data){ //dữ liệu nhận về
-                    $('#countryList').fadeIn();  
-                    $('#countryList').html(data); //nhận dữ liệu dạng html và gán vào cặp thẻ có id là countryList
+                    success:function(data){ //dữ liệu nhận về                    
+                    if(data != ''){
+                        $('#countryList').fadeIn();  
+                        $('#countryList').html(data); //nhận dữ liệu dạng html và gán vào cặp thẻ có id là countryList
+                    }else{
+                        $('#countryList').fadeOut();                         
+                        $("#listCustomerSearch").remove();
+                    }
+                    $('#hid_s_c_id').val(''); 
+                    $flag = 0;                        
             }
             });
     }   
+    });   
+
+    $( "#input_s_c_id" ).focusout(function() {            
+        
+        if($('#hid_s_c_id').val() == '' & $flag == 0){
+                $('#s_c_id').addClass("is-invalid");
+                $('#check_customer_list').html("Not correct  Customer in Database");
+                $('#s_c_id').val('');
+
+                $("#countryList").fadeOut();
+                $("#listCustomerSearch").remove();
+        }       
     });
 
-    $( "#s_c_id" ).focusout(function() {    
-        // $( "#focus-count" ).text( "focusout fired: " + focus + "x" );
+    $("#countryList").mouseover(function() {
+        $flag = 1;
+    });
+
+    $("#countryList").mouseout(function() {
+        $flag = 0;
     });
 
     $("#countryList").on('click', 'li', function(){  
-        //$('#s_c_id').val($(this).text());  
+        $('#hid_s_c_id').val($(this).val());  
         $('#s_c_id').val($(this).text());  
-        $('#countryList').fadeOut();  
+        $('#s_c_id').removeClass("is-invalid");
+        $("#listCustomerSearch").remove();
     }); 
 
  });
-
 
 </script>
 @endsection
