@@ -300,7 +300,7 @@
         if($("#input_s_c_id").val() != ''){
             if($('#hid_s_c_id').val() == '' & $flag == 0){
                 $('#input_s_c_id').addClass("is-invalid");
-                $('#check_customer_list').html("Not correct  Customer in Database");
+                $('#check_customer_list').html("正しい顧客情報をご入力下さい！");
                 $('#input_s_c_id').val('');
 
                 $("#countryList").hide();
