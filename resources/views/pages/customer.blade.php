@@ -7,7 +7,9 @@
 <link href="{{ asset('css/customer.css')}}" rel="stylesheet">
 <div class="form-customer">
 <div class="row">
-  <div class="col-md-2"><label>検索</label></div>
+  <div class="col-md-2">
+    <label><b>検索</b></label>
+  </div>
 </div>
 <form method="post" id="formSearch" >
 @csrf
@@ -46,7 +48,7 @@
 </br>
 <div class="row">
   <div id="customer_title_result" class="col-md-2">
-    <label>顧客詳細</label>
+    <label><b>顧客詳細</b></label>
   </div>
   <div class="col-md-2"><a class="btn btn-primary btn-addcustomer" href="{{url('customer/new')}}" role="button">新規追加</a></div>
   <div class="col-md-3">
@@ -151,6 +153,11 @@ $( document ).ready(function() {
                 else{
                     index = 0; 
                     arrData = null;
+                    $("#c_id").val("");
+                    $("#c_lastname").val("");
+                    $("#c_firstname").val("");
+                    $("#c_count").val("");
+                    $("#c_text").val('');
                     $("#c_lastname").attr("readonly","");   
                     $("#c_firstname").attr("readonly",""); 
                     $("#c_text").attr("readonly","");
@@ -170,7 +177,11 @@ $( document ).ready(function() {
       $("#divUpCancel").css("display", "none");
       $("#divButton").css("display", "none");
 
-      
+      $("#c_id").val("");
+      $("#c_firstname").val("");
+      $("#c_lastname").val("");
+      $("#c_count").val("");
+      $("#c_text").val('');
       $("#c_firstname").attr("readonly",""); 
       $("#c_lastname").attr("readonly","");                            
       $("#c_text").attr("readonly","");   
