@@ -291,7 +291,6 @@
 
     $("#input_s_c_id").keyup(function(){
     var query = $(this).val();
-       
     if(query != '') 
     {
         var _token = $('input[name="_token"]').val(); 
@@ -304,7 +303,8 @@
                         $('#countryList').show();  
                         $('#countryList').html(data); 
                         $('#input_s_c_id').removeClass("is-invalid");
-                        $("#save_s_c_id").val(''); 
+                        $('#save_s_c_id').val('');
+                        $('#hid_s_c_id').val('').trigger('change'); 
                     }else{
                         $('#countryList').hide();                         
                         $("#listCustomerSearch").remove();
