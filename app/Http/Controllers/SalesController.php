@@ -293,14 +293,49 @@ class SalesController extends Controller
     }    
 
     public function searchCustomerAjax(Request $request) {        
-        $output = '';        
-        if($request->get('query'))
+        $output = '';   
+
+        if($request->has('query'))
         {
             $query = $request->get('query');
-            $data = Customer::where('c_id', 'LIKE', "%{$query}%")
-                                ->orWhere('c_lastname', 'LIKE', "%{$query}%")
-                                ->orWhere('c_firstname', 'LIKE', "%{$query}%")
-                                ->get();           
+
+            if($query === "0"){
+                $data = Customer::where('c_id', '<', 1000)
+                    ->orWhere('c_lastname', 'LIKE', "%{$query}%")
+                    ->orWhere('c_firstname', 'LIKE', "%{$query}%")
+                    ->get();
+               
+            }else if($query === "00"){
+                $data = Customer::where('c_id', '<', 100)
+                    ->orWhere('c_lastname', 'LIKE', "%{$query}%")
+                    ->orWhere('c_firstname', 'LIKE', "%{$query}%")
+                    ->get();
+            }else if($query === "000"){
+                $data = Customer::where('c_id', '<', 10)
+                    ->orWhere('c_lastname', 'LIKE', "%{$query}%")
+                    ->orWhere('c_firstname', 'LIKE', "%{$query}%")
+                    ->get();
+            }else if(is_numeric($query) && (int)$query <= 9999 && strlen($query) <= 4){                    
+                
+                $que = (int)$query;
+
+                if(strlen($query) == 4){
+                    $data = Customer::where('c_id', '=', "{$que}")
+                    ->orWhere('c_lastname', 'LIKE', "%{$query}%")
+                    ->orWhere('c_firstname', 'LIKE', "%{$query}%")
+                    ->get(); 
+                }else{
+                    $data = Customer::where('c_id', 'LIKE', "%{$que}%")
+                    ->orWhere('c_lastname', 'LIKE', "%{$query}%")
+                    ->orWhere('c_firstname', 'LIKE', "%{$query}%")
+                    ->get(); 
+                }             
+            }else{
+                $data = Customer::where('c_id', 'LIKE', "%{$query}%")
+                ->orWhere('c_lastname', 'LIKE', "%{$query}%")
+                ->orWhere('c_firstname', 'LIKE', "%{$query}%")
+                ->get();  
+            }         
                                                
             if($data->count() > 0){
 

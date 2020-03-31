@@ -272,7 +272,6 @@
 
     $("#input_s_c_id").keyup(function(){
     var query = $(this).val();
-       
     if(query != '') 
     {
         var _token = $('input[name="_token"]').val(); 
