@@ -62,7 +62,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客ID</span>
                             </div>
-                            <input type="hidden" id="hid_s_c_id" name="s_c_id" value="" onchange="onCustomerChange({{ $list_customer }})">
+                            <input type="hidden" id="hid_s_c_id" name="s_c_id" value="{{old('s_c_id')}}" onchange="onCustomerChange({{ $list_customer }})">
                             <input type="text" autocomplete="off" class="form-control {{ ($errors->first('s_c_id')) ? 'is-invalid'  :'' }}" id="input_s_c_id" name = "input_s_c_id" value="{{old('input_s_c_id')}}">
                             <div id="countryList"></div>
                             <div id="check_customer_list" class="invalid-feedback">

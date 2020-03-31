@@ -69,7 +69,7 @@
                                     }
                                 }
                             @endphp
-                            <input type="hidden" id="hid_s_c_id" name="s_c_id" value="{{$sales->Customer->c_id}}" onchange="onCustomerChange({{ $list_customer }})">
+                            <input type="hidden" id="hid_s_c_id" name="s_c_id" value="{{ old('s_c_id') == null ? $sales->Customer->c_id : old('s_c_id') }}" onchange="onCustomerChange({{ $list_customer }})">
                             <input type="text" autocomplete="off" class="form-control {{ ($errors->first('s_c_id')) ? 'is-invalid'  :'' }}" id="input_s_c_id" name = "input_s_c_id" value="{{ old('input_s_c_id') == null ? (!empty($sales->Customer->c_id)?($c_id .' - '.$sales->Customer->c_lastname.' '.$sales->Customer->c_firstname):'') : old('input_s_c_id') }}">
                             <div id="countryList"></div>        
 
