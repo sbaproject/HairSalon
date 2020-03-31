@@ -301,14 +301,28 @@ class SalesController extends Controller
                                 ->orWhere('c_lastname', 'LIKE', "%{$query}%")
                                 ->orWhere('c_firstname', 'LIKE', "%{$query}%")
                                 ->get();           
-
+                                               
             if($data->count() > 0){
 
-                $output = '<ul id="listCustomerSearch" class="dropdown-menu" style="display:block; position:absolute">';
+                $output = '<ul id="listCustomerSearch" class="list-group" style="display:block; position:absolute; z-index: 10; width: 35%;">';
             
                 foreach($data as $row)
                 {
-                   $output .= '<li value ='.$row->c_id.'>'. $row->c_id .' - '.$row->c_lastname.' '.$row->c_firstname.'</li>';
+                    $c_id = $row->c_id;
+                    if ($c_id < 10) {
+                        $c_id = '000' . $c_id;
+                    } else {
+                        if ($c_id >= 10 && $c_id < 100) {
+                            $c_id = '00' . $c_id;
+                        }
+                        if ($c_id >= 100 && $c_id < 1000) {
+                            $c_id = '0' . $c_id;
+                        }
+                    }    
+
+                   $output .= '<li class="list-group-item list-group-item-action" style="font-size: smaller;padding: .4rem .5rem;white-space: nowrap;
+                   text-overflow: ellipsis;
+                   overflow: hidden;" value ='.$row->c_id.'>'. $c_id .' - '.$row->c_lastname.' '.$row->c_firstname.'</li>';
                 }
                 $output .= '</ul>';
             }       

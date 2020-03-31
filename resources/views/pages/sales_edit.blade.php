@@ -56,17 +56,24 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客ID</span>
                             </div>
-                            <div class="form-control wrapper-select {{ ($errors->first('s_c_id')) ? 'is-invalid'  :'' }}">
-                            <select class="select-shop2" id="s_c_id" name="s_c_id" onchange="onCustomerChange({{ $list_customer }})">
-                            <option value = ''></option>
-                            @foreach($list_customer as $customer)
-                            <option value = '{{$customer->c_id}}' {{ old('s_c_id') == null ? ($sales->s_c_id == $customer->c_id ? 'selected' : '') : ($customer->c_id == old('s_c_id') ? 'selected' : '') }} >
-                                {{$customer->c_id}} - {{$customer->c_lastname}} {{$customer->c_firstname}}
-                            </option>
-                            @endforeach
-                            </select>
-                            </div>
-                            <div class="invalid-feedback">
+                            @php
+                                $c_id = $sales->Customer->c_id;
+                                if ($c_id < 10) {
+                                    $c_id = '000' . $c_id;
+                                } else {
+                                    if ($c_id >= 10 && $c_id < 100) {
+                                        $c_id = '00' . $c_id;
+                                    }
+                                    if ($c_id >= 100 && $c_id < 1000) {
+                                        $c_id = '0' . $c_id;
+                                    }
+                                }
+                            @endphp
+                            <input type="hidden" id="hid_s_c_id" name="s_c_id" value="{{$sales->Customer->c_id}}" onchange="onCustomerChange({{ $list_customer }})">
+                            <input type="text" autocomplete="off" class="form-control {{ ($errors->first('s_c_id')) ? 'is-invalid'  :'' }}" id="input_s_c_id" name = "input_s_c_id" value="{{ old('input_s_c_id') == null ? (!empty($sales->Customer->c_id)?($c_id .' - '.$sales->Customer->c_lastname.' '.$sales->Customer->c_firstname):'') : old('input_s_c_id') }}">
+                            <div id="countryList"></div>        
+
+                            <div id="check_customer_list" class="invalid-feedback">
                                 @error('s_c_id')
                                     {{ $message }}
                                 @enderror
@@ -275,4 +282,66 @@
             <div class="col"></div>
         </div>
     </div>
+
+    <script>
+  $(document).ready(function(){
+
+    $flag = 0;
+
+    $("#input_s_c_id").keyup(function(){
+    var query = $(this).val();
+       
+    if(query != '') 
+    {
+        var _token = $('input[name="_token"]').val(); 
+            $.ajax({
+                    url:"{{ route('searchCustomerAjax') }}", 
+                    method:"POST", 
+                    data:{query:query, _token:_token},
+                    success:function(data){ 
+                    if(data != ''){
+                        $('#countryList').show();  
+                        $('#countryList').html(data); 
+                    }else{
+                        $('#countryList').hide();                         
+                        $("#listCustomerSearch").remove();
+                    }
+                    $('#hid_s_c_id').val('').trigger('change'); 
+                    $('#input_s_c_id').removeClass("is-invalid");
+                    $flag = 0;                        
+            }
+            });
+    }   
+    });   
+
+    $( "#input_s_c_id" ).focusout(function() {            
+        
+        if($("#input_s_c_id").val() != ''){
+            if($('#hid_s_c_id').val() == '' & $flag == 0){
+                $('#input_s_c_id').addClass("is-invalid");
+                $('#check_customer_list').html("Not correct  Customer in Database");
+                $('#input_s_c_id').val('');
+
+                $("#countryList").hide();
+                $("#listCustomerSearch").remove();
+        }  
+        }             
+    });
+
+    $("#countryList").mouseover(function() {
+        $flag = 1;
+    });
+
+    $("#countryList").mouseout(function() {
+        $flag = 0;
+    });
+
+    $("#countryList").on('click', 'li', function(){  
+        $('#hid_s_c_id').val($(this).val()).trigger('change');  
+        $('#input_s_c_id').val($(this).text());  
+        $('#input_s_c_id').removeClass("is-invalid");
+        $("#listCustomerSearch").remove();
+    }); 
+ });
+</script>
 @endsection

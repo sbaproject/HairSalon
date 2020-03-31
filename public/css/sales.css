@@ -10,6 +10,11 @@
         overflow-x: auto;
         width: 1200px;
     }
+
+    #option-table tbody{
+        overflow-x: auto;
+        width: 778px;
+    }
     
     .table-fixed thead,
     .table-fixed tbody,
@@ -188,4 +193,9 @@
     width: 100%;
     border-radius: 5px;
     align-items: center;    
+}
+
+#countryList{
+    margin-left: 20%;
+    width: 100%;
 }

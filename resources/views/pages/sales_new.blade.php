@@ -58,22 +58,13 @@
                     </div>
 
                     <div class="form-group">
-                        <div id="input_s_c_id" class="input-group">
+                        <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客ID</span>
                             </div>
-                            <!-- <div class="form-control wrapper-select {{ ($errors->first('s_c_id')) ? 'is-invalid'  :'' }}"> -->
-                            <input type="hidden" id="hid_s_c_id" name="s_c_id" value="">
-                            <input type="text" class="form-control" id="s_c_id" name = "" value="{{old('s_c_id')}}">
-                            <div id="countryList"><br>
-                            </div>
-                            <!-- <select class="select-shop2" id="s_c_id" name="s_c_id"  onchange="onCustomerChange({{ $list_customer }})">
-                            <option value = ''></option>
-                            @foreach($list_customer as $customer)
-                            <option value = '{{$customer->c_id}}' {{ $customer->c_id == old('s_c_id') ? 'selected' : '' }}>{{$customer->c_id}} - {{$customer->c_lastname}} {{$customer->c_firstname}}</option>
-                            @endforeach
-                            </select> -->
-                            <!-- </div> -->
+                            <input type="hidden" id="hid_s_c_id" name="s_c_id" value="" onchange="onCustomerChange({{ $list_customer }})">
+                            <input type="text" autocomplete="off" class="form-control {{ ($errors->first('s_c_id')) ? 'is-invalid'  :'' }}" id="input_s_c_id" name = "input_s_c_id" value="{{old('input_s_c_id')}}">
+                            <div id="countryList"></div>
                             <div id="check_customer_list" class="invalid-feedback">
                                 @error('s_c_id')
                                     {{ $message }}
@@ -82,26 +73,7 @@
                         </div>
                     </div>
 
-                    <!-- <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">顧客ID</span>
-                            </div>
-                            <div class="form-control wrapper-select {{ ($errors->first('s_c_id')) ? 'is-invalid'  :'' }}">
-                            <select class="select-shop2" id="s_c_id" name="s_c_id"  onchange="onCustomerChange({{ $list_customer }})">
-                            <option value = ''></option>
-                            @foreach($list_customer as $customer)
-                            <option value = '{{$customer->c_id}}' {{ $customer->c_id == old('s_c_id') ? 'selected' : '' }}>{{$customer->c_id}} - {{$customer->c_lastname}} {{$customer->c_firstname}}</option>
-                            @endforeach
-                            </select>
-                            </div>
-                            <div class="invalid-feedback">
-                                @error('s_c_id')
-                                    {{ $message }}
-                                @enderror
-                            </div>
-                        </div>
-                    </div> -->
+                   
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -292,30 +264,31 @@
         </div>
     </div>
 
-<script>
+    <script>
   $(document).ready(function(){
 
     $flag = 0;
 
-    $("#s_c_id").keyup(function(){
+    $("#input_s_c_id").keyup(function(){
     var query = $(this).val();
        
-    if(query != '') //kiểm tra khác rỗng thì thực hiện đoạn lệnh bên dưới
+    if(query != '') 
     {
-        var _token = $('input[name="_token"]').val(); // token để mã hóa dữ liệu
+        var _token = $('input[name="_token"]').val(); 
             $.ajax({
-                    url:"{{ route('searchCustomerAjax') }}", // đường dẫn khi gửi dữ liệu đi 'search' là tên route mình đặt bạn mở route lên xem là hiểu nó là cái j.
-                    method:"POST", // phương thức gửi dữ liệu.
+                    url:"{{ route('searchCustomerAjax') }}", 
+                    method:"POST", 
                     data:{query:query, _token:_token},
-                    success:function(data){ //dữ liệu nhận về                    
+                    success:function(data){ 
                     if(data != ''){
-                        $('#countryList').fadeIn();  
-                        $('#countryList').html(data); //nhận dữ liệu dạng html và gán vào cặp thẻ có id là countryList
+                        $('#countryList').show();  
+                        $('#countryList').html(data); 
                     }else{
-                        $('#countryList').fadeOut();                         
+                        $('#countryList').hide();                         
                         $("#listCustomerSearch").remove();
                     }
-                    $('#hid_s_c_id').val(''); 
+                    $('#hid_s_c_id').val('').trigger('change'); 
+                    $('#input_s_c_id').removeClass("is-invalid");
                     $flag = 0;                        
             }
             });
@@ -324,13 +297,15 @@
 
     $( "#input_s_c_id" ).focusout(function() {            
         
-        if($('#hid_s_c_id').val() == '' & $flag == 0){
-                $('#s_c_id').addClass("is-invalid");
+        if($("#input_s_c_id").val() != ''){
+            if($('#hid_s_c_id').val() == '' & $flag == 0){
+                $('#input_s_c_id').addClass("is-invalid");
                 $('#check_customer_list').html("Not correct  Customer in Database");
-                $('#s_c_id').val('');
+                $('#input_s_c_id').val('');
 
-                $("#countryList").fadeOut();
+                $("#countryList").hide();
                 $("#listCustomerSearch").remove();
+        }  
         }       
     });
 
@@ -343,13 +318,11 @@
     });
 
     $("#countryList").on('click', 'li', function(){  
-        $('#hid_s_c_id').val($(this).val());  
-        $('#s_c_id').val($(this).text());  
-        $('#s_c_id').removeClass("is-invalid");
+        $('#hid_s_c_id').val($(this).val()).trigger('change');  
+        $('#input_s_c_id').val($(this).text());  
+        $('#input_s_c_id').removeClass("is-invalid");
         $("#listCustomerSearch").remove();
     }); 
-
  });
-
 </script>
 @endsection

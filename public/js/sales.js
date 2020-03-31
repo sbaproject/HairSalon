@@ -83,6 +83,21 @@ $(document).ready(function(){
 function ReponsivePage(windowsize){
     if (windowsize <= 1024) {
 
+        $('#option-table > thead  > tr').each(function(index, tr) {             
+            $(this).find("th:eq(0)").removeAttr('width').css("width", "15%");
+            $(this).find("th:eq(1)").removeAttr('width').css("width", "45%");
+            $(this).find("th:eq(2)").removeAttr('width').css("width", "20%");
+            $(this).find("th:eq(3)").removeAttr('width').css("width", "20%");
+         });
+
+        $('#option-table > tbody  > tr').each(function(index, tr) {             
+            $(this).find("th:eq(0)").removeAttr('width').css("width", "15%");
+            $(this).find("td:eq(0)").removeAttr('width').css("width", "45%");
+            $(this).find("td:eq(1)").removeAttr('width').css("width", "20%");
+            $(this).find("td:eq(2)").removeAttr('width').css("width", "20%");
+         });
+         
+
         // IPAD
         if(windowsize<=768){
             // QUAY DOC
@@ -198,7 +213,7 @@ $(function() {
 
 function onCustomerChange(list_customer) {  
 
-    let option = document.getElementById("s_c_id").value;
+    let option = document.getElementById("hid_s_c_id").value;
     let newOption;   
 
     list_customer.forEach((element) => {

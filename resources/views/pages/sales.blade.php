@@ -145,7 +145,7 @@
                 @endphp
                 <tr>
                     <th  width="5%">{{ $index }}</th>
-                    <td  width="11%">{{!empty($sales->Customer->c_firstname)?$sales->Customer->c_firstname:''}} {{!empty($sales->Customer->c_lastname)?$sales->Customer->c_lastname:''}}</td>
+                    <td  width="11%">{{!empty($sales->Customer->c_lastname)?$sales->Customer->c_lastname:''}} {{!empty($sales->Customer->c_firstname)?$sales->Customer->c_firstname:''}}</td>
                     <td width="10%">{{ !empty($sales->Course->co_name) ? $sales->Course->co_name : '' }}</td>
                     <td width="9%">{{ !empty($sales->Option1->op_name) ? $sales->Option1->op_name : ''}}</td>
                     <td width="9%">{{ !empty($sales->Option2->op_name) ? $sales->Option2->op_name : ''}}</td>
