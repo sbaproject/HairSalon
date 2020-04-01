@@ -339,7 +339,7 @@ class SalesController extends Controller
                                                
             if($data->count() > 0){
 
-                $output = '<ul id="listCustomerSearch" class="list-group" style="display:block; position:absolute; z-index: 10; width: 40%;height: 180px;overflow-y: auto;border: 1px solid rgba(0,0,0,.125);">';
+                $output = '<ul id="listCustomerSearch" class="list-group" style="display:block; position:absolute; z-index: 10; width: 40%;max-height: 300px;overflow-y: auto;border: 1px solid rgba(0,0,0,.125);">';
             
                 foreach($data as $row)
                 {
