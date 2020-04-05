@@ -94,7 +94,7 @@
             <br/>
             <div class="buttonAdd">        
             <a class="btn btn-primary add-new-btn-sales" href="{{url('sales/new')}}" role="button">新規追加</a>    
-            <a class="btn btn-primary add-new-btn" href="{{url('sales')}}" role="button">PDF出カ</a>   
+            <a class="btn btn-primary add-new-btn" href="{{url('sales/exportPDF')}}" role="button">PDF出カ</a>   
             <!-- <button type="button" class="btn btn-primary buttonSales" ><a href="sales/new" style="color: white; text-decoration: none;">新規追加</a></button>
             <button type="button" class="btn btn-primary buttonSales"><a href="#" style="color: white; text-decoration: none;">PDF出カ</a></button> -->
             @if (\Session::has('success'))

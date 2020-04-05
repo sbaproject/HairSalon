@@ -10,6 +10,7 @@ use App\Staff;
 use App\Option;
 use Carbon\Carbon;
 use Session;
+use PDF;
 
 use Illuminate\Http\Request;
 
@@ -364,5 +365,23 @@ class SalesController extends Controller
                         
             echo $output;                       
        }       
+    }
+
+    public function exportPDF()
+    {
+
+        $list_sales = Sales::where('s_del_flg', 0)->orderBy('s_id', 'DESC')->get(); 
+    	$data = ['name' => 'thachdang'];	
+    	$pdf = PDF::loadView('invoice',  compact('data','list_sales'));
+        	return $pdf->download('invoice.pdf');
+        // $list_sales = Sales::where('s_del_flg', 0)->orderBy('s_id', 'DESC')->paginate(10); 
+        // $sum_money = Sales::where('s_del_flg', 0)->sum('s_money');
+        // $list_shop = Shop::all();
+        // $list_sales_count = Sales::where('s_del_flg', 0)->count();   
+        // $currentTime = Carbon::now()->format('yy/m/d');
+        
+        // // return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count','currentTime'));
+        // $pdf = PDF::loadView('pages.sales',  compact('list_sales','sum_money','list_shop','list_sales_count','currentTime'));
+        // return $pdf->download('invoice.pdf');
     }
 }
