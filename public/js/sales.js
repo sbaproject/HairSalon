@@ -277,7 +277,7 @@ function onCourseChange(list_course,list_option) {
     
     if(optName1 != null){
         $('input[name="s_opt1"]').val(optName1.op_name);
-        totalAmount = totalAmount + optName1.op_amount
+        totalAmount = totalAmount + parseInt(optName1.op_amount)
     }else{
         $('input[name="s_opt1"]').val('');
         $('select[name="s_opts1"]').val('');
@@ -285,7 +285,7 @@ function onCourseChange(list_course,list_option) {
 
     if(optName2 != null){
         $('input[name="s_opt2"]').val(optName2.op_name);
-        totalAmount = totalAmount + optName2.op_amount
+        totalAmount = totalAmount + parseInt(optName2.op_amount)
     }else{
         $('input[name="s_opt2"]').val('');
         $('select[name="s_opts2"]').val('');
@@ -293,7 +293,7 @@ function onCourseChange(list_course,list_option) {
 
     if(optName3 != null){
         $('input[name="s_opt3"]').val(optName3.op_name);
-        totalAmount = totalAmount + optName3.op_amount
+        totalAmount = totalAmount + parseInt(optName3.op_amount)
     }else{
         $('input[name="s_opt3"]').val('');
         $('select[name="s_opts3"]').val('');
@@ -301,7 +301,7 @@ function onCourseChange(list_course,list_option) {
 
     if(optName4 != null){
         $('input[name="s_opt4"]').val(optName4.op_name);
-        totalAmount = totalAmount + optName4.op_amount
+        totalAmount = totalAmount + parseInt(optName4.op_amount)
     }else{
         $('input[name="s_opt4"]').val('');
         $('select[name="s_opts4"]').val('');
@@ -309,7 +309,7 @@ function onCourseChange(list_course,list_option) {
 
     if(optName5 != null){
         $('input[name="s_opt5"]').val(optName5.op_name);
-        totalAmount = totalAmount + optName5.op_amount
+        totalAmount = totalAmount + parseInt(optName5.op_amount)
     }else{
         $('input[name="s_opt5"]').val('');
         $('select[name="s_opts5"]').val('');
