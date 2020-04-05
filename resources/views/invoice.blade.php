@@ -18,9 +18,9 @@
         <div><a href="mailto:company@example.com">company@example.com</a></div>
       </div>
       <div id="project">
-        <div><span>PROJECT</span> Website development</div>
-        <div><span>CLIENT</span> John Doe</div>
-        <div><span>ADDRESS</span> 796 Silver Harbour, TX 79273, US</div>
+        <div><span>PROJECT</span> SBA TEST</div>
+        <div><span>CLIENT</span> SBA TEST</div>
+        <div><span>ADDRESS</span>SBA TEST</div>
         <div><span>EMAIL</span> <a href="mailto:john@example.com">john@example.com</a></div>
         <div><span>DATE</span> August 17, 2015</div>
         <div><span>DUE DATE</span> September 17, 2015</div>
@@ -30,11 +30,11 @@
       <table>
         <thead>
           <tr>
-            <th class="service">SERVICE</th>
-            <th class="desc">DESCRIPTION</th>
-            <th>PRICE</th>
-            <th>QTY</th>
-            <th>TOTAL</th>
+            <th class="service">SBA TEST</th>
+            <th class="desc">SBA TEST</th>
+            <th>SBA TEST</th>
+            <th>SBA TEST</th>
+            <th>SBA TEST</th>
           </tr>
         </thead>
         <tbody>
