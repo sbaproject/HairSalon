@@ -5,7 +5,6 @@
 		flex-direction: column;
 		text-align: center;
 		list-style: none;
-		margin-left: 22px;
 	}
 	
 	.menu-left li a{
@@ -35,7 +34,7 @@
 		flex-direction: column;
 		text-align: center;
 		list-style: none;
-		margin-left: -30px;
+		margin-left: -45px;
 	}
 	
 	.menu-left li a{
@@ -67,7 +66,7 @@
 		flex-direction: column;
 		text-align: center;
 		list-style: none;
-		margin-left: -38px;
+		margin-left: -48px;
 	}
 	
 	.menu-left li a{
