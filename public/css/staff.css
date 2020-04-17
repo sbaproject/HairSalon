@@ -51,4 +51,5 @@ tbody {
 .alert {
 	margin-bottom: 0px;
 	padding: .2rem 1.25rem;
+	white-space: nowrap;
 }

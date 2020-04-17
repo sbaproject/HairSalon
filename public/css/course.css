@@ -1,6 +1,7 @@
 .header-title {
     margin-right: 30px;
     font-weight: bold;
+    white-space: nowrap;
 }
 .pagination-container {
 	display: flex;
