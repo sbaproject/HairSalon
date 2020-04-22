@@ -93,8 +93,9 @@
 			</div>
             <br/>
             <div class="buttonAdd">        
-            <a class="btn btn-primary add-new-btn-sales" href="{{url('sales/new')}}" role="button">新規追加</a>    
-            <a class="btn btn-primary add-new-btn" href="{{url('sales/exportPDF')}}" role="button">PDF出カ</a>   
+            <a class="btn btn-primary add-new-btn" href="{{url('sales/new')}}" role="button">新規追加</a>
+            <a class="btn btn-primary add-new-btn" href="{{url('sales/exportExcel')}}" role="button">集計出力</a>
+            <a class="btn btn-primary add-new-btn" href="{{url('sales/exportCSV')}}?str_date={{ !empty($str_date) ? $str_date : '' }}&end_date={{ !empty($end_date) ? $end_date : '' }}&shop_id={{ !empty($shopId) ? $shopId : '' }}" role="button">会計出力</a>
             <!-- <button type="button" class="btn btn-primary buttonSales" ><a href="sales/new" style="color: white; text-decoration: none;">新規追加</a></button>
             <button type="button" class="btn btn-primary buttonSales"><a href="#" style="color: white; text-decoration: none;">PDF出カ</a></button> -->
             @if (\Session::has('success'))
@@ -117,15 +118,10 @@
             <thead>
                 <tr style="background-color: #e8e8e8;">
                 <th width="5%" scope="col">No</th>
-                <th width="11%" scope="col">顧客名前</th>
-                <th width="10%" scope="col">コース</th>
-                <th width="9%" scope="col">詳細１</th>
-                <th width="9%" scope="col">詳細２</th>
-                <th width="9%" scope="col">詳細３</th>
-                <th width="9%" scope="col">詳細４</th>
-                <th width="9%" scope="col">詳細５</th>
-                <th width="9%" scope="col">金額</th>
-                <th width="10%" scope="col">備考</th>
+                <th width="20%" scope="col">顧客名前</th>
+                <th width="15%" scope="col">コース</th>
+                <th width="15%" scope="col">金額</th>
+                <th width="35%" scope="col">備考</th>
                 <th width="10%" scope="col">Actions</th>
                 </tr>
             </thead>
@@ -144,16 +140,11 @@
 
                 @endphp
                 <tr>
-                    <th  width="5%">{{ $index }}</th>
-                    <td  width="11%">{{!empty($sales->Customer->c_lastname)?$sales->Customer->c_lastname:''}} {{!empty($sales->Customer->c_firstname)?$sales->Customer->c_firstname:''}}</td>
-                    <td width="10%">{{ !empty($sales->Course->co_name) ? $sales->Course->co_name : '' }}</td>
-                    <td width="9%">{{ !empty($sales->Option1->op_name) ? $sales->Option1->op_name : ''}}</td>
-                    <td width="9%">{{ !empty($sales->Option2->op_name) ? $sales->Option2->op_name : ''}}</td>
-                    <td width="9%">{{ !empty($sales->Option3->op_name) ? $sales->Option3->op_name : ''}}</td>
-                    <td width="9%">{{ !empty($sales->Option4->op_name) ? $sales->Option4->op_name : ''}}</td>
-                    <td width="9%">{{ !empty($sales->Option5->op_name) ? $sales->Option5->op_name : ''}}</td>
-                    <td width="9%">{{number_format($sales->s_money)}}</td>
-                    <td width="10%">{{$sales->s_text}}</td>
+                    <th width="5%">{{ $index }}</th>
+                    <td width="20%">{{!empty($sales->Customer->c_lastname)?$sales->Customer->c_lastname:''}} {{!empty($sales->Customer->c_firstname)?$sales->Customer->c_firstname:''}}</td>
+                    <td width="15%">{{ !empty($sales->Course->co_name) ? $sales->Course->co_name : '' }}</td>
+                    <td width="15%">{{number_format($sales->s_money)}}</td>
+                    <td width="35%">{{$sales->s_text}}</td>
                     <td id="link" width="10%"><a href="{{ url('sales/edit/' . $sales->s_id) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a></td>
                 </tr>
                 @php 

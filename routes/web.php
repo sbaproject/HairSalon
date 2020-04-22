@@ -47,7 +47,8 @@ Route::get('/sales/delete/{id}', 'SalesController@getSalesDelete');
 
 Route::post('/sales/searchCustomerAjax', 'SalesController@searchCustomerAjax')->name('searchCustomerAjax');
 
-Route::get('/sales/exportPDF','SalesController@exportPDF');
+Route::get('/sales/exportExcel','SalesController@exportExcel');
+Route::get('/sales/exportCSV','SalesController@exportCSV');
 
 
 /* staff */
