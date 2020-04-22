@@ -236,13 +236,7 @@ function onCourseChange(list_course,list_option) {
     let newOption;
     let optName1,optName2,optName3,optName4,optName5,totalAmount = 0;
 
-    list_course.forEach((element) => {
-        if (element.co_id == option) {
-            newOption = element
-        }
-    })
-
-    if(newOption == null){
+    if(option == ''){
         $('input[name="s_opt1"]').val('');
         $('select[name="s_opts1"]').val('');
         $('input[name="s_opt2"]').val('');
@@ -253,10 +247,37 @@ function onCourseChange(list_course,list_option) {
         $('select[name="s_opts4"]').val('');
         $('input[name="s_opt5"]').val('');
         $('select[name="s_opts5"]').val('');
+        $('input[name="s_money"]').val('');
+        $('input[name="s_money-hidden"]').val('');
         return;
     }
-    
 
+    if (option == 0) {
+        // remove readonly prop for s_money to type the money
+        $("#s_money").prop("readonly", false);
+        $('#s_money').val('');
+
+        $('input[name="s_opt1"]').val('フリー');
+        $('select[name="s_opts1"]').val('');
+        $('input[name="s_opt2"]').val('');
+        $('select[name="s_opts2"]').val('');
+        $('input[name="s_opt3"]').val('');
+        $('select[name="s_opts3"]').val('');
+        $('input[name="s_opt4"]').val('');
+        $('select[name="s_opts4"]').val('');
+        $('input[name="s_opt5"]').val('');
+        $('select[name="s_opts5"]').val('');
+        return;
+    } 
+
+    $("#s_money").prop("readonly", true);
+    
+    list_course.forEach((element) => {
+        if (element.co_id == option) {
+            newOption = element
+        }
+    })
+    
     list_option.forEach((element) => {
         if (element.op_id == newOption.co_opt1) {
             optName1 = element
@@ -316,6 +337,9 @@ function onCourseChange(list_course,list_option) {
     }
 
     $('input[name="s_money"]').val(totalAmount);
-
     $('input[name="s_money"]').number( true, 0 );
+    $('input[name="s_money-hidden"]').val(totalAmount);
+    
+    // reset checkbox saleoff to unchecked
+    $("#saleoff").prop("checked", false);
 }    

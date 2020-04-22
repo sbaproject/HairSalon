@@ -146,8 +146,8 @@
                 <tr>
                     <th  width="5%">{{ $index }}</th>
                     <td  width="11%">{{!empty($sales->Customer->c_lastname)?$sales->Customer->c_lastname:''}} {{!empty($sales->Customer->c_firstname)?$sales->Customer->c_firstname:''}}</td>
-                    <td width="10%">{{ !empty($sales->Course->co_name) ? $sales->Course->co_name : '' }}</td>
-                    <td width="9%">{{ !empty($sales->Option1->op_name) ? $sales->Option1->op_name : ''}}</td>
+                    <td width="10%">{{ !empty($sales->Course->co_name) ? $sales->Course->co_name : 'フリー' }}</td>
+                    <td width="9%">{{ !empty($sales->Option1->op_name) ? $sales->Option1->op_name : 'フリー'}}</td>
                     <td width="9%">{{ !empty($sales->Option2->op_name) ? $sales->Option2->op_name : ''}}</td>
                     <td width="9%">{{ !empty($sales->Option3->op_name) ? $sales->Option3->op_name : ''}}</td>
                     <td width="9%">{{ !empty($sales->Option4->op_name) ? $sales->Option4->op_name : ''}}</td>

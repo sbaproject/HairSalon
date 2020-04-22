@@ -60,7 +60,7 @@
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">顧客ID</span>
+                                <span class="input-group-text">顧客検索</span>
                             </div>
                             <input type="hidden" id="save_s_c_id" name="save_s_c_id" value="">
                             <input type="hidden" id="hid_s_c_id" name="s_c_id" value="{{old('s_c_id')}}" onchange="onCustomerChange({{ $list_customer }})">
@@ -98,10 +98,11 @@
                             </div>
                             <div class="form-control wrapper-select {{ ($errors->first('s_co_id')) ? 'is-invalid'  :'' }}">
                             <select class="select-shop2" id="s_co_id"  name="s_co_id" onchange="onCourseChange({{ $list_course }},{{ $list_option }})">
-                            <option value = ''></option>
-                            @foreach($list_course as $course)
-                            <option value = '{{$course->co_id}}' {{ $course->co_id == old('s_co_id') ? 'selected' : '' }}>{{$course->co_name}}</option>
-                            @endforeach
+                                <option value = ''></option>
+                                @foreach($list_course as $course)
+                                <option value = '{{$course->co_id}}' {{ $course->co_id == old('s_co_id') ? 'selected' : '' }}>{{$course->co_name}}</option>
+                                @endforeach
+                                <option value = 0 {{ old('s_co_id') == '0' ? 'selected' : '' }}>フリー</option>
                             </select>
                             </div>
                             <div class="invalid-feedback">
@@ -227,7 +228,23 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">金額</span>
                             </div>
-                            <input type="text" readonly class="form-control" name="s_money" value = "{{old('s_money')}}">
+                            <input type="text" {{ old('s_co_id') == '0' ? '' : 'readonly' }} class="form-control {{ ($errors->first('s_money')) ? 'is-invalid': ''}}" id="s_money" name="s_money" value = "{{old('s_money')}}">
+                            <input type="hidden" id="s_money-hidden" name="s_money-hidden" value="{{old('s_money-hidden')}}">
+                            <div class="invalid-feedback">
+                                @error('s_money')
+                                    {{ $message }}
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">新規顧客</span>
+                            </div>
+                            <div class="form-control wrapper-select">
+                                <input type="checkbox" class="saleoff-checkbox" id="saleoff" name="s_saleoff_flg" {{ old('s_saleoff_flg') ? 'checked' : '' }}>
+                            </div> 
                         </div>
                     </div>
                     <div class="form-group">
@@ -342,6 +359,25 @@
 
         $('#save_s_c_id').val($(this).text());
     }); 
+
+    $("#saleoff").change(function() {
+        if($(this).is(":checked")){
+            var money =  $("#s_money").val();
+            if (money != '') {
+                $("#s_money").val(money * 0.9);
+            }
+        } else {
+            var old_money = $("#s_money-hidden").val();
+            if (old_money != '') {
+                $("#s_money").val(old_money);
+            }
+        }
+    });
+
+    $("#s_money").keyup(function() {
+        $("#s_money-hidden").val($("#s_money").val());
+    });
+
  });
 </script>
 @endsection
