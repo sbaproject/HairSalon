@@ -11,8 +11,9 @@ use App\Option;
 use Carbon\Carbon;
 use Session;
 use PDF;
-
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class SalesController extends Controller
 { 
@@ -418,21 +419,55 @@ class SalesController extends Controller
        }       
     }
 
-    public function exportPDF()
+    public function exportExcel()
     {
+    }
+    public function exportCSV(Request $req)
+    {
+        if(!empty($req->str_date)&&!empty($req->end_date)&&!empty($req->shop_id)){
+            $str_date = str_replace('/','-',$req->str_date) . ' 00:00:00';
+            $end_date = str_replace('/','-',$req->end_date) . ' 23:59:59';
 
-        $list_sales = Sales::where('s_del_flg', 0)->orderBy('s_id', 'DESC')->get(); 
-    	$data = ['name' => 'thachdang'];	
-    	$pdf = PDF::loadView('invoice',  compact('data','list_sales'));
-        	return $pdf->download('invoice.pdf');
-        // $list_sales = Sales::where('s_del_flg', 0)->orderBy('s_id', 'DESC')->paginate(10); 
-        // $sum_money = Sales::where('s_del_flg', 0)->sum('s_money');
-        // $list_shop = Shop::all();
-        // $list_sales_count = Sales::where('s_del_flg', 0)->count();   
-        // $currentTime = Carbon::now()->format('yy/m/d');
-        
-        // // return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count','currentTime'));
-        // $pdf = PDF::loadView('pages.sales',  compact('list_sales','sum_money','list_shop','list_sales_count','currentTime'));
-        // return $pdf->download('invoice.pdf');
+            $list_sales = Sales::where('sale_date','>=',$str_date)
+                ->where('sale_date','<=',$end_date)
+                ->where('s_sh_id',$req->shop_id)
+                ->orderBy('s_id', 'DESC')
+                ->where('s_del_flg', 0)->paginate(10000);
+        }else{
+            $list_sales = Sales::where('s_del_flg', 0)->orderBy('s_id', 'DESC')->paginate(10000);
+        }
+        $filename = '会計出力_'.date('Ymd').'.csv';
+        $headers = array(
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=".$filename,
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0"
+        );
+
+
+        $columns = array('STT', 'Ngày tháng', 'Phương thức thanh toán', 'Tên hàng hóa, dịch vụ' ,'Đơn vị tính', 'Số lượng', 'Đơn giá', 'Thành tiền');
+
+        $callback = function() use ($list_sales, $columns)
+        {
+            $BOM = "\xEF\xBB\xBF"; // UTF-8 BOM
+            $file = fopen('php://output', 'w');
+            fwrite($file, $BOM);
+            fputcsv($file, $columns);
+            $index = 1;
+            foreach($list_sales as $sale) {
+                $sale_date = empty($sale->sale_date)? '' : date('Y/m/d', strtotime($sale->sale_date));
+                $s_pay = ((int)$sale->s_pay === 0 ?  'キャッシュ' : 'カード') ;
+                $co_name = empty($sale->Course->co_name)? '' : $sale->Course->co_name;
+                $unit = 'Gói';
+                $quantity = 1;
+                $s_money = empty($sale->s_money)? 0 : $sale->s_money;
+                $total = number_format($s_money * $quantity);
+                fputcsv($file, array($index, $sale_date, $s_pay, $co_name, $unit, $quantity, number_format($s_money), $total));
+                $index++;
+            }
+            fclose($file);
+        };
+        return response()->stream($callback, 200, $headers);;
     }
 }
