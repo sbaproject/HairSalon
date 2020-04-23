@@ -142,7 +142,7 @@
                 <tr>
                     <th width="5%">{{ $index }}</th>
                     <td width="20%">{{!empty($sales->Customer->c_lastname)?$sales->Customer->c_lastname:''}} {{!empty($sales->Customer->c_firstname)?$sales->Customer->c_firstname:''}}</td>
-                    <td width="15%">{{ !empty($sales->Course->co_name) ? $sales->Course->co_name : '' }}</td>
+                    <td width="15%">{{ !empty($sales->Course->co_name) ? $sales->Course->co_name : 'フリー' }}</td>
                     <td width="15%">{{number_format($sales->s_money)}}</td>
                     <td width="35%">{{$sales->s_text}}</td>
                     <td id="link" width="10%"><a href="{{ url('sales/edit/' . $sales->s_id) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a></td>

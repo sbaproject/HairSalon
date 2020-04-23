@@ -11,7 +11,7 @@ class Sales extends Model
     public $timestamps = false;
     public $primaryKey = 's_id';
 
-    protected $fillable = ['s_c_id', 's_co_id', 's_opt1', 's_opts1', 's_opt2', 's_opts2', 's_opt3', 's_opts3', 's_opt4', 's_opts4', 's_opt5', 's_opts5','s_money','s_pay', 's_text', 's_sh_id', 's_del_flg', 'sale_date' ,'s_date', 's_update'];
+    protected $fillable = ['s_c_id', 's_co_id', 's_opt1', 's_opts1', 's_opt2', 's_opts2', 's_opt3', 's_opts3', 's_opt4', 's_opts4', 's_opt5', 's_opts5','s_money', 's_saleoff_flg', 's_pay', 's_text', 's_sh_id', 's_del_flg', 'sale_date' ,'s_date', 's_update'];
     
     public function Shop(){
          return $this->belongsTo('App\Shop','s_sh_id','sh_id');

@@ -105,12 +105,13 @@
                             </div>
                             <div class="form-control wrapper-select {{ ($errors->first('s_co_id')) ? 'is-invalid'  :'' }}">
                             <select class="select-shop2" name="s_co_id" id ="s_co_id" onchange="onCourseChange({{ $list_course }},{{ $list_option }})">
-                            <option value = ''></option>
-                            @foreach($list_course as $course)
-                            <option value = '{{$course->co_id}}' {{ old('s_co_id') == null ? ($sales->s_co_id == $course->co_id ? 'selected' : '') : (old('s_co_id') == $course->co_id ? 'selected' : '') }}>
-                                {{$course->co_name}} 
-                            </option>
-                            @endforeach
+                                <option value = ''></option>
+                                @foreach($list_course as $course)
+                                <option value = '{{$course->co_id}}' {{ old('s_co_id') == null ? ($sales->s_co_id == $course->co_id ? 'selected' : '') : (old('s_co_id') == $course->co_id ? 'selected' : '') }}>
+                                    {{$course->co_name}} 
+                                </option>
+                                @endforeach
+                                <option value = 0 {{ old('s_co_id') == null ? ($sales->s_co_id == '0' ? 'selected' : '') : (old('s_co_id') == '0' ? 'selected' : '') }}>フリー</option>
                             </select>
                             </div>
                             <div class="invalid-feedback">
@@ -127,7 +128,7 @@
                                 <span class="input-group-text">詳細１</span>
                             </div>
                         
-                            <input type="text" class="form-control" readonly name = "s_opt1" value="{{ ($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opt1') == null ? '' : old('s_opt1') ) :(old('s_opt1') == null ? (!empty($sales->Option1->op_name)?$sales->Option1->op_name:'') : old('s_opt1')) }}">                           
+                            <input type="text" class="form-control" readonly name = "s_opt1" value="{{ $sales->s_co_id == 0 ? 'フリー' : (($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opt1') == null ? '' : old('s_opt1') ) :(old('s_opt1') == null ? (!empty($sales->Option1->op_name)?$sales->Option1->op_name:'') : old('s_opt1'))) }}">                           
                             <div class="form-control wrapper-select {{ ($errors->first('customer_error')) ? 'is-invalid'  :'' }}">
                             <select class="select-shop2" name = "s_opts1">
                             <option value = ''></option>
@@ -247,7 +248,23 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">金額</span>
                             </div>
-                            <input type="text" readonly class="form-control" value="{{ old('s_money') == null ? ($sales->s_money) : old('s_money') }}" name="s_money">
+                            <input type="text" id="s_money"  class="form-control {{ ($errors->first('s_money')) ? 'is-invalid': ''}}" value="{{ old('s_money') == null ? ($sales->s_money) : old('s_money') }}" name="s_money" {{($sales->s_co_id == '0' ? '' : 'readonly')}}>
+                            <input type="hidden" id="s_money-hidden" name="s_money-hidden" value="{{$sales->s_money}}">
+                            <div class="invalid-feedback">
+                                @error('s_money')
+                                    {{ $message }}
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">新規顧客</span>
+                            </div>
+                            <div class="form-control wrapper-select">
+                                <input type="checkbox" class="saleoff-checkbox" id="saleoff" name="s_saleoff_flg" value="{{ $sales->s_saleoff_flg }}" {{ $sales->s_saleoff_flg ? 'checked' : '' }}>
+                            </div> 
                         </div>
                     </div>
                     <div class="form-group">
@@ -361,6 +378,40 @@
 
         $('#save_s_c_id').val($(this).text());
     }); 
+
+    $("#saleoff").change(function() {
+        var saleoff = $("#saleoff").val();
+        if (saleoff == 1) {
+            if($(this).is(":checked")){
+                var old_money = $("#s_money-hidden").val();
+                if (old_money != '') {
+                    $("#s_money").val(old_money);
+                }
+            } else {
+                var money =  $("#s_money").val();
+                if (money != '') {
+                    $("#s_money").val(10*money/9);
+                }
+            }
+        } else {
+            if($(this).is(":checked")){
+                var money =  $("#s_money").val();
+                if (money != '') {
+                    $("#s_money").val(money * 0.9);
+                }
+            } else {
+                var old_money = $("#s_money-hidden").val();
+                if (old_money != '') {
+                    $("#s_money").val(old_money);
+                }
+            }
+        }
+        
+    });
+
+    $("#s_money").keyup(function() {
+        $("#s_money-hidden").val($("#s_money").val());
+    });
  });
 </script>
 @endsection

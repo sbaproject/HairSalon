@@ -200,6 +200,11 @@
     width: 100%;
 }
 
+.saleoff-checkbox {
+    height: 2em;
+    width: 1.25em;
+}
+
 a.disabled {
     pointer-events: none;
     color: #ccc;
