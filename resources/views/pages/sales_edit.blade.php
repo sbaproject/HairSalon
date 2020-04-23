@@ -113,6 +113,7 @@
                                 @endforeach
                                 <option value = 0 {{ old('s_co_id') == null ? ($sales->s_co_id == '0' ? 'selected' : '') : (old('s_co_id') == '0' ? 'selected' : '') }}>フリー</option>
                             </select>
+                            <input type="hidden" name="course_changed" id="course_changed" value="{{ old('course_changed') }}">
                             </div>
                             <div class="invalid-feedback">
                                 @error('s_co_id')
@@ -248,8 +249,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">金額</span>
                             </div>
-                            <input type="text" id="s_money"  class="form-control {{ ($errors->first('s_money')) ? 'is-invalid': ''}}" value="{{ old('s_money') == null ? ($sales->s_money) : old('s_money') }}" name="s_money" {{($sales->s_co_id == '0' ? '' : 'readonly')}}>
-                            <input type="hidden" id="s_money-hidden" name="s_money-hidden" value="{{$sales->s_money}}">
+                            <input type="text" id="s_money"  class="form-control {{ ($errors->first('s_money')) ? 'is-invalid': ''}}" value="{{ old('s_money') == null ? ($sales->s_money) : old('s_money') }}" name="s_money" {{ old('s_co_id') == null ? ($sales->s_co_id == '0' ? '' : 'readonly') : (old('s_co_id') == '0' ? '' : 'readonly')}}>
+                            <input type="hidden" id="s_money-hidden" name="s_money-hidden" value="{{ old('s_money-hidden') == null ? $sales->s_money : old('s_money-hidden') }}">
                             <div class="invalid-feedback">
                                 @error('s_money')
                                     {{ $message }}
@@ -263,7 +264,8 @@
                                 <span class="input-group-text">新規顧客</span>
                             </div>
                             <div class="form-control wrapper-select">
-                                <input type="checkbox" class="saleoff-checkbox" id="saleoff" name="s_saleoff_flg" value="{{ $sales->s_saleoff_flg }}" {{ $sales->s_saleoff_flg ? 'checked' : '' }}>
+                                <input type="checkbox" class="saleoff-checkbox" id="saleoff" name="s_saleoff_flg" value="{{$sales->s_saleoff_flg}}" {{ (old('s_saleoff_flg') == null && old('saleoff-hidden') == null) ? ($sales->s_saleoff_flg ? 'checked' : '') : ((old('s_saleoff_flg') == '0' || old('s_saleoff_flg') == '1') ? 'checked' : '') }}>
+                                <input type="hidden" name="saleoff-hidden" value="1">
                             </div> 
                         </div>
                     </div>
@@ -381,7 +383,9 @@
 
     $("#saleoff").change(function() {
         var saleoff = $("#saleoff").val();
-        if (saleoff == 1) {
+        // var course = $("#s_co_id").val();
+        var course_changed = $("#course_changed").val();
+        if (saleoff == 1 && course_changed == '') {
             if($(this).is(":checked")){
                 var old_money = $("#s_money-hidden").val();
                 if (old_money != '') {
