@@ -368,8 +368,449 @@ class SalesController extends Controller
        }       
     }
 
-    public function exportExcel()
+    public function exportExcel(Request $req)
     {
+        if(!empty($req->str_date)&&!empty($req->end_date)&&!empty($req->shop_id)){
+            $export_date = str_replace('/','-',$req->str_date);
+            $str_date = str_replace('/','-',$req->str_date) . ' 00:00:00';
+            $end_date = str_replace('/','-',$req->end_date) . ' 23:59:59';
+
+            $list_sales = Sales::where('sale_date','>=',$str_date)
+                ->where('sale_date','<=',$end_date)
+                ->where('s_sh_id',$req->shop_id)
+                ->orderBy('s_id', 'DESC')
+                ->where('s_del_flg', 0)->get()->toArray();
+            $list_shop = Shop::where('sh_id', '=', $req->shop_id)->get()->toArray();
+            $shop_name = $list_shop[0]['sh_name'];
+
+        }else{
+            $export_date = date('Y-m-d');
+            $list_sales = Sales::where('s_del_flg', 0)->orderBy('s_id', 'DESC')->get()->toArray();;
+            $shop_name = '全部';
+        }
+
+        // process data
+        $list_staff_data = array();
+        $list_option_id = array();
+        $sum_money = 0; //B6
+        foreach ($list_sales as $sale){
+            $sum_money += $sale['s_money'];
+            $s_opts1 = $sale['s_opts1'];
+            $s_opts2 = $sale['s_opts2'];
+            $s_opts3 = $sale['s_opts3'];
+            $s_opts4 = $sale['s_opts4'];
+            $s_opts5 = $sale['s_opts5'];
+
+            if (!empty($s_opts1) && !in_array($s_opts1, $list_staff_data)){
+                $list_staff_data[$s_opts1]['id'] = $s_opts1;
+            }
+            if (!empty($s_opts2) && !in_array($s_opts2, $list_staff_data)){
+                $list_staff_data[$s_opts2]['id'] = $s_opts2;
+            }
+            if (!empty($s_opts3) && !in_array($s_opts3, $list_staff_data)){
+                $list_staff_data[$s_opts3]['id'] = $s_opts3;
+            }
+            if (!empty($s_opts4) && !in_array($s_opts4, $list_staff_data)){
+                $list_staff_data[$s_opts4]['id'] = $s_opts4;
+            }
+            if (!empty($s_opts5) && !in_array($s_opts5, $list_staff_data)){
+                $list_staff_data[$s_opts5]['id'] = $s_opts5;
+            }
+
+            $s_opt1 = $sale['s_opt1'];
+            $s_opt2 = $sale['s_opt2'];
+            $s_opt3 = $sale['s_opt3'];
+            $s_opt4 = $sale['s_opt4'];
+            $s_opt5 = $sale['s_opt5'];
+
+            if (!empty($s_opt1)){
+                $list_staff_data[$s_opts1]['co_id'][] = $s_opt1;
+                if (!in_array($s_opt1, $list_option_id)){
+                    $list_option_id[] = $s_opt1;
+                }
+            }
+            if (!empty($s_opt2)){
+                $list_staff_data[$s_opts2]['co_id'][] = $s_opt2;
+                if (!in_array($s_opt2, $list_option_id)){
+                    $list_option_id[] = $s_opt2;
+                }
+            }
+            if (!empty($s_opt3)){
+                $list_staff_data[$s_opts3]['co_id'][] = $s_opt3;
+                if (!in_array($s_opt3, $list_option_id)){
+                    $list_option_id[] = $s_opt3;
+                }
+            }
+            if (!empty($s_opt4)){
+                $list_staff_data[$s_opts4]['co_id'][] = $s_opt4;
+                if (!in_array($s_opt4, $list_option_id)){
+                    $list_option_id[] = $s_opt4;
+                }
+            }
+            if (!empty($s_opt5)){
+                $list_staff_data[$s_opts5]['co_id'][] = $s_opt5;
+                if (!in_array($s_opt5, $list_option_id)){
+                    $list_option_id[] = $s_opt5;
+                }
+            }
+        }
+
+        $list_staff_id = array_keys($list_staff_data);
+        sort($list_staff_id);
+        sort($list_option_id);
+
+        foreach ($list_staff_data as $key => $value){
+            $list_co_id = $list_staff_data[$key]['co_id'];
+            $list_co_id = array_count_values($list_co_id);
+            $list_staff_data[$key]['co_id'] = $list_co_id;
+        }
+
+        // get data from database
+        $list_options = Option::whereIn('op_id',$list_option_id)->orderBy('op_id', 'ASC')->get()->toArray();
+        $list_staff = Staff::whereIn('s_id',$list_staff_id)->orderBy('s_id', 'ASC')->get()->toArray();
+
+        $day_in_month = date('t', strtotime($export_date));
+
+        $list_sales_count = count($list_sales); //B7
+        $avg_person = ceil($list_sales_count/$day_in_month) ; //B8 = B7 / $day_in_month
+        $total_staff = count($list_staff_id); //B9
+
+        // export excel
+        $font_family = 'Arial';
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $sheet->getColumnDimension('A')->setWidth('18');
+        $sheet->getColumnDimension('B')->setWidth('15');
+        $sheet->getColumnDimension('F')->setWidth('22');
+        $sheet->getColumnDimension('G')->setWidth('22');
+        $sheet->getColumnDimension('H')->setWidth('22');
+        $sheet->getColumnDimension('I')->setWidth('18');
+        $sheet->getColumnDimension('J')->setWidth('18');
+        $sheet->getColumnDimension('K')->setWidth('18');
+
+        //A1
+        $sheet->setCellValue('A1', '店名');
+        $sheet->getStyle('A1')->getAlignment()->setHorizontal('right');
+        $sheet->getStyle("A1")->getFont()->setName($font_family)->setSize(10);
+
+        //B1
+        $sheet->mergeCells("B1:D1");
+        $sheet->setCellValue('B1', $shop_name);
+        $sheet->getStyle('B1')->getAlignment()->setHorizontal('center');
+        $styleArray = array(
+            'borders' => array(
+                'bottom' => array(
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => array('argb' => '000000'),
+                ),
+            ),
+            'font'  => array(
+                'size'  => 14,
+                'name'  => $font_family
+            )
+        );
+        $sheet->getStyle('B1:D1')->applyFromArray($styleArray);
+        $sheet->getStyle('B1')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
+
+        //A3
+        $sheet->setCellValue('A3', '入力欄');
+        $sheet->getStyle('A3')->getAlignment()->setHorizontal('left');
+        $sheet->getStyle("A3")->getFont()->setName($font_family)->setSize(16);
+
+
+        // A5: B9
+        $styleArray = array(
+            'borders' => array(
+                'outline' => array(
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => array('argb' => '000000'),
+                ),
+            ),
+            'font'  => array(
+                'size'  => 11,
+                'name'  => $font_family
+            )
+        );
+        $sheet->getStyle('A5')->applyFromArray($styleArray);
+        $sheet->getStyle('A6')->applyFromArray($styleArray);
+        $sheet->getStyle('A7')->applyFromArray($styleArray);
+        $sheet->getStyle('A8')->applyFromArray($styleArray);
+        $sheet->getStyle('A9')->applyFromArray($styleArray);
+
+        $styleArray = array(
+            'borders' => array(
+                'outline' => array(
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => array('argb' => '000000'),
+                ),
+            ),
+            'font'  => array(
+                'size'  => 12,
+                'name'  => $font_family
+            )
+        );
+        $sheet->getStyle('B5')->applyFromArray($styleArray);
+        $sheet->getStyle('B6')->applyFromArray($styleArray);
+        $sheet->getStyle('B7')->applyFromArray($styleArray);
+        $sheet->getStyle('B8')->applyFromArray($styleArray);
+        $sheet->getStyle('B9')->applyFromArray($styleArray);
+
+        $sheet->setCellValue('A6', '当月売上');
+        $sheet->setCellValue('A7', '当月総客数');
+        $sheet->setCellValue('A8', 'のべ人数');
+        $sheet->setCellValue('A9', 'スタッフ数');
+
+        $sheet->getStyle('B6')->getAlignment()->setHorizontal('right');
+        $sheet->getStyle('B7')->getAlignment()->setHorizontal('right');
+        $sheet->getStyle('B8')->getAlignment()->setHorizontal('right');
+        $sheet->getStyle('B9')->getAlignment()->setHorizontal('right');
+        $sheet->getStyle('B6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
+        $sheet->getStyle('B7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
+        $sheet->getStyle('B8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
+        $sheet->getStyle('B9')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
+
+        $sheet->setCellValue('B6', number_format($sum_money));
+        $sheet->setCellValue('B7', number_format($list_sales_count));
+        $sheet->setCellValue('B8', number_format($avg_person));
+        $sheet->setCellValue('B9', number_format($total_staff));
+
+
+        //A19 : C22
+        $sheet->setCellValue('A19', '■連絡事項（何かあればご記入ください）');
+        $sheet->getStyle('A19')->getAlignment()->setHorizontal('left');
+        $sheet->getStyle("A19")->getFont()->setName($font_family)->setSize(10);
+
+        $styleArray = array(
+            'borders' => array(
+                'outline' => array(
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => array('argb' => '000000'),
+                ),
+            ),
+            'font'  => array(
+                'size'  => 10,
+                'name'  => $font_family
+            )
+        );
+        $sheet->mergeCells("A20:C22");
+        $sheet->getStyle('A20')->getAlignment()->setHorizontal('left')->setVertical('top');
+        $sheet->getStyle('A20')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
+        $sheet->getStyle('A20:C22')->applyFromArray($styleArray);
+
+
+        //F1 : I1
+        $styleArray = array(
+            'borders' => array(
+                'bottom' => array(
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => array('arg' => '000000'),
+                ),
+            )
+        );
+
+        $sheet->getStyle('F1:I1')->applyFromArray($styleArray);
+
+        $arr_date = explode('-', $export_date);
+        $sheet->setCellValue('F1', $arr_date[0]);
+        $sheet->getStyle('F1')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle("F1")->getFont()->setName($font_family)->setSize(18);
+        $sheet->getStyle('F1')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
+
+        $sheet->setCellValue('G1', '年');
+        $sheet->getStyle('G1')->getAlignment()->setHorizontal('left');
+        $sheet->getStyle("G1")->getFont()->setName($font_family)->setSize(10);
+
+        $sheet->setCellValue('H1', (int)$arr_date[1]);
+        $sheet->getStyle('H1')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle("H1")->getFont()->setName($font_family)->setSize(18);
+        $sheet->getStyle('H1')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
+
+        $sheet->setCellValue('I1', '月');
+        $sheet->getStyle('I1')->getAlignment()->setHorizontal('left');
+        $sheet->getStyle("I1")->getFont()->setName($font_family)->setSize(10);
+
+        //F3
+        $sheet->setCellValue('F3', '実績');
+        $sheet->getStyle('F3')->getAlignment()->setHorizontal('left');
+        $sheet->getStyle("F3")->getFont()->setName($font_family)->setSize(16);
+
+        $styleArray = array(
+            'borders' => array(
+                'outline' => array(
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => array('argb' => '000000'),
+                ),
+            ),
+            'font'  => array(
+                'size'  => 10,
+                'name'  => $font_family
+            )
+        );
+        //F4
+        $sheet->setCellValue('F4', '当月売上');
+        $sheet->getStyle('F4')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('F4')->applyFromArray($styleArray);
+
+        //G4
+        $sheet->setCellValue('G4', '客単価');
+        $sheet->getStyle('G4')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('G4')->applyFromArray($styleArray);
+
+        //H4
+        $sheet->mergeCells("H4:I4");
+        $sheet->setCellValue('H4', '1日1人あたり売上(当月)');
+        $sheet->getStyle('H4')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('H4')->applyFromArray($styleArray);
+        $sheet->getStyle('I4')->applyFromArray($styleArray);
+
+        //J4
+        $sheet->mergeCells("J4:K4");
+        $sheet->setCellValue('J4', '1ヵ月1人あたり売上');
+        $sheet->getStyle('J4')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('J4')->applyFromArray($styleArray);
+        $sheet->getStyle('K4')->applyFromArray($styleArray);
+
+
+        $styleArray = array(
+            'borders' => array(
+                'outline' => array(
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => array('argb' => '000000'),
+                ),
+            ),
+            'font'  => array(
+                'size'  => 12,
+                'name'  => $font_family
+            )
+        );
+
+        //F5
+        $sheet->setCellValue('F5', '¥'.number_format($sum_money));
+        $sheet->getStyle('F5')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle("F5")->getFont()->setBold(true);
+        $sheet->getStyle('F5')->applyFromArray($styleArray);
+
+        //G5
+        $sheet->setCellValue('G5', '¥'.number_format(floor($sum_money/$list_sales_count)));
+        $sheet->getStyle('G5')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('G5')->applyFromArray($styleArray);
+
+
+        //H5
+        $sheet->mergeCells("H5:I5");
+        $sheet->setCellValue('H5', '¥'.number_format($sum_money/$avg_person,2));
+        $sheet->getStyle('H5')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('H5')->applyFromArray($styleArray);
+        $sheet->getStyle('I5')->applyFromArray($styleArray);
+
+        //H5
+        $sheet->mergeCells("J5:K5");
+        $sheet->setCellValue('J5', '¥'.number_format(floor($sum_money/$total_staff)));
+        $sheet->getStyle('J5')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('J5')->applyFromArray($styleArray);
+        $sheet->getStyle('K5')->applyFromArray($styleArray);
+
+        //F9
+        $sheet->setCellValue('F9', '■個人実績');
+        $sheet->getStyle('F9')->getAlignment()->setHorizontal('left');
+        $sheet->getStyle("F9")->getFont()->setName($font_family)->setSize(10);
+
+
+        $styleArray = array(
+            'borders' => array(
+                'outline' => array(
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                    'color' => array('argb' => '000000'),
+                ),
+            ),
+            'font'  => array(
+                'size'  => 10,
+                'name'  => $font_family
+            )
+        );
+        //F10
+        $sheet->setCellValue('F10', '氏名');
+        $sheet->getStyle('F10')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('F10')->applyFromArray($styleArray);
+
+        //G10
+        $sheet->setCellValue('G10', '氏名カナ');
+        $sheet->getStyle('G10')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('G10')->applyFromArray($styleArray);
+
+        //H10
+        $sheet->setCellValue('H10', '実績売上');
+        $sheet->getStyle('H10')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('H10')->applyFromArray($styleArray);
+
+        $column = 10;
+        $col = 'I';
+        foreach($list_options as $option){
+            $sheet->getColumnDimension($col)->setWidth(18);
+            $sheet->setCellValue($col.$column, $option['op_name']);
+            $sheet->getStyle($col.$column)->getAlignment()->setHorizontal('center');
+            $sheet->getStyle($col.$column)->applyFromArray($styleArray);
+            $col++;
+        }
+
+        $column = 11;
+        $index = 1;
+        foreach($list_staff as $staff){
+            $staff_id = $staff['s_id'];
+            $option_staff_id = $list_staff_data[$staff_id]['co_id'];
+
+            $sheet->setCellValue('E'.$column, $index);
+            $sheet->getStyle('E'.$column)->getFont()->setName($font_family)->setSize(10);
+
+            $sheet->setCellValue('F'.$column, $staff['s_lastname'].' '. $staff['s_firstname']);
+            $sheet->getStyle('F'.$column)->getAlignment()->setHorizontal('left');
+            $sheet->getStyle('F'.$column)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
+            $sheet->getStyle('F'.$column)->applyFromArray($styleArray);
+
+            $sheet->setCellValue('G'.$column, $staff['s_lastname'].' '. $staff['s_firstname']);
+            $sheet->getStyle('G'.$column)->getAlignment()->setHorizontal('left');
+            $sheet->getStyle('G'.$column)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
+            $sheet->getStyle('G'.$column)->applyFromArray($styleArray);
+
+            $col = 'I';
+            $total_amount = 0;
+            foreach($list_options as $option){
+                $op_id = $option['op_id'];
+                $op_amount = $option['op_amount'];
+                $list_option_staff_id = array_keys($option_staff_id);
+                if (in_array($op_id, $list_option_staff_id)) {
+                    $total_amount += $option_staff_id[$op_id] * $op_amount;
+                    $sheet->setCellValue($col . $column, $option_staff_id[$op_id]);
+                }
+                $sheet->getStyle($col.$column)->getAlignment()->setHorizontal('right');
+                $sheet->getStyle($col.$column)->applyFromArray($styleArray);
+                $sheet->getStyle($col.$column)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
+                $col++;
+            }
+
+            $sheet->setCellValue('H'.$column, number_format($total_amount));
+            $sheet->getStyle('H'.$column)->getAlignment()->setHorizontal('right');
+            $sheet->getStyle('H'.$column)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
+            $sheet->getStyle('H'.$column)->applyFromArray($styleArray);
+
+            $column++;
+            $index++;
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        $fileName = '集計出力_'.date('Ymd').'.xlsx';
+        $writer->save($fileName);
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($fileName).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($fileName));
+        readfile($fileName);
+        unlink($fileName);
+        exit();
     }
     public function exportCSV(Request $req)
     {
@@ -381,9 +822,9 @@ class SalesController extends Controller
                 ->where('sale_date','<=',$end_date)
                 ->where('s_sh_id',$req->shop_id)
                 ->orderBy('s_id', 'DESC')
-                ->where('s_del_flg', 0)->paginate(10000);
+                ->where('s_del_flg', 0)->paginate(1000000);
         }else{
-            $list_sales = Sales::where('s_del_flg', 0)->orderBy('s_id', 'DESC')->paginate(10000);
+            $list_sales = Sales::where('s_del_flg', 0)->orderBy('s_id', 'DESC')->paginate(1000000);
         }
         $filename = '会計出力_'.date('Ymd').'.csv';
         $headers = array(

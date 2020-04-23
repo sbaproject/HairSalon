@@ -199,3 +199,8 @@
     margin-left: 20%;
     width: 100%;
 }
+
+a.disabled {
+    pointer-events: none;
+    color: #ccc;
+}

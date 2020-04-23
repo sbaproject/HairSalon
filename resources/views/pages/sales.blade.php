@@ -94,8 +94,8 @@
             <br/>
             <div class="buttonAdd">        
             <a class="btn btn-primary add-new-btn" href="{{url('sales/new')}}" role="button">新規追加</a>
-            <a class="btn btn-primary add-new-btn" href="{{url('sales/exportExcel')}}" role="button">集計出力</a>
-            <a class="btn btn-primary add-new-btn" href="{{url('sales/exportCSV')}}?str_date={{ !empty($str_date) ? $str_date : '' }}&end_date={{ !empty($end_date) ? $end_date : '' }}&shop_id={{ !empty($shopId) ? $shopId : '' }}" role="button">会計出力</a>
+            <a class="btn btn-primary add-new-btn{{$list_sales_count == 0 ? ' disabled' : ''}}" href="{{url('sales/exportExcel')}}?str_date={{ !empty($str_date) ? $str_date : '' }}&end_date={{ !empty($end_date) ? $end_date : '' }}&shop_id={{ !empty($shopId) ? $shopId : '' }}" role="button">集計出力</a>
+            <a class="btn btn-primary add-new-btn{{$list_sales_count == 0 ? ' disabled' : ''}}" href="{{url('sales/exportCSV')}}?str_date={{ !empty($str_date) ? $str_date : '' }}&end_date={{ !empty($end_date) ? $end_date : '' }}&shop_id={{ !empty($shopId) ? $shopId : '' }}" role="button">会計出力</a>
             <!-- <button type="button" class="btn btn-primary buttonSales" ><a href="sales/new" style="color: white; text-decoration: none;">新規追加</a></button>
             <button type="button" class="btn btn-primary buttonSales"><a href="#" style="color: white; text-decoration: none;">PDF出カ</a></button> -->
             @if (\Session::has('success'))
