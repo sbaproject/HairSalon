@@ -249,6 +249,7 @@ function onCourseChange(list_course,list_option) {
         $('select[name="s_opts5"]').val('');
         $('input[name="s_money"]').val('');
         $('input[name="s_money-hidden"]').val('');
+        $("#saleoff").prop("checked", false);   // reset checkbox saleoff to unchecked
         return;
     }
 
@@ -267,6 +268,8 @@ function onCourseChange(list_course,list_option) {
         $('select[name="s_opts4"]').val('');
         $('input[name="s_opt5"]').val('');
         $('select[name="s_opts5"]').val('');
+        $('#course_changed').val('1');
+        $("#saleoff").prop("checked", false);   // reset checkbox saleoff to unchecked
         return;
     } 
 
@@ -339,6 +342,7 @@ function onCourseChange(list_course,list_option) {
     $('input[name="s_money"]').val(totalAmount);
     $('input[name="s_money"]').number( true, 0 );
     $('input[name="s_money-hidden"]').val(totalAmount);
+    $('#course_changed').val('1');
     
     // reset checkbox saleoff to unchecked
     $("#saleoff").prop("checked", false);
