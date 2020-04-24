@@ -228,7 +228,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">金額</span>
                             </div>
-                            <input type="text" {{ old('s_co_id') == '0' ? '' : 'readonly' }} class="form-control {{ ($errors->first('s_money')) ? 'is-invalid': ''}}" id="s_money" name="s_money" value = "{{old('s_money')}}">
+                            <input type="text" {{ old('s_co_id') == '0' ? '' : 'disabled' }} class="form-control {{ ($errors->first('s_money')) ? 'is-invalid': ''}}" id="s_money" name="s_money" value = "{{old('s_money')}}">
+                            <input type="hidden" id="s_money-hidden-ori" name="s_money-hidden-ori" value="{{old('s_money-hidden-ori')}}">
                             <input type="hidden" id="s_money-hidden" name="s_money-hidden" value="{{old('s_money-hidden')}}">
                             <div class="invalid-feedback">
                                 @error('s_money')
@@ -365,17 +366,22 @@
             var money =  $("#s_money").val();
             if (money != '') {
                 $("#s_money").val(money * 0.9);
+                $("#s_money-hidden-ori").val(money * 0.9);
+                
             }
         } else {
             var old_money = $("#s_money-hidden").val();
             if (old_money != '') {
                 $("#s_money").val(old_money);
+                $("#s_money-hidden-ori").val(old_money);
             }
         }
     });
 
     $("#s_money").keyup(function() {
         $("#s_money-hidden").val($("#s_money").val());
+        $("#s_money-hidden-ori").val($("#s_money").val());
+        
     });
 
  });
