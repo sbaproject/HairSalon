@@ -254,8 +254,8 @@ function onCourseChange(list_course,list_option) {
     }
 
     if (option == 0) {
-        // remove readonly prop for s_money to type the money
-        $("#s_money").prop("readonly", false);
+        // remove disabled prop for s_money to type the money
+        $("#s_money").prop("disabled", false);
         $('#s_money').val('');
 
         $('input[name="s_opt1"]').val('フリー');
@@ -273,7 +273,7 @@ function onCourseChange(list_course,list_option) {
         return;
     } 
 
-    $("#s_money").prop("readonly", true);
+    $("#s_money").prop("disabled", true);
     
     list_course.forEach((element) => {
         if (element.co_id == option) {
@@ -341,6 +341,7 @@ function onCourseChange(list_course,list_option) {
 
     $('input[name="s_money"]').val(totalAmount);
     $('input[name="s_money"]').number( true, 0 );
+    $('input[name="s_money-hidden-ori"]').val(totalAmount);
     $('input[name="s_money-hidden"]').val(totalAmount);
     $('#course_changed').val('1');
     
