@@ -479,7 +479,7 @@ class SalesController extends Controller
             $s_opt4 = $sale['s_opt4'];
             $s_opt5 = $sale['s_opt5'];
 
-            if (!empty($s_opt1)){
+            if ($s_opt1 == 0 || !empty($s_opt1)){
                 $list_staff_data[$s_opts1]['co_id'][] = $s_opt1;
                 if (!in_array($s_opt1, $list_option_id)){
                     $list_option_id[] = $s_opt1;
@@ -524,6 +524,11 @@ class SalesController extends Controller
         // get data from database
         $list_options = Option::whereIn('op_id',$list_option_id)->orderBy('op_id', 'ASC')->get()->toArray();
         $list_staff = Staff::whereIn('s_id',$list_staff_id)->orderBy('s_id', 'ASC')->get()->toArray();
+
+
+        if (in_array(0, $list_option_id)){
+            $list_options[] = array('op_id' => 0, 'op_name' => 'フリー', 'op_amount' => 1);
+        }
 
         $list_sales_count = count($list_sales); //B7
         $avg_person = ceil($list_sales_count/$day_in_month) ; //B8 = B7 / $day_in_month
@@ -687,6 +692,9 @@ class SalesController extends Controller
 
         $sheet->getStyle('E1')->getBorders()->getAllBorders()->applyFromArray($styleArray2);
         $sheet->getStyle('E1')->getBorders()->getRight()->applyFromArray($styleArray1);
+        $sheet->getStyle('F1')->getBorders()->getAllBorders()->applyFromArray($styleArray1);
+        $sheet->getStyle('G1')->getBorders()->getAllBorders()->applyFromArray($styleArray1);
+        $sheet->getStyle('H1')->getBorders()->getAllBorders()->applyFromArray($styleArray1);
 
         $sheet->getStyle('F1:I1')->applyFromArray($styleArray);
 
@@ -940,7 +948,7 @@ class SalesController extends Controller
         );
 
 
-        $columns = array('STT ', 'Ngày tháng', 'Phương thức thanh toán', 'Tên hàng hóa, dịch vụ' ,'Đơn vị tính', 'Số lượng', 'Đơn giá', 'Thành tiền');
+        $columns = array('STT'.chr(32), 'Ngày tháng', 'Phương thức thanh toán', 'Tên hàng hóa & dịch vụ' ,'Đơn vị tính', 'Số lượng', 'Đơn giá', 'Thành tiền');
 
         $callback = function() use ($list_sales, $columns)
         {
@@ -950,14 +958,14 @@ class SalesController extends Controller
             fputcsv($file, $columns);
             $index = 1;
             foreach($list_sales as $sale) {
-                $sale_date = empty($sale->sale_date)? ' ' : date('Y/m/d', strtotime($sale->sale_date)).' ';
+                $sale_date = empty($sale->sale_date)? '' : date('Y/m/d', strtotime($sale->sale_date));
                 $s_pay = ((int)$sale->s_pay === 0 ?  'キャッシュ' : 'カード') ;
-                $co_name = empty($sale->Course->co_name)? '' : $sale->Course->co_name;
-                $unit = 'Gói ';
-                $quantity = '1 ';
+                $co_name = empty($sale->Course->co_name)? 'フリー' : $sale->Course->co_name;
+                $unit = 'Gói';
+                $quantity = 1;
                 $s_money = empty($sale->s_money)? 0 : $sale->s_money;
                 $total = number_format($s_money * (int)$quantity);
-                fputcsv($file, array($index.' ', $sale_date, $s_pay.' ', (string)$co_name.' ', (string)$unit, (string)$quantity, number_format($s_money), $total));
+                fputcsv($file, array($index.chr(32), $sale_date.chr(32), $s_pay.chr(32), $co_name.chr(32), $unit.chr(32), $quantity.chr(32), number_format($s_money), $total));
                 $index++;
             }
             fclose($file);
