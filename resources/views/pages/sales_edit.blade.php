@@ -153,12 +153,12 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">詳細２</span>
                             </div>
-                            <input type="text" class="form-control" readonly name = "s_opt2" value="{{ ($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opt2') == null ? '' : old('s_opt2') ) :(old('s_opt2') == null ? (!empty($sales->Option2->op_name)?$sales->Option2->op_name:'') : old('s_opt2')) }}">
+                            <input type="text" class="form-control" readonly name = "s_opt2" value="{{ old('s_co_id') == '0' ? '' : (($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opt2') == null ? '' : old('s_opt2') ) :(old('s_opt2') == null ? (!empty($sales->Option2->op_name)?$sales->Option2->op_name:'') : old('s_opt2'))) }}">
                             <div class="form-control wrapper-select {{ ($errors->first('customer_error2')) ? 'is-invalid'  :'' }}">
                             <select class="select-shop2" name = "s_opts2">
                             <option value = ''></option>
                             @foreach($list_staff as $staff)
-                            <option value = '{{$staff->s_id}}'  {{   ($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opts2') == null ? '' : (old('s_opts2') == $staff->s_id ? 'selected' : '')) :  (old('s_opts2') == null ? ( $sales->s_opts2 == $staff->s_id ? 'selected' : '') : (old('s_opts2') == $staff->s_id ? 'selected' : '')) }}>
+                            <option value = '{{$staff->s_id}}'  {{ old('s_co_id') == '0' ? '' : (($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opts2') == null ? '' : (old('s_opts2') == $staff->s_id ? 'selected' : '')) :  (old('s_opts2') == null ? ( $sales->s_opts2 == $staff->s_id ? 'selected' : '') : (old('s_opts2') == $staff->s_id ? 'selected' : ''))) }}>
                             {{$staff->s_firstname}} {{$staff->s_lastname}}
                             </option>
                             @endforeach
@@ -177,12 +177,12 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">詳細３</span>
                             </div>
-                            <input type="text" class="form-control" readonly name = "s_opt3" value="{{ ($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opt3') == null ? '' : old('s_opt3') ) :(old('s_opt3') == null ? (!empty($sales->Option3->op_name)?$sales->Option3->op_name:'') : old('s_opt3')) }}">
+                            <input type="text" class="form-control" readonly name = "s_opt3" value="{{ old('s_co_id') == '0' ? '' : (($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opt3') == null ? '' : old('s_opt3') ) :(old('s_opt3') == null ? (!empty($sales->Option3->op_name)?$sales->Option3->op_name:'') : old('s_opt3'))) }}">
                             <div class="form-control wrapper-select {{ ($errors->first('customer_error3')) ? 'is-invalid'  :'' }}">
                             <select class="select-shop2" name = "s_opts3">
                             <option value = ''></option>
                             @foreach($list_staff as $staff)
-                            <option value = '{{$staff->s_id}}'  {{   ($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opts3') == null ? '' : (old('s_opts3') == $staff->s_id ? 'selected' : '')) :  (old('s_opts3') == null ? ( $sales->s_opts3 == $staff->s_id ? 'selected' : '') : (old('s_opts3') == $staff->s_id ? 'selected' : '')) }}>
+                            <option value = '{{$staff->s_id}}'  {{ old('s_co_id') == '0' ? '' : (($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opts3') == null ? '' : (old('s_opts3') == $staff->s_id ? 'selected' : '')) :  (old('s_opts3') == null ? ( $sales->s_opts3 == $staff->s_id ? 'selected' : '') : (old('s_opts3') == $staff->s_id ? 'selected' : ''))) }}>
                             {{$staff->s_firstname}} {{$staff->s_lastname}}
                             </option>
                             @endforeach
@@ -201,12 +201,12 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">詳細４</span>
                             </div>
-                            <input type="text" class="form-control" readonly name = "s_opt4" value="{{ ($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opt4') == null ? '' : old('s_opt4') ) :(old('s_opt4') == null ? (!empty($sales->Option4->op_name)?$sales->Option4->op_name:'') : old('s_opt4')) }}">
+                            <input type="text" class="form-control" readonly name = "s_opt4" value="{{ old('s_co_id') == '0' ? '' : (($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opt4') == null ? '' : old('s_opt4') ) :(old('s_opt4') == null ? (!empty($sales->Option4->op_name)?$sales->Option4->op_name:'') : old('s_opt4'))) }}">
                             <div class="form-control wrapper-select {{ ($errors->first('customer_error4')) ? 'is-invalid'  :'' }}">
                             <select class="select-shop2" name = "s_opts4">
                             <option value = ''></option>
                             @foreach($list_staff as $staff)
-                            <option value = '{{$staff->s_id}}'  {{   ($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opts4') == null ? '' : (old('s_opts4') == $staff->s_id ? 'selected' : '')) :  (old('s_opts4') == null ? ( $sales->s_opts4 == $staff->s_id ? 'selected' : '') : (old('s_opts4') == $staff->s_id ? 'selected' : '')) }}>
+                            <option value = '{{$staff->s_id}}'  {{ old('s_co_id') == '0' ? '' : (($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opts4') == null ? '' : (old('s_opts4') == $staff->s_id ? 'selected' : '')) :  (old('s_opts4') == null ? ( $sales->s_opts4 == $staff->s_id ? 'selected' : '') : (old('s_opts4') == $staff->s_id ? 'selected' : ''))) }}>
                             {{$staff->s_firstname}} {{$staff->s_lastname}}
                             </option>
                             @endforeach
@@ -225,12 +225,12 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">詳細５</span>
                             </div>
-                            <input type="text" class="form-control" readonly name = "s_opt5" value="{{ ($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opt5') == null ? '' : old('s_opt5') ) :(old('s_opt5') == null ? (!empty($sales->Option5->op_name)?$sales->Option5->op_name:'') : old('s_opt5')) }}">
+                            <input type="text" class="form-control" readonly name = "s_opt5" value="{{ old('s_co_id') == '0' ? '' : (($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opt5') == null ? '' : old('s_opt5') ) :(old('s_opt5') == null ? (!empty($sales->Option5->op_name)?$sales->Option5->op_name:'') : old('s_opt5'))) }}">
                             <div class="form-control wrapper-select {{ ($errors->first('customer_error5')) ? 'is-invalid'  :'' }}">
                             <select class="select-shop2" name = "s_opts5">
                             <option value = ''></option>
                             @foreach($list_staff as $staff)
-                            <option value = '{{$staff->s_id}}'  {{   ($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opts5') == null ? '' : (old('s_opts5') == $staff->s_id ? 'selected' : '')) :  (old('s_opts5') == null ? ( $sales->s_opts5 == $staff->s_id ? 'selected' : '') : (old('s_opts5') == $staff->s_id ? 'selected' : '')) }}>
+                            <option value = '{{$staff->s_id}}'  {{ old('s_co_id') == '0' ? '' : (($errors->first('customer_error') || $errors->first('customer_error2') || $errors->first('customer_error3') || $errors->first('customer_error4') || $errors->first('customer_error5'))  ? (old('s_opts5') == null ? '' : (old('s_opts5') == $staff->s_id ? 'selected' : '')) :  (old('s_opts5') == null ? ( $sales->s_opts5 == $staff->s_id ? 'selected' : '') : (old('s_opts5') == $staff->s_id ? 'selected' : ''))) }}>
                             {{$staff->s_firstname}} {{$staff->s_lastname}}
                             </option>
                             @endforeach
@@ -249,8 +249,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">金額</span>
                             </div>
-                            <input type="text" id="s_money"  class="form-control {{ ($errors->first('s_money')) ? 'is-invalid': ''}}" value="{{ old('s_money') == null ? ($sales->s_money) : old('s_money') }}" name="s_money" {{ old('s_co_id') == null ? ($sales->s_co_id == '0' ? '' : 'disabled') : (old('s_co_id') == '0' ? '' : 'disabled')}}>
-                            <input type="hidden" id="s_money-hidden-ori" name="s_money-hidden-ori" value="{{ old('s_money-hidden-ori') == null ? ($sales->s_money) : old('s_money-hidden-ori') }}">
+                            <input type="text" id="s_money"  class="form-control {{ ($errors->first('s_money')) ? 'is-invalid': ''}}" value="{{ old('s_money') == null ? (number_format($sales->s_money)) : old('s_money') }}" name="s_money" {{ old('s_co_id') == null ? ($sales->s_co_id == '0' ? '' : 'readonly') : (old('s_co_id') == '0' ? '' : 'readonly')}}>
                             <input type="hidden" id="s_money-hidden" name="s_money-hidden" value="{{ old('s_money-hidden') == null ? $sales->s_money : old('s_money-hidden') }}">
                             <div class="invalid-feedback">
                                 @error('s_money')
@@ -390,38 +389,35 @@
             if($(this).is(":checked")){
                 var old_money = $("#s_money-hidden").val();
                 if (old_money != '') {
-                    $("#s_money").val(old_money);
-                    $("#s_money-hidden-ori").val(old_money);
+                    $("#s_money").val(numeral(old_money).format('0,0'));
                     
                 }
             } else {
                 var money =  $("#s_money").val();
+                money = money.replace(/,/g, '');
                 if (money != '') {
-                    $("#s_money").val(10*money/9);
-                    $("#s_money-hidden-ori").val(10*money/9);
+                    $("#s_money").val(numeral(10*money/9).format('0,0'));
                 }
             }
         } else {
             if($(this).is(":checked")){
                 var money =  $("#s_money").val();
+                money = money.replace(/,/g, '');
                 if (money != '') {
-                    $("#s_money").val(money * 0.9);
-                    $("#s_money-hidden-ori").val(money * 0.9);
+                    $("#s_money").val(numeral(money * 0.9).format('0,0'));
                 }
             } else {
                 var old_money = $("#s_money-hidden").val();
                 if (old_money != '') {
-                    $("#s_money").val(old_money);
-                    $("#s_money-hidden-ori").val(old_money);
+                    $("#s_money").val(numeral(old_money).format('0,0'));
                 }
             }
         }
         
     });
 
-    $("#s_money").keyup(function() {
+    $("#s_money").change(function() {
         $("#s_money-hidden").val($("#s_money").val());
-        $("#s_money-hidden-ori").val($("#s_money").val());
     });
  });
 </script>

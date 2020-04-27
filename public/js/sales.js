@@ -8,8 +8,6 @@ $(document).ready(function(){
     $('input[name="hid"]').val('1');
     }); 
 
-    $('input[name="s_money"]').number( true, 0 );
-
     $(".statusResult").fadeOut( 7000, function() {
         $("#statusResult").attr('class', 'statusBefore');
         $("#statusResult").html('');
@@ -78,6 +76,11 @@ $(document).ready(function(){
         var windowsize = $(window).width();
         ReponsivePage(windowsize);        
     });    
+
+    $('#s_money').keyup(function() {
+        var string = numeral($('#s_money').val()).format('0,0');
+        $('#s_money').val(string);
+    });
 });
 
 function ReponsivePage(windowsize){
@@ -254,26 +257,30 @@ function onCourseChange(list_course,list_option) {
     }
 
     if (option == 0) {
-        // remove disabled prop for s_money to type the money
-        $("#s_money").prop("disabled", false);
+        // remove readonly prop for s_money to type the money
+        $("#s_money").prop("readonly", false);
         $('#s_money').val('');
 
         $('input[name="s_opt1"]').val('フリー');
         $('select[name="s_opts1"]').val('');
         $('input[name="s_opt2"]').val('');
         $('select[name="s_opts2"]').val('');
+        $('select[name="s_opts2"]').prop("disabled", true);
         $('input[name="s_opt3"]').val('');
         $('select[name="s_opts3"]').val('');
+        $('select[name="s_opts3"]').prop("disabled", true);
         $('input[name="s_opt4"]').val('');
         $('select[name="s_opts4"]').val('');
+        $('select[name="s_opts4"]').prop("disabled", true);
         $('input[name="s_opt5"]').val('');
         $('select[name="s_opts5"]').val('');
+        $('select[name="s_opts5"]').prop("disabled", true);
         $('#course_changed').val('1');
         $("#saleoff").prop("checked", false);   // reset checkbox saleoff to unchecked
         return;
     } 
 
-    $("#s_money").prop("disabled", true);
+    $("#s_money").prop("readonly", true);
     
     list_course.forEach((element) => {
         if (element.co_id == option) {
@@ -301,48 +308,57 @@ function onCourseChange(list_course,list_option) {
     
     if(optName1 != null){
         $('input[name="s_opt1"]').val(optName1.op_name);
-        totalAmount = totalAmount + parseInt(optName1.op_amount)
+        totalAmount = totalAmount + parseInt(optName1.op_amount);
+        $('select[name="s_opts1"]').prop("disabled", false);
     }else{
         $('input[name="s_opt1"]').val('');
         $('select[name="s_opts1"]').val('');
+        $('select[name="s_opts1"]').prop("disabled", true);
     }
 
     if(optName2 != null){
         $('input[name="s_opt2"]').val(optName2.op_name);
-        totalAmount = totalAmount + parseInt(optName2.op_amount)
+        totalAmount = totalAmount + parseInt(optName2.op_amount);
+        $('select[name="s_opts2"]').prop("disabled", false);
     }else{
         $('input[name="s_opt2"]').val('');
         $('select[name="s_opts2"]').val('');
+        $('select[name="s_opts2"]').prop("disabled", true);
     }
 
     if(optName3 != null){
         $('input[name="s_opt3"]').val(optName3.op_name);
-        totalAmount = totalAmount + parseInt(optName3.op_amount)
+        totalAmount = totalAmount + parseInt(optName3.op_amount);
+        $('select[name="s_opts3"]').prop("disabled", false);
     }else{
         $('input[name="s_opt3"]').val('');
         $('select[name="s_opts3"]').val('');
+        $('select[name="s_opts3"]').prop("disabled", true);
     }
 
     if(optName4 != null){
         $('input[name="s_opt4"]').val(optName4.op_name);
-        totalAmount = totalAmount + parseInt(optName4.op_amount)
+        totalAmount = totalAmount + parseInt(optName4.op_amount);
+        $('select[name="s_opts4"]').prop("disabled", false);
     }else{
         $('input[name="s_opt4"]').val('');
         $('select[name="s_opts4"]').val('');
+        $('select[name="s_opts4"]').prop("disabled", true);
     }
 
     if(optName5 != null){
         $('input[name="s_opt5"]').val(optName5.op_name);
-        totalAmount = totalAmount + parseInt(optName5.op_amount)
+        totalAmount = totalAmount + parseInt(optName5.op_amount);
+        $('select[name="s_opts5"]').prop("disabled", false);
     }else{
         $('input[name="s_opt5"]').val('');
         $('select[name="s_opts5"]').val('');
+        $('select[name="s_opts5"]').prop("disabled", true);
     }
 
-    $('input[name="s_money"]').val(totalAmount);
-    $('input[name="s_money"]').number( true, 0 );
-    $('input[name="s_money-hidden-ori"]').val(totalAmount);
-    $('input[name="s_money-hidden"]').val(totalAmount);
+    var totalAmountFormat = numeral(totalAmount).format('0,0');
+    $('input[name="s_money"]').val(totalAmountFormat);
+    $('input[name="s_money-hidden"]').val(totalAmountFormat);
     $('#course_changed').val('1');
     
     // reset checkbox saleoff to unchecked

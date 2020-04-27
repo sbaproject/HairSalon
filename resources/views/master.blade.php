@@ -32,7 +32,8 @@
 	  <!-- Jquery 3.4.1 -->
     <script src="js/jquery-3.4.1.min.js"></script>
 	  <script src="js/jquery-ui.js"></script>
-    <script src="js/jquery.number.min.js"></script>
+    <!-- numeraljs -->
+    <script src="js/numeral.min.js"></script>
     <!-- Bootstrap JS  -->
     <script src="js/bootstrap.js"></script>
     <!-- Master JS  -->

@@ -100,11 +100,11 @@ class SalesController extends Controller
         $request->validate([
             's_c_id'     => 'required',
             's_co_id'    => 'required',
-            's_money-hidden-ori'    => 'required',
+            's_money'    => 'required',
         ], [
             's_c_id.required'  => '入力してください。',
             's_co_id.required'   => '入力してください。',
-            's_money-hidden-ori.required'   => '入力してください。',
+            's_money.required'   => '入力してください。',
         ]);     
 
         // if s_co_id = 0 then it is フリー course
@@ -130,7 +130,7 @@ class SalesController extends Controller
                 's_opts4'       => null, 
                 's_opt5'        => null,
                 's_opts5'       => null,        
-                's_money'       => str_replace(",", "", $request->get('s_money-hidden-ori')),
+                's_money'       => str_replace(",", "", $request->get('s_money')),
                 's_saleoff_flg' => ($request->has('s_saleoff_flg')) ? 1 : 0,
                 's_pay'         => $request->get('s_pay'),
                 's_text'        => $request->get('s_text'),
@@ -197,7 +197,7 @@ class SalesController extends Controller
             's_opts4'       => ( $course->co_opt4 === null ? null : $request->get('s_opts4')), 
             's_opt5'        => $course->co_opt5,
             's_opts5'       => ( $course->co_opt5 === null ? null : $request->get('s_opts5')),        
-            's_money'       => str_replace(",", "", $request->get('s_money-hidden-ori')),
+            's_money'       => str_replace(",", "", $request->get('s_money')),
             's_saleoff_flg' => ($request->has('s_saleoff_flg')) ? 1 : 0,
             's_pay'         => $request->get('s_pay'),
             's_text'        => $request->get('s_text'),
@@ -239,11 +239,11 @@ class SalesController extends Controller
         $request->validate([
             's_c_id'     => 'required',
             's_co_id'    => 'required',
-            's_money-hidden-ori'    => 'required',
+            's_money'    => 'required',
         ], [
             's_c_id.required'  => '入力してください。',
             's_co_id.required'   => '入力してください。',
-            's_money-hidden-ori.required'   => '入力してください。',
+            's_money.required'   => '入力してください。',
         ]);    
 
         // if s_co_id = 0 then it is フリー course
@@ -267,7 +267,7 @@ class SalesController extends Controller
             $sales->s_opts4     = null;
             $sales->s_opt5      = null;
             $sales->s_opts5     = null;        
-            $sales->s_money     = str_replace(",", "", $request->get('s_money-hidden-ori'));
+            $sales->s_money     = str_replace(",", "", $request->get('s_money'));
             $sales->s_saleoff_flg = ($request->has('s_saleoff_flg')) ? 1 : 0;
             $sales->s_pay       = $request->get('s_pay');        
             $sales->s_text      = $request->get('s_text');        
@@ -324,7 +324,7 @@ class SalesController extends Controller
         $sales->s_opts4     = ( $course->co_opt4 === null ? null : $request->get('s_opts4'));
         $sales->s_opt5      = $course->co_opt5;
         $sales->s_opts5     = ( $course->co_opt5 === null ? null : $request->get('s_opts5'));        
-        $sales->s_money     = str_replace(",", "", $request->get('s_money-hidden-ori'));
+        $sales->s_money     = str_replace(",", "", $request->get('s_money'));
         $sales->s_saleoff_flg = ($request->has('s_saleoff_flg')) ? 1 : 0;
         $sales->s_pay       = $request->get('s_pay');        
         $sales->s_text      = $request->get('s_text');        
