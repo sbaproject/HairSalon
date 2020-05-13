@@ -50,7 +50,7 @@
   @section('menu')
     <div class="row">
         <div id="logo" class="col-3 logo">
-            <img src="images/2-1 銀座マツナガロゴPANTONEグリーン.png"  width="100%" alt="" class="img-responsive">
+            <img src="images/logo.png"  width="100%" alt="" class="img-responsive">
         </div>
         <div id="title" class="col-4">
         <div id="title_cls" class="title_cls">売上管理システム</div>
