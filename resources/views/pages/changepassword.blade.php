@@ -25,7 +25,7 @@
     @endif
     <div class="row">
       <div id="login_img" class="col-5">
-        <img src="{{asset('images/2-1 銀座マツナガロゴPANTONEグリーン.png') }}"  width="100%" alt="" class="imagesLogo">
+        <img src="{{asset('images/logo.png') }}"  width="100%" alt="" class="imagesLogo">
       </div>
       <div id="login_frm" class="col-7">
         <form method="post">
