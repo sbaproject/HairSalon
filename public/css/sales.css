@@ -5,10 +5,15 @@
     }   
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1433px) {
 	.table-fixed tbody {
         overflow-x: auto;
         width: 1200px;
+    }
+
+    #option-table thead{
+        overflow-x: auto;
+        width: 778px;
     }
 
     #option-table tbody{

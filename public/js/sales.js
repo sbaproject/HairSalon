@@ -84,7 +84,7 @@ $(document).ready(function(){
 });
 
 function ReponsivePage(windowsize){
-    if (windowsize <= 1024) {
+    if (windowsize <= 1433) {
 
         $('#option-table > thead  > tr').each(function(index, tr) {             
             $(this).find("th:eq(0)").removeAttr('width').css("width", "15%");
