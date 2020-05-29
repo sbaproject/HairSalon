@@ -85,20 +85,32 @@
       </div>
       <input type="text" id="c_count" readonly="" name="c_count" class="form-control">
     </div>
-    <div class="input-group input-group-lg">
-        <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-lg">備考</span>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" >主担当者</span>
+      </div>
+      <input readonly type="text" id="main_staff" name="main_staff" class="form-control">
     </div>
-  <input type="text" id="c_text" maxlength="200" readonly="" name="c_text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
-</div>
-<div class="form-btnprcess" id="divUpCancel" style="display:none">
-       <button type="button" id="btnUpdate" class="btn btn-primary">更新</button>  
-       <button type="button" id="btnCancel" class="btn btn-secondary">キャンセル</button>  
-  </div>
-<div class="form-btnnextpre" id="divButton" style="display:none">
-    <button type="button" id="btnPrev" disabled="disabled" class="btn">前</button>    
-    <button type="button" id="btnNext" class="btn">次</button>
-</div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" >前回来店日付</span>
+      </div>
+      <input readonly type="text" id="last_visit_date" name="last_visit_date" class="form-control">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">備考</span>
+      </div>
+      <textarea readonly id="c_text" maxlength="200" name="c_text" class="form-control" rows='5'></textarea>
+    </div>
+    <div class="form-btnprcess" id="divUpCancel" style="display:none">
+          <button type="button" id="btnUpdate" class="btn btn-primary">更新</button>  
+          <button type="button" id="btnCancel" class="btn btn-secondary">キャンセル</button>  
+      </div>
+    <div class="form-btnnextpre" id="divButton" style="display:none">
+        <button type="button" id="btnPrev" disabled="disabled" class="btn">前</button>    
+        <button type="button" id="btnNext" class="btn">次</button>
+    </div>
 </form>
 </div>
 
@@ -141,6 +153,7 @@ $( document ).ready(function() {
                     $("#c_lastname").val(arrData[0].c_lastname);
                     $("#c_firstname").val(arrData[0].c_firstname);
                     $("#c_count").val(arrData[0].c_count);
+                    arrData[0].last_visit_date ? $("#last_visit_date").val(moment(arrData[0].last_visit_date).format('YYYY/MM/DD')) : $("#last_visit_date").val('');
                     $("#c_text").val(arrData[0].c_text);  
                     
                     $("#c_lastname").removeAttr("readonly");
@@ -157,6 +170,7 @@ $( document ).ready(function() {
                     $("#c_lastname").val("");
                     $("#c_firstname").val("");
                     $("#c_count").val("");
+                    $("#last_visit_date").val("");
                     $("#c_text").val('');
                     $("#c_lastname").attr("readonly","");   
                     $("#c_firstname").attr("readonly",""); 
@@ -181,6 +195,7 @@ $( document ).ready(function() {
       $("#c_firstname").val("");
       $("#c_lastname").val("");
       $("#c_count").val("");
+      $("#last_visit_date").val("");
       $("#c_text").val('');
       $("#c_firstname").attr("readonly",""); 
       $("#c_lastname").attr("readonly","");                            
@@ -194,6 +209,7 @@ $( document ).ready(function() {
             $("#c_firstname").val(arrData[index].c_firstname);
             $("#c_lastname").val(arrData[index].c_lastname);
             $("#c_count").val(arrData[index].c_count);
+            arrData[index].last_visit_date ? $("#last_visit_date").val(moment(arrData[index].last_visit_date).format('YYYY/MM/DD')) : $("#last_visit_date").val('');
             $("#c_text").val(arrData[index].c_text);
             if ((arrData.length - 1) == index){
                 $("#btnNext").attr("disabled","disabled");     
@@ -215,6 +231,7 @@ $( document ).ready(function() {
             $("#c_firstname").val(arrData[index].c_firstname);
             $("#c_lastname").val(arrData[index].c_lastname);
             $("#c_count").val(arrData[index].c_count);
+            arrData[index].last_visit_date ? $("#last_visit_date").val(moment(arrData[index].last_visit_date).format('YYYY/MM/DD')) : $("#last_visit_date").val('');
             $("#c_text").val(arrData[index].c_text);
             if (index == 0){
                 $("#btnPrev").attr("disabled","disabled");     

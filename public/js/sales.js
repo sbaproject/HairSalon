@@ -215,7 +215,6 @@ $(function() {
 });
 
 function onCustomerChange(list_customer) {  
-
     let option = document.getElementById("hid_s_c_id").value;
     let newOption;   
 

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Customer;
+use App\Sales;
 use Carbon\Carbon;
+use Session;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -34,6 +36,12 @@ class CustomerController extends Controller
     }
 
     public function postCustomerNew(Request $request) {
+        // check login
+        $userLogged = Session::get('user');
+        if ($userLogged == null) {
+            return redirect('/login');
+        }
+
         $validator = $request->validate([
             'c_firstname'   => 'required',
             'c_lastname'    => 'required',
@@ -48,6 +56,7 @@ class CustomerController extends Controller
         $staff = new Customer([
             'c_firstname'   => $request->get('c_firstname'),
             'c_lastname'    => $request->get('c_lastname'),
+            'c_sh_id'       => $userLogged->u_shop,
             'c_text'        => $request->get('c_text'),
             'c_date'        => Carbon::now()
         ]);
@@ -96,7 +105,8 @@ class CustomerController extends Controller
     
             $list_customer = $query->select(
                 '*',
-                DB::raw("(select count(*) from t_sales where t_customer.c_id = t_sales.s_c_id) as c_count")                               
+                DB::raw("(SELECT count(*) FROM t_sales WHERE t_customer.c_id = t_sales.s_c_id AND t_sales.s_del_flg = 0) AS c_count"),
+                DB::raw("(SELECT t_sales.sale_date FROM t_sales WHERE t_customer.c_id = t_sales.s_c_id AND t_sales.s_del_flg = 0 ORDER BY t_sales.sale_date DESC LIMIT 1) as last_visit_date")                             
             )
             ->get();
         

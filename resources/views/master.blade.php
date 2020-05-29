@@ -32,6 +32,8 @@
 	  <!-- Jquery 3.4.1 -->
     <script src="js/jquery-3.4.1.min.js"></script>
 	  <script src="js/jquery-ui.js"></script>
+    <!-- moment JS -->
+    <script src="js/moment.min.js"></script>
     <!-- numeraljs -->
     <script src="js/numeral.min.js"></script>
     <!-- Bootstrap JS  -->
@@ -40,10 +42,11 @@
     <script src="js/app.js"></script>  
     <!-- sales JS -->
     <script src="js/sales.js"></script>	
-     <!-- Datatable JS -->
+    <!-- Datatable JS -->
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>	
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    
 
   </head>
   <body>

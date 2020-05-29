@@ -80,7 +80,7 @@ class SalesController extends Controller
          }
 
         $list_course = Course::where('co_del_flg', 0)->where('co_sh_id', $userLogged->u_shop)->get();
-        $list_customer = Customer::all();
+        $list_customer = Customer::where('c_sh_id', $userLogged->u_shop)->get();
         $list_staff = Staff::where('s_del_flg', 0)->get();
         $list_option = Option::where('op_del_flg', 0)->where('op_shop', $userLogged->u_shop)->get();
         $currentTime = Carbon::now()->format('yy/m/d');
@@ -226,7 +226,7 @@ class SalesController extends Controller
 
         $sales = Sales::where('s_id', $id)->where('s_del_flg', 0) ->first();
         $list_course = Course::where('co_del_flg', 0)->where('co_sh_id', $userLogged->u_shop)->get();
-        $list_customer = Customer::all();
+        $list_customer = Customer::where('c_sh_id', $userLogged->u_shop)->get();
         $list_staff = Staff::where('s_del_flg', 0)->get();
         $list_option = Option::where('op_del_flg', 0)->where('op_shop', $userLogged->u_shop)->get();
         
@@ -346,25 +346,29 @@ class SalesController extends Controller
     }    
 
     public function searchCustomerAjax(Request $request) {        
+        $userLogged = Session::get('user');
+        
         $output = '';   
 
         if($request->has('query'))
         {
-            $query = $request->get('query');
+            $query = trim($request->get('query'), "");
+
+            $list_customer = Customer::where('c_sh_id', $userLogged->u_shop);
 
             if($query === "0"){
-                $data = Customer::where('c_id', '<', 1000)
+                $data = $list_customer->where('c_id', '<', 1000)
                     ->orWhere('c_lastname', 'LIKE', "%{$query}%")
                     ->orWhere('c_firstname', 'LIKE', "%{$query}%")
                     ->get();
                
             }else if($query === "00"){
-                $data = Customer::where('c_id', '<', 100)
+                $data = $list_customer->where('c_id', '<', 100)
                     ->orWhere('c_lastname', 'LIKE', "%{$query}%")
                     ->orWhere('c_firstname', 'LIKE', "%{$query}%")
                     ->get();
             }else if($query === "000"){
-                $data = Customer::where('c_id', '<', 10)
+                $data = $list_customer->where('c_id', '<', 10)
                     ->orWhere('c_lastname', 'LIKE', "%{$query}%")
                     ->orWhere('c_firstname', 'LIKE', "%{$query}%")
                     ->get();
@@ -373,22 +377,24 @@ class SalesController extends Controller
                 $que = (int)$query;
 
                 if(strlen($query) == 4){
-                    $data = Customer::where('c_id', '=', "{$que}")
+                    $data = $list_customer->where('c_id', '=', "{$que}")
                     ->orWhere('c_lastname', 'LIKE', "%{$query}%")
                     ->orWhere('c_firstname', 'LIKE', "%{$query}%")
                     ->get(); 
                 }else{
-                    $data = Customer::where('c_id', 'LIKE', "%{$que}%")
+                    $data = $list_customer->where('c_id', 'LIKE', "%{$que}%")
                     ->orWhere('c_lastname', 'LIKE', "%{$query}%")
                     ->orWhere('c_firstname', 'LIKE', "%{$query}%")
                     ->get(); 
                 }             
-            }else{
-                $data = Customer::where('c_id', 'LIKE', "%{$query}%")
+            }else if($query !== ""){
+                $data = $list_customer->where('c_id', 'LIKE', "%{$query}%")
                 ->orWhere('c_lastname', 'LIKE', "%{$query}%")
                 ->orWhere('c_firstname', 'LIKE', "%{$query}%")
                 ->get();  
-            }         
+            } else {
+                $data = $list_customer->get();
+            }        
                                                
             if($data->count() > 0){
 
