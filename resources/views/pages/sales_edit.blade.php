@@ -105,7 +105,7 @@
                                     <span class="input-group-text">コース</span>
                                 </div>
                                 <div class="form-control wrapper-select {{ ($errors->first('s_co_id1')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name="s_co_id1" id ="s_co_id1" onchange="onCourseChange(2,'s_co_id1',{{ $list_course }},{{ $list_option }})">
+                                    <select class="select-shop2" name="s_co_id1" id ="s_co_id1" onchange="onCourseChange(1,'s_co_id1',{{ $list_course }},{{ $list_option }})">
                                         <option value = ''></option>
                                         @foreach($list_course as $course)
                                             <option value = '{{$course->co_id}}' {{ old('s_co_id1') == null ? ((isset($sale_details[0]->s_co_id) ? $sale_details[0]->s_co_id : '')  == $course->co_id ? 'selected' : '') : (old('s_co_id1') == $course->co_id ? 'selected' : '') }}>
@@ -431,7 +431,7 @@
                                     <span class="input-group-text">コース</span>
                                 </div>
                                 <div class="form-control wrapper-select {{ ($errors->first('s_co_id3')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name="s_co_id3" id ="s_co_id3" onchange="onCourseChange(2,'s_co_id3',{{ $list_course }},{{ $list_option }})">
+                                    <select class="select-shop2" name="s_co_id3" id ="s_co_id3" onchange="onCourseChange(3,'s_co_id3',{{ $list_course }},{{ $list_option }})">
                                         <option value = ''></option>
                                         @foreach($list_course as $course)
                                             <option value = '{{$course->co_id}}' {{ old('s_co_id3') == null ? ((isset($sale_details[2]->s_co_id) ? $sale_details[2]->s_co_id : '')  == $course->co_id ? 'selected' : '') : (old('s_co_id3') == $course->co_id ? 'selected' : '') }}>
@@ -594,7 +594,7 @@
                                     <span class="input-group-text">コース</span>
                                 </div>
                                 <div class="form-control wrapper-select {{ ($errors->first('s_co_id4')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name="s_co_id4" id ="s_co_id4" onchange="onCourseChange(2,'s_co_id4',{{ $list_course }},{{ $list_option }})">
+                                    <select class="select-shop2" name="s_co_id4" id ="s_co_id4" onchange="onCourseChange(4,'s_co_id4',{{ $list_course }},{{ $list_option }})">
                                         <option value = ''></option>
                                         @foreach($list_course as $course)
                                             <option value = '{{$course->co_id}}' {{ old('s_co_id4') == null ? ((isset($sale_details[3]->s_co_id) ? $sale_details[3]->s_co_id : '')  == $course->co_id ? 'selected' : '') : (old('s_co_id4') == $course->co_id ? 'selected' : '') }}>
@@ -757,7 +757,7 @@
                                     <span class="input-group-text">コース</span>
                                 </div>
                                 <div class="form-control wrapper-select {{ ($errors->first('s_co_id5')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name="s_co_id5" id ="s_co_id5" onchange="onCourseChange(2,'s_co_id5',{{ $list_course }},{{ $list_option }})">
+                                    <select class="select-shop2" name="s_co_id5" id ="s_co_id5" onchange="onCourseChange(5,'s_co_id5',{{ $list_course }},{{ $list_option }})">
                                         <option value = ''></option>
                                         @foreach($list_course as $course)
                                             <option value = '{{$course->co_id}}' {{ old('s_co_id5') == null ? ((isset($sale_details[4]->s_co_id) ? $sale_details[4]->s_co_id : '')  == $course->co_id ? 'selected' : '') : (old('s_co_id5') == $course->co_id ? 'selected' : '') }}>
