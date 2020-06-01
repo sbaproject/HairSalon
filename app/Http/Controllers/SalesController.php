@@ -428,7 +428,7 @@ class SalesController extends Controller
             $value['s_update'] = $currentTime;
             $newsaledetails = new SaleDetails($value);
             $newsaledetails->save();
-            
+
         }
         return redirect('sales')->with('success', 'データを更新出来ました。');
     }
@@ -618,8 +618,14 @@ class SalesController extends Controller
         $list_staff_data = array();
         $list_option_id = array();
         $sum_money = 0; //B6
+        $list_sale_id = array();
         foreach ($list_sales as $sale){
             $sum_money += $sale['s_money'];
+            $list_sale_id[] = $sale['s_id'];
+        }
+
+        $list_sale_details = SaleDetails::whereIn('s_id',$list_sale_id)->orderBy('s_id', 'ASC')->get()->toArray();
+        foreach ($list_sale_details as $sale){
             $s_opts1 = $sale['s_opts1'];
             $s_opts2 = $sale['s_opts2'];
             $s_opts3 = $sale['s_opts3'];
