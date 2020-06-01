@@ -153,6 +153,7 @@ $( document ).ready(function() {
                     $("#c_lastname").val(arrData[0].c_lastname);
                     $("#c_firstname").val(arrData[0].c_firstname);
                     $("#c_count").val(arrData[0].c_count);
+                    arrData[0].staff_firstname ? $("#main_staff").val(arrData[0].staff_lastname + ' ' + arrData[0].staff_firstname) : $("#main_staff").val('');
                     arrData[0].last_visit_date ? $("#last_visit_date").val(moment(arrData[0].last_visit_date).format('YYYY/MM/DD')) : $("#last_visit_date").val('');
                     $("#c_text").val(arrData[0].c_text);  
                     
@@ -170,6 +171,7 @@ $( document ).ready(function() {
                     $("#c_lastname").val("");
                     $("#c_firstname").val("");
                     $("#c_count").val("");
+                    $("#main_staff").val("");
                     $("#last_visit_date").val("");
                     $("#c_text").val('');
                     $("#c_lastname").attr("readonly","");   
@@ -195,6 +197,7 @@ $( document ).ready(function() {
       $("#c_firstname").val("");
       $("#c_lastname").val("");
       $("#c_count").val("");
+      $("#main_staff").val("");
       $("#last_visit_date").val("");
       $("#c_text").val('');
       $("#c_firstname").attr("readonly",""); 
@@ -209,6 +212,7 @@ $( document ).ready(function() {
             $("#c_firstname").val(arrData[index].c_firstname);
             $("#c_lastname").val(arrData[index].c_lastname);
             $("#c_count").val(arrData[index].c_count);
+            arrData[index].staff_firstname ? $("#main_staff").val(arrData[index].staff_lastname + ' ' + arrData[index].staff_firstname) : $("#main_staff").val('');
             arrData[index].last_visit_date ? $("#last_visit_date").val(moment(arrData[index].last_visit_date).format('YYYY/MM/DD')) : $("#last_visit_date").val('');
             $("#c_text").val(arrData[index].c_text);
             if ((arrData.length - 1) == index){
@@ -231,6 +235,7 @@ $( document ).ready(function() {
             $("#c_firstname").val(arrData[index].c_firstname);
             $("#c_lastname").val(arrData[index].c_lastname);
             $("#c_count").val(arrData[index].c_count);
+            arrData[index].staff_firstname ? $("#main_staff").val(arrData[index].staff_lastname + ' ' + arrData[index].staff_firstname) : $("#main_staff").val('');
             arrData[index].last_visit_date ? $("#last_visit_date").val(moment(arrData[index].last_visit_date).format('YYYY/MM/DD')) : $("#last_visit_date").val('');
             $("#c_text").val(arrData[index].c_text);
             if (index == 0){
