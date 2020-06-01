@@ -69,6 +69,58 @@ $(document).ready(function(){
           }       
     });
 
+    $("#btn-add-course").click(function() {
+        var index = $("#hd-block").val();
+        if (index == ''){
+            index = 1;
+        }
+        index++;
+        if (index > 5){
+            index = 5;
+            $(".form-add-course").css("display", "none");
+        }else{
+            $("#course_group_" + index).css("display", "block");
+        }
+        $("#hd-block").val(index);
+        $("#saleoff").prop("checked", false);
+        calculatorTotal();
+    });
+
+    $(".btn-remove-course").click(function() {
+        var index = $("#hd-block").val();
+        $("#course_group_" + index).css("display", "none");
+        $("#s_co_id" + index).val('');
+
+        $("#s_money_" + index).prop("readonly", false);
+        $('#s_money_' + index).val('');
+        $('#s_money-hidden_' + index).val('');
+
+        $('input[name="' + 's_opt1_' + index +'"]').val('');
+        $('select[name="s_opts1_' + index + '"]').val('');
+        $('select[name="s_opts1_' + index + '"]').prop("disabled", true);
+        $('input[name="' + 's_opt2_' + index +'"]').val('');
+        $('select[name="s_opts2_' + index + '"]').val('');
+        $('select[name="s_opts2_' + index + '"]').prop("disabled", true);
+        $('input[name="' + 's_opt3_' + index +'"]').val('');
+        $('select[name="s_opts3_' + index + '"]').val('');
+        $('select[name="s_opts3_' + index + '"]').prop("disabled", true);
+        $('input[name="' + 's_opt4_' + index +'"]').val('');
+        $('select[name="s_opts4_' + index + '"]').val('');
+        $('select[name="s_opts4_' + index + '"]').prop("disabled", true);
+        $('input[name="' + 's_opt5_' + index +'"]').val('');
+        $('select[name="s_opts5_' + index + '"]').val('');
+        $('select[name="s_opts5_' + index + '"]').prop("disabled", true);
+
+        index--;
+        if (index < 1){
+            index = 1;
+        }
+        $(".form-add-course").css("display", "block");
+        $("#hd-block").val(index);
+        $("#saleoff").prop("checked", false);
+        calculatorTotal();
+    });
+
     var windowsize1 = $(window).width();
     ReponsivePage(windowsize1);
 
@@ -77,9 +129,34 @@ $(document).ready(function(){
         ReponsivePage(windowsize);        
     });    
 
-    $('#s_money').keyup(function() {
-        var string = numeral($('#s_money').val()).format('0,0');
-        $('#s_money').val(string);
+    $('#s_money_1').keyup(function() {
+        var string = numeral($('#s_money_1').val()).format('0,0');
+        $('#s_money_1').val(string);
+        calculatorTotal();
+    });
+
+    $('#s_money_2').keyup(function() {
+        var string = numeral($('#s_money_2').val()).format('0,0');
+        $('#s_money_2').val(string);
+        calculatorTotal();
+    });
+
+    $('#s_money_3').keyup(function() {
+        var string = numeral($('#s_money_3').val()).format('0,0');
+        $('#s_money_3').val(string);
+        calculatorTotal();
+    });
+
+    $('#s_money_4').keyup(function() {
+        var string = numeral($('#s_money_4').val()).format('0,0');
+        $('#s_money_4').val(string);
+        calculatorTotal();
+    });
+
+    $('#s_money_5').keyup(function() {
+        var string = numeral($('#s_money_5').val()).format('0,0');
+        $('#s_money_5').val(string);
+        calculatorTotal();
     });
 });
 
@@ -233,53 +310,79 @@ function onCustomerChange(list_customer) {
     }        
 }
 
-function onCourseChange(list_course,list_option) {  
-    let option = document.getElementById("s_co_id").value;
+function onCourseChange(index ,selectBox ,list_course,list_option) {
+    let option = document.getElementById(selectBox).value;
     let newOption;
     let optName1,optName2,optName3,optName4,optName5,totalAmount = 0;
 
     if(option == ''){
-        $('input[name="s_opt1"]').val('');
-        $('select[name="s_opts1"]').val('');
-        $('input[name="s_opt2"]').val('');
-        $('select[name="s_opts2"]').val('');
-        $('input[name="s_opt3"]').val('');
-        $('select[name="s_opts3"]').val('');
-        $('input[name="s_opt4"]').val('');
-        $('select[name="s_opts4"]').val('');
-        $('input[name="s_opt5"]').val('');
-        $('select[name="s_opts5"]').val('');
-        $('input[name="s_money"]').val('');
-        $('input[name="s_money-hidden"]').val('');
+        $('input[name="' + 's_opt1_' + index +'"]').val('');
+        $('select[name="s_opts1_' + index + '"]').val('');
+        $('input[name="' + 's_opt2_' + index +'"]').val('');
+        $('select[name="s_opts2_' + index + '"]').val('');
+        $('input[name="' + 's_opt3_' + index +'"]').val('');
+        $('select[name="s_opts3_' + index + '"]').val('');
+        $('input[name="' + 's_opt4_' + index +'"]').val('');
+        $('select[name="s_opts4_' + index + '"]').val('');
+        $('input[name="' + 's_opt5_' + index +'"]').val('');
+        $('select[name="s_opts5_' + index + '"]').val('');
+        $('input[name="s_money_' + index + '"]').val('');
+        $('input[name="s_money-hidden' + index + '"]').val('');
         $("#saleoff").prop("checked", false);   // reset checkbox saleoff to unchecked
+        calculatorTotal();
         return;
     }
 
     if (option == 0) {
         // remove readonly prop for s_money to type the money
-        $("#s_money").prop("readonly", false);
-        $('#s_money').val('');
+        $("#s_money_" + index).prop("readonly", false);
+        $('#s_money_' + index).val('');
 
-        $('input[name="s_opt1"]').val('フリー');
-        $('select[name="s_opts1"]').val('');
-        $('input[name="s_opt2"]').val('');
-        $('select[name="s_opts2"]').val('');
-        $('select[name="s_opts2"]').prop("disabled", true);
-        $('input[name="s_opt3"]').val('');
-        $('select[name="s_opts3"]').val('');
-        $('select[name="s_opts3"]').prop("disabled", true);
-        $('input[name="s_opt4"]').val('');
-        $('select[name="s_opts4"]').val('');
-        $('select[name="s_opts4"]').prop("disabled", true);
-        $('input[name="s_opt5"]').val('');
-        $('select[name="s_opts5"]').val('');
-        $('select[name="s_opts5"]').prop("disabled", true);
+        $('input[name="' + 's_opt1_' + index +'"]').val('フリー');
+        $('select[name="s_opts1_' + index + '"]').val('');
+        $('input[name="' + 's_opt2_' + index +'"]').val('');
+        $('select[name="s_opts2_' + index + '"]').val('');
+        $('select[name="s_opts2_' + index + '"]').prop("disabled", true);
+        $('input[name="' + 's_opt3_' + index +'"]').val('');
+        $('select[name="s_opts3_' + index + '"]').val('');
+        $('select[name="s_opts3_' + index + '"]').prop("disabled", true);
+        $('input[name="' + 's_opt4_' + index +'"]').val('');
+        $('select[name="s_opts4_' + index + '"]').val('');
+        $('select[name="s_opts4_' + index + '"]').prop("disabled", true);
+        $('input[name="' + 's_opt5_' + index +'"]').val('');
+        $('select[name="s_opts5_' + index + '"]').val('');
+        $('select[name="s_opts5_' + index + '"]').prop("disabled", true);
         $('#course_changed').val('1');
         $("#saleoff").prop("checked", false);   // reset checkbox saleoff to unchecked
+        calculatorTotal();
         return;
-    } 
+    }
 
-    $("#s_money").prop("readonly", true);
+    if (option == 9999) {
+        // remove readonly prop for s_money to type the money
+        $("#s_money_" + index).prop("readonly", false);
+        $('#s_money_' + index).val('');
+        $('input[name="' + 's_opt1_' + index +'"]').val('商品販売');
+        $('select[name="s_opts1_' + index + '"]').val('');
+        $('input[name="' + 's_opt2_' + index +'"]').val('');
+        $('select[name="s_opts2_' + index + '"]').val('');
+        $('select[name="s_opts2_' + index + '"]').prop("disabled", true);
+        $('input[name="' + 's_opt3_' + index +'"]').val('');
+        $('select[name="s_opts3_' + index + '"]').val('');
+        $('select[name="s_opts3_' + index + '"]').prop("disabled", true);
+        $('input[name="' + 's_opt4_' + index +'"]').val('');
+        $('select[name="s_opts4_' + index + '"]').val('');
+        $('select[name="s_opts4_' + index + '"]').prop("disabled", true);
+        $('input[name="' + 's_opt5_' + index +'"]').val('');
+        $('select[name="s_opts5_' + index + '"]').val('');
+        $('select[name="s_opts5_' + index + '"]').prop("disabled", true);
+        $('#course_changed').val('1');
+        $("#saleoff").prop("checked", false);   // reset checkbox saleoff to unchecked
+        calculatorTotal();
+        return;
+    }
+
+    $("#s_money_" + index).prop("readonly", true);
     
     list_course.forEach((element) => {
         if (element.co_id == option) {
@@ -306,60 +409,103 @@ function onCourseChange(list_course,list_option) {
     })
     
     if(optName1 != null){
-        $('input[name="s_opt1"]').val(optName1.op_name);
+        $('input[name="' + 's_opt1_' + index +'"]').val(optName1.op_name);
         totalAmount = totalAmount + parseInt(optName1.op_amount);
-        $('select[name="s_opts1"]').prop("disabled", false);
+        $('select[name="s_opts1_' + index + '"]').prop("disabled", false);
     }else{
-        $('input[name="s_opt1"]').val('');
-        $('select[name="s_opts1"]').val('');
-        $('select[name="s_opts1"]').prop("disabled", true);
+        $('input[name="' + 's_opt1_' + index +'"]').val('');
+        $('select[name="s_opts1_' + index + '"]').val('');
+        $('select[name="s_opts1_' + index + '"]').prop("disabled", true);
     }
 
     if(optName2 != null){
-        $('input[name="s_opt2"]').val(optName2.op_name);
+        $('input[name="' + 's_opt2_' + index +'"]').val(optName2.op_name);
         totalAmount = totalAmount + parseInt(optName2.op_amount);
-        $('select[name="s_opts2"]').prop("disabled", false);
+        $('select[name="s_opts2_' + index + '"]').prop("disabled", false);
     }else{
-        $('input[name="s_opt2"]').val('');
-        $('select[name="s_opts2"]').val('');
-        $('select[name="s_opts2"]').prop("disabled", true);
+        $('input[name="' + 's_opt2_' + index +'"]').val('');
+        $('select[name="s_opts2_' + index + '"]').val('');
+        $('select[name="s_opts2_' + index + '"]').prop("disabled", true);
     }
 
     if(optName3 != null){
-        $('input[name="s_opt3"]').val(optName3.op_name);
+        $('input[name="' + 's_opt3_' + index +'"]').val(optName3.op_name);
         totalAmount = totalAmount + parseInt(optName3.op_amount);
-        $('select[name="s_opts3"]').prop("disabled", false);
+        $('select[name="s_opts3_' + index + '"]').prop("disabled", false);
     }else{
-        $('input[name="s_opt3"]').val('');
-        $('select[name="s_opts3"]').val('');
-        $('select[name="s_opts3"]').prop("disabled", true);
+        $('input[name="' + 's_opt3_' + index +'"]').val('');
+        $('select[name="s_opts3_' + index + '"]').val('');
+        $('select[name="s_opts3_' + index + '"]').prop("disabled", true);
     }
 
     if(optName4 != null){
-        $('input[name="s_opt4"]').val(optName4.op_name);
+        $('input[name="' + 's_opt4_' + index +'"]').val(optName4.op_name);
         totalAmount = totalAmount + parseInt(optName4.op_amount);
-        $('select[name="s_opts4"]').prop("disabled", false);
+        $('select[name="s_opts4_' + index + '"]').prop("disabled", false);
     }else{
-        $('input[name="s_opt4"]').val('');
-        $('select[name="s_opts4"]').val('');
-        $('select[name="s_opts4"]').prop("disabled", true);
+        $('input[name="' + 's_opt4_' + index +'"]').val('');
+        $('select[name="s_opts4_' + index + '"]').val('');
+        $('select[name="s_opts4_' + index + '"]').prop("disabled", true);
     }
 
     if(optName5 != null){
-        $('input[name="s_opt5"]').val(optName5.op_name);
+        $('input[name="' + 's_opt5_' + index +'"]').val(optName5.op_name);
         totalAmount = totalAmount + parseInt(optName5.op_amount);
-        $('select[name="s_opts5"]').prop("disabled", false);
+        $('select[name="s_opts5_' + index + '"]').prop("disabled", false);
     }else{
-        $('input[name="s_opt5"]').val('');
-        $('select[name="s_opts5"]').val('');
-        $('select[name="s_opts5"]').prop("disabled", true);
+        $('input[name="' + 's_opt5_' + index +'"]').val('');
+        $('select[name="s_opts5_' + index + '"]').val('');
+        $('select[name="s_opts5_' + index + '"]').prop("disabled", true);
     }
 
     var totalAmountFormat = numeral(totalAmount).format('0,0');
-    $('input[name="s_money"]').val(totalAmountFormat);
-    $('input[name="s_money-hidden"]').val(totalAmountFormat);
+    $('input[name="s_money_' + index +'"]').val(totalAmountFormat);
+    $('input[name="s_money-hidden_'+ index+ '"]').val(totalAmountFormat);
+    calculatorTotal();
     $('#course_changed').val('1');
     
     // reset checkbox saleoff to unchecked
     $("#saleoff").prop("checked", false);
-}    
+}
+
+function calculatorTotal() {
+    var money_1 = $('#s_money_1').val();
+    var money_2 = $('#s_money_2').val();
+    var money_3 = $('#s_money_3').val();
+    var money_4 = $('#s_money_4').val();
+    var money_5 = $('#s_money_5').val();
+    var money_total = 0;
+
+    money_1 = money_1.replace(/,/g, '');
+    if (money_1 != '') {
+        money_total += parseInt(money_1);
+    }
+    money_2 = money_2.replace(/,/g, '');
+    if (money_2 != '') {
+        money_total +=parseInt(money_2);
+    }
+
+    money_3 = money_3.replace(/,/g, '');
+    if (money_3 != '') {
+        money_total +=parseInt(money_3);
+    }
+
+    money_4 = money_4.replace(/,/g, '');
+    if (money_4 != '') {
+        money_total +=parseInt(money_4);
+    }
+
+    money_5 = money_5.replace(/,/g, '');
+    if (money_5 != '') {
+        money_total +=parseInt(money_5);
+    }
+
+    var totalAmountFormat = '';
+    if (money_total > 0){
+         totalAmountFormat = numeral(money_total).format('0,0');
+    }
+    $('input[name="s_total_money"]').val(totalAmountFormat);
+    $('input[name="s_total_money-hidden"]').val(totalAmountFormat);
+
+
+}
