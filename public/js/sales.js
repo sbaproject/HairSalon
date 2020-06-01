@@ -75,11 +75,10 @@ $(document).ready(function(){
             index = 1;
         }
         index++;
-        if (index > 5){
+        $("#course_group_" + index).css("display", "block");
+        if (index >= 5){
             index = 5;
             $(".form-add-course").css("display", "none");
-        }else{
-            $("#course_group_" + index).css("display", "block");
         }
         $("#hd-block").val(index);
         $("#saleoff").prop("checked", false);

@@ -145,7 +145,13 @@
                     <td width="15%">{{ !empty($sales->Course->co_name) ? $sales->Course->co_name : 'フリー' }}</td>
                     <td width="15%">{{number_format($sales->s_money)}}</td>
                     <td width="35%">{{$sales->s_text}}</td>
-                    <td id="link" width="10%"><a href="{{ url('sales/edit/' . $sales->s_id) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a></td>
+                    <td id="link" width="10%">
+                        <?php if ($shop_user == $sales->s_sh_id):?>
+                        <a href="{{ url('sales/edit/' . $sales->s_id) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a>
+                        <?php else:?>
+                        <a href="javascript:void(0)" style="cursor: default;opacity: 0.6;text-decoration: none;">編集</a>&nbsp;<a href="javascript:void(0)" style="color: red;cursor: default;opacity: 0.6;text-decoration: none;">削除</a>
+                       <?php endif;?>
+                    </td>
                 </tr>
                 @php 
                     $index++; 

@@ -21,6 +21,11 @@ class SalesController extends Controller
     //load page with $id
     public function index(Request $req)
     {
+        $userLogged = Session::get('user');
+        if ($userLogged == null) {
+            return redirect('/login');
+        }
+        $shop_user = $userLogged->u_shop;
         if(!empty($req->str_date)&&!empty($req->end_date)&&!empty($req->shop_id)){
             
             $req->validate([
@@ -49,7 +54,6 @@ class SalesController extends Controller
             $end_date = date('yy/m/d', strtotime($end_date));
     
             $shopId = $req->shop_id;
-    
             session(['search' => $list_sales_count]);
     
             $list_sales = Sales::where('sale_date','>=',$str_date)
@@ -59,7 +63,7 @@ class SalesController extends Controller
             ->orderBy('s_id', 'DESC')
             ->paginate(10);
     
-            return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count','currentTime','str_date','end_date','shopId'));
+            return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count','currentTime','str_date','end_date','shopId','shop_user'));
 
         }else{
 
@@ -69,7 +73,7 @@ class SalesController extends Controller
             $list_sales_count = Sales::where('s_del_flg', 0)->count();   
             $currentTime = Carbon::now()->format('yy/m/d');
             
-            return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count','currentTime'));
+            return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count','currentTime', 'shop_user'));
         }        
     }
 

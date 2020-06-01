@@ -912,7 +912,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group form-add-course" style="display: {{ old('hd-block') < 5 ? 'block' : ( $total_detail < 5 ? 'block' : 'none')}}">
+                    <div class="form-group form-add-course" style="display: {{ old('hd-block') == '5' ? 'block' : ( $total_detail < 5 ? 'block' : 'none')}}">
                         <button type="button" id="btn-add-course" class="btn btn-primary mb-3 pull-right">新規追加</button>
                     </div>
                     <div class="form-group">
