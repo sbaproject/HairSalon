@@ -966,7 +966,7 @@
                     </div>
                     <!-- <input type="hidden" id="urlBack" name="urlBack" value="{{url()->previous()}}"> -->
                     <input type="hidden" name="course_changed" id="course_changed" value="">
-                    <input type="hidden" id="hd-block" name="hd-block" value="{{ $total_detail }}">
+                    <input type="hidden" id="hd-block" name="hd-block" value="{{ !empty(old('hd-block')) ? old('hd-block') : $total_detail }}">
                     <div class="clsCenter">
                     <button type="submit" class="btn btn-primary buttonSales btn-left-sales">更新</button>                    
                     <a role="button" href="{{ url('sales')}}" class="btn btn-secondary buttonSales" >キャンセル</a>
