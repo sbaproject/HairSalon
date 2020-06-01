@@ -15,33 +15,14 @@ class Sales extends Model
     
     public function Shop(){
          return $this->belongsTo('App\Shop','s_sh_id','sh_id');
-     }
+    }
      
     public function Course(){
          return $this->belongsTo('App\Course','s_co_id','co_id');
-     }
+    }
      
     public function Customer(){
          return $this->belongsTo('App\Customer','s_c_id','c_id');
-     }
-
-     public function Option1(){
-        return $this->belongsTo('App\Option','s_opt1','op_id');
     }
 
-    public function Option2(){
-        return $this->belongsTo('App\Option','s_opt2','op_id');
-    }
-
-    public function Option3(){
-        return $this->belongsTo('App\Option','s_opt3','op_id');
-    }
-
-    public function Option4(){
-        return $this->belongsTo('App\Option','s_opt4','op_id');
-    }
-
-    public function Option5(){
-        return $this->belongsTo('App\Option','s_opt5','op_id');
-    }
 }
