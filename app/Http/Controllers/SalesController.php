@@ -1122,7 +1122,7 @@ class SalesController extends Controller
             foreach($list_sales as $sale) {
                 $sale_date = empty($sale->sale_date)? '' : date('Y/m/d', strtotime($sale->sale_date));
                 $s_pay = ((int)$sale->s_pay === 0 ?  'キャッシュ' : 'カード') ;
-                $co_name = empty($sale->Course->co_name)? 'フリー' : $sale->Course->co_name;
+                $co_name = empty($sale->SaleDetails[0]->Course->co_name)? ($sale->SaleDetails[0]->s_co_id == 0 ? 'フリー' : '商品販売') : $sale->SaleDetails[0]->Course->co_name;
                 $unit = 'Gói';
                 $quantity = 1;
                 $s_money = empty($sale->s_money)? 0 : $sale->s_money;
