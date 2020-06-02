@@ -65,7 +65,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">備考</span>
                             </div>
-                            <textarea class="form-control" maxlength="200" name="c_text" rows=5>{{ old('c_text') }}</textarea>
+                            <textarea class="form-control" maxlength="1000" name="c_text" rows=5>{{ old('c_text') }}</textarea>
                         </div>
                     </div>
                     <div class="form-group-button">

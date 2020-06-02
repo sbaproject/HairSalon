@@ -101,7 +101,7 @@
       <div class="input-group-prepend">
         <span class="input-group-text">備考</span>
       </div>
-      <textarea readonly id="c_text" maxlength="200" name="c_text" class="form-control" rows='5'></textarea>
+      <textarea readonly id="c_text" maxlength="1000" name="c_text" class="form-control" rows='5'></textarea>
     </div>
     <div class="form-btnprcess" id="divUpCancel" style="display:none">
           <button type="button" id="btnUpdate" class="btn btn-primary">更新</button>  
