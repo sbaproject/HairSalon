@@ -102,15 +102,14 @@ class CustomerController extends Controller
             {
                 $query->where('c_lastname', 'like', '%'.$request->searchl_name.'%');
             }
-    
+
             $list_customer = $query->select(
                 '*',
                 DB::raw("(SELECT count(*) FROM t_sales WHERE t_customer.c_id = t_sales.s_c_id AND t_sales.s_del_flg = 0) AS c_count"),
+                DB::raw("(SELECT t_sales.sale_date FROM t_sales WHERE t_customer.c_id = t_sales.s_c_id AND t_sales.s_del_flg = 0 ORDER BY t_sales.sale_date DESC LIMIT 1) as last_visit_date") ,
                 DB::raw("(SELECT t_sales.s_id FROM t_sales WHERE t_customer.c_id = t_sales.s_c_id AND t_sales.s_del_flg = 0 ORDER BY t_sales.sale_date DESC LIMIT 1) as last_sales_id"),
-                DB::raw("(SELECT t_sales.s_co_id1 FROM t_sales WHERE t_customer.c_id = t_sales.s_c_id AND t_sales.s_del_flg = 0 ORDER BY t_sales.sale_date DESC LIMIT 1) as last_sales_course1"),
-                DB::raw("(SELECT t_staff.s_firstname FROM t_staff WHERE t_staff.s_id = (SELECT t_salesdetails.s_opts1 FROM t_salesdetails WHERE t_salesdetails.s_id = last_sales_id AND t_salesdetails.s_co_id = last_sales_course1)) as staff_firstname"),
-                DB::raw("(SELECT t_staff.s_lastname FROM t_staff WHERE t_staff.s_id = (SELECT t_salesdetails.s_opts1 FROM t_salesdetails WHERE t_salesdetails.s_id = last_sales_id AND t_salesdetails.s_co_id = last_sales_course1)) as staff_lastname"),
-                DB::raw("(SELECT t_sales.sale_date FROM t_sales WHERE t_customer.c_id = t_sales.s_c_id AND t_sales.s_del_flg = 0 ORDER BY t_sales.sale_date DESC LIMIT 1) as last_visit_date")                             
+                DB::raw("(SELECT t_staff.s_firstname FROM t_staff WHERE t_staff.s_id = (SELECT t_salesdetails.s_opts1 FROM t_salesdetails WHERE t_salesdetails.s_id = last_sales_id AND t_salesdetails.s_co_num = 1)) as staff_firstname"),
+                DB::raw("(SELECT t_staff.s_lastname FROM t_staff WHERE t_staff.s_id = (SELECT t_salesdetails.s_opts1 FROM t_salesdetails WHERE t_salesdetails.s_id = last_sales_id AND t_salesdetails.s_co_num = 1)) as staff_lastname")
             )
             ->get();
         
