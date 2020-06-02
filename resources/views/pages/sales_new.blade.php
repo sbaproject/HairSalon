@@ -143,7 +143,7 @@
                                     <span class="input-group-text">詳細２</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt2_1" value="{{old('s_opt2_1')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error2')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error2_1')) ? 'is-invalid'  :'' }}">
                                 <select class="select-shop2" name = "s_opts2_1">
                                 <option value = ''></option>
                                 @foreach($list_staff as $staff)
@@ -165,7 +165,7 @@
                                     <span class="input-group-text">詳細３</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt3_1" value="{{old('s_opt3_1')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error3')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error3_1')) ? 'is-invalid'  :'' }}">
                                 <select class="select-shop2" name = "s_opts3_1">
                                 <option value = ''></option>
                                 @foreach($list_staff as $staff)
@@ -187,7 +187,7 @@
                                     <span class="input-group-text">詳細４</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt4_1" value="{{old('s_opt4_1')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error4')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error4_1')) ? 'is-invalid'  :'' }}">
                                 <select class="select-shop2" name = "s_opts4_1">
                                 <option value = ''></option>
                                 @foreach($list_staff as $staff)
@@ -209,7 +209,7 @@
                                     <span class="input-group-text">詳細５</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt5_1" value="{{old('s_opt5_1')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error5')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error5_1')) ? 'is-invalid'  :'' }}">
                                 <select class="select-shop2" name = "s_opts5_1">
                                 <option value = ''></option>
                                 @foreach($list_staff as $staff)
@@ -293,7 +293,7 @@
                                     <span class="input-group-text">詳細２</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt2_2" value="{{old('s_opt2_2')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error2')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error2_2')) ? 'is-invalid'  :'' }}">
                                     <select class="select-shop2" name = "s_opts2_2">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
@@ -315,7 +315,7 @@
                                     <span class="input-group-text">詳細３</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt3_2" value="{{old('s_opt3_2')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error3')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error3_2')) ? 'is-invalid'  :'' }}">
                                     <select class="select-shop2" name = "s_opts3_2">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
@@ -337,7 +337,7 @@
                                     <span class="input-group-text">詳細４</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt4_2" value="{{old('s_opt4_2')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error4')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error4_2')) ? 'is-invalid'  :'' }}">
                                     <select class="select-shop2" name = "s_opts4_2">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
@@ -359,7 +359,7 @@
                                     <span class="input-group-text">詳細５</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt5_2" value="{{old('s_opt5_2')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error5')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error5_2')) ? 'is-invalid'  :'' }}">
                                     <select class="select-shop2" name = "s_opts5_2">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
@@ -443,7 +443,7 @@
                                     <span class="input-group-text">詳細２</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt2_3" value="{{old('s_opt2_3')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error2')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error2_3')) ? 'is-invalid'  :'' }}">
                                     <select class="select-shop2" name = "s_opts2_3">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
@@ -465,7 +465,7 @@
                                     <span class="input-group-text">詳細３</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt3_3" value="{{old('s_opt3_3')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error3')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error3_3')) ? 'is-invalid'  :'' }}">
                                     <select class="select-shop2" name = "s_opts3_3">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
@@ -487,7 +487,7 @@
                                     <span class="input-group-text">詳細４</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt4_3" value="{{old('s_opt4_3')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error4')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error4_3')) ? 'is-invalid'  :'' }}">
                                     <select class="select-shop2" name = "s_opts4_3">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
@@ -509,7 +509,7 @@
                                     <span class="input-group-text">詳細５</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt5_3" value="{{old('s_opt5_3')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error5')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error5_3')) ? 'is-invalid'  :'' }}">
                                     <select class="select-shop2" name = "s_opts5_3">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
@@ -593,7 +593,7 @@
                                     <span class="input-group-text">詳細２</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt2_4" value="{{old('s_opt2_4')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error2')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error2_4')) ? 'is-invalid'  :'' }}">
                                     <select class="select-shop2" name = "s_opts2_4">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
@@ -615,7 +615,7 @@
                                     <span class="input-group-text">詳細３</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt3_4" value="{{old('s_opt3_4')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error3')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error3_4')) ? 'is-invalid'  :'' }}">
                                     <select class="select-shop2" name = "s_opts3_4">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
@@ -637,7 +637,7 @@
                                     <span class="input-group-text">詳細４</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt4_4" value="{{old('s_opt4_4')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error4')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error4_4')) ? 'is-invalid'  :'' }}">
                                     <select class="select-shop2" name = "s_opts4_4">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
@@ -659,7 +659,7 @@
                                     <span class="input-group-text">詳細５</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt5_4" value="{{old('s_opt5_4')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error5')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error5_4')) ? 'is-invalid'  :'' }}">
                                     <select class="select-shop2" name = "s_opts5_4">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
@@ -743,7 +743,7 @@
                                     <span class="input-group-text">詳細２</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt2_5" value="{{old('s_opt2_5')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error2')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error2_5')) ? 'is-invalid'  :'' }}">
                                     <select class="select-shop2" name = "s_opts2_5">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
@@ -765,7 +765,7 @@
                                     <span class="input-group-text">詳細３</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt3_5" value="{{old('s_opt3_5')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error3')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error3_5')) ? 'is-invalid'  :'' }}">
                                     <select class="select-shop2" name = "s_opts3_5">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
@@ -787,7 +787,7 @@
                                     <span class="input-group-text">詳細４</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt4_5" value="{{old('s_opt4_5')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error4')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error4_5')) ? 'is-invalid'  :'' }}">
                                     <select class="select-shop2" name = "s_opts4_5">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
@@ -809,7 +809,7 @@
                                     <span class="input-group-text">詳細５</span>
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt5_5" value="{{old('s_opt5_5')}}">
-                                <div class="form-control wrapper-select {{ ($errors->first('customer_error5')) ? 'is-invalid'  :'' }}">
+                                <div class="form-control wrapper-select {{ ($errors->first('customer_error5_5')) ? 'is-invalid'  :'' }}">
                                     <select class="select-shop2" name = "s_opts5_5">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
