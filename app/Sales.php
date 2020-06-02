@@ -18,7 +18,7 @@ class Sales extends Model
     }
      
     public function Course(){
-         return $this->belongsTo('App\Course','s_co_id','co_id');
+         return $this->belongsTo('App\Course','s_co_id1','co_id');
     }
      
     public function Customer(){

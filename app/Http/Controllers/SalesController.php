@@ -135,7 +135,7 @@ class SalesController extends Controller
         $request->validate($arrFieldValidate, $arrMessageValidate);
 
         // get current time
-        $currentTime = Carbon::now();
+        $currentTime = date('Y-m-d H:i:s');
         $dataSales = [
             's_c_id'        => $request->get('s_c_id'),
             's_money'       => str_replace(",", "", $request->get('s_total_money')),
@@ -238,6 +238,7 @@ class SalesController extends Controller
         foreach ($dataSaleDetail as $value){
             $value['s_id'] = $idSale;
             $value['s_date'] = $currentTime;
+            $currentTime = date('Y-m-d H:i:s',strtotime($currentTime)+1);
             $value['s_update'] = $currentTime;
             $saledetails = new SaleDetails($value);
             $saledetails->save();
@@ -304,7 +305,7 @@ class SalesController extends Controller
         $request->validate($arrFieldValidate, $arrMessageValidate);
 
         // get current time
-        $currentTime = Carbon::now();
+        $currentTime = date('Y-m-d H:i:s');
         $dataSales = [
             's_c_id'        => $request->get('s_c_id'),
             's_money'       => str_replace(",", "", $request->get('s_total_money')),
@@ -429,6 +430,7 @@ class SalesController extends Controller
             }
 
             $value['s_id'] = $id;
+            $currentTime = date('Y-m-d H:i:s',strtotime($currentTime)+1);
             $value['s_update'] = $currentTime;
             $newsaledetails = new SaleDetails($value);
             $newsaledetails->save();
