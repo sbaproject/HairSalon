@@ -154,12 +154,12 @@ class SalesController extends Controller
         for ($i = 1; $i<=5;$i++){
             // if s_co_id = 0 then it is フリー course
             if ($request->get('s_co_id'.$i) != '') {
+                $dataSaleDetail[$i-1]['s_co_num'] = $i;
                 if ($request->get('s_co_id'.$i) == 0) {
                     if ($request->get('s_opts1_'.$i) === null ) {
                         $customer_error = "入力してください。";
                         return redirect()->back()->withInput($request->input())->withErrors(['customer_error1_'.$i => $customer_error]);
                     }
-                    $dataSales['s_co_id'.$i] = 0;
 
                     $dataSaleDetail[$i-1]['s_co_id'] = 0;
                     $dataSaleDetail[$i-1]['s_opt1'] = 0;
@@ -172,9 +172,6 @@ class SalesController extends Controller
                         $customer_error = "入力してください。";
                         return redirect()->back()->withInput($request->input())->withErrors(['customer_error1_'.$i => $customer_error]);
                     }
-
-                    $dataSales['s_co_id'.$i] = 9999;
-
                     $dataSaleDetail[$i-1]['s_co_id'] = 9999;
                     $dataSaleDetail[$i-1]['s_opt1'] = 9999;
                     $dataSaleDetail[$i-1]['s_opts1'] = $request->get('s_opts1_'.$i);
@@ -211,8 +208,6 @@ class SalesController extends Controller
                         return redirect()->back()->withInput($request->input())->withErrors(['customer_error5_'.$i => $customer_error5]);
                     }
 
-                    $dataSales['s_co_id'.$i] = $request->get('s_co_id'.$i);
-
                     $dataSaleDetail[$i-1]['s_co_id'] = $request->get('s_co_id'.$i);
                     $dataSaleDetail[$i-1]['s_opt1'] = $course->co_opt1;
                     $dataSaleDetail[$i-1]['s_opts1'] = $course->co_opt1 === null ? null : $request->get('s_opts1_'.$i);
@@ -229,7 +224,6 @@ class SalesController extends Controller
             }
         }
 
-
         $sales = new Sales($dataSales);
         $sales->save();
 
@@ -238,7 +232,6 @@ class SalesController extends Controller
         foreach ($dataSaleDetail as $value){
             $value['s_id'] = $idSale;
             $value['s_date'] = $currentTime;
-            $currentTime = date('Y-m-d H:i:s',strtotime($currentTime)+1);
             $value['s_update'] = $currentTime;
             $saledetails = new SaleDetails($value);
             $saledetails->save();
@@ -264,7 +257,7 @@ class SalesController extends Controller
         $list_staff = Staff::where('s_del_flg', 0)->get();
         $list_option = Option::where('op_del_flg', 0)->where('op_shop', $userLogged->u_shop)->get();
         $salesDate = date('yy/m/d', strtotime($sales->sale_date));
-        $sale_details = SaleDetails::where('s_id', $id)->orderBy('s_update', 'ASC')->get();
+        $sale_details = SaleDetails::where('s_id', $id)->orderBy('s_co_num', 'ASC')->get();
         $total_detail = count($sale_details);
 
         return view('pages.sales_edit', compact('sales', 'list_course','list_customer','list_staff','list_option','salesDate','sale_details','total_detail'));
@@ -324,13 +317,12 @@ class SalesController extends Controller
         for ($i = 1; $i<=5;$i++){
             // if s_co_id = 0 then it is フリー course
             if ($request->get('s_co_id'.$i) != '') {
+                $dataSaleDetail[$i-1]['s_co_num'] = $i;
                 if ($request->get('s_co_id'.$i) == 0) {
                     if ($request->get('s_opts1_'.$i) === null ) {
                         $customer_error = "入力してください。";
                         return redirect()->back()->withInput($request->input())->withErrors(['customer_error1_'.$i => $customer_error]);
                     }
-                    $dataSales['s_co_id'.$i] = 0;
-
                     $dataSaleDetail[$i-1]['s_co_id'] = 0;
                     $dataSaleDetail[$i-1]['s_opt1'] = 0;
                     $dataSaleDetail[$i-1]['s_opts1'] = $request->get('s_opts1_'.$i);
@@ -342,9 +334,6 @@ class SalesController extends Controller
                         $customer_error = "入力してください。";
                         return redirect()->back()->withInput($request->input())->withErrors(['customer_error1_'.$i => $customer_error]);
                     }
-
-                    $dataSales['s_co_id'.$i] = 9999;
-
                     $dataSaleDetail[$i-1]['s_co_id'] = 9999;
                     $dataSaleDetail[$i-1]['s_opt1'] = 9999;
                     $dataSaleDetail[$i-1]['s_opts1'] = $request->get('s_opts1_'.$i);
@@ -380,9 +369,6 @@ class SalesController extends Controller
                         $customer_error5 = "入力してください。";
                         return redirect()->back()->withInput($request->input())->withErrors(['customer_error5_'.$i => $customer_error5]);
                     }
-
-                    $dataSales['s_co_id'.$i] = $request->get('s_co_id'.$i);
-
                     $dataSaleDetail[$i-1]['s_co_id'] = $request->get('s_co_id'.$i);
                     $dataSaleDetail[$i-1]['s_opt1'] = $course->co_opt1;
                     $dataSaleDetail[$i-1]['s_opts1'] = $course->co_opt1 === null ? null : $request->get('s_opts1_'.$i);
@@ -403,11 +389,6 @@ class SalesController extends Controller
         $sales = Sales::find($id);
 
         $sales->s_c_id  = $dataSales['s_c_id'];
-        $sales->s_co_id1  = isset($dataSales['s_co_id1']) ? $dataSales['s_co_id1'] : null ;
-        $sales->s_co_id2  = isset($dataSales['s_co_id2']) ? $dataSales['s_co_id2'] : null ;
-        $sales->s_co_id3  = isset($dataSales['s_co_id3']) ? $dataSales['s_co_id3'] : null ;
-        $sales->s_co_id4  = isset($dataSales['s_co_id4']) ? $dataSales['s_co_id4'] : null ;
-        $sales->s_co_id5  = isset($dataSales['s_co_id5']) ? $dataSales['s_co_id5'] : null ;
         $sales->s_money  = $dataSales['s_money'];
         $sales->s_pay  = $dataSales['s_pay'];
         $sales->s_text  = $dataSales['s_text'];
@@ -420,17 +401,16 @@ class SalesController extends Controller
 
         foreach ($dataSaleDetail as $value){
 
-            $saledetails = SaleDetails::where('s_id', $id)->where('s_co_id', $value['s_co_id'])->first();
+            $saledetails = SaleDetails::where('s_id', $id)->where('s_co_id', $value['s_co_id'])->where('s_co_num', $value['s_co_num'])->first();
 
             if ($saledetails){
                 $value['s_date'] = $saledetails->s_date;
-                SaleDetails::where('s_id', $id)->where('s_co_id', $value['s_co_id'])->delete();
+                SaleDetails::where('s_id', $id)->delete();
             }else{
                 $value['s_date'] = $currentTime;
             }
 
             $value['s_id'] = $id;
-            $currentTime = date('Y-m-d H:i:s',strtotime($currentTime)+1);
             $value['s_update'] = $currentTime;
             $newsaledetails = new SaleDetails($value);
             $newsaledetails->save();

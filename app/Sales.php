@@ -11,18 +11,18 @@ class Sales extends Model
     public $timestamps = false;
     public $primaryKey = 's_id';
 
-    protected $fillable = ['s_c_id', 's_co_id1', 's_co_id2', 's_co_id3', 's_co_id4', 's_co_id5','s_money', 's_saleoff_flg', 's_pay', 's_text', 's_sh_id', 's_del_flg', 'sale_date' ,'s_date', 's_update'];
+    protected $fillable = ['s_c_id','s_money', 's_saleoff_flg', 's_pay', 's_text', 's_sh_id', 's_del_flg', 'sale_date' ,'s_date', 's_update'];
     
     public function Shop(){
          return $this->belongsTo('App\Shop','s_sh_id','sh_id');
     }
-     
-    public function Course(){
-         return $this->belongsTo('App\Course','s_co_id1','co_id');
-    }
-     
+
     public function Customer(){
          return $this->belongsTo('App\Customer','s_c_id','c_id');
+    }
+
+    public function SaleDetails(){
+        return $this->hasMany('App\SaleDetails','s_id','s_id')->orderBy('s_co_num');
     }
 
 }
