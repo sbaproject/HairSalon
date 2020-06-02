@@ -634,7 +634,10 @@ class SalesController extends Controller
             $s_opt4 = $sale['s_opt4'];
             $s_opt5 = $sale['s_opt5'];
 
-            if ($s_opt1 == 0 || !empty($s_opt1)){
+            if ($s_opt1 == 0 || $s_opt1 == 9999 || !empty($s_opt1)){
+                if ($s_opt1 == 0){
+                    $s_opt1 = 99999;
+                }
                 $list_staff_data[$s_opts1]['co_id'][] = $s_opt1;
                 if (!in_array($s_opt1, $list_option_id)){
                     $list_option_id[] = $s_opt1;
@@ -673,11 +676,8 @@ class SalesController extends Controller
         foreach ($list_staff_data as $key => $value){
             $list_co_id = $list_staff_data[$key]['co_id'];
             $list_co_id = array_filter($list_co_id);
-            $total_co_id = 0;
-            if (!empty($list_co_id)){
-                $total_co_id = array_count_values($list_co_id);
-            }
-            $list_staff_data[$key]['co_id'] = $total_co_id;
+            $list_co_id = array_count_values($list_co_id);
+            $list_staff_data[$key]['co_id'] = $list_co_id;
         }
 
         // get data from database
@@ -685,8 +685,11 @@ class SalesController extends Controller
         $list_staff = Staff::whereIn('s_id',$list_staff_id)->orderBy('s_id', 'ASC')->get()->toArray();
 
 
-        if (in_array(0, $list_option_id)){
-            $list_options[] = array('op_id' => 0, 'op_name' => 'フリー', 'op_amount' => 1);
+        if (in_array(99999, $list_option_id)){
+            $list_options[] = array('op_id' => 99999, 'op_name' => 'フリー', 'op_amount' => 1);
+        }
+        if (in_array(9999, $list_option_id)){
+            $list_options[] = array('op_id' => 9999, 'op_name' => '商品販売', 'op_amount' => 1);
         }
 
         $list_sales_count = count($list_sales); //B7
