@@ -672,8 +672,12 @@ class SalesController extends Controller
 
         foreach ($list_staff_data as $key => $value){
             $list_co_id = $list_staff_data[$key]['co_id'];
-            $list_co_id = array_count_values($list_co_id);
-            $list_staff_data[$key]['co_id'] = $list_co_id;
+            $list_co_id = array_filter($list_co_id);
+            $total_co_id = 0;
+            if (!empty($list_co_id)){
+                $total_co_id = array_count_values($list_co_id);
+            }
+            $list_staff_data[$key]['co_id'] = $total_co_id;
         }
 
         // get data from database
