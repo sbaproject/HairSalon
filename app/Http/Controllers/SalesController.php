@@ -399,18 +399,12 @@ class SalesController extends Controller
 
         $sales->save();
 
+
+        SaleDetails::where('s_id', $id)->delete();
+
         foreach ($dataSaleDetail as $value){
-
-            $saledetails = SaleDetails::where('s_id', $id)->where('s_co_id', $value['s_co_id'])->where('s_co_num', $value['s_co_num'])->first();
-
-            if ($saledetails){
-                $value['s_date'] = $saledetails->s_date;
-                SaleDetails::where('s_id', $id)->delete();
-            }else{
-                $value['s_date'] = $currentTime;
-            }
-
             $value['s_id'] = $id;
+            $value['s_date'] = $currentTime;
             $value['s_update'] = $currentTime;
             $newsaledetails = new SaleDetails($value);
             $newsaledetails->save();
