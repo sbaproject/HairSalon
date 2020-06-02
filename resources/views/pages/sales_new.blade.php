@@ -830,7 +830,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース金額</span>
                                 </div>
-                                <input type="text" {{ (old('s_co_id5') == '0' || old('s_co_id5') == '9999') ? '' : 'readonly' }} class="form-control {{ ($errors->first('s_money_4')) ? 'is-invalid': ''}}" id="s_money_5" name="s_money_5" value = "{{old('s_money_5')}}">
+                                <input type="text" {{ (old('s_co_id5') == '0' || old('s_co_id5') == '9999') ? '' : 'readonly' }} class="form-control {{ ($errors->first('s_money_5')) ? 'is-invalid': ''}}" id="s_money_5" name="s_money_5" value = "{{old('s_money_5')}}">
                                 <input type="hidden" id="s_money-hidden_5" name="s_money-hidden_5" value="{{old('s_money-hidden_5')}}">
                                 <div class="invalid-feedback">
                                     @error('s_money_5')

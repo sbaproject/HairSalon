@@ -155,7 +155,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt2_1" value="{{ old('s_co_id1') == '0' ? '' : ( old('s_co_id1') == '9999' ? '商品販売'  :(($errors->first('customer_error1_1') || $errors->first('customer_error2_1') || $errors->first('customer_error3_1') || $errors->first('customer_error4_1') || $errors->first('customer_error5_1'))  ? (old('s_opt2_1') == null ? '' : old('s_opt2_1') ) :(old('s_opt2_1') == null ? (!empty($sale_details[0]->Option2->op_name)?$sale_details[0]->Option2->op_name:'') : old('s_opt2_1')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error2_1')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts2_1">
+                                    <select class="select-shop2" name = "s_opts2_1"{{ (isset($sale_details[0]->s_co_id) && ($sale_details[0]->s_co_id == 0 || $sale_details[0]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id1') == '0' ? '' : (($errors->first('customer_error1_1') || $errors->first('customer_error2_1') || $errors->first('customer_error3_1') || $errors->first('customer_error4_1') || $errors->first('customer_error5_1'))  ? (old('s_opts2_1') == null ? '' : (old('s_opts2_1') == $staff->s_id ? 'selected' : '')) :  (old('s_opts2_1') == null ? ( (isset($sale_details[0]->s_opts2) ? $sale_details[0]->s_opts2 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts2_1') == $staff->s_id ? 'selected' : ''))) }}>
@@ -179,7 +179,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt3_1" value="{{ old('s_co_id1') == '0' ? '' : ( old('s_co_id1') == '9999' ? '商品販売'  :(($errors->first('customer_error1_1') || $errors->first('customer_error2_1') || $errors->first('customer_error3_1') || $errors->first('customer_error4_1') || $errors->first('customer_error5_1'))  ? (old('s_opt3_1') == null ? '' : old('s_opt3_1') ) :(old('s_opt3_1') == null ? (!empty($sale_details[0]->Option3->op_name)?$sale_details[0]->Option3->op_name:'') : old('s_opt3_1')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error3_1')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts3_1">
+                                    <select class="select-shop2" name = "s_opts3_1"{{ (isset($sale_details[0]->s_co_id) && ($sale_details[0]->s_co_id == 0 || $sale_details[0]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id1') == '0' ? '' : (($errors->first('customer_error1_1') || $errors->first('customer_error2_1') || $errors->first('customer_error3_1') || $errors->first('customer_error4_1') || $errors->first('customer_error5_1'))  ? (old('s_opts3_1') == null ? '' : (old('s_opts3_1') == $staff->s_id ? 'selected' : '')) :  (old('s_opts3_1') == null ? ( (isset($sale_details[0]->s_opts3) ? $sale_details[0]->s_opts3 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts3_1') == $staff->s_id ? 'selected' : ''))) }}>
@@ -203,7 +203,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt4_1" value="{{ old('s_co_id1') == '0' ? '' : (old('s_co_id1') == '9999'? '商品販売'  :(($errors->first('customer_error1_1') || $errors->first('customer_error2_1') || $errors->first('customer_error3_1') || $errors->first('customer_error4_1') || $errors->first('customer_error5_1'))  ? (old('s_opt4_1') == null ? '' : old('s_opt4_1') ) :(old('s_opt4_1') == null ? (!empty($sale_details[0]->Option4->op_name)?$sale_details[0]->Option4->op_name:'') : old('s_opt4_1')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error4_1')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts4_1">
+                                    <select class="select-shop2" name = "s_opts4_1"{{ (isset($sale_details[0]->s_co_id) && ($sale_details[0]->s_co_id == 0 || $sale_details[0]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id1') == '0' ? '' : (($errors->first('customer_error1_1') || $errors->first('customer_error2_1') || $errors->first('customer_error3_1') || $errors->first('customer_error4_1') || $errors->first('customer_error5_1'))  ? (old('s_opts4_1') == null ? '' : (old('s_opts4_1') == $staff->s_id ? 'selected' : '')) :  (old('s_opts4_1') == null ? ( (isset($sale_details[0]->s_opts4) ? $sale_details[0]->s_opts4 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts4_1') == $staff->s_id ? 'selected' : ''))) }}>
@@ -227,7 +227,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt5_1" value="{{ old('s_co_id1') == '0' ? '' : (old('s_co_id1') == '9999' ? '商品販売'  :(($errors->first('customer_error1_1') || $errors->first('customer_error2_1') || $errors->first('customer_error3_1') || $errors->first('customer_error4_1') || $errors->first('customer_error5_1'))  ? (old('s_opt5_1') == null ? '' : old('s_opt5_1') ) :(old('s_opt5_1') == null ? (!empty($sale_details[0]->Option5->op_name)?$sale_details[0]->Option5->op_name:'') : old('s_opt5_1')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error5_1')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts5_1">
+                                    <select class="select-shop2" name = "s_opts5_1"{{ (isset($sale_details[0]->s_co_id) && ($sale_details[0]->s_co_id == 0 || $sale_details[0]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id1') == '0' ? '' : (($errors->first('customer_error1_1') || $errors->first('customer_error2_1') || $errors->first('customer_error3_1') || $errors->first('customer_error4_1') || $errors->first('customer_error5_1'))  ? (old('s_opts5_1') == null ? '' : (old('s_opts5_1') == $staff->s_id ? 'selected' : '')) :  (old('s_opts5_1') == null ? ( (isset($sale_details[0]->s_opts5) ? $sale_details[0]->s_opts5 : '')== $staff->s_id ? 'selected' : '') : (old('s_opts5_1') == $staff->s_id ? 'selected' : ''))) }}>
@@ -249,7 +249,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース金額</span>
                                 </div>
-                                <input type="text" id="s_money_1"  class="form-control {{ ($errors->first('s_money')) ? 'is-invalid': ''}}" value="{{ old('s_money_1') == null ? (number_format((isset($sale_details[0]->s_money) ? $sale_details[0]->s_money : 0))) : old('s_money_1') }}" name="s_money_1" {{ old('s_co_id1') == null ? ((isset($sale_details[0]->s_co_id) ? $sale_details[0]->s_co_id : '') == '0' ? '' : 'readonly') : (old('s_co_id1') == '0' ? '' : 'readonly')}}>
+                                <input type="text" id="s_money_1"  class="form-control {{ ($errors->first('s_money_1')) ? 'is-invalid': ''}}" value="{{ old('s_money_1') == null ? (number_format((isset($sale_details[0]->s_money) ? $sale_details[0]->s_money : 0))) : old('s_money_1') }}" name="s_money_1" {{ old('s_co_id1') == null ? (((isset($sale_details[0]->s_co_id) ? $sale_details[0]->s_co_id : '') == '0' || (isset($sale_details[0]->s_co_id) ? $sale_details[0]->s_co_id : '') == '9999') ? '' : 'readonly') : ((old('s_co_id1') == '0' || old('s_co_id1') == '9999') ? '' : 'readonly')}}>
                                 <input type="hidden" id="s_money-hidden_1" name="s_money-hidden_1" value="{{ old('s_money-hidden_1') == null ? (isset($sale_details[0]->s_money) ? $sale_details[0]->s_money : '') : old('s_money-hidden_1') }}">
                                 <div class="invalid-feedback">
                                     @error('s_money_1')
@@ -318,7 +318,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt2_2" value="{{ old('s_co_id2') == '0' ? '' : ( old('s_co_id2') == '9999' ? '商品販売'  :(($errors->first('customer_error1_2') || $errors->first('customer_error2_2') || $errors->first('customer_error3_2') || $errors->first('customer_error4_2') || $errors->first('customer_error5_2'))  ? (old('s_opt2_2') == null ? '' : old('s_opt2_2') ) :(old('s_opt2_2') == null ? (!empty($sale_details[1]->Option2->op_name)?$sale_details[1]->Option2->op_name:'') : old('s_opt2_2')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error2_2')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts2_2">
+                                    <select class="select-shop2" name = "s_opts2_2"{{ (isset($sale_details[1]->s_co_id) && ($sale_details[1]->s_co_id == 0 || $sale_details[1]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id2') == '0' ? '' : (($errors->first('customer_error1_2') || $errors->first('customer_error2_2') || $errors->first('customer_error3_2') || $errors->first('customer_error4_2') || $errors->first('customer_error5_2'))  ? (old('s_opts2_2') == null ? '' : (old('s_opts2_2') == $staff->s_id ? 'selected' : '')) :  (old('s_opts2_2') == null ? ( (isset($sale_details[1]->s_opts2) ? $sale_details[1]->s_opts2 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts2_2') == $staff->s_id ? 'selected' : ''))) }}>
@@ -342,7 +342,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt3_2" value="{{ old('s_co_id2') == '0' ? '' : ( old('s_co_id2') == '9999' ? '商品販売'  :(($errors->first('customer_error1_2') || $errors->first('customer_error2_2') || $errors->first('customer_error3_2') || $errors->first('customer_error4_2') || $errors->first('customer_error5_2'))  ? (old('s_opt3_2') == null ? '' : old('s_opt3_2') ) :(old('s_opt3_2') == null ? (!empty($sale_details[1]->Option3->op_name)?$sale_details[1]->Option3->op_name:'') : old('s_opt3_2')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error3_2')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts3_2">
+                                    <select class="select-shop2" name = "s_opts3_2"{{ (isset($sale_details[1]->s_co_id) && ($sale_details[1]->s_co_id == 0 || $sale_details[1]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id2') == '0' ? '' : (($errors->first('customer_error1_2') || $errors->first('customer_error2_2') || $errors->first('customer_error3_2') || $errors->first('customer_error4_2') || $errors->first('customer_error5_2'))  ? (old('s_opts3_2') == null ? '' : (old('s_opts3_2') == $staff->s_id ? 'selected' : '')) :  (old('s_opts3_2') == null ? ( (isset($sale_details[1]->s_opts3) ? $sale_details[1]->s_opts3 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts3_2') == $staff->s_id ? 'selected' : ''))) }}>
@@ -366,7 +366,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt4_2" value="{{ old('s_co_id2') == '0' ? '' : (old('s_co_id2') == '9999'? '商品販売'  :(($errors->first('customer_error1_2') || $errors->first('customer_error2_2') || $errors->first('customer_error3_2') || $errors->first('customer_error4_2') || $errors->first('customer_error5_2'))  ? (old('s_opt4_2') == null ? '' : old('s_opt4_2') ) :(old('s_opt4_2') == null ? (!empty($sale_details[1]->Option4->op_name)?$sale_details[1]->Option4->op_name:'') : old('s_opt4_2')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error4_2')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts4_2">
+                                    <select class="select-shop2" name = "s_opts4_2"{{ (isset($sale_details[1]->s_co_id) && ($sale_details[1]->s_co_id == 0 || $sale_details[1]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id2') == '0' ? '' : (($errors->first('customer_error1_2') || $errors->first('customer_error2_2') || $errors->first('customer_error3_2') || $errors->first('customer_error4_2') || $errors->first('customer_error5_2'))  ? (old('s_opts4_2') == null ? '' : (old('s_opts4_2') == $staff->s_id ? 'selected' : '')) :  (old('s_opts4_2') == null ? ( (isset($sale_details[1]->s_opts4) ? $sale_details[1]->s_opts4 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts4_2') == $staff->s_id ? 'selected' : ''))) }}>
@@ -390,7 +390,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt5_2" value="{{ old('s_co_id2') == '0' ? '' : (old('s_co_id2') == '9999' ? '商品販売'  :(($errors->first('customer_error1_2') || $errors->first('customer_error2_2') || $errors->first('customer_error3_2') || $errors->first('customer_error4_2') || $errors->first('customer_error5_2'))  ? (old('s_opt5_2') == null ? '' : old('s_opt5_2') ) :(old('s_opt5_2') == null ? (!empty($sale_details[1]->Option5->op_name)?$sale_details[1]->Option5->op_name:'') : old('s_opt5_2')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error5_2')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts5_2">
+                                    <select class="select-shop2" name = "s_opts5_2"{{ (isset($sale_details[1]->s_co_id) && ($sale_details[1]->s_co_id == 0 || $sale_details[1]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id2') == '0' ? '' : (($errors->first('customer_error1_2') || $errors->first('customer_error2_2') || $errors->first('customer_error3_2') || $errors->first('customer_error4_2') || $errors->first('customer_error5_2'))  ? (old('s_opts5_2') == null ? '' : (old('s_opts5_2') == $staff->s_id ? 'selected' : '')) :  (old('s_opts5_2') == null ? ( (isset($sale_details[1]->s_opts5) ? $sale_details[1]->s_opts5 : '')== $staff->s_id ? 'selected' : '') : (old('s_opts5_2') == $staff->s_id ? 'selected' : ''))) }}>
@@ -412,7 +412,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース金額</span>
                                 </div>
-                                <input type="text" id="s_money_2"  class="form-control {{ ($errors->first('s_money')) ? 'is-invalid': ''}}" value="{{ old('s_money_2') == null ? ((isset($sale_details[1]->s_money) ? number_format($sale_details[1]->s_money) : '')) : old('s_money_2') }}" name="s_money_2" {{ old('s_co_id2') == null ? ((isset($sale_details[1]->s_co_id) ? $sale_details[1]->s_co_id : '') == '0' ? '' : 'readonly') : (old('s_co_id2') == '0' ? '' : 'readonly')}}>
+                                <input type="text" id="s_money_2"  class="form-control {{ ($errors->first('s_money_2')) ? 'is-invalid': ''}}" value="{{ old('s_money_2') == null ? ((isset($sale_details[1]->s_money) ? number_format($sale_details[1]->s_money) : '')) : old('s_money_2') }}" name="s_money_2" {{ old('s_co_id2') == null ? (((isset($sale_details[1]->s_co_id) ? $sale_details[1]->s_co_id : '') == '0' || (isset($sale_details[1]->s_co_id) ? $sale_details[1]->s_co_id : '') == '9999')  ? '' : 'readonly') : ((old('s_co_id2') == '0' || old('s_co_id2') == '9999') ? '' : 'readonly')}}>
                                 <input type="hidden" id="s_money-hidden_2" name="s_money-hidden_2" value="{{ old('s_money-hidden_2') == null ? (isset($sale_details[1]->s_money) ? $sale_details[1]->s_money : '') : old('s_money-hidden_2') }}">
                                 <div class="invalid-feedback">
                                     @error('s_money_2')
@@ -481,7 +481,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt2_3" value="{{ old('s_co_id3') == '0' ? '' : ( old('s_co_id3') == '9999' ? '商品販売'  :(($errors->first('customer_error1_3') || $errors->first('customer_error2_3') || $errors->first('customer_error3_3') || $errors->first('customer_error4_3') || $errors->first('customer_error5_3'))  ? (old('s_opt2_3') == null ? '' : old('s_opt2_3') ) :(old('s_opt2_3') == null ? (!empty($sale_details[2]->Option2->op_name)?$sale_details[2]->Option2->op_name:'') : old('s_opt2_3')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error2_3')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts2_3">
+                                    <select class="select-shop2" name = "s_opts2_3"{{ (isset($sale_details[2]->s_co_id) && ($sale_details[2]->s_co_id == 0 || $sale_details[2]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id3') == '0' ? '' : (($errors->first('customer_error1_3') || $errors->first('customer_error2_3') || $errors->first('customer_error3_3') || $errors->first('customer_error4_3') || $errors->first('customer_error5_3'))  ? (old('s_opts2_3') == null ? '' : (old('s_opts2_3') == $staff->s_id ? 'selected' : '')) :  (old('s_opts2_3') == null ? ( (isset($sale_details[2]->s_opts2) ? $sale_details[2]->s_opts2 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts2_3') == $staff->s_id ? 'selected' : ''))) }}>
@@ -505,7 +505,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt3_3" value="{{ old('s_co_id3') == '0' ? '' : ( old('s_co_id3') == '9999' ? '商品販売'  :(($errors->first('customer_error1_3') || $errors->first('customer_error2_3') || $errors->first('customer_error3_3') || $errors->first('customer_error4_3') || $errors->first('customer_error5_3'))  ? (old('s_opt3_3') == null ? '' : old('s_opt3_3') ) :(old('s_opt3_3') == null ? (!empty($sale_details[2]->Option3->op_name)?$sale_details[2]->Option3->op_name:'') : old('s_opt3_3')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error3_3')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts3_3">
+                                    <select class="select-shop2" name = "s_opts3_3"{{ (isset($sale_details[2]->s_co_id) && ($sale_details[2]->s_co_id == 0 || $sale_details[2]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id3') == '0' ? '' : (($errors->first('customer_error1_3') || $errors->first('customer_error2_3') || $errors->first('customer_error3_3') || $errors->first('customer_error4_3') || $errors->first('customer_error5_3'))  ? (old('s_opts3_3') == null ? '' : (old('s_opts3_3') == $staff->s_id ? 'selected' : '')) :  (old('s_opts3_3') == null ? ( (isset($sale_details[2]->s_opts3) ? $sale_details[2]->s_opts3 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts3_3') == $staff->s_id ? 'selected' : ''))) }}>
@@ -529,7 +529,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt4_3" value="{{ old('s_co_id3') == '0' ? '' : (old('s_co_id3') == '9999'? '商品販売'  :(($errors->first('customer_error1_3') || $errors->first('customer_error2_3') || $errors->first('customer_error3_3') || $errors->first('customer_error4_3') || $errors->first('customer_error5_3'))  ? (old('s_opt4_3') == null ? '' : old('s_opt4_3') ) :(old('s_opt4_3') == null ? (!empty($sale_details[2]->Option4->op_name)?$sale_details[2]->Option4->op_name:'') : old('s_opt4_3')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error4_3')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts4_3">
+                                    <select class="select-shop2" name = "s_opts4_3"{{ (isset($sale_details[2]->s_co_id) && ($sale_details[2]->s_co_id == 0 || $sale_details[2]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id3') == '0' ? '' : (($errors->first('customer_error1_3') || $errors->first('customer_error2_3') || $errors->first('customer_error3_3') || $errors->first('customer_error4_3') || $errors->first('customer_error5_3'))  ? (old('s_opts4_3') == null ? '' : (old('s_opts4_3') == $staff->s_id ? 'selected' : '')) :  (old('s_opts4_3') == null ? ( (isset($sale_details[2]->s_opts4) ? $sale_details[2]->s_opts4 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts4_3') == $staff->s_id ? 'selected' : ''))) }}>
@@ -553,7 +553,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt5_3" value="{{ old('s_co_id3') == '0' ? '' : (old('s_co_id3') == '9999' ? '商品販売'  :(($errors->first('customer_error1_3') || $errors->first('customer_error2_3') || $errors->first('customer_error3_3') || $errors->first('customer_error4_3') || $errors->first('customer_error5_3'))  ? (old('s_opt5_3') == null ? '' : old('s_opt5_3') ) :(old('s_opt5_3') == null ? (!empty($sale_details[2]->Option5->op_name)?$sale_details[2]->Option5->op_name:'') : old('s_opt5_3')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error5_3')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts5_3">
+                                    <select class="select-shop2" name = "s_opts5_3"{{ (isset($sale_details[2]->s_co_id) && ($sale_details[2]->s_co_id == 0 || $sale_details[2]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id3') == '0' ? '' : (($errors->first('customer_error1_3') || $errors->first('customer_error2_3') || $errors->first('customer_error3_3') || $errors->first('customer_error4_3') || $errors->first('customer_error5_3'))  ? (old('s_opts5_3') == null ? '' : (old('s_opts5_3') == $staff->s_id ? 'selected' : '')) :  (old('s_opts5_3') == null ? ( (isset($sale_details[2]->s_opts5) ? $sale_details[2]->s_opts5 : '')== $staff->s_id ? 'selected' : '') : (old('s_opts5_3') == $staff->s_id ? 'selected' : ''))) }}>
@@ -575,7 +575,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース金額</span>
                                 </div>
-                                <input type="text" id="s_money_3"  class="form-control {{ ($errors->first('s_money')) ? 'is-invalid': ''}}" value="{{ old('s_money_3') == null ? ((isset($sale_details[2]->s_money) ? number_format($sale_details[2]->s_money) : '')) : old('s_money_3') }}" name="s_money_3" {{ old('s_co_id3') == null ? ((isset($sale_details[2]->s_co_id) ? $sale_details[2]->s_co_id : '') == '0' ? '' : 'readonly') : (old('s_co_id3') == '0' ? '' : 'readonly')}}>
+                                <input type="text" id="s_money_3"  class="form-control {{ ($errors->first('s_money_3')) ? 'is-invalid': ''}}" value="{{ old('s_money_3') == null ? ((isset($sale_details[2]->s_money) ? number_format($sale_details[2]->s_money) : '')) : old('s_money_3') }}" name="s_money_3" {{ old('s_co_id3') == null ? (((isset($sale_details[2]->s_co_id) ? $sale_details[2]->s_co_id : '') == '0' || (isset($sale_details[2]->s_co_id) ? $sale_details[2]->s_co_id : '') == '9999') ? '' : 'readonly') : ((old('s_co_id3') == '0' || old('s_co_id3') == '9999') ? '' : 'readonly')}}>
                                 <input type="hidden" id="s_money-hidden_3" name="s_money-hidden_3" value="{{ old('s_money-hidden_3') == null ? (isset($sale_details[2]->s_money) ? $sale_details[2]->s_money : '') : old('s_money-hidden_3') }}">
                                 <div class="invalid-feedback">
                                     @error('s_money_3')
@@ -644,7 +644,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt2_4" value="{{ old('s_co_id4') == '0' ? '' : ( old('s_co_id4') == '9999' ? '商品販売'  :(($errors->first('customer_error1_4') || $errors->first('customer_error2_4') || $errors->first('customer_error3_4') || $errors->first('customer_error4_4') || $errors->first('customer_error5_4'))  ? (old('s_opt2_4') == null ? '' : old('s_opt2_4') ) :(old('s_opt2_4') == null ? (!empty($sale_details[3]->Option2->op_name)?$sale_details[3]->Option2->op_name:'') : old('s_opt2_4')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error2_4')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts2_4">
+                                    <select class="select-shop2" name = "s_opts2_4"{{ (isset($sale_details[3]->s_co_id) && ($sale_details[3]->s_co_id == 0 || $sale_details[3]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id4') == '0' ? '' : (($errors->first('customer_error1_4') || $errors->first('customer_error2_4') || $errors->first('customer_error3_4') || $errors->first('customer_error4_4') || $errors->first('customer_error5_4'))  ? (old('s_opts2_4') == null ? '' : (old('s_opts2_4') == $staff->s_id ? 'selected' : '')) :  (old('s_opts2_4') == null ? ( (isset($sale_details[3]->s_opts2) ? $sale_details[3]->s_opts2 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts2_4') == $staff->s_id ? 'selected' : ''))) }}>
@@ -668,7 +668,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt3_4" value="{{ old('s_co_id4') == '0' ? '' : ( old('s_co_id4') == '9999' ? '商品販売'  :(($errors->first('customer_error1_4') || $errors->first('customer_error2_4') || $errors->first('customer_error3_4') || $errors->first('customer_error4_4') || $errors->first('customer_error5_4'))  ? (old('s_opt3_4') == null ? '' : old('s_opt3_4') ) :(old('s_opt3_4') == null ? (!empty($sale_details[3]->Option3->op_name)?$sale_details[3]->Option3->op_name:'') : old('s_opt3_4')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error3_4')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts3_4">
+                                    <select class="select-shop2" name = "s_opts3_4"{{ (isset($sale_details[3]->s_co_id) && ($sale_details[3]->s_co_id == 0 || $sale_details[3]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id4') == '0' ? '' : (($errors->first('customer_error1_4') || $errors->first('customer_error2_4') || $errors->first('customer_error3_4') || $errors->first('customer_error4_4') || $errors->first('customer_error5_4'))  ? (old('s_opts3_4') == null ? '' : (old('s_opts3_4') == $staff->s_id ? 'selected' : '')) :  (old('s_opts3_4') == null ? ( (isset($sale_details[3]->s_opts3) ? $sale_details[3]->s_opts3 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts3_4') == $staff->s_id ? 'selected' : ''))) }}>
@@ -692,7 +692,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt4_4" value="{{ old('s_co_id4') == '0' ? '' : (old('s_co_id4') == '9999'? '商品販売'  :(($errors->first('customer_error1_4') || $errors->first('customer_error2_4') || $errors->first('customer_error3_4') || $errors->first('customer_error4_4') || $errors->first('customer_error5_4'))  ? (old('s_opt4_4') == null ? '' : old('s_opt4_4') ) :(old('s_opt4_4') == null ? (!empty($sale_details[3]->Option4->op_name)?$sale_details[3]->Option4->op_name:'') : old('s_opt4_4')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error4_4')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts4_4">
+                                    <select class="select-shop2" name = "s_opts4_4"{{ (isset($sale_details[3]->s_co_id) && ($sale_details[3]->s_co_id == 0 || $sale_details[3]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id4') == '0' ? '' : (($errors->first('customer_error1_4') || $errors->first('customer_error2_4') || $errors->first('customer_error3_4') || $errors->first('customer_error4_4') || $errors->first('customer_error5_4'))  ? (old('s_opts4_4') == null ? '' : (old('s_opts4_4') == $staff->s_id ? 'selected' : '')) :  (old('s_opts4_4') == null ? ( (isset($sale_details[3]->s_opts4) ? $sale_details[3]->s_opts4 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts4_4') == $staff->s_id ? 'selected' : ''))) }}>
@@ -716,7 +716,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt5_4" value="{{ old('s_co_id4') == '0' ? '' : (old('s_co_id4') == '9999' ? '商品販売'  :(($errors->first('customer_error1_4') || $errors->first('customer_error2_4') || $errors->first('customer_error3_4') || $errors->first('customer_error4_4') || $errors->first('customer_error5_4'))  ? (old('s_opt5_4') == null ? '' : old('s_opt5_4') ) :(old('s_opt5_4') == null ? (!empty($sale_details[3]->Option5->op_name)?$sale_details[3]->Option5->op_name:'') : old('s_opt5_4')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error5_4')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts5_4">
+                                    <select class="select-shop2" name = "s_opts5_4"{{ (isset($sale_details[3]->s_co_id) && ($sale_details[3]->s_co_id == 0 || $sale_details[3]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id4') == '0' ? '' : (($errors->first('customer_error1_4') || $errors->first('customer_error2_4') || $errors->first('customer_error3_4') || $errors->first('customer_error4_4') || $errors->first('customer_error5_4'))  ? (old('s_opts5_4') == null ? '' : (old('s_opts5_4') == $staff->s_id ? 'selected' : '')) :  (old('s_opts5_4') == null ? ( (isset($sale_details[3]->s_opts5) ? $sale_details[3]->s_opts5 : '')== $staff->s_id ? 'selected' : '') : (old('s_opts5_4') == $staff->s_id ? 'selected' : ''))) }}>
@@ -738,7 +738,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース金額</span>
                                 </div>
-                                <input type="text" id="s_money_4"  class="form-control {{ ($errors->first('s_money')) ? 'is-invalid': ''}}" value="{{ old('s_money_4') == null ? ((isset($sale_details[3]->s_money) ? number_format($sale_details[3]->s_money) : '')) : old('s_money_4') }}" name="s_money_4" {{ old('s_co_id4') == null ? ((isset($sale_details[3]->s_co_id) ? $sale_details[3]->s_co_id : '') == '0' ? '' : 'readonly') : (old('s_co_id4') == '0' ? '' : 'readonly')}}>
+                                <input type="text" id="s_money_4"  class="form-control {{ ($errors->first('s_money_4')) ? 'is-invalid': ''}}" value="{{ old('s_money_4') == null ? ((isset($sale_details[3]->s_money) ? number_format($sale_details[3]->s_money) : '')) : old('s_money_4') }}" name="s_money_4" {{ old('s_co_id4') == null ? (((isset($sale_details[3]->s_co_id) ? $sale_details[3]->s_co_id : '') == '0' || (isset($sale_details[3]->s_co_id) ? $sale_details[3]->s_co_id : '') == '9999') ? '' : 'readonly') : ((old('s_co_id4') == '0' || old('s_co_id4') == '9999') ? '' : 'readonly')}}>
                                 <input type="hidden" id="s_money-hidden_4" name="s_money-hidden_4" value="{{ old('s_money-hidden_4') == null ? (isset($sale_details[3]->s_money) ? $sale_details[3]->s_money : '') : old('s_money-hidden_4') }}">
                                 <div class="invalid-feedback">
                                     @error('s_money_4')
@@ -807,7 +807,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt2_5" value="{{ old('s_co_id5') == '0' ? '' : ( old('s_co_id5') == '9999' ? '商品販売'  :(($errors->first('customer_error1_5') || $errors->first('customer_error2_5') || $errors->first('customer_error3_5') || $errors->first('customer_error4_5') || $errors->first('customer_error5_5'))  ? (old('s_opt2_5') == null ? '' : old('s_opt2_5') ) :(old('s_opt2_5') == null ? (!empty($sale_details[4]->Option2->op_name)?$sale_details[4]->Option2->op_name:'') : old('s_opt2_5')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error2_5')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts2_5">
+                                    <select class="select-shop2" name = "s_opts2_5"{{ (isset($sale_details[4]->s_co_id) && ($sale_details[4]->s_co_id == 0 || $sale_details[4]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id5') == '0' ? '' : (($errors->first('customer_error1_5') || $errors->first('customer_error2_5') || $errors->first('customer_error3_5') || $errors->first('customer_error4_5') || $errors->first('customer_error5_5'))  ? (old('s_opts2_5') == null ? '' : (old('s_opts2_5') == $staff->s_id ? 'selected' : '')) :  (old('s_opts2_5') == null ? ( (isset($sale_details[4]->s_opts2) ? $sale_details[4]->s_opts2 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts2_5') == $staff->s_id ? 'selected' : ''))) }}>
@@ -831,7 +831,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt3_5" value="{{ old('s_co_id5') == '0' ? '' : ( old('s_co_id5') == '9999' ? '商品販売'  :(($errors->first('customer_error1_5') || $errors->first('customer_error2_5') || $errors->first('customer_error3_5') || $errors->first('customer_error4_5') || $errors->first('customer_error5_5'))  ? (old('s_opt3_5') == null ? '' : old('s_opt3_5') ) :(old('s_opt3_5') == null ? (!empty($sale_details[4]->Option3->op_name)?$sale_details[4]->Option3->op_name:'') : old('s_opt3_5')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error3_5')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts3_5">
+                                    <select class="select-shop2" name = "s_opts3_5"{{ (isset($sale_details[4]->s_co_id) && ($sale_details[4]->s_co_id == 0 || $sale_details[4]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id5') == '0' ? '' : (($errors->first('customer_error1_5') || $errors->first('customer_error2_5') || $errors->first('customer_error3_5') || $errors->first('customer_error4_5') || $errors->first('customer_error5_5'))  ? (old('s_opts3_5') == null ? '' : (old('s_opts3_5') == $staff->s_id ? 'selected' : '')) :  (old('s_opts3_5') == null ? ( (isset($sale_details[4]->s_opts3) ? $sale_details[4]->s_opts3 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts3_5') == $staff->s_id ? 'selected' : ''))) }}>
@@ -855,7 +855,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt4_5" value="{{ old('s_co_id5') == '0' ? '' : (old('s_co_id5') == '9999'? '商品販売'  :(($errors->first('customer_error1_5') || $errors->first('customer_error2_5') || $errors->first('customer_error3_5') || $errors->first('customer_error4_5') || $errors->first('customer_error5_5'))  ? (old('s_opt4_5') == null ? '' : old('s_opt4_5') ) :(old('s_opt4_5') == null ? (!empty($sale_details[4]->Option4->op_name)?$sale_details[4]->Option4->op_name:'') : old('s_opt4_5')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error4_5')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts4_5">
+                                    <select class="select-shop2" name = "s_opts4_5"{{ (isset($sale_details[4]->s_co_id) && ($sale_details[4]->s_co_id == 0 || $sale_details[4]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id5') == '0' ? '' : (($errors->first('customer_error1_5') || $errors->first('customer_error2_5') || $errors->first('customer_error3_5') || $errors->first('customer_error4_5') || $errors->first('customer_error5_5'))  ? (old('s_opts4_5') == null ? '' : (old('s_opts4_5') == $staff->s_id ? 'selected' : '')) :  (old('s_opts4_5') == null ? ( (isset($sale_details[4]->s_opts4) ? $sale_details[4]->s_opts4 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts4_5') == $staff->s_id ? 'selected' : ''))) }}>
@@ -879,7 +879,7 @@
                                 </div>
                                 <input type="text" class="form-control" readonly name = "s_opt5_5" value="{{ old('s_co_id5') == '0' ? '' : (old('s_co_id5') == '9999' ? '商品販売'  :(($errors->first('customer_error1_5') || $errors->first('customer_error2_5') || $errors->first('customer_error3_5') || $errors->first('customer_error4_5') || $errors->first('customer_error5_5'))  ? (old('s_opt5_5') == null ? '' : old('s_opt5_5') ) :(old('s_opt5_5') == null ? (!empty($sale_details[4]->Option5->op_name)?$sale_details[4]->Option5->op_name:'') : old('s_opt5_5')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error5_5')) ? 'is-invalid'  :'' }}">
-                                    <select class="select-shop2" name = "s_opts5_5">
+                                    <select class="select-shop2" name = "s_opts5_5"{{ (isset($sale_details[4]->s_co_id) && ($sale_details[4]->s_co_id == 0 || $sale_details[4]->s_co_id == 9999))  ? ' disabled="disabled"' : ''}}>
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id5') == '0' ? '' : (($errors->first('customer_error1_5') || $errors->first('customer_error2_5') || $errors->first('customer_error3_5') || $errors->first('customer_error4_5') || $errors->first('customer_error5_5'))  ? (old('s_opts5_5') == null ? '' : (old('s_opts5_5') == $staff->s_id ? 'selected' : '')) :  (old('s_opts5_5') == null ? ( (isset($sale_details[4]->s_opts5) ? $sale_details[4]->s_opts5 : '')== $staff->s_id ? 'selected' : '') : (old('s_opts5_5') == $staff->s_id ? 'selected' : ''))) }}>
@@ -901,7 +901,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース金額</span>
                                 </div>
-                                <input type="text" id="s_money_5"  class="form-control {{ ($errors->first('s_money')) ? 'is-invalid': ''}}" value="{{ old('s_money_5') == null ? ((isset($sale_details[4]->s_money) ? number_format($sale_details[4]->s_money) : '')) : old('s_money_5') }}" name="s_money_5" {{ old('s_co_id5') == null ? ((isset($sale_details[4]->s_co_id) ? $sale_details[4]->s_co_id : '') == '0' ? '' : 'readonly') : (old('s_co_id5') == '0' ? '' : 'readonly')}}>
+                                <input type="text" id="s_money_5"  class="form-control {{ ($errors->first('s_money_5')) ? 'is-invalid': ''}}" value="{{ old('s_money_5') == null ? ((isset($sale_details[4]->s_money) ? number_format($sale_details[4]->s_money) : '')) : old('s_money_5') }}" name="s_money_5" {{ old('s_co_id5') == null ? (((isset($sale_details[4]->s_co_id) ? $sale_details[4]->s_co_id : '') == '0' || (isset($sale_details[4]->s_co_id) ? $sale_details[4]->s_co_id : '') == '9999') ? '' : 'readonly') : ((old('s_co_id5') == '0' || old('s_co_id5') == '9') ? '' : 'readonly')}}>
                                 <input type="hidden" id="s_money-hidden_5" name="s_money-hidden_5" value="{{ old('s_money-hidden_5') == null ? (isset($sale_details[4]->s_money) ? $sale_details[4]->s_money : '') : old('s_money-hidden_5') }}">
                                 <div class="invalid-feedback">
                                     @error('s_money_5')
