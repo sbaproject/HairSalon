@@ -135,7 +135,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}' {{   ($errors->first('customer_error1_1') || $errors->first('customer_error2_1') || $errors->first('customer_error3_1') || $errors->first('customer_error4_1') || $errors->first('customer_error5_1'))  ? (old('s_opts1_1') == null ? '' : (old('s_opts1_1') == $staff->s_id ? 'selected' : '')) :  (old('s_opts1_1') == null ? ( (isset($sale_details[0]->s_opts1) ? $sale_details[0]->s_opts1 : '')  == $staff->s_id ? 'selected' : '') : (old('s_opts1_1') == $staff->s_id ? 'selected' : '')) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -159,7 +159,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id1') == '0' ? '' : (($errors->first('customer_error1_1') || $errors->first('customer_error2_1') || $errors->first('customer_error3_1') || $errors->first('customer_error4_1') || $errors->first('customer_error5_1'))  ? (old('s_opts2_1') == null ? '' : (old('s_opts2_1') == $staff->s_id ? 'selected' : '')) :  (old('s_opts2_1') == null ? ( (isset($sale_details[0]->s_opts2) ? $sale_details[0]->s_opts2 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts2_1') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -183,7 +183,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id1') == '0' ? '' : (($errors->first('customer_error1_1') || $errors->first('customer_error2_1') || $errors->first('customer_error3_1') || $errors->first('customer_error4_1') || $errors->first('customer_error5_1'))  ? (old('s_opts3_1') == null ? '' : (old('s_opts3_1') == $staff->s_id ? 'selected' : '')) :  (old('s_opts3_1') == null ? ( (isset($sale_details[0]->s_opts3) ? $sale_details[0]->s_opts3 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts3_1') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -207,7 +207,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id1') == '0' ? '' : (($errors->first('customer_error1_1') || $errors->first('customer_error2_1') || $errors->first('customer_error3_1') || $errors->first('customer_error4_1') || $errors->first('customer_error5_1'))  ? (old('s_opts4_1') == null ? '' : (old('s_opts4_1') == $staff->s_id ? 'selected' : '')) :  (old('s_opts4_1') == null ? ( (isset($sale_details[0]->s_opts4) ? $sale_details[0]->s_opts4 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts4_1') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -231,7 +231,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id1') == '0' ? '' : (($errors->first('customer_error1_1') || $errors->first('customer_error2_1') || $errors->first('customer_error3_1') || $errors->first('customer_error4_1') || $errors->first('customer_error5_1'))  ? (old('s_opts5_1') == null ? '' : (old('s_opts5_1') == $staff->s_id ? 'selected' : '')) :  (old('s_opts5_1') == null ? ( (isset($sale_details[0]->s_opts5) ? $sale_details[0]->s_opts5 : '')== $staff->s_id ? 'selected' : '') : (old('s_opts5_1') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -262,7 +262,7 @@
 
                     <div id="course_group_2" class="course_group" style="display: {{ old('hd-block') > 1 ? 'block' : ($total_detail > 1 ? 'block' : 'none') }}">
                         <div class="form-group">
-                            <button type="button" class="btn btn-danger mb-3 pull-right btn-remove-course">削除</button>
+                            <span class="pull-right btn-remove-course"><i class="fa fa-remove"></i></span>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース</span>
@@ -298,7 +298,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}' {{   ($errors->first('customer_error1_2') || $errors->first('customer_error2_2') || $errors->first('customer_error3_2') || $errors->first('customer_error4_2') || $errors->first('customer_error5_2'))  ? (old('s_opts1_2') == null ? '' : (old('s_opts1_2') == $staff->s_id ? 'selected' : '')) :  (old('s_opts1_2') == null ? ( (isset($sale_details[1]->s_opts1) ? $sale_details[1]->s_opts1 : '')  == $staff->s_id ? 'selected' : '') : (old('s_opts1_2') == $staff->s_id ? 'selected' : '')) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -322,7 +322,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id2') == '0' ? '' : (($errors->first('customer_error1_2') || $errors->first('customer_error2_2') || $errors->first('customer_error3_2') || $errors->first('customer_error4_2') || $errors->first('customer_error5_2'))  ? (old('s_opts2_2') == null ? '' : (old('s_opts2_2') == $staff->s_id ? 'selected' : '')) :  (old('s_opts2_2') == null ? ( (isset($sale_details[1]->s_opts2) ? $sale_details[1]->s_opts2 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts2_2') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -346,7 +346,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id2') == '0' ? '' : (($errors->first('customer_error1_2') || $errors->first('customer_error2_2') || $errors->first('customer_error3_2') || $errors->first('customer_error4_2') || $errors->first('customer_error5_2'))  ? (old('s_opts3_2') == null ? '' : (old('s_opts3_2') == $staff->s_id ? 'selected' : '')) :  (old('s_opts3_2') == null ? ( (isset($sale_details[1]->s_opts3) ? $sale_details[1]->s_opts3 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts3_2') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -370,7 +370,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id2') == '0' ? '' : (($errors->first('customer_error1_2') || $errors->first('customer_error2_2') || $errors->first('customer_error3_2') || $errors->first('customer_error4_2') || $errors->first('customer_error5_2'))  ? (old('s_opts4_2') == null ? '' : (old('s_opts4_2') == $staff->s_id ? 'selected' : '')) :  (old('s_opts4_2') == null ? ( (isset($sale_details[1]->s_opts4) ? $sale_details[1]->s_opts4 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts4_2') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -394,7 +394,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id2') == '0' ? '' : (($errors->first('customer_error1_2') || $errors->first('customer_error2_2') || $errors->first('customer_error3_2') || $errors->first('customer_error4_2') || $errors->first('customer_error5_2'))  ? (old('s_opts5_2') == null ? '' : (old('s_opts5_2') == $staff->s_id ? 'selected' : '')) :  (old('s_opts5_2') == null ? ( (isset($sale_details[1]->s_opts5) ? $sale_details[1]->s_opts5 : '')== $staff->s_id ? 'selected' : '') : (old('s_opts5_2') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -423,9 +423,9 @@
                         </div>
                     </div>
 
-                    <div id="course_group_3" class="course_group" style="display: {{ old('hd-block') > 2 ? 'block' : ($total_detail > 2 ? 'block' : 'none') }}">
+                    <div id="course_group_3" class="course_group mt-3" style="display: {{ old('hd-block') > 2 ? 'block' : ($total_detail > 2 ? 'block' : 'none') }}">
                         <div class="form-group">
-                            <button type="button" class="btn btn-danger mb-3 pull-right btn-remove-course">削除</button>
+                            <span class="pull-right btn-remove-course"><i class="fa fa-remove"></i></span>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース</span>
@@ -461,7 +461,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}' {{   ($errors->first('customer_error1_3') || $errors->first('customer_error2_3') || $errors->first('customer_error3_3') || $errors->first('customer_error4_3') || $errors->first('customer_error5_3'))  ? (old('s_opts1_3') == null ? '' : (old('s_opts1_3') == $staff->s_id ? 'selected' : '')) :  (old('s_opts1_3') == null ? ( (isset($sale_details[2]->s_opts1) ? $sale_details[2]->s_opts1 : '')  == $staff->s_id ? 'selected' : '') : (old('s_opts1_3') == $staff->s_id ? 'selected' : '')) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -485,7 +485,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id3') == '0' ? '' : (($errors->first('customer_error1_3') || $errors->first('customer_error2_3') || $errors->first('customer_error3_3') || $errors->first('customer_error4_3') || $errors->first('customer_error5_3'))  ? (old('s_opts2_3') == null ? '' : (old('s_opts2_3') == $staff->s_id ? 'selected' : '')) :  (old('s_opts2_3') == null ? ( (isset($sale_details[2]->s_opts2) ? $sale_details[2]->s_opts2 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts2_3') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -509,7 +509,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id3') == '0' ? '' : (($errors->first('customer_error1_3') || $errors->first('customer_error2_3') || $errors->first('customer_error3_3') || $errors->first('customer_error4_3') || $errors->first('customer_error5_3'))  ? (old('s_opts3_3') == null ? '' : (old('s_opts3_3') == $staff->s_id ? 'selected' : '')) :  (old('s_opts3_3') == null ? ( (isset($sale_details[2]->s_opts3) ? $sale_details[2]->s_opts3 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts3_3') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -533,7 +533,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id3') == '0' ? '' : (($errors->first('customer_error1_3') || $errors->first('customer_error2_3') || $errors->first('customer_error3_3') || $errors->first('customer_error4_3') || $errors->first('customer_error5_3'))  ? (old('s_opts4_3') == null ? '' : (old('s_opts4_3') == $staff->s_id ? 'selected' : '')) :  (old('s_opts4_3') == null ? ( (isset($sale_details[2]->s_opts4) ? $sale_details[2]->s_opts4 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts4_3') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -557,7 +557,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id3') == '0' ? '' : (($errors->first('customer_error1_3') || $errors->first('customer_error2_3') || $errors->first('customer_error3_3') || $errors->first('customer_error4_3') || $errors->first('customer_error5_3'))  ? (old('s_opts5_3') == null ? '' : (old('s_opts5_3') == $staff->s_id ? 'selected' : '')) :  (old('s_opts5_3') == null ? ( (isset($sale_details[2]->s_opts5) ? $sale_details[2]->s_opts5 : '')== $staff->s_id ? 'selected' : '') : (old('s_opts5_3') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -586,9 +586,9 @@
                         </div>
                     </div>
 
-                    <div id="course_group_4" class="course_group" style="display: {{ old('hd-block') > 3 ? 'block' : ($total_detail > 3 ? 'block' : 'none') }}">
+                    <div id="course_group_4" class="course_group mt-3" style="display: {{ old('hd-block') > 3 ? 'block' : ($total_detail > 3 ? 'block' : 'none') }}">
                         <div class="form-group">
-                            <button type="button" class="btn btn-danger mb-3 pull-right btn-remove-course">削除</button>
+                            <span class="pull-right btn-remove-course"><i class="fa fa-remove"></i></span>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース</span>
@@ -624,7 +624,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}' {{   ($errors->first('customer_error1_4') || $errors->first('customer_error2_4') || $errors->first('customer_error3_4') || $errors->first('customer_error4_4') || $errors->first('customer_error5_4'))  ? (old('s_opts1_4') == null ? '' : (old('s_opts1_4') == $staff->s_id ? 'selected' : '')) :  (old('s_opts1_4') == null ? ( (isset($sale_details[3]->s_opts1) ? $sale_details[3]->s_opts1 : '')  == $staff->s_id ? 'selected' : '') : (old('s_opts1_4') == $staff->s_id ? 'selected' : '')) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -648,7 +648,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id4') == '0' ? '' : (($errors->first('customer_error1_4') || $errors->first('customer_error2_4') || $errors->first('customer_error3_4') || $errors->first('customer_error4_4') || $errors->first('customer_error5_4'))  ? (old('s_opts2_4') == null ? '' : (old('s_opts2_4') == $staff->s_id ? 'selected' : '')) :  (old('s_opts2_4') == null ? ( (isset($sale_details[3]->s_opts2) ? $sale_details[3]->s_opts2 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts2_4') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -672,7 +672,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id4') == '0' ? '' : (($errors->first('customer_error1_4') || $errors->first('customer_error2_4') || $errors->first('customer_error3_4') || $errors->first('customer_error4_4') || $errors->first('customer_error5_4'))  ? (old('s_opts3_4') == null ? '' : (old('s_opts3_4') == $staff->s_id ? 'selected' : '')) :  (old('s_opts3_4') == null ? ( (isset($sale_details[3]->s_opts3) ? $sale_details[3]->s_opts3 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts3_4') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -696,7 +696,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id4') == '0' ? '' : (($errors->first('customer_error1_4') || $errors->first('customer_error2_4') || $errors->first('customer_error3_4') || $errors->first('customer_error4_4') || $errors->first('customer_error5_4'))  ? (old('s_opts4_4') == null ? '' : (old('s_opts4_4') == $staff->s_id ? 'selected' : '')) :  (old('s_opts4_4') == null ? ( (isset($sale_details[3]->s_opts4) ? $sale_details[3]->s_opts4 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts4_4') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -720,7 +720,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id4') == '0' ? '' : (($errors->first('customer_error1_4') || $errors->first('customer_error2_4') || $errors->first('customer_error3_4') || $errors->first('customer_error4_4') || $errors->first('customer_error5_4'))  ? (old('s_opts5_4') == null ? '' : (old('s_opts5_4') == $staff->s_id ? 'selected' : '')) :  (old('s_opts5_4') == null ? ( (isset($sale_details[3]->s_opts5) ? $sale_details[3]->s_opts5 : '')== $staff->s_id ? 'selected' : '') : (old('s_opts5_4') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -749,9 +749,9 @@
                         </div>
                     </div>
 
-                    <div id="course_group_5" class="course_group" style="display: {{ old('hd-block') > 4 ? 'block' : ($total_detail > 4 ? 'block' : 'none') }}">
+                    <div id="course_group_5" class="course_group mt-3 mb-3" style="display: {{ old('hd-block') > 4 ? 'block' : ($total_detail > 4 ? 'block' : 'none') }}">
                         <div class="form-group">
-                            <button type="button" class="btn btn-danger mb-3 pull-right btn-remove-course">削除</button>
+                            <span class="pull-right btn-remove-course"><i class="fa fa-remove"></i></span>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース</span>
@@ -787,7 +787,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}' {{   ($errors->first('customer_error1_5') || $errors->first('customer_error2_5') || $errors->first('customer_error3_5') || $errors->first('customer_error4_5') || $errors->first('customer_error5_5'))  ? (old('s_opts1_5') == null ? '' : (old('s_opts1_5') == $staff->s_id ? 'selected' : '')) :  (old('s_opts1_5') == null ? ( (isset($sale_details[4]->s_opts1) ? $sale_details[4]->s_opts1 : '')  == $staff->s_id ? 'selected' : '') : (old('s_opts1_5') == $staff->s_id ? 'selected' : '')) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -811,7 +811,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id5') == '0' ? '' : (($errors->first('customer_error1_5') || $errors->first('customer_error2_5') || $errors->first('customer_error3_5') || $errors->first('customer_error4_5') || $errors->first('customer_error5_5'))  ? (old('s_opts2_5') == null ? '' : (old('s_opts2_5') == $staff->s_id ? 'selected' : '')) :  (old('s_opts2_5') == null ? ( (isset($sale_details[4]->s_opts2) ? $sale_details[4]->s_opts2 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts2_5') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -835,7 +835,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id5') == '0' ? '' : (($errors->first('customer_error1_5') || $errors->first('customer_error2_5') || $errors->first('customer_error3_5') || $errors->first('customer_error4_5') || $errors->first('customer_error5_5'))  ? (old('s_opts3_5') == null ? '' : (old('s_opts3_5') == $staff->s_id ? 'selected' : '')) :  (old('s_opts3_5') == null ? ( (isset($sale_details[4]->s_opts3) ? $sale_details[4]->s_opts3 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts3_5') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -859,7 +859,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id5') == '0' ? '' : (($errors->first('customer_error1_5') || $errors->first('customer_error2_5') || $errors->first('customer_error3_5') || $errors->first('customer_error4_5') || $errors->first('customer_error5_5'))  ? (old('s_opts4_5') == null ? '' : (old('s_opts4_5') == $staff->s_id ? 'selected' : '')) :  (old('s_opts4_5') == null ? ( (isset($sale_details[4]->s_opts4) ? $sale_details[4]->s_opts4 : '') == $staff->s_id ? 'selected' : '') : (old('s_opts4_5') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -883,7 +883,7 @@
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
                                             <option value = '{{$staff->s_id}}'  {{ old('s_co_id5') == '0' ? '' : (($errors->first('customer_error1_5') || $errors->first('customer_error2_5') || $errors->first('customer_error3_5') || $errors->first('customer_error4_5') || $errors->first('customer_error5_5'))  ? (old('s_opts5_5') == null ? '' : (old('s_opts5_5') == $staff->s_id ? 'selected' : '')) :  (old('s_opts5_5') == null ? ( (isset($sale_details[4]->s_opts5) ? $sale_details[4]->s_opts5 : '')== $staff->s_id ? 'selected' : '') : (old('s_opts5_5') == $staff->s_id ? 'selected' : ''))) }}>
-                                                {{$staff->s_firstname}} {{$staff->s_lastname}}
+                                                {{$staff->s_lastname}} {{$staff->s_firstname}}
                                             </option>
                                         @endforeach
                                     </select>
@@ -912,8 +912,8 @@
                         </div>
                     </div>
 
-                    <div class="form-group form-add-course" style="display: {{ old('hd-block') == '5' ? 'block' : ( $total_detail < 5 ? 'block' : 'none')}}">
-                        <button type="button" id="btn-add-course" class="btn btn-primary mb-3 pull-right">新規追加</button>
+                    <div class="form-group form-add-course mt-3" style="display: {{ old('hd-block') == '5' ? 'block' : ( $total_detail < 5 ? 'block' : 'none')}}">
+                        <button type="button" id="btn-add-course" class="btn btn-primary mb-3 pull-right"><i class="fa fa-plus"></i> コース</button>
                     </div>
                     <div class="form-group">
                         <div class="input-group">

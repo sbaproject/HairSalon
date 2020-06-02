@@ -125,7 +125,7 @@
                                 <select class="select-shop2" name = "s_opts1_1">
                                 <option value = ''></option>
                                 @foreach($list_staff as $staff)
-                                <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts1_1') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts1_1') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                 @endforeach
                                 </select>
                                 </div>
@@ -147,7 +147,7 @@
                                 <select class="select-shop2" name = "s_opts2_1">
                                 <option value = ''></option>
                                 @foreach($list_staff as $staff)
-                                <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts2_1') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts2_1') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                 @endforeach
                                 </select>
                                 </div>
@@ -169,7 +169,7 @@
                                 <select class="select-shop2" name = "s_opts3_1">
                                 <option value = ''></option>
                                 @foreach($list_staff as $staff)
-                                <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts3_1') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts3_1') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                 @endforeach
                                 </select>
                                 </div>
@@ -191,7 +191,7 @@
                                 <select class="select-shop2" name = "s_opts4_1">
                                 <option value = ''></option>
                                 @foreach($list_staff as $staff)
-                                <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts4_1') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts4_1') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                 @endforeach
                                 </select>
                                 </div>
@@ -213,7 +213,7 @@
                                 <select class="select-shop2" name = "s_opts5_1">
                                 <option value = ''></option>
                                 @foreach($list_staff as $staff)
-                                <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts5_1') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts5_1') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                 @endforeach
                                 </select>
                                 </div>
@@ -242,7 +242,7 @@
                     </div>
                     <div id="course_group_2" class="course_group" style="display: {{ old('hd-block') > 1 ? 'block' : 'none' }}">
                         <div class="form-group">
-                            <button type="button" class="btn btn-danger mb-3 pull-right btn-remove-course">削除</button>
+                            <span class="pull-right btn-remove-course"><i class="fa fa-remove"></i></span>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース</span>
@@ -275,7 +275,7 @@
                                     <select class="select-shop2" name = "s_opts1_2">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts1_2') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts1_2') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -297,7 +297,7 @@
                                     <select class="select-shop2" name = "s_opts2_2">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts2_2') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts2_2') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -319,7 +319,7 @@
                                     <select class="select-shop2" name = "s_opts3_2">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts3_2') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts3_2') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -341,7 +341,7 @@
                                     <select class="select-shop2" name = "s_opts4_2">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts4_2') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts4_2') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -363,7 +363,7 @@
                                     <select class="select-shop2" name = "s_opts5_2">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts5_2') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts5_2') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -390,9 +390,9 @@
                             </div>
                         </div>
                     </div>
-                    <div id="course_group_3" class="course_group" style="display: {{ old('hd-block') > 2 ? 'block' : 'none' }}">
+                    <div id="course_group_3" class="course_group mt-3" style="display: {{ old('hd-block') > 2 ? 'block' : 'none' }}">
                         <div class="form-group">
-                            <button type="button" class="btn btn-danger mb-3 pull-right btn-remove-course">削除</button>
+                            <span class="pull-right btn-remove-course"><i class="fa fa-remove"></i></span>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース</span>
@@ -425,7 +425,7 @@
                                     <select class="select-shop2" name = "s_opts1_3">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts1_3') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts1_3') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -447,7 +447,7 @@
                                     <select class="select-shop2" name = "s_opts2_3">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts2_3') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts2_3') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -469,7 +469,7 @@
                                     <select class="select-shop2" name = "s_opts3_3">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts3_3') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts3_3') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -491,7 +491,7 @@
                                     <select class="select-shop2" name = "s_opts4_3">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts4_3') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts4_3') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -513,7 +513,7 @@
                                     <select class="select-shop2" name = "s_opts5_3">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts5_3') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts5_3') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -540,9 +540,9 @@
                             </div>
                         </div>
                     </div>
-                    <div id="course_group_4" class="course_group" style="display: {{ old('hd-block') > 3 ? 'block' : 'none' }}">
+                    <div id="course_group_4" class="course_group mt-3" style="display: {{ old('hd-block') > 3 ? 'block' : 'none' }}">
                         <div class="form-group">
-                            <button type="button" class="btn btn-danger mb-3 pull-right btn-remove-course">削除</button>
+                            <span class="pull-right btn-remove-course"><i class="fa fa-remove"></i></span>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース</span>
@@ -575,7 +575,7 @@
                                     <select class="select-shop2" name = "s_opts1_4">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts1_4') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts1_4') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -597,7 +597,7 @@
                                     <select class="select-shop2" name = "s_opts2_4">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts2_4') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts2_4') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -619,7 +619,7 @@
                                     <select class="select-shop2" name = "s_opts3_4">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts3_4') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts3_4') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -641,7 +641,7 @@
                                     <select class="select-shop2" name = "s_opts4_4">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts4_4') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts4_4') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -663,7 +663,7 @@
                                     <select class="select-shop2" name = "s_opts5_4">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts5_4') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts5_4') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -690,9 +690,9 @@
                             </div>
                         </div>
                     </div>
-                    <div id="course_group_5" class="course_group" style="display: {{ old('hd-block') > 4 ? 'block' : 'none' }}">
+                    <div id="course_group_5" class="course_group mt-3 mb-3" style="display: {{ old('hd-block') > 4 ? 'block' : 'none' }}">
                         <div class="form-group">
-                            <button type="button" class="btn btn-danger mb-3 pull-right btn-remove-course">削除</button>
+                            <span class="pull-right btn-remove-course"><i class="fa fa-remove"></i></span>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース</span>
@@ -725,7 +725,7 @@
                                     <select class="select-shop2" name = "s_opts1_5">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts1_5') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts1_5') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -747,7 +747,7 @@
                                     <select class="select-shop2" name = "s_opts2_5">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts2_5') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts2_5') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -769,7 +769,7 @@
                                     <select class="select-shop2" name = "s_opts3_5">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts3_5') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts3_5') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -791,7 +791,7 @@
                                     <select class="select-shop2" name = "s_opts4_5">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts4_5') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts4_5') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -813,7 +813,7 @@
                                     <select class="select-shop2" name = "s_opts5_5">
                                         <option value = ''></option>
                                         @foreach($list_staff as $staff)
-                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts5_5') ? 'selected' : '' }}>{{$staff->s_firstname}} {{$staff->s_lastname}}</option>
+                                            <option value = '{{$staff->s_id}}' {{ $staff->s_id == old('s_opts5_5') ? 'selected' : '' }}>{{$staff->s_lastname}} {{$staff->s_firstname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -840,8 +840,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group form-add-course" style="display: {{ old('hd-block') < 5 ? 'block' : 'none' }}">
-                        <button type="button" id="btn-add-course" class="btn btn-primary mb-3 pull-right">新規追加</button>
+                    <div class="form-group form-add-course mt-3" style="display: {{ old('hd-block') < 5 ? 'block' : 'none' }}">
+                        <button type="button" id="btn-add-course" class="btn btn-primary mb-3 pull-right"><i class="fa fa-plus"></i> コース</button>
                     </div>
                     <div class="form-group">
                         <div class="input-group">

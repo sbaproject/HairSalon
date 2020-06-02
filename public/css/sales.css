@@ -214,3 +214,24 @@ a.disabled {
     pointer-events: none;
     color: #ccc;
 }
+
+
+.course_group{
+    border: 1px solid #ced4da;
+}
+
+#course_group_1{
+    border: none !important;
+}
+
+.btn-remove-course{
+    cursor: pointer;
+    margin-right: 10px;
+    color: #dc3545;
+}
+
+.btn-remove-course i{
+    padding: 2px 4px;
+    border-radius: 50%;
+    border: 1px solid #dc3545;
+}

@@ -96,19 +96,19 @@ $(document).ready(function(){
 
         $('input[name="' + 's_opt1_' + index +'"]').val('');
         $('select[name="s_opts1_' + index + '"]').val('');
-        $('select[name="s_opts1_' + index + '"]').prop("disabled", true);
+        $('select[name="s_opts1_' + index + '"]').prop("disabled", false);
         $('input[name="' + 's_opt2_' + index +'"]').val('');
         $('select[name="s_opts2_' + index + '"]').val('');
-        $('select[name="s_opts2_' + index + '"]').prop("disabled", true);
+        $('select[name="s_opts2_' + index + '"]').prop("disabled", false);
         $('input[name="' + 's_opt3_' + index +'"]').val('');
         $('select[name="s_opts3_' + index + '"]').val('');
-        $('select[name="s_opts3_' + index + '"]').prop("disabled", true);
+        $('select[name="s_opts3_' + index + '"]').prop("disabled", false);
         $('input[name="' + 's_opt4_' + index +'"]').val('');
         $('select[name="s_opts4_' + index + '"]').val('');
-        $('select[name="s_opts4_' + index + '"]').prop("disabled", true);
+        $('select[name="s_opts4_' + index + '"]').prop("disabled", false);
         $('input[name="' + 's_opt5_' + index +'"]').val('');
         $('select[name="s_opts5_' + index + '"]').val('');
-        $('select[name="s_opts5_' + index + '"]').prop("disabled", true);
+        $('select[name="s_opts5_' + index + '"]').prop("disabled", false);
 
         index--;
         if (index < 1){

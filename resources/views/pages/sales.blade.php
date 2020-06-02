@@ -149,7 +149,7 @@
                         <?php if ($shop_user == $sales->s_sh_id):?>
                         <a href="{{ url('sales/edit/' . $sales->s_id) }}">編集</a>&nbsp;<a href="{{ url('sales/delete/' . $sales->s_id) }}" style="color: red;">削除</a>
                         <?php else:?>
-                        <a href="javascript:void(0)" style="cursor: default;opacity: 0.6;text-decoration: none;">編集</a>&nbsp;<a href="javascript:void(0)" style="color: red;cursor: default;opacity: 0.6;text-decoration: none;">削除</a>
+                        <a href="javascript:void(0)" class="disabled">編集</a>&nbsp;<a href="javascript:void(0)" class="disabled">削除</a>
                        <?php endif;?>
                     </td>
                 </tr>
