@@ -23,18 +23,16 @@ class OptionController extends Controller
     public function postOptionNew(Request $request) {
         $validator = $request->validate([
             'op_name'   => 'required',
-            'op_amount'  => 'required|numeric|gt:0',
+            'op_amount'  => 'required',
         ], [
             'op_name.required'      => '入力してください。',
             'op_amount.required'    => '入力してください。',
-            'op_amount.numeric'     => '数字をご入力下さい。',
-            'op_amount.gt'          => '数字をご入力下さい。',
         ]);
 
         $userLogged = Session::get('user');
         $option = new Option([
             'op_name'    => $request->op_name,
-            'op_amount'  => $request->op_amount,
+            'op_amount'  => str_replace(",", "", $request->op_amount),
             'op_del_flg' => 0,
             'op_shop'    => $userLogged->u_shop
         ]);
@@ -50,17 +48,15 @@ class OptionController extends Controller
     public function postOptionEdit(Request $request) {
         $validator = $request->validate([
             'op_name'   => 'required',
-            'op_amount'  => 'required|numeric|gt:0',
+            'op_amount'  => 'required',
         ], [
             'op_name.required'      => '入力してください。',
             'op_amount.required'    => '入力してください。',
-            'op_amount.numeric'     => '数字をご入力下さい。',
-            'op_amount.gt'          => '数字をご入力下さい。',
         ]);
 
         $option = Option::find($request->op_id);
         $option->op_name = $request->op_name;
-        $option->op_amount = $request->op_amount;
+        $option->op_amount = str_replace(",", "", $request->op_amount);
 
         $option->save();
         return redirect('course')->with('success-option', 'Updated option successfully!');

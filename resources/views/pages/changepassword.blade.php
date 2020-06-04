@@ -41,7 +41,7 @@
               </div>
           </div>
           <div class="form-group">
-              <label for="u_pw"><b>パスワード</b></label>>
+              <label for="u_pw"><b>パスワード</b></label>
               <input type="password" class="form-control {{ ($errors->first('u_pw')) ? 'is-invalid'  :'' }}" 
                   name="u_pw" value="{{ old('u_pw') ? old('u_pw') : $user->u_pw }}">
               <div class="invalid-feedback">

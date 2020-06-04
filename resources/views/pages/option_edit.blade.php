@@ -52,8 +52,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">金額</span>
                             </div>
-                            <input type="text" maxlength="100" class="form-control {{ ($errors->first('op_amount')) ? 'is-invalid'  :'' }}" 
-                                name="op_amount" value="{{ old('op_amount') ? old('op_amount') : $option->op_amount }}" >
+                            <input type="text" maxlength="100" id="op_amount" class="form-control {{ ($errors->first('op_amount')) ? 'is-invalid'  :'' }}" 
+                                name="op_amount" value="{{ old('op_amount') ? old('op_amount') : number_format($option->op_amount) }}" >
                             <div class="invalid-feedback">
                                 @error('op_amount')
                                     {{ $message }}
@@ -69,4 +69,12 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $('#op_amount').keyup(function() {
+                var string = numeral($('#op_amount').val()).format('0,0');
+                $('#op_amount').val(string);
+            });
+        });
+    </script>
 @endsection
