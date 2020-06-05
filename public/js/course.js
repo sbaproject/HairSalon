@@ -20,8 +20,8 @@ function number_format_js( number, decimals, thousands_sep ) {
 function onOption1Change(list_option) {
     let option = document.getElementById("select-option-1").value;
     if (option === "") {
-        document.getElementById("option-amount-1").innerHTML = '';
-        document.getElementById("option-amount-1-hidden").innerHTML = 0;
+        document.getElementById("option-amount-1").value = '';
+        document.getElementById("option-amount-1-hidden").value = 0;
         totalAmount();
     }
 
@@ -31,16 +31,16 @@ function onOption1Change(list_option) {
             newOption = element
         }
     })
-    document.getElementById("option-amount-1").innerHTML = number_format_js(newOption.op_amount);
-    document.getElementById("option-amount-1-hidden").innerHTML = newOption.op_amount;
+    document.getElementById("option-amount-1").value = number_format_js(newOption.op_amount);
+    document.getElementById("option-amount-1-hidden").value = newOption.op_amount;
     totalAmount();
 }
 
 function onOption2Change(list_option) {
     let option = document.getElementById("select-option-2").value;
     if (option === "") {
-        document.getElementById("option-amount-2").innerHTML = '';
-        document.getElementById("option-amount-2-hidden").innerHTML = 0;
+        document.getElementById("option-amount-2").value = '';
+        document.getElementById("option-amount-2-hidden").value = 0;
         totalAmount();
     }
 
@@ -50,16 +50,16 @@ function onOption2Change(list_option) {
             newOption = element
         }
     })
-    document.getElementById("option-amount-2").innerHTML = number_format_js(newOption.op_amount);
-    document.getElementById("option-amount-2-hidden").innerHTML = newOption.op_amount;
+    document.getElementById("option-amount-2").value = number_format_js(newOption.op_amount);
+    document.getElementById("option-amount-2-hidden").value = newOption.op_amount;
     totalAmount();
 }
 
 function onOption3Change(list_option) {
     let option = document.getElementById("select-option-3").value;
     if (option === "") {
-        document.getElementById("option-amount-3").innerHTML = '';
-        document.getElementById("option-amount-3-hidden").innerHTML = 0;
+        document.getElementById("option-amount-3").value = '';
+        document.getElementById("option-amount-3-hidden").value = 0;
         totalAmount();
     }
 
@@ -69,16 +69,16 @@ function onOption3Change(list_option) {
             newOption = element
         }
     })
-    document.getElementById("option-amount-3").innerHTML = number_format_js(newOption.op_amount);
-    document.getElementById("option-amount-3-hidden").innerHTML = newOption.op_amount;
+    document.getElementById("option-amount-3").value = number_format_js(newOption.op_amount);
+    document.getElementById("option-amount-3-hidden").value = newOption.op_amount;
     totalAmount();
 }
 
 function onOption4Change(list_option) {
     let option = document.getElementById("select-option-4").value;
     if (option === "") {
-        document.getElementById("option-amount-4").innerHTML = '';
-        document.getElementById("option-amount-4-hidden").innerHTML = 0;
+        document.getElementById("option-amount-4").value = '';
+        document.getElementById("option-amount-4-hidden").value = 0;
         totalAmount();
     }
 
@@ -88,16 +88,16 @@ function onOption4Change(list_option) {
             newOption = element
         }
     })
-    document.getElementById("option-amount-4").innerHTML = number_format_js(newOption.op_amount);
-    document.getElementById("option-amount-4-hidden").innerHTML = newOption.op_amount;
+    document.getElementById("option-amount-4").value = number_format_js(newOption.op_amount);
+    document.getElementById("option-amount-4-hidden").value = newOption.op_amount;
     totalAmount();
 }
 
 function onOption5Change(list_option) {
     let option = document.getElementById("select-option-5").value;
     if (option === "") {
-        document.getElementById("option-amount-5").innerHTML = '';
-        document.getElementById("option-amount-5-hidden").innerHTML = 0;
+        document.getElementById("option-amount-5").value = '';
+        document.getElementById("option-amount-5-hidden").value = 0;
         totalAmount();
     }
 
@@ -107,17 +107,17 @@ function onOption5Change(list_option) {
             newOption = element
         }
     })
-    document.getElementById("option-amount-5").innerHTML = number_format_js(newOption.op_amount);
-    document.getElementById("option-amount-5-hidden").innerHTML = newOption.op_amount;
+    document.getElementById("option-amount-5").value = number_format_js(newOption.op_amount);
+    document.getElementById("option-amount-5-hidden").value = newOption.op_amount;
     totalAmount();
 }
 
 function totalAmount() {
-    let option1 = parseInt(document.getElementById("option-amount-1-hidden").innerHTML);
-    let option2 = parseInt(document.getElementById("option-amount-2-hidden").innerHTML);
-    let option3 = parseInt(document.getElementById("option-amount-3-hidden").innerHTML);
-    let option4 = parseInt(document.getElementById("option-amount-4-hidden").innerHTML);
-    let option5 = parseInt(document.getElementById("option-amount-5-hidden").innerHTML);
+    let option1 = parseInt(document.getElementById("option-amount-1-hidden").value);
+    let option2 = parseInt(document.getElementById("option-amount-2-hidden").value);
+    let option3 = parseInt(document.getElementById("option-amount-3-hidden").value);
+    let option4 = parseInt(document.getElementById("option-amount-4-hidden").value);
+    let option5 = parseInt(document.getElementById("option-amount-5-hidden").value);
     let total = option1 + option2 + option3 + option4 + option5;
     document.getElementById("co_money").value = number_format_js(total);
 }

@@ -36,7 +36,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">顧客姓</span>
                             </div>
-                            <input type="text" maxlength="100" class="form-control {{ ($errors->first('c_lastname')) ? 'is-invalid'  :'' }}" 
+                            <input type="text" maxlength="100" class="form-control {{ ($errors->first('c_lastname')) ? 'is-invalid' : '' }}" 
                                 name="c_lastname" value="{{ old('c_lastname') }}" >
                             <div class="invalid-feedback">
                                 @error('c_lastname')

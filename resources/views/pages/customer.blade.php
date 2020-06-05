@@ -71,6 +71,9 @@
         <span class="input-group-text">顧客姓</span>
       </div>
       <input type="text" id="c_lastname" maxlength="100" readonly="" name="c_lastname" class="form-control">
+      <div class="invalid-feedback" id="messageErrorLastname">
+        入力してください。
+      </div>
     </div>
 
     <div class="input-group mb-3">
@@ -78,6 +81,9 @@
         <span class="input-group-text" >顧客名</span>
       </div>
       <input type="text" id="c_firstname" maxlength="100" readonly="" name="c_firstname" class="form-control">
+      <div class="invalid-feedback" id="messageErrorFirstname">
+        入力してください。
+      </div>
     </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
@@ -181,6 +187,10 @@ $( document ).ready(function() {
                     $("#messageDanger").fadeOut(5000);            
                 }                                             
         }});
+        $("#messageErrorLastname").css("display", "none");
+        $("#c_lastname").removeClass("is-invalid");
+        $("#messageErrorFirstname").css("display", "none");
+        $("#c_firstname").removeClass("is-invalid");
     });
 
     $('#btnCancelSearch').click(function(e){     
@@ -203,6 +213,11 @@ $( document ).ready(function() {
       $("#c_firstname").attr("readonly",""); 
       $("#c_lastname").attr("readonly","");                            
       $("#c_text").attr("readonly","");   
+
+      $("#messageErrorLastname").css("display", "none");
+      $("#c_lastname").removeClass("is-invalid");
+      $("#messageErrorFirstname").css("display", "none");
+      $("#c_firstname").removeClass("is-invalid");
     });
 
     $('#btnNext').click(function(e){
@@ -224,7 +239,12 @@ $( document ).ready(function() {
             
             $("#c_firstname").removeAttr("readonly"); 
             $("#c_lastname").removeAttr("readonly");                            
-            $("#c_text").removeAttr("readonly");    
+            $("#c_text").removeAttr("readonly");  
+            
+            $("#messageErrorLastname").css("display", "none");
+            $("#c_lastname").removeClass("is-invalid");
+            $("#messageErrorFirstname").css("display", "none");
+            $("#c_firstname").removeClass("is-invalid");
         }
     });
 
@@ -246,17 +266,25 @@ $( document ).ready(function() {
             
             $("#c_firstname").removeAttr("readonly"); 
             $("#c_lastname").removeAttr("readonly");                            
-            $("#c_text").removeAttr("readonly");    
+            $("#c_text").removeAttr("readonly");
+            
+            $("#messageErrorLastname").css("display", "none");
+            $("#c_lastname").removeClass("is-invalid");
+            $("#messageErrorFirstname").css("display", "none");
+            $("#c_firstname").removeClass("is-invalid");
         }
     });
 
     $('#btnCancel').click(function(e){
-      if (arrData != null)
-      {
+      if (arrData != null) {
         $("#c_firstname").val(arrData[index].c_firstname);
         $("#c_lastname").val(arrData[index].c_lastname);    
         $("#c_text").val(arrData[index].c_text); 
       }    
+      $("#messageErrorLastname").css("display", "none");
+      $("#c_lastname").removeClass("is-invalid");
+      $("#messageErrorFirstname").css("display", "none");
+      $("#c_firstname").removeClass("is-invalid");
     }); 
 
     $('#btnUpdate').click(function(e){
@@ -284,9 +312,30 @@ $( document ).ready(function() {
                 arrData[index].c_firstname = $('#c_firstname').val();
                 arrData[index].c_lastname= $("#c_lastname").val();              
                 arrData[index].c_text= $("#c_text").val();
-              } 
-              $("#messageSuccess").css("display", "");
-              $("#messageSuccess").fadeOut(5000);
+                $("#messageSuccess").css("display", "");
+                $("#messageSuccess").fadeOut(5000);
+                $("#messageErrorLastname").css("display", "none");
+                $("#c_lastname").removeClass("is-invalid");
+                $("#messageErrorFirstname").css("display", "none");
+                $("#c_firstname").removeClass("is-invalid");
+              } else {
+                if (result == 0) {
+                  $("#messageErrorLastname").css("display", "block");
+                  $("#c_lastname").addClass("is-invalid");
+                  $("#messageErrorFirstname").css("display", "block");
+                  $("#c_firstname").addClass("is-invalid");
+                } else if (result == 2) {
+                  $("#messageErrorLastname").css("display", "block");
+                  $("#c_lastname").addClass("is-invalid");
+                  $("#messageErrorFirstname").css("display", "none");
+                  $("#c_firstname").removeClass("is-invalid");
+                } else {
+                  $("#messageErrorFirstname").css("display", "block");
+                  $("#c_firstname").addClass("is-invalid");
+                  $("#messageErrorLastname").css("display", "none");
+                  $("#c_lastname").removeClass("is-invalid");
+                }
+              }
         }});
       }       
     }); 

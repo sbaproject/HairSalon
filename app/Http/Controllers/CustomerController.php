@@ -116,17 +116,24 @@ class CustomerController extends Controller
             echo json_encode($list_customer);
             die;
         }
-        else  if ($request->type == 'update'){
+        else if ($request->type == 'update'){
+
             $customer = Customer::find($request->c_id);
-            if (isset($customer)){
+            if (isset($customer) && (trim($request->c_firstname, "") !== "") && (trim($request->c_lastname, "") !== "")){
                 $customer->c_firstname = $request->c_firstname;
                 $customer->c_lastname  = $request->c_lastname;
                 $customer->c_text      = $request->c_text;
                 $customer->c_update    = Carbon::now();
                 $customer->save();
                 echo 1;         
-            }else{
-               echo 0;
+            } else {
+                if ((trim($request->c_firstname, "") === "") && (trim($request->c_lastname, "") === "")) {
+                    echo 0;
+                } else if (trim($request->c_lastname, "") === "") {
+                    echo 2;
+                } else if (trim($request->c_firstname, "") === "") {
+                    echo 3;
+                }
             }  
             die;                      
         }        

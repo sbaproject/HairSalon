@@ -45,7 +45,7 @@
                                 <span class="input-group-text">コース名</span>
                             </div>
                             <input type="text" maxlength="100" class="form-control {{ ($errors->first('co_name')) ? 'is-invalid'  :'' }}" 
-                                name="co_name" value="{{ old('co_name') ? old('co_name') : $course->co_name }}">
+                                name="co_name" value="{{ old('co_name', $course->co_name) }}">
                             <div class="invalid-feedback">
                                 @error('co_name')
                                     {{ $message }}
@@ -64,14 +64,14 @@
                                     <option value=""></option>
                                     @if (isset($list_option))
                                         @foreach ($list_option as $option)
-                                            <option value="{{ $option->op_id }}" {{ $option->op_id == $course->co_opt1 ? 'selected' : '' }}>
+                                            <option value="{{ $option->op_id }}" {{ old('co_opt1', $course->co_opt1) == $option->op_id ? 'selected' : '' }}>
                                                 {{ $option->op_name }}
                                             </option>
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-1">{{ !empty($course->Option1) ? number_format($course->Option1->op_amount) : '' }}</span>
-                                <span style="display: none;" id="option-amount-1-hidden">{{ !empty($course->Option1) ? $course->Option1->op_amount : 0 }} </span>
+                                <input type="text" readonly class="option-amount" id="option-amount-1" name="option-amount-1" value="{{ old('option-amount-1', !empty($course->Option1) ? number_format($course->Option1->op_amount) : '') }}">
+                                <input type="hidden" id="option-amount-1-hidden" value="{{ !empty($course->Option1) ? $course->Option1->op_amount : 0 }}">
                             </div>
                         </div>
                     </div>
@@ -85,14 +85,14 @@
                                     <option value=""></option>
                                     @if (isset($list_option))
                                         @foreach ($list_option as $option)
-                                            <option value="{{ $option->op_id }}" {{ $option->op_id == $course->co_opt2 ? 'selected' : '' }}>
+                                            <option value="{{ $option->op_id }}" {{ old('co_opt2', $course->co_opt2) == $option->op_id ? 'selected' : '' }}>
                                                 {{ $option->op_name }}
                                             </option>
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-2">{{ !empty($course->Option2) ? number_format($course->Option2->op_amount) : '' }}</span>
-                                <span style="display: none;" id="option-amount-2-hidden">{{ !empty($course->Option2) ? $course->Option2->op_amount : 0 }} </span>
+                                <input type="text" readonly class="option-amount" id="option-amount-2" name="option-amount-2" value="{{ old('option-amount-2', !empty($course->Option2) ? number_format($course->Option2->op_amount) : '') }}">
+                                <input type="hidden" id="option-amount-2-hidden" value="{{ !empty($course->Option2) ? $course->Option2->op_amount : 0 }}">
                             </div>
                         </div>
                     </div>
@@ -106,14 +106,14 @@
                                     <option value=""></option>
                                     @if (isset($list_option))
                                         @foreach ($list_option as $option)
-                                            <option value="{{ $option->op_id }}" {{ $option->op_id == $course->co_opt3 ? 'selected' : '' }}>
+                                            <option value="{{ $option->op_id }}" {{ old('co_opt3', $course->co_opt3) == $option->op_id ? 'selected' : '' }}>
                                                 {{ $option->op_name }}
                                             </option>
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-3">{{ !empty($course->Option3) ? number_format($course->Option3->op_amount) : '' }}</span>
-                                <span style="display: none;" id="option-amount-3-hidden">{{ !empty($course->Option3) ? $course->Option3->op_amount : 0 }} </span>
+                                <input type="text" readonly class="option-amount" id="option-amount-3" name="option-amount-3" value="{{ old('option-amount-3', !empty($course->Option3) ? number_format($course->Option3->op_amount) : '') }}">
+                                <input type="hidden" id="option-amount-3-hidden" value="{{ !empty($course->Option3) ? $course->Option3->op_amount : 0 }}">
                             </div>
                         </div>
                     </div>
@@ -127,14 +127,14 @@
                                     <option value=""></option>
                                     @if (isset($list_option))
                                         @foreach ($list_option as $option)
-                                            <option value="{{ $option->op_id }}" {{ $option->op_id == $course->co_opt4? 'selected' : '' }}>
+                                            <option value="{{ $option->op_id }}" {{ old('co_opt4', $course->co_opt4) == $option->op_id ? 'selected' : '' }}>
                                                 {{ $option->op_name }}
                                             </option>
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-4">{{ !empty($course->Option4) ? number_format($course->Option4->op_amount) : '' }}</span>
-                                <span style="display: none;" id="option-amount-4-hidden">{{ !empty($course->Option4) ? $course->Option4->op_amount : 0 }} </span>
+                                <input type="text" readonly class="option-amount" id="option-amount-4" name="option-amount-4" value="{{ old('option-amount-4', !empty($course->Option4) ? number_format($course->Option4->op_amount) : '') }}">
+                                <input type="hidden" id="option-amount-4-hidden" value="{{ !empty($course->Option4) ? $course->Option4->op_amount : 0 }}">
                             </div>
                         </div>
                     </div>
@@ -148,14 +148,14 @@
                                     <option value=""></option>
                                     @if (isset($list_option))
                                         @foreach ($list_option as $option)
-                                            <option value="{{ $option->op_id }}" {{ $option->op_id == $course->co_opt5 ? 'selected' : '' }}>
+                                            <option value="{{ $option->op_id }}" {{ old('co_opt5', $course->co_opt5) == $option->op_id ? 'selected' : '' }}>
                                                 {{ $option->op_name }}
                                             </option>
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-5">{{ !empty($course->Option5) ? number_format($course->Option5->op_amount) : '' }}</span>
-                                <span style="display: none;" id="option-amount-5-hidden">{{ !empty($course->Option5) ? $course->Option5->op_amount : 0 }} </span>
+                                <input type="text" readonly class="option-amount" id="option-amount-5" name="option-amount-5" value="{{ old('option-amount-5', !empty($course->Option5) ? number_format($course->Option5->op_amount) : '') }}">
+                                <input type="hidden" id="option-amount-5-hidden" value="{{ !empty($course->Option5) ? $course->Option5->op_amount : 0 }}">
                             </div>
                         </div>
                     </div>
@@ -173,7 +173,7 @@
                                 !empty($course->Option5) ? $money += $course->Option5->op_amount : '';
                             @endphp
                             <input readonly type="text" class="form-control {{ ($errors->first('co_money')) ? 'is-invalid'  :'' }}" 
-                                name="co_money" id="co_money" value="{{ number_format($money) }}" >
+                                name="co_money" id="co_money" value="{{ old('co_money', number_format($money)) }}" >
                             <div class="invalid-feedback">
                                 @error('co_money')
                                     {{ $message }}
@@ -186,7 +186,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">備考</span>
                             </div>
-                            <textarea class="form-control" maxlength="200" name="co_text" rows=4>{{ old('co_text') ? old('co_text') : $course->co_text }}</textarea>
+                            <textarea class="form-control" maxlength="200" name="co_text" rows=4>{{ old('co_text', $course->co_text) }}</textarea>
                         </div>
                     </div>
                     <div class="form-group-button">

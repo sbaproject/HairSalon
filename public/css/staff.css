@@ -23,7 +23,10 @@ tbody {
 	margin-right: 30px;
 }
 .option-amount {
-    align-self: center;
+	align-self: center;
+	border: unset;
+    cursor: default;
+    outline: none;
 }
 .form-group-button {
 	display: flex;
