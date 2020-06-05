@@ -339,6 +339,7 @@ function onCourseChange(index ,selectBox ,list_course,list_option) {
 
         $('input[name="' + 's_opt1_' + index +'"]').val('フリー');
         $('select[name="s_opts1_' + index + '"]').val('');
+        $('select[name="s_opts1_' + index + '"]').prop("disabled", false);
         $('input[name="' + 's_opt2_' + index +'"]').val('');
         $('select[name="s_opts2_' + index + '"]').val('');
         $('select[name="s_opts2_' + index + '"]').prop("disabled", true);
@@ -363,6 +364,7 @@ function onCourseChange(index ,selectBox ,list_course,list_option) {
         $('#s_money_' + index).val('');
         $('input[name="' + 's_opt1_' + index +'"]').val('商品販売');
         $('select[name="s_opts1_' + index + '"]').val('');
+        $('select[name="s_opts1_' + index + '"]').prop("disabled", false);
         $('input[name="' + 's_opt2_' + index +'"]').val('');
         $('select[name="s_opts2_' + index + '"]').val('');
         $('select[name="s_opts2_' + index + '"]').prop("disabled", true);
