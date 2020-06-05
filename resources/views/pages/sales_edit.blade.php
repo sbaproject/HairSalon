@@ -129,7 +129,6 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">詳細１</span>
                                 </div>
-                                <!-- <input type="text" class="form-control" readonly name = "s_opt1_1" value="{{ (isset($sale_details[0]->s_co_id) ? $sale_details[0]->s_co_id : '-1')  == 0 ? 'フリー' : ( (isset($sale_details[0]->s_co_id) ? $sale_details[0]->s_co_id : '-1')  == 9999 ? '商品販売'  : (($errors->first('customer_error1_1') || $errors->first('customer_error2_1') || $errors->first('customer_error3_1') || $errors->first('customer_error4_1') || $errors->first('customer_error5_1'))  ? (old('s_opt1_1') == null ? '' : old('s_opt1_1') ) :(old('s_opt1_1') == null ? (!empty($sale_details[0]->Option1->op_name)?$sale_details[0]->Option1->op_name:'') : old('s_opt1_1')))) }}"> -->
                                 <input type="text" class="form-control" readonly name = "s_opt1_1" value="{{ (isset($sale_details[0]->s_co_id) ? $sale_details[0]->s_co_id : '-1')  == 0 ? 'フリー' : ( (isset($sale_details[0]->s_co_id) ? $sale_details[0]->s_co_id : '-1')  == 9999 ? '商品販売'  : (($errors->first('customer_error1_1') || $errors->first('customer_error2_1') || $errors->first('customer_error3_1') || $errors->first('customer_error4_1') || $errors->first('customer_error5_1'))  ? (old('s_opt1_1') ) :(old('s_opt1_1') == null ? (!empty($sale_details[0]->Option1->op_name)?$sale_details[0]->Option1->op_name:'') : old('s_opt1_1')))) }}">
                                 <div class="form-control wrapper-select {{ ($errors->first('customer_error1_1')) ? 'is-invalid'  :'' }}">
                                     <select class="select-shop2" name = "s_opts1_1">
@@ -250,8 +249,8 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース金額</span>
                                 </div>
-                                <input type="text" id="s_money_1"  class="form-control {{ ($errors->first('s_money_1')) ? 'is-invalid': ''}}" value="{{ old('s_money_1', number_format($sale_details[0]->s_money))}}" name="s_money_1" {{ old('s_co_id1') == null ? (((isset($sale_details[0]->s_co_id) ? $sale_details[0]->s_co_id : '') == '0' || (isset($sale_details[0]->s_co_id) ? $sale_details[0]->s_co_id : '') == '9999') ? '' : 'readonly') : ((old('s_co_id1') == '0' || old('s_co_id1') == '9999') ? '' : 'readonly')}}>
-                                <input type="hidden" id="s_money-hidden_1" name="s_money-hidden_1" value="{{ old('s_money-hidden_1', $sale_details[0]->s_money) }}">
+                                <input type="text" id="s_money_1"  class="form-control {{ ($errors->first('s_money_1')) ? 'is-invalid': ''}}" value="{{ old('s_money_1', isset($sale_details[0]->s_money) ? number_format($sale_details[0]->s_money) : '')}}" name="s_money_1" {{ old('s_co_id1') == null ? (((isset($sale_details[0]->s_co_id) ? $sale_details[0]->s_co_id : '') == '0' || (isset($sale_details[0]->s_co_id) ? $sale_details[0]->s_co_id : '') == '9999') ? '' : 'readonly') : ((old('s_co_id1') == '0' || old('s_co_id1') == '9999') ? '' : 'readonly')}}>
+                                <input type="hidden" id="s_money-hidden_1" name="s_money-hidden_1" value="{{ old('s_money-hidden_1', isset($sale_details[0]->s_money) ? $sale_details[0]->s_money : '') }}">
                                 <div class="invalid-feedback">
                                     @error('s_money_1')
                                     {{ $message }}
@@ -413,8 +412,8 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース金額</span>
                                 </div>
-                                <input type="text" id="s_money_2"  class="form-control {{ ($errors->first('s_money_2')) ? 'is-invalid': ''}}" value="{{ old('s_money_2') == null ? ((isset($sale_details[1]->s_money) ? number_format($sale_details[1]->s_money) : '')) : old('s_money_2') }}" name="s_money_2" {{ old('s_co_id2') == null ? (((isset($sale_details[1]->s_co_id) ? $sale_details[1]->s_co_id : '') == '0' || (isset($sale_details[1]->s_co_id) ? $sale_details[1]->s_co_id : '') == '9999')  ? '' : 'readonly') : ((old('s_co_id2') == '0' || old('s_co_id2') == '9999') ? '' : 'readonly')}}>
-                                <input type="hidden" id="s_money-hidden_2" name="s_money-hidden_2" value="{{ old('s_money-hidden_2') == null ? (isset($sale_details[1]->s_money) ? $sale_details[1]->s_money : '') : old('s_money-hidden_2') }}">
+                                <input type="text" id="s_money_2"  class="form-control {{ ($errors->first('s_money_2')) ? 'is-invalid': ''}}" value="{{ old('s_money_2', isset($sale_details[1]->s_money) ? number_format($sale_details[1]->s_money) : '') }}" name="s_money_2" {{ old('s_co_id2') == null ? (((isset($sale_details[1]->s_co_id) ? $sale_details[1]->s_co_id : '') == '0' || (isset($sale_details[1]->s_co_id) ? $sale_details[1]->s_co_id : '') == '9999')  ? '' : 'readonly') : ((old('s_co_id2') == '0' || old('s_co_id2') == '9999') ? '' : 'readonly')}}>
+                                <input type="hidden" id="s_money-hidden_2" name="s_money-hidden_2" value="{{ old('s_money-hidden_2', isset($sale_details[1]->s_money) ? $sale_details[1]->s_money : '') }}">
                                 <div class="invalid-feedback">
                                     @error('s_money_2')
                                     {{ $message }}
@@ -576,8 +575,8 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース金額</span>
                                 </div>
-                                <input type="text" id="s_money_3"  class="form-control {{ ($errors->first('s_money_3')) ? 'is-invalid': ''}}" value="{{ old('s_money_3') == null ? ((isset($sale_details[2]->s_money) ? number_format($sale_details[2]->s_money) : '')) : old('s_money_3') }}" name="s_money_3" {{ old('s_co_id3') == null ? (((isset($sale_details[2]->s_co_id) ? $sale_details[2]->s_co_id : '') == '0' || (isset($sale_details[2]->s_co_id) ? $sale_details[2]->s_co_id : '') == '9999') ? '' : 'readonly') : ((old('s_co_id3') == '0' || old('s_co_id3') == '9999') ? '' : 'readonly')}}>
-                                <input type="hidden" id="s_money-hidden_3" name="s_money-hidden_3" value="{{ old('s_money-hidden_3') == null ? (isset($sale_details[2]->s_money) ? $sale_details[2]->s_money : '') : old('s_money-hidden_3') }}">
+                                <input type="text" id="s_money_3"  class="form-control {{ ($errors->first('s_money_3')) ? 'is-invalid': ''}}" value="{{ old('s_money_3', isset($sale_details[2]->s_money) ? number_format($sale_details[2]->s_money) : '') }}" name="s_money_3" {{ old('s_co_id3') == null ? (((isset($sale_details[2]->s_co_id) ? $sale_details[2]->s_co_id : '') == '0' || (isset($sale_details[2]->s_co_id) ? $sale_details[2]->s_co_id : '') == '9999') ? '' : 'readonly') : ((old('s_co_id3') == '0' || old('s_co_id3') == '9999') ? '' : 'readonly')}}>
+                                <input type="hidden" id="s_money-hidden_3" name="s_money-hidden_3" value="{{ old('s_money-hidden_3', isset($sale_details[2]->s_money) ? $sale_details[2]->s_money : '') }}">
                                 <div class="invalid-feedback">
                                     @error('s_money_3')
                                     {{ $message }}
@@ -739,8 +738,8 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース金額</span>
                                 </div>
-                                <input type="text" id="s_money_4"  class="form-control {{ ($errors->first('s_money_4')) ? 'is-invalid': ''}}" value="{{ old('s_money_4') == null ? ((isset($sale_details[3]->s_money) ? number_format($sale_details[3]->s_money) : '')) : old('s_money_4') }}" name="s_money_4" {{ old('s_co_id4') == null ? (((isset($sale_details[3]->s_co_id) ? $sale_details[3]->s_co_id : '') == '0' || (isset($sale_details[3]->s_co_id) ? $sale_details[3]->s_co_id : '') == '9999') ? '' : 'readonly') : ((old('s_co_id4') == '0' || old('s_co_id4') == '9999') ? '' : 'readonly')}}>
-                                <input type="hidden" id="s_money-hidden_4" name="s_money-hidden_4" value="{{ old('s_money-hidden_4') == null ? (isset($sale_details[3]->s_money) ? $sale_details[3]->s_money : '') : old('s_money-hidden_4') }}">
+                                <input type="text" id="s_money_4"  class="form-control {{ ($errors->first('s_money_4')) ? 'is-invalid': ''}}" value="{{ old('s_money_4', isset($sale_details[3]->s_money) ? number_format($sale_details[3]->s_money) : '') }}" name="s_money_4" {{ old('s_co_id4') == null ? (((isset($sale_details[3]->s_co_id) ? $sale_details[3]->s_co_id : '') == '0' || (isset($sale_details[3]->s_co_id) ? $sale_details[3]->s_co_id : '') == '9999') ? '' : 'readonly') : ((old('s_co_id4') == '0' || old('s_co_id4') == '9999') ? '' : 'readonly')}}>
+                                <input type="hidden" id="s_money-hidden_4" name="s_money-hidden_4" value="{{ old('s_money-hidden_4', isset($sale_details[3]->s_money) ? $sale_details[3]->s_money : '') }}">
                                 <div class="invalid-feedback">
                                     @error('s_money_4')
                                     {{ $message }}
@@ -902,8 +901,8 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">コース金額</span>
                                 </div>
-                                <input type="text" id="s_money_5"  class="form-control {{ ($errors->first('s_money_5')) ? 'is-invalid': ''}}" value="{{ old('s_money_5') == null ? ((isset($sale_details[4]->s_money) ? number_format($sale_details[4]->s_money) : '')) : old('s_money_5') }}" name="s_money_5" {{ old('s_co_id5') == null ? (((isset($sale_details[4]->s_co_id) ? $sale_details[4]->s_co_id : '') == '0' || (isset($sale_details[4]->s_co_id) ? $sale_details[4]->s_co_id : '') == '9999') ? '' : 'readonly') : ((old('s_co_id5') == '0' || old('s_co_id5') == '9') ? '' : 'readonly')}}>
-                                <input type="hidden" id="s_money-hidden_5" name="s_money-hidden_5" value="{{ old('s_money-hidden_5') == null ? (isset($sale_details[4]->s_money) ? $sale_details[4]->s_money : '') : old('s_money-hidden_5') }}">
+                                <input type="text" id="s_money_5"  class="form-control {{ ($errors->first('s_money_5')) ? 'is-invalid': ''}}" value="{{ old('s_money_5', isset($sale_details[4]->s_money) ? number_format($sale_details[4]->s_money) : '') }}" name="s_money_5" {{ old('s_co_id5') == null ? (((isset($sale_details[4]->s_co_id) ? $sale_details[4]->s_co_id : '') == '0' || (isset($sale_details[4]->s_co_id) ? $sale_details[4]->s_co_id : '') == '9999') ? '' : 'readonly') : ((old('s_co_id5') == '0' || old('s_co_id5') == '9') ? '' : 'readonly')}}>
+                                <input type="hidden" id="s_money-hidden_5" name="s_money-hidden_5" value="{{ old('s_money-hidden_5', isset($sale_details[4]->s_money) ? $sale_details[4]->s_money : '') }}">
                                 <div class="invalid-feedback">
                                     @error('s_money_5')
                                     {{ $message }}
