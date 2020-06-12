@@ -68,8 +68,9 @@
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-1">{{ isset($op1_amount) ? number_format($op1_amount) : '' }}</span>
-                                <span style="display: none;" id="option-amount-1-hidden">{{ isset($op1_amount) ? $op1_amount : 0 }}</span>
+                               
+                                <input type="text" readonly class="option-amount" id="option-amount-1" name="option-amount-1" value="{{ old('option-amount-1', '') }}">
+                                <input type="hidden" id="option-amount-1-hidden" value="{{ isset($op1_amount) ? $op1_amount : 0 }}">
                             </div>
                         </div>
                     </div>
@@ -94,8 +95,8 @@
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-2">{{ isset($op2_amount) ? number_format($op2_amount) : '' }}</span>
-                                <span style="display: none;" id="option-amount-2-hidden">{{ isset($op2_amount) ? $op2_amount : 0 }}</span>
+                                <input type="text" readonly class="option-amount" id="option-amount-2" name="option-amount-2" value="{{ old('option-amount-2', '') }}">
+                                <input type="hidden" id="option-amount-2-hidden" value="{{ isset($op2_amount) ? $op2_amount : 0 }}">
                             </div>
                         </div>
                     </div>
@@ -120,8 +121,8 @@
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-3">{{ isset($op3_amount) ? number_format($op3_amount) : '' }}</span>
-                                <span style="display: none;" id="option-amount-3-hidden">{{ isset($op3_amount) ? $op3_amount : 0 }}</span>
+                                <input type="text" readonly class="option-amount" id="option-amount-3" name="option-amount-3" value="{{ old('option-amount-3', '') }}">
+                                <input type="hidden" id="option-amount-3-hidden" value="{{ isset($op3_amount) ? $op3_amount : 0  }}">
                             </div>
                         </div>
                     </div>
@@ -146,8 +147,8 @@
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-4">{{ isset($op4_amount) ? number_format($op4_amount) : '' }}</span>
-                                <span style="display: none;" id="option-amount-4-hidden">{{ isset($op1_amount) ? $op1_amount : 0 }}</span>
+                                <input type="text" readonly class="option-amount" id="option-amount-4" name="option-amount-4" value="{{ old('option-amount-4', '') }}">
+                                <input type="hidden" id="option-amount-4-hidden" value="{{ isset($op1_amount) ? $op1_amount : 0  }}">                
                             </div>
                         </div>
                     </div>
@@ -172,8 +173,8 @@
                                         @endforeach
                                     @endif
                                 </select>
-                                <span class="option-amount" id="option-amount-5">{{ isset($op5_amount) ? number_format($op5_amount) : '' }}</span>
-                                <span style="display: none;" id="option-amount-5-hidden">{{ isset($op5_amount) ? $op5_amount : 0 }}</span>
+                                <input type="text" readonly class="option-amount" id="option-amount-5" name="option-amount-5" value="{{ old('option-amount-5', '') }}">
+                                <input type="hidden" id="option-amount-5-hidden" value="{{ isset($op5_amount) ? $op5_amount : 0 }}">                
                             </div>
                             <div class="invalid-feedback">
                                 @if (($errors->first('option_error')))
@@ -196,7 +197,7 @@
                                 if (isset($op5_amount)) $money += $op5_amount;
                             @endphp
                             <input readonly type="text" class="form-control" 
-                                name="co_money" id="co_money" value="{{ ($money != 0) ? number_format($money) : '' }}">
+                                name="co_money" id="co_money" value="{{ old('co_money', number_format($money)) }}">
                             <div class="invalid-feedback">
                                 @error('co_money')
                                     {{ $message }}
