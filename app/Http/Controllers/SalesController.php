@@ -588,10 +588,18 @@ class SalesController extends Controller
                 ->where('s_del_flg', 0)->get()->toArray();
             $list_shop = Shop::where('sh_id', '=', $req->shop_id)->get()->toArray();
             $shop_name = $list_shop[0]['sh_name'];
+            
+            $list_sales_2 = Sales::where('sale_date','>=',$str_date)
+                ->where('sale_date','<=',$end_date)
+                ->where('s_sh_id',$req->shop_id)
+                ->where('s_c_id', 430)
+                ->orderBy('s_id', 'DESC')
+                ->where('s_del_flg', 0)->get()->toArray();
 
         }else{
             $export_date = date('Y-m-d');
-            $list_sales = Sales::where('s_del_flg', 0)->orderBy('s_id', 'DESC')->get()->toArray();;
+            $list_sales = Sales::where('s_del_flg', 0)->orderBy('s_id', 'DESC')->get()->toArray();
+            $list_sales_2 = array();
             $shop_name = '全部';
         }
         // process data
@@ -668,7 +676,6 @@ class SalesController extends Controller
                 }
             }
         }
-
         $list_staff_id = array_keys($list_staff_data);
         sort($list_staff_id);
         sort($list_option_id);
@@ -691,11 +698,10 @@ class SalesController extends Controller
         if (in_array(9999, $list_option_id)){
             $list_options[] = array('op_id' => 9999, 'op_name' => '商品販売', 'op_amount' => 1);
         }
-
-        $list_sales_count = count($list_sales); //B7
-        $avg_person = ceil($list_sales_count/$day_in_month) ; //B8 = B7 / $day_in_month
-        $total_staff = count($list_staff_id); //B9
-
+        $list_sales_count_2 = count($list_sales_2); //B9
+        $list_sales_count = count($list_sales) - $list_sales_count_2; //B6
+        $avg_person = ceil($list_sales_count/$day_in_month) ; //B7 = B6 / $day_in_month
+        $total_staff = count($list_staff_id); //B8
         // export excel
         $font_family = 'Arial';
         $spreadsheet = new Spreadsheet();
@@ -773,6 +779,7 @@ class SalesController extends Controller
         $sheet->getStyle('A6')->applyFromArray($styleArray);
         $sheet->getStyle('A7')->applyFromArray($styleArray);
         $sheet->getStyle('A8')->applyFromArray($styleArray);
+        $sheet->getStyle('A9')->applyFromArray($styleArray);
 
         $styleArray = array(
             'borders' => array(
@@ -795,11 +802,13 @@ class SalesController extends Controller
         $sheet->getStyle('B6')->applyFromArray($styleArray);
         $sheet->getStyle('B7')->applyFromArray($styleArray);
         $sheet->getStyle('B8')->applyFromArray($styleArray);
+        $sheet->getStyle('B9')->applyFromArray($styleArray);
 
         $sheet->setCellValue('A5', '当月売上');
         $sheet->setCellValue('A6', '当月総客数');
         $sheet->setCellValue('A7', 'のべ人数');
         $sheet->setCellValue('A8', 'スタッフ数');
+         $sheet->setCellValue('A9', '物品購入');
 
         $sheet->getStyle('B5')->getAlignment()->setHorizontal('right');
         $sheet->getStyle('B6')->getAlignment()->setHorizontal('right');
@@ -809,11 +818,13 @@ class SalesController extends Controller
         $sheet->getStyle('B6')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
         $sheet->getStyle('B7')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
         $sheet->getStyle('B8')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
+        $sheet->getStyle('B9')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
 
         $sheet->setCellValue('B5', number_format($sum_money));
         $sheet->setCellValue('B6', number_format($list_sales_count));
         $sheet->setCellValue('B7', number_format($avg_person));
         $sheet->setCellValue('B8', number_format($total_staff));
+        $sheet->setCellValue('B9', number_format($list_sales_count_2));
 
 
         //A19 : C22
