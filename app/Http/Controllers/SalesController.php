@@ -15,6 +15,7 @@ use PDF;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Writer\Csv;
 
 class SalesController extends Controller
 { 
@@ -1111,38 +1112,66 @@ class SalesController extends Controller
         }else{
             $list_sales = Sales::where('s_del_flg', 0)->orderBy('s_id', 'DESC')->paginate(1000000);
         }
+
         $filename = '会計出力_'.date('Ymd').'.csv';
-        $headers = array(
-            "Content-type" => "text/csv",
-            "Content-Disposition" => "attachment; filename=".$filename,
-            "Pragma" => "no-cache",
-            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
-            "Expires" => "0"
-        );
-
-
-        $columns = array('STT'.chr(32), 'Ngày tháng', 'Phương thức thanh toán', 'Tên hàng hóa & dịch vụ' ,'Đơn vị tính', 'Số lượng', 'Đơn giá', 'Thành tiền');
-
-        $callback = function() use ($list_sales, $columns)
-        {
-            $BOM = "\xEF\xBB\xBF"; // UTF-8 BOM
-            $file = fopen('php://output', 'w');
-            fwrite($file, $BOM);
-            fputcsv($file, $columns);
-            $index = 1;
-            foreach($list_sales as $sale) {
-                $sale_date = empty($sale->sale_date)? '' : date('Y/m/d', strtotime($sale->sale_date));
-                $s_pay = ((int)$sale->s_pay === 0 ?  'キャッシュ' : 'カード') ;
-                $co_name = empty($sale->SaleDetails[0]->Course->co_name)? ($sale->SaleDetails[0]->s_co_id == 0 ? 'フリー' : '商品販売') : $sale->SaleDetails[0]->Course->co_name;
-                $unit = 'Gói';
-                $quantity = 1;
-                $s_money = empty($sale->s_money)? 0 : $sale->s_money;
+        $spreadsheet = new Spreadsheet();
+        $writer = new Csv($spreadsheet);
+        $writer->setUseBOM(true);
+        $writer->setDelimiter(',');
+        $writer->setEnclosure('"');
+        $writer->setLineEnding("\r\n");
+        $writer->setSheetIndex(0);
+        $sheet = $spreadsheet->getActiveSheet();
+        $row = 1;
+        $sheet->setCellValue('A'.$row, 'STT');
+        $sheet->setCellValue('B'.$row, 'Ngày tháng');
+        $sheet->setCellValue('C'.$row, 'Phương thức thanh toán');
+        $sheet->setCellValue('D'.$row, 'Tên hàng hóa & dịch vụ');
+        $sheet->setCellValue('E'.$row, 'Đơn vị tính');
+        $sheet->setCellValue('F'.$row, 'Số lượng');
+        $sheet->setCellValue('G'.$row, 'Đơn giá');
+        $sheet->setCellValue('H'.$row, 'Thành tiền');
+        $row++;
+        $index = 1;
+        foreach($list_sales as $sale) {
+            $sale_date = empty($sale->sale_date)? '' : date('Y/m/d', strtotime($sale->sale_date));
+            $s_pay = ((int)$sale->s_pay === 0 ?  'キャッシュ' : 'カード') ;                
+            $unit = 'Gói';
+            $quantity = 1;
+            $saleDetails = $sale->SaleDetails;
+            foreach($saleDetails as $sDetail) {
+                $co_name = empty( $sDetail->Course->co_name)? ( $sDetail->s_co_id == 0 ? 'フリー' : '商品販売') :  $sDetail->Course->co_name;
+                if ($co_name == 'フリー' && $sDetail->s_money < 0){
+                    $co_name = 'フリー(値引分)';
+                }
+                $s_money = empty($sDetail->s_money)? 0 : $sDetail->s_money;
                 $total = number_format($s_money * (int)$quantity);
-                fputcsv($file, array($index.chr(32), $sale_date.chr(32), $s_pay.chr(32), $co_name.chr(32), $unit.chr(32), $quantity.chr(32), number_format($s_money), $total));
+
+                $sheet->setCellValue('A'.$row, $index);
+                $sheet->setCellValue('B'.$row, $sale_date);
+                $sheet->setCellValue('C'.$row, $s_pay);
+                $sheet->setCellValue('D'.$row, $co_name);
+                $sheet->setCellValue('E'.$row, $unit);
+                $sheet->setCellValue('F'.$row, $quantity);
+                $sheet->setCellValue('G'.$row, number_format($s_money));
+                $sheet->setCellValue('H'.$row, $total);
+
                 $index++;
+                $row++;
             }
-            fclose($file);
-        };
-        return response()->stream($callback, 200, $headers);
+        }
+
+        $writer->save($filename);
+
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($filename).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($filename));
+        readfile($filename);
+        unlink($filename);
+        exit();        
     }
 }

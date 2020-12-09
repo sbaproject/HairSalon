@@ -129,35 +129,58 @@ $(document).ready(function(){
     });    
 
     $('#s_money_1').keyup(function() {
-        var string = numeral($('#s_money_1').val()).format('0,0');
+        var val = $('#s_money_1').val();
+        var co_id = $('#s_co_id1').val();
+        var string = calculatingValue(val, co_id);
         $('#s_money_1').val(string);
         calculatorTotal();
     });
 
     $('#s_money_2').keyup(function() {
-        var string = numeral($('#s_money_2').val()).format('0,0');
+        var val = $('#s_money_2').val();
+        var co_id = $('#s_co_id2').val();
+        var string = calculatingValue(val, co_id);
         $('#s_money_2').val(string);
         calculatorTotal();
     });
 
     $('#s_money_3').keyup(function() {
-        var string = numeral($('#s_money_3').val()).format('0,0');
+        var val = $('#s_money_3').val();
+        var co_id = $('#s_co_id3').val();
+        var string = calculatingValue(val, co_id);
         $('#s_money_3').val(string);
         calculatorTotal();
     });
 
     $('#s_money_4').keyup(function() {
-        var string = numeral($('#s_money_4').val()).format('0,0');
+        var val = $('#s_money_4').val();
+        var co_id = $('#s_co_id4').val();
+        var string = calculatingValue(val, co_id);
         $('#s_money_4').val(string);
         calculatorTotal();
     });
 
     $('#s_money_5').keyup(function() {
-        var string = numeral($('#s_money_5').val()).format('0,0');
+        var val = $('#s_money_5').val();
+        var co_id = $('#s_co_id5').val();
+        var string = calculatingValue(val, co_id);
         $('#s_money_5').val(string);
         calculatorTotal();
     });
 });
+
+function calculatingValue(val , co_id){
+    var string = '0';
+    if (co_id == 0){
+        string = val.replace(/,/g, '');
+        if (string != '' && string != '-') {
+            string = numeral(string).format('0,0');
+        }
+    }else{
+        string = numeral(val).format('0,0');
+    }
+    return string;
+}
 
 function ReponsivePage(windowsize){
     if (windowsize <= 1433) {
@@ -501,10 +524,8 @@ function calculatorTotal() {
         money_total +=parseInt(money_5);
     }
 
-    var totalAmountFormat = '';
-    if (money_total > 0){
-         totalAmountFormat = numeral(money_total).format('0,0');
-    }
+    var totalAmountFormat = '0';
+    totalAmountFormat = numeral(money_total).format('0,0');
     $('input[name="s_total_money"]').val(totalAmountFormat);
     $('input[name="s_total_money-hidden"]').val(totalAmountFormat);
 
