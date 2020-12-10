@@ -642,12 +642,25 @@ class SalesController extends Controller
             $s_opt3 = $sale['s_opt3'];
             $s_opt4 = $sale['s_opt4'];
             $s_opt5 = $sale['s_opt5'];
+            $s_money = $sale['s_money'];
 
             if ($s_opt1 == 0 || $s_opt1 == 9999 || !empty($s_opt1)){
-                if ($s_opt1 == 0){
+                if ($s_opt1 == 0 && $s_money >= 0){
                     $s_opt1 = 99999;
                 }
+                if ($s_opt1 == 0 && $s_money < 0){
+                    $s_opt1 = 99998;
+                }
                 $list_staff_data[$s_opts1]['co_id'][] = $s_opt1;
+                if ($s_opt1 == 9999 || $s_opt1 == 99999 ||  $s_opt1 == 99998 ){
+                    if (empty($list_staff_data[$s_opts1]['amount'][$s_opt1])){
+                      $list_staff_data[$s_opts1]['amount'][$s_opt1] = $s_money;
+                    }
+                    else{
+                      $list_staff_data[$s_opts1]['amount'][$s_opt1] += $s_money;  
+                    }
+                    
+                }
                 if (!in_array($s_opt1, $list_option_id)){
                     $list_option_id[] = $s_opt1;
                 }
@@ -677,6 +690,7 @@ class SalesController extends Controller
                 }
             }
         }
+
         $list_staff_id = array_keys($list_staff_data);
         sort($list_staff_id);
         sort($list_option_id);
@@ -692,9 +706,11 @@ class SalesController extends Controller
         $list_options = Option::whereIn('op_id',$list_option_id)->orderBy('op_id', 'ASC')->get()->toArray();
         $list_staff = Staff::whereIn('s_id',$list_staff_id)->orderBy('s_id', 'ASC')->get()->toArray();
 
-
         if (in_array(99999, $list_option_id)){
             $list_options[] = array('op_id' => 99999, 'op_name' => 'フリー', 'op_amount' => 1);
+        }
+        if (in_array(99998, $list_option_id)){
+            $list_options[] = array('op_id' => 99998, 'op_name' => 'フリー(値引分)', 'op_amount' => 1);
         }
         if (in_array(9999, $list_option_id)){
             $list_options[] = array('op_id' => 9999, 'op_name' => '商品販売', 'op_amount' => 1);
@@ -997,38 +1013,87 @@ class SalesController extends Controller
             )
         );
 
+        $sheet->mergeCells("E10:E11");
         $sheet->setCellValue('E10', 'No.');
         $sheet->getStyle('E10')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('E10')->getAlignment()->setVertical('center');
         $sheet->getStyle('E10')->applyFromArray($styleArray);
+        $sheet->getStyle('E11')->applyFromArray($styleArray);
 
         //F10
+        $sheet->mergeCells("F10:F11");
         $sheet->setCellValue('F10', '氏名');
         $sheet->getStyle('F10')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('F10')->getAlignment()->setVertical('center');
         $sheet->getStyle('F10')->applyFromArray($styleArray);
+        $sheet->getStyle('F11')->applyFromArray($styleArray);
 
         //G10
+        $sheet->mergeCells("G10:G11");
         $sheet->setCellValue('G10', '氏名カナ');
         $sheet->getStyle('G10')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('G10')->getAlignment()->setVertical('center');
         $sheet->getStyle('G10')->applyFromArray($styleArray);
+        $sheet->getStyle('G11')->applyFromArray($styleArray);
 
         //H10
+        $sheet->mergeCells("H10:H11");
         $sheet->setCellValue('H10', '実績売上');
         $sheet->getStyle('H10')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle('H10')->getAlignment()->setVertical('center');
         $sheet->getStyle('H10')->applyFromArray($styleArray);
+        $sheet->getStyle('H11')->applyFromArray($styleArray);
 
         $column = 10;
+        $column11 = 11;
         $col = 'I';
         foreach($list_options as $option){
-            $sheet->getColumnDimension($col)->setWidth(18);
+            $sheet->getColumnDimension($col)->setWidth(36);
+            $a = $col;
+            $a++;
+            $sheet->mergeCells($col."10:".$a."10");
             $sheet->setCellValue($col.$column, $option['op_name']);
             $sheet->getStyle($col.$column)->getAlignment()->setHorizontal('center');
             $sheet->getStyle($col.$column)->applyFromArray($styleArray);
+          
+            $sheet->setCellValue($col.$column11, "件数");
+            $sheet->getColumnDimension($col)->setWidth(18);
+            $sheet->getStyle($col.$column11)->getAlignment()->setHorizontal('center');
+            $sheet->getStyle($col.$column11)->applyFromArray($styleArray);
+            $sheet->getStyle($col.$column)->applyFromArray($styleArray);
+
+            $col++;
+
+            $sheet->setCellValue($col.$column11, "売上");
+            $sheet->getColumnDimension($col)->setWidth(18);
+            $sheet->getStyle($col.$column11)->getAlignment()->setHorizontal('center');
+            $sheet->getStyle($col.$column11)->applyFromArray($styleArray);
+            $sheet->getStyle($col.$column)->applyFromArray($styleArray);
+
             $col++;
         }
 
         $sheet->setCellValue($col.$column, chr(32));
 
-        $column = 11;
+        $sheet->mergeCells($col."10:".$col."11");
+        $sheet->setCellValue($col.'10', '特１');
+        $sheet->getColumnDimension($col)->setWidth(18);
+        $sheet->getStyle($col.'10')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle($col.'10')->getAlignment()->setVertical('center');
+        $sheet->getStyle($col.'10')->applyFromArray($styleArray);
+        $sheet->getStyle($col.'11')->applyFromArray($styleArray);
+
+        $col++;
+
+        $sheet->mergeCells($col."10:".$col."11");
+        $sheet->setCellValue($col.'10', '特２');
+        $sheet->getColumnDimension($col)->setWidth(18);
+        $sheet->getStyle($col.'10')->getAlignment()->setHorizontal('center');
+        $sheet->getStyle($col.'10')->getAlignment()->setVertical('center');
+        $sheet->getStyle($col.'10')->applyFromArray($styleArray);
+        $sheet->getStyle($col.'11')->applyFromArray($styleArray);
+
+        $column = 12;
         $index = 1;
         foreach($list_staff as $staff){
             $staff_id = $staff['s_id'];
@@ -1056,14 +1121,39 @@ class SalesController extends Controller
                 $op_amount = $option['op_amount'];
                 $list_option_staff_id = array_keys($option_staff_id);
                 if (in_array($op_id, $list_option_staff_id)) {
-                    $total_amount += $option_staff_id[$op_id] * $op_amount;
+                    if (in_array($op_id, array(9999, 99999, 99998))){
+                        $op_amount = !empty($list_staff_data[$staff_id]['amount'][$op_id]) ? $list_staff_data[$staff_id]['amount'][$op_id] : 0 ;
+                        $total_amount += $op_amount;
+                    }else{
+                        $total_amount += $option_staff_id[$op_id] * $op_amount;
+                    }
+                    
                     $sheet->setCellValue($col . $column, $option_staff_id[$op_id]);
                 }
                 $sheet->getStyle($col.$column)->getAlignment()->setHorizontal('right');
                 $sheet->getStyle($col.$column)->applyFromArray($styleArray);
                 $sheet->getStyle($col.$column)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
+                $col++;               
+                if (in_array($op_id, $list_option_staff_id)) {
+                    $sheet->setCellValue($col . $column, number_format($op_amount));
+                }
+                $sheet->getStyle($col.$column)->getAlignment()->setHorizontal('right');
+                $sheet->getStyle($col.$column)->applyFromArray($styleArray);
+                $sheet->getStyle($col.$column)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');   
+
                 $col++;
             }
+
+            $sheet->setCellValue($col . $column, '');
+            $sheet->getStyle($col.$column)->getAlignment()->setHorizontal('right');
+            $sheet->getStyle($col.$column)->applyFromArray($styleArray);
+            $sheet->getStyle($col.$column)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');
+            $col++;
+
+            $sheet->setCellValue($col . $column, '');
+            $sheet->getStyle($col.$column)->getAlignment()->setHorizontal('right');
+            $sheet->getStyle($col.$column)->applyFromArray($styleArray);
+            $sheet->getStyle($col.$column)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('d9ead3');           
 
             $sheet->setCellValue('H'.$column, number_format($total_amount));
             $sheet->getStyle('H'.$column)->getAlignment()->setHorizontal('right');
