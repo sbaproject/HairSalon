@@ -1122,12 +1122,12 @@ class SalesController extends Controller
                 $list_option_staff_id = array_keys($option_staff_id);
                 if (in_array($op_id, $list_option_staff_id)) {
                     if (in_array($op_id, array(9999, 99999, 99998))){
-                        $op_amount = !empty($list_staff_data[$staff_id]['amount'][$op_id]) ? $list_staff_data[$staff_id]['amount'][$op_id] : 0 ;
-                        $total_amount += $op_amount;
+                        $op_amount = !empty($list_staff_data[$staff_id]['amount'][$op_id]) ? $list_staff_data[$staff_id]['amount'][$op_id] : 0 ;                       
                     }else{
-                        $total_amount += $option_staff_id[$op_id] * $op_amount;
+                        $op_amount = $option_staff_id[$op_id] * $op_amount;
                     }
-                    
+
+                    $total_amount += $op_amount;
                     $sheet->setCellValue($col . $column, $option_staff_id[$op_id]);
                 }
                 $sheet->getStyle($col.$column)->getAlignment()->setHorizontal('right');
