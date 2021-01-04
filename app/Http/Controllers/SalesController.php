@@ -49,10 +49,10 @@ class SalesController extends Controller
             $list_sales_count = $list_sales->count();
             $list_shop = Shop::all();
             // get current time
-            $currentTime = Carbon::now()->format('yy/m/d');
+            $currentTime = Carbon::now()->format('Y/m/d');
     
-            $str_date = date('yy/m/d', strtotime($str_date));
-            $end_date = date('yy/m/d', strtotime($end_date));
+            $str_date = date('Y/m/d', strtotime($str_date));
+            $end_date = date('Y/m/d', strtotime($end_date));
     
             $shopId = $req->shop_id;
             session(['search' => $list_sales_count]);
@@ -72,8 +72,7 @@ class SalesController extends Controller
             $sum_money = Sales::where('s_del_flg', 0)->sum('s_money');
             $list_shop = Shop::all();
             $list_sales_count = Sales::where('s_del_flg', 0)->count();   
-            $currentTime = Carbon::now()->format('yy/m/d');
-            
+            $currentTime = Carbon::now()->format('Y/m/d');
             return view('pages.sales', compact('list_sales','sum_money','list_shop','list_sales_count','currentTime', 'shop_user'));
         }        
     }
@@ -89,7 +88,7 @@ class SalesController extends Controller
         $list_customer = Customer::where('c_sh_id', $userLogged->u_shop)->get();
         $list_staff = Staff::where('s_del_flg', 0)->get();
         $list_option = Option::where('op_del_flg', 0)->where('op_shop', $userLogged->u_shop)->get();
-        $currentTime = Carbon::now()->format('yy/m/d');
+        $currentTime = Carbon::now()->format('Y/m/d');
 
         $last_sales = Sales::orderBy('s_id', 'DESC')->take(1)->first('s_id');
         if ($last_sales != null) {
@@ -257,7 +256,7 @@ class SalesController extends Controller
         $list_customer = Customer::where('c_sh_id', $userLogged->u_shop)->get();
         $list_staff = Staff::where('s_del_flg', 0)->get();
         $list_option = Option::where('op_del_flg', 0)->where('op_shop', $userLogged->u_shop)->get();
-        $salesDate = date('yy/m/d', strtotime($sales->sale_date));
+        $salesDate = date('Y/m/d', strtotime($sales->sale_date));
         $sale_details = SaleDetails::where('s_id', $id)->orderBy('s_co_num', 'ASC')->get();
         $total_detail = count($sale_details);
 
